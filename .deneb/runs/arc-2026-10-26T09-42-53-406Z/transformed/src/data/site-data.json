@@ -1,0 +1,111 @@
+{
+  "arcVersion": "2.2.0",
+  "schemaVersion": 2,
+  "project": {
+    "id": "car-sales-template-project",
+    "title": "car-sales-template",
+    "status": "APPROVED"
+  },
+  "merchant": {
+    "businessName": "car-sales-template",
+    "description": "A modern commerce storefront built for the Fivora platform."
+  },
+  "template": {
+    "id": "car-sales-template-template",
+    "name": "car-sales-template",
+    "engine": "NEXT_STATIC_EXPORT",
+    "structure": {
+      "pages": [
+        "home"
+      ],
+      "theme": {
+        "primaryColor": "#0284c7",
+        "secondaryColor": "#0f172a",
+        "accentColor": "#38bdf8",
+        "backgroundColor": "#ffffff",
+        "cardBackgroundColor": "#f8fafc",
+        "textColor": "#0f172a",
+        "borderColor": "#e2e8f0",
+        "headingFont": "Outfit, sans-serif",
+        "bodyFont": "Inter, sans-serif",
+        "borderRadius": "12px",
+        "dark": {
+          "primaryColor": "#38bdf8",
+          "secondaryColor": "#f8fafc",
+          "accentColor": "#0284c7",
+          "backgroundColor": "#0b0f19",
+          "cardBackgroundColor": "#111827",
+          "textColor": "#f9fafb",
+          "borderColor": "#1f2937"
+        }
+      }
+    }
+  },
+  "requirements": {
+    "requiredPages": [
+      "home"
+    ],
+    "requiredFeatures": []
+  },
+  "content": {
+    "common": {
+      "websiteTitle": "car-sales-template",
+      "shortDescription": "A high-converting storefront built for the Fivora platform.",
+      "logoUrl": "",
+      "headerCtaLabel": "Contact Us",
+      "copyright": "© 2026 car-sales-template. All rights reserved.",
+      "navLabels": {
+        "home": "Home"
+      },
+      "business": {
+        "phone": "",
+        "whatsapp": "",
+        "email": ""
+      }
+    },
+    "home": {
+      "nextJsLogoImage": "/next.svg",
+      "title": "To get started, edit the file.",
+      "subtitle": "Looking for a starting point or more instructions? Head over to or the center.",
+      "templatesUrl": "https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app",
+      "templatesLabel": "Templates",
+      "learningUrl": "https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app",
+      "learningLabel": "Learning",
+      "deployNowUrl": "https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app",
+      "deployNowLabel": "Deploy Now",
+      "vercelLogomarkImage": "/vercel.svg",
+      "documentationUrl": "https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app",
+      "documentationLabel": "Documentation",
+      "pageTsx": "page.tsx"
+    }
+  },
+  "styles": {
+    "home.title": {},
+    "home.subtitle": {},
+    "home.templatesLabel": {},
+    "home.learningLabel": {},
+    "home.deployNowLabel": {},
+    "home.documentationLabel": {}
+  },
+  "theme": {
+    "primaryColor": "#0284c7",
+    "secondaryColor": "#0f172a",
+    "accentColor": "#38bdf8",
+    "backgroundColor": "#ffffff",
+    "cardBackgroundColor": "#f8fafc",
+    "textColor": "#0f172a",
+    "borderColor": "#e2e8f0",
+    "headingFont": "Outfit, sans-serif",
+    "bodyFont": "Inter, sans-serif",
+    "borderRadius": "12px",
+    "dark": {
+      "primaryColor": "#38bdf8",
+      "secondaryColor": "#f8fafc",
+      "accentColor": "#0284c7",
+      "backgroundColor": "#0b0f19",
+      "cardBackgroundColor": "#111827",
+      "textColor": "#f9fafb",
+      "borderColor": "#1f2937"
+    }
+  }
+}

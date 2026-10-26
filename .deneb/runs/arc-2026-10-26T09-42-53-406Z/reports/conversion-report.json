@@ -1,0 +1,2630 @@
+{
+  "engine": "deneb-arc",
+  "arcVersion": "2.2.0",
+  "schemaVersion": 2,
+  "runId": "arc-2026-10-26T09-42-53-505Z",
+  "backupDir": "C:\\Users\\ACER\\car-sales-template\\.deneb\\runs\\arc-2026-10-26T09-42-53-406Z\\workspace\\.deneb-backup-arc-2026-10-26T09-42-53-505Z",
+  "detection": {
+    "framework": "nextjs",
+    "frameworkVersion": "16.4.3",
+    "detected": [
+      "nextjs",
+      "tailwind-v4",
+      "vanilla-css"
+    ],
+    "hasShadcn": false,
+    "hasHeroUi": false,
+    "hasTailwind": true,
+    "appDir": "src/app",
+    "isAppRouter": true,
+    "pkg": {
+      "name": "car-sales-template",
+      "version": "0.1.0",
+      "private": true,
+      "scripts": {
+        "dev": "next dev",
+        "build": "next build",
+        "start": "next start",
+        "lint": "eslint"
+      },
+      "dependencies": {
+        "next": "16.4.3",
+        "react": "19.3.0",
+        "react-dom": "19.3.0"
+      },
+      "devDependencies": {
+        "@tailwindcss/turbopack": "^4",
+        "@types/node": "^20",
+        "@types/react": "^19",
+        "@types/react-dom": "^19",
+        "eslint": "^9",
+        "eslint-config-next": "16.4.3",
+        "tailwindcss": "^4",
+        "typescript": "^5"
+      }
+    }
+  },
+  "matchedRecipe": {
+    "id": "ecommerce-storefront",
+    "name": "ecommerce-storefront",
+    "label": "Modern E-Commerce Storefront",
+    "version": "1.0.0",
+    "fingerprint": {
+      "keywords": [
+        "product",
+        "shoe",
+        "cart",
+        "shop",
+        "collection",
+        "sneaker",
+        "store",
+        "apparel",
+        "price",
+        "sale",
+        "order"
+      ],
+      "componentRoles": [
+        "Navbar",
+        "Hero",
+        "ProductGrid",
+        "ProductCard",
+        "CategorySection",
+        "EditorialSection",
+        "BrandStory",
+        "PromoBanner",
+        "WhatsAppCTA",
+        "Footer",
+        "ProductDetail"
+      ]
+    },
+    "prerequisites": [],
+    "detectors": [
+      "product",
+      "shoe",
+      "cart",
+      "shop",
+      "collection",
+      "sneaker",
+      "store",
+      "apparel",
+      "price",
+      "sale",
+      "order"
+    ],
+    "transforms": [],
+    "validators": [],
+    "confidenceThreshold": 0.85,
+    "successfulApplications": 0,
+    "failedApplications": 0,
+    "gridRules": {
+      "cardComponentNames": [
+        "ProductCard",
+        "Card",
+        "ItemCard",
+        "ShoeCard",
+        "ProductItem"
+      ],
+      "cardFields": [
+        {
+          "suffix": "Image",
+          "type": "image",
+          "label": "Image"
+        },
+        {
+          "suffix": "Badge",
+          "type": "text",
+          "label": "Badge"
+        },
+        {
+          "suffix": "Category",
+          "type": "text",
+          "label": "Category"
+        },
+        {
+          "suffix": "Name",
+          "type": "text",
+          "label": "Title"
+        },
+        {
+          "suffix": "Price",
+          "type": "text",
+          "label": "Price"
+        }
+      ],
+      "autoIndex": true,
+      "defaultCardPrefix": "product"
+    },
+    "sections": [
+      {
+        "id": "common",
+        "path": "common",
+        "type": "object",
+        "label": "Shared Storefront Content",
+        "fields": [
+          {
+            "key": "websiteTitle",
+            "type": "text",
+            "label": "Brand Name",
+            "required": true
+          },
+          {
+            "key": "shortDescription",
+            "type": "textarea",
+            "label": "Brand Description"
+          },
+          {
+            "key": "logoUrl",
+            "type": "image",
+            "label": "Website Logo",
+            "recommendedWidth": 512,
+            "recommendedHeight": 512
+          },
+          {
+            "key": "brandUrl",
+            "type": "text",
+            "label": "Brand Link URL"
+          },
+          {
+            "key": "headerCtaLabel",
+            "type": "text",
+            "label": "Header Button Label"
+          },
+          {
+            "key": "tagline",
+            "type": "text",
+            "label": "Brand Tagline"
+          },
+          {
+            "key": "navLabels",
+            "type": "object",
+            "label": "Navigation Labels",
+            "fields": [
+              {
+                "key": "home",
+                "type": "text",
+                "label": "Home Link"
+              },
+              {
+                "key": "shop",
+                "type": "text",
+                "label": "Shop Link"
+              },
+              {
+                "key": "collections",
+                "type": "text",
+                "label": "Collections Link"
+              },
+              {
+                "key": "about",
+                "type": "text",
+                "label": "About Link"
+              },
+              {
+                "key": "contact",
+                "type": "text",
+                "label": "Contact Link"
+              }
+            ]
+          },
+          {
+            "key": "business",
+            "type": "object",
+            "label": "Business Information",
+            "fields": [
+              {
+                "key": "phone",
+                "type": "tel",
+                "label": "Phone Number"
+              },
+              {
+                "key": "whatsapp",
+                "type": "text",
+                "label": "WhatsApp Number"
+              },
+              {
+                "key": "email",
+                "type": "email",
+                "label": "Contact Email"
+              },
+              {
+                "key": "location",
+                "type": "object",
+                "label": "Store Location",
+                "fields": [
+                  {
+                    "key": "address",
+                    "type": "text",
+                    "label": "Street Address"
+                  },
+                  {
+                    "key": "city",
+                    "type": "text",
+                    "label": "City"
+                  },
+                  {
+                    "key": "country",
+                    "type": "text",
+                    "label": "Country"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "key": "copyright",
+            "type": "text",
+            "label": "Copyright Text"
+          },
+          {
+            "key": "footer",
+            "type": "object",
+            "label": "Footer Content",
+            "fields": [
+              {
+                "key": "shopHeading",
+                "type": "text",
+                "label": "Shop Column Heading"
+              },
+              {
+                "key": "shopLink1",
+                "type": "text",
+                "label": "Shop Link 1"
+              },
+              {
+                "key": "shopLink2",
+                "type": "text",
+                "label": "Shop Link 2"
+              },
+              {
+                "key": "shopLink3",
+                "type": "text",
+                "label": "Shop Link 3"
+              },
+              {
+                "key": "shopLink4",
+                "type": "text",
+                "label": "Shop Link 4"
+              },
+              {
+                "key": "shopLink5",
+                "type": "text",
+                "label": "Shop Link 5"
+              },
+              {
+                "key": "brandHeading",
+                "type": "text",
+                "label": "Brand Column Heading"
+              },
+              {
+                "key": "brandLink1",
+                "type": "text",
+                "label": "Brand Link 1"
+              },
+              {
+                "key": "brandLink2",
+                "type": "text",
+                "label": "Brand Link 2"
+              },
+              {
+                "key": "brandLink3",
+                "type": "text",
+                "label": "Brand Link 3"
+              },
+              {
+                "key": "supportHeading",
+                "type": "text",
+                "label": "Support Column Heading"
+              },
+              {
+                "key": "supportLink1",
+                "type": "text",
+                "label": "Support Link 1"
+              },
+              {
+                "key": "supportLink2",
+                "type": "text",
+                "label": "Support Link 2"
+              },
+              {
+                "key": "supportLink3",
+                "type": "text",
+                "label": "Support Link 3"
+              },
+              {
+                "key": "contactHeading",
+                "type": "text",
+                "label": "Contact Column Heading"
+              },
+              {
+                "key": "instagramUrl",
+                "type": "text",
+                "label": "Instagram Profile URL"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "home",
+        "path": "home",
+        "type": "object",
+        "label": "Home Showcase Content",
+        "fields": [
+          {
+            "key": "heroTitle",
+            "type": "text",
+            "label": "Hero Headline",
+            "required": true
+          },
+          {
+            "key": "heroSummary",
+            "type": "textarea",
+            "label": "Hero Summary"
+          },
+          {
+            "key": "heroImage",
+            "type": "image",
+            "label": "Featured Shoe Image (Aero X)",
+            "recommendedWidth": 900,
+            "recommendedHeight": 600
+          },
+          {
+            "key": "heroImageVelocity",
+            "type": "image",
+            "label": "Featured Shoe Image (Velocity)",
+            "recommendedWidth": 900,
+            "recommendedHeight": 600
+          },
+          {
+            "key": "heroImageFlux",
+            "type": "image",
+            "label": "Featured Shoe Image (Flux 01)",
+            "recommendedWidth": 900,
+            "recommendedHeight": 600
+          },
+          {
+            "key": "heroImageMono",
+            "type": "image",
+            "label": "Featured Shoe Image (Mono)",
+            "recommendedWidth": 900,
+            "recommendedHeight": 600
+          },
+          {
+            "key": "heroDisplayLine1",
+            "type": "text",
+            "label": "Hero Background Word 1"
+          },
+          {
+            "key": "heroDisplayLine2",
+            "type": "text",
+            "label": "Hero Background Word 2"
+          },
+          {
+            "key": "heroSlideName",
+            "type": "text",
+            "label": "Hero Slide Name (Aero X)"
+          },
+          {
+            "key": "heroSlideDesc",
+            "type": "textarea",
+            "label": "Hero Slide Description (Aero X)"
+          },
+          {
+            "key": "heroSlideVelocityName",
+            "type": "text",
+            "label": "Hero Slide Name (Velocity)"
+          },
+          {
+            "key": "heroSlideVelocityDesc",
+            "type": "textarea",
+            "label": "Hero Slide Description (Velocity)"
+          },
+          {
+            "key": "heroSlideFluxName",
+            "type": "text",
+            "label": "Hero Slide Name (Flux 01)"
+          },
+          {
+            "key": "heroSlideFluxDesc",
+            "type": "textarea",
+            "label": "Hero Slide Description (Flux 01)"
+          },
+          {
+            "key": "heroSlideMonoName",
+            "type": "text",
+            "label": "Hero Slide Name (Mono)"
+          },
+          {
+            "key": "heroSlideMonoDesc",
+            "type": "textarea",
+            "label": "Hero Slide Description (Mono)"
+          },
+          {
+            "key": "primaryCtaLabel",
+            "type": "text",
+            "label": "Primary CTA Label"
+          },
+          {
+            "key": "secondaryCtaLabel",
+            "type": "text",
+            "label": "Secondary CTA Label"
+          },
+          {
+            "key": "tickerItem1",
+            "type": "text",
+            "label": "Ticker Item 1"
+          },
+          {
+            "key": "tickerItem2",
+            "type": "text",
+            "label": "Ticker Item 2"
+          },
+          {
+            "key": "tickerItem3",
+            "type": "text",
+            "label": "Ticker Item 3"
+          },
+          {
+            "key": "tickerItem4",
+            "type": "text",
+            "label": "Ticker Item 4"
+          },
+          {
+            "key": "tickerItem5",
+            "type": "text",
+            "label": "Ticker Item 5"
+          },
+          {
+            "key": "tickerItem6",
+            "type": "text",
+            "label": "Ticker Item 6"
+          },
+          {
+            "key": "tickerItem7",
+            "type": "text",
+            "label": "Ticker Item 7"
+          },
+          {
+            "key": "newArrivalsLabel",
+            "type": "text",
+            "label": "New Arrivals Section Label"
+          },
+          {
+            "key": "newArrivalsTitle",
+            "type": "text",
+            "label": "New Arrivals Title"
+          },
+          {
+            "key": "newArrivalsDesc",
+            "type": "textarea",
+            "label": "New Arrivals Description"
+          },
+          {
+            "key": "categoryLabel",
+            "type": "text",
+            "label": "Category Section Label"
+          },
+          {
+            "key": "categoryTitle",
+            "type": "text",
+            "label": "Category Section Title"
+          },
+          {
+            "key": "categoryDesc",
+            "type": "textarea",
+            "label": "Category Section Description"
+          },
+          {
+            "key": "editorialEyebrow",
+            "type": "text",
+            "label": "Editorial Eyebrow"
+          },
+          {
+            "key": "editorialTitle",
+            "type": "text",
+            "label": "Editorial Title"
+          },
+          {
+            "key": "editorialDesc",
+            "type": "textarea",
+            "label": "Editorial Description"
+          },
+          {
+            "key": "editorialCtaLabel",
+            "type": "text",
+            "label": "Editorial CTA Label"
+          },
+          {
+            "key": "editorialImage",
+            "type": "image",
+            "label": "Editorial Feature Image",
+            "recommendedWidth": 1200,
+            "recommendedHeight": 1400
+          },
+          {
+            "key": "bestSellersLabel",
+            "type": "text",
+            "label": "Best Sellers Section Label"
+          },
+          {
+            "key": "bestSellersTitle",
+            "type": "text",
+            "label": "Best Sellers Title"
+          },
+          {
+            "key": "bestSellersDesc",
+            "type": "textarea",
+            "label": "Best Sellers Description"
+          },
+          {
+            "key": "storyLabel",
+            "type": "text",
+            "label": "Brand Story Section Label"
+          },
+          {
+            "key": "storyTitle",
+            "type": "text",
+            "label": "Brand Story Title"
+          },
+          {
+            "key": "storyDesc",
+            "type": "textarea",
+            "label": "Brand Story Description"
+          },
+          {
+            "key": "storyImage",
+            "type": "image",
+            "label": "Brand Story Image",
+            "recommendedWidth": 900,
+            "recommendedHeight": 700
+          },
+          {
+            "key": "stat1Value",
+            "type": "text",
+            "label": "Stat 1 Value"
+          },
+          {
+            "key": "stat1Label",
+            "type": "text",
+            "label": "Stat 1 Label"
+          },
+          {
+            "key": "stat2Value",
+            "type": "text",
+            "label": "Stat 2 Value"
+          },
+          {
+            "key": "stat2Label",
+            "type": "text",
+            "label": "Stat 2 Label"
+          },
+          {
+            "key": "stat3Value",
+            "type": "text",
+            "label": "Stat 3 Value"
+          },
+          {
+            "key": "stat3Label",
+            "type": "text",
+            "label": "Stat 3 Label"
+          },
+          {
+            "key": "promoTitle",
+            "type": "text",
+            "label": "Promo Banner Title"
+          },
+          {
+            "key": "promoDesc",
+            "type": "textarea",
+            "label": "Promo Banner Description"
+          },
+          {
+            "key": "promoCtaLabel",
+            "type": "text",
+            "label": "Promo CTA Label"
+          },
+          {
+            "key": "collectionLabel",
+            "type": "text",
+            "label": "Collection Section Label"
+          },
+          {
+            "key": "collectionTitle",
+            "type": "text",
+            "label": "Collection Section Title"
+          },
+          {
+            "key": "whatsappLabel",
+            "type": "text",
+            "label": "WhatsApp Section Label"
+          },
+          {
+            "key": "whatsappTitle",
+            "type": "text",
+            "label": "WhatsApp Section Title"
+          },
+          {
+            "key": "whatsappDesc",
+            "type": "textarea",
+            "label": "WhatsApp Section Description"
+          },
+          {
+            "key": "whatsappCtaLabel",
+            "type": "text",
+            "label": "WhatsApp CTA Button Label"
+          },
+          {
+            "key": "whatsappCtaUrl",
+            "type": "text",
+            "label": "WhatsApp CTA Link URL"
+          },
+          {
+            "key": "categoryLabel1",
+            "type": "text",
+            "label": "Category Card 1 Label"
+          },
+          {
+            "key": "categoryLabel2",
+            "type": "text",
+            "label": "Category Card 2 Label"
+          },
+          {
+            "key": "categoryLabel3",
+            "type": "text",
+            "label": "Category Card 3 Label"
+          },
+          {
+            "key": "categoryLabel4",
+            "type": "text",
+            "label": "Category Card 4 Label"
+          },
+          {
+            "key": "product1Name",
+            "type": "text",
+            "label": "Product 1 Name"
+          },
+          {
+            "key": "product1Category",
+            "type": "text",
+            "label": "Product 1 Category"
+          },
+          {
+            "key": "product1Price",
+            "type": "text",
+            "label": "Product 1 Price"
+          },
+          {
+            "key": "product1Badge",
+            "type": "text",
+            "label": "Product 1 Badge"
+          },
+          {
+            "key": "product1Image",
+            "type": "image",
+            "label": "Product 1 Image"
+          },
+          {
+            "key": "product2Name",
+            "type": "text",
+            "label": "Product 2 Name"
+          },
+          {
+            "key": "product2Category",
+            "type": "text",
+            "label": "Product 2 Category"
+          },
+          {
+            "key": "product2Price",
+            "type": "text",
+            "label": "Product 2 Price"
+          },
+          {
+            "key": "product2Badge",
+            "type": "text",
+            "label": "Product 2 Badge"
+          },
+          {
+            "key": "product2Image",
+            "type": "image",
+            "label": "Product 2 Image"
+          },
+          {
+            "key": "product3Name",
+            "type": "text",
+            "label": "Product 3 Name"
+          },
+          {
+            "key": "product3Category",
+            "type": "text",
+            "label": "Product 3 Category"
+          },
+          {
+            "key": "product3Price",
+            "type": "text",
+            "label": "Product 3 Price"
+          },
+          {
+            "key": "product3Badge",
+            "type": "text",
+            "label": "Product 3 Badge"
+          },
+          {
+            "key": "product3Image",
+            "type": "image",
+            "label": "Product 3 Image"
+          },
+          {
+            "key": "product4Name",
+            "type": "text",
+            "label": "Product 4 Name"
+          },
+          {
+            "key": "product4Category",
+            "type": "text",
+            "label": "Product 4 Category"
+          },
+          {
+            "key": "product4Price",
+            "type": "text",
+            "label": "Product 4 Price"
+          },
+          {
+            "key": "product4Badge",
+            "type": "text",
+            "label": "Product 4 Badge"
+          },
+          {
+            "key": "product4Image",
+            "type": "image",
+            "label": "Product 4 Image"
+          },
+          {
+            "key": "product5Name",
+            "type": "text",
+            "label": "Product 5 Name"
+          },
+          {
+            "key": "product5Category",
+            "type": "text",
+            "label": "Product 5 Category"
+          },
+          {
+            "key": "product5Price",
+            "type": "text",
+            "label": "Product 5 Price"
+          },
+          {
+            "key": "product5Badge",
+            "type": "text",
+            "label": "Product 5 Badge"
+          },
+          {
+            "key": "product5Image",
+            "type": "image",
+            "label": "Product 5 Image"
+          },
+          {
+            "key": "product6Name",
+            "type": "text",
+            "label": "Product 6 Name"
+          },
+          {
+            "key": "product6Category",
+            "type": "text",
+            "label": "Product 6 Category"
+          },
+          {
+            "key": "product6Price",
+            "type": "text",
+            "label": "Product 6 Price"
+          },
+          {
+            "key": "product6Badge",
+            "type": "text",
+            "label": "Product 6 Badge"
+          },
+          {
+            "key": "product6Image",
+            "type": "image",
+            "label": "Product 6 Image"
+          },
+          {
+            "key": "product7Name",
+            "type": "text",
+            "label": "Product 7 Name"
+          },
+          {
+            "key": "product7Category",
+            "type": "text",
+            "label": "Product 7 Category"
+          },
+          {
+            "key": "product7Price",
+            "type": "text",
+            "label": "Product 7 Price"
+          },
+          {
+            "key": "product7Badge",
+            "type": "text",
+            "label": "Product 7 Badge"
+          },
+          {
+            "key": "product7Image",
+            "type": "image",
+            "label": "Product 7 Image"
+          },
+          {
+            "key": "product8Name",
+            "type": "text",
+            "label": "Product 8 Name"
+          },
+          {
+            "key": "product8Category",
+            "type": "text",
+            "label": "Product 8 Category"
+          },
+          {
+            "key": "product8Price",
+            "type": "text",
+            "label": "Product 8 Price"
+          },
+          {
+            "key": "product8Badge",
+            "type": "text",
+            "label": "Product 8 Badge"
+          },
+          {
+            "key": "product8Image",
+            "type": "image",
+            "label": "Product 8 Image"
+          },
+          {
+            "key": "product9Name",
+            "type": "text",
+            "label": "Collection Product 1 Name"
+          },
+          {
+            "key": "product9Category",
+            "type": "text",
+            "label": "Collection Product 1 Category"
+          },
+          {
+            "key": "product9Price",
+            "type": "text",
+            "label": "Collection Product 1 Price"
+          },
+          {
+            "key": "product9Badge",
+            "type": "text",
+            "label": "Collection Product 1 Badge"
+          },
+          {
+            "key": "product9Image",
+            "type": "image",
+            "label": "Collection Product 1 Image"
+          },
+          {
+            "key": "product10Name",
+            "type": "text",
+            "label": "Collection Product 2 Name"
+          },
+          {
+            "key": "product10Category",
+            "type": "text",
+            "label": "Collection Product 2 Category"
+          },
+          {
+            "key": "product10Price",
+            "type": "text",
+            "label": "Collection Product 2 Price"
+          },
+          {
+            "key": "product10Badge",
+            "type": "text",
+            "label": "Collection Product 2 Badge"
+          },
+          {
+            "key": "product10Image",
+            "type": "image",
+            "label": "Collection Product 2 Image"
+          },
+          {
+            "key": "product11Name",
+            "type": "text",
+            "label": "Collection Product 3 Name"
+          },
+          {
+            "key": "product11Category",
+            "type": "text",
+            "label": "Collection Product 3 Category"
+          },
+          {
+            "key": "product11Price",
+            "type": "text",
+            "label": "Collection Product 3 Price"
+          },
+          {
+            "key": "product11Badge",
+            "type": "text",
+            "label": "Collection Product 3 Badge"
+          },
+          {
+            "key": "product11Image",
+            "type": "image",
+            "label": "Collection Product 3 Image"
+          },
+          {
+            "key": "product12Name",
+            "type": "text",
+            "label": "Collection Product 4 Name"
+          },
+          {
+            "key": "product12Category",
+            "type": "text",
+            "label": "Collection Product 4 Category"
+          },
+          {
+            "key": "product12Price",
+            "type": "text",
+            "label": "Collection Product 4 Price"
+          },
+          {
+            "key": "product12Badge",
+            "type": "text",
+            "label": "Collection Product 4 Badge"
+          },
+          {
+            "key": "product12Image",
+            "type": "image",
+            "label": "Collection Product 4 Image"
+          }
+        ]
+      },
+      {
+        "id": "product",
+        "label": "Product Detail Page",
+        "fields": [
+          {
+            "key": "name",
+            "type": "text",
+            "label": "Product Title"
+          },
+          {
+            "key": "price",
+            "type": "text",
+            "label": "Product Price"
+          },
+          {
+            "key": "description",
+            "type": "textarea",
+            "label": "Product Description"
+          },
+          {
+            "key": "badge",
+            "type": "text",
+            "label": "Product Badge"
+          },
+          {
+            "key": "featuredImage",
+            "type": "image",
+            "label": "Featured Product Image"
+          },
+          {
+            "key": "addToSelectionLabel",
+            "type": "text",
+            "label": "Add to Selection Button Label"
+          },
+          {
+            "key": "specsTitle",
+            "type": "text",
+            "label": "Specifications Heading"
+          },
+          {
+            "key": "shippingTitle",
+            "type": "text",
+            "label": "Shipping Heading"
+          },
+          {
+            "key": "shippingSummary",
+            "type": "text",
+            "label": "Shipping Summary"
+          },
+          {
+            "key": "shippingReturns",
+            "type": "text",
+            "label": "Shipping Returns Note"
+          },
+          {
+            "key": "relatedLabel",
+            "type": "text",
+            "label": "Related Products Label"
+          },
+          {
+            "key": "relatedTitle",
+            "type": "text",
+            "label": "Related Products Heading"
+          }
+        ]
+      }
+    ],
+    "defaults": {
+      "common": {
+        "websiteTitle": "VANTA",
+        "shortDescription": "Premium performance and lifestyle sneakers engineered for motion, designed for the street.",
+        "tagline": "Footwear Laboratory",
+        "logoUrl": "/logo.svg",
+        "brandUrl": "/",
+        "headerCtaLabel": "Shop Now",
+        "copyright": "© 2026 VANTA Footwear. All rights reserved.",
+        "navLabels": {
+          "home": "Home",
+          "shop": "Shop",
+          "collections": "Collections",
+          "about": "About",
+          "contact": "Contact"
+        },
+        "business": {
+          "phone": "+94 77 123 4567",
+          "whatsapp": "94771234567",
+          "email": "hello@vantafootwear.com",
+          "location": {
+            "address": "42 Park Street, Colombo 03",
+            "city": "Colombo",
+            "country": "Sri Lanka"
+          }
+        },
+        "footer": {
+          "shopHeading": "Shop",
+          "shopLink1": "New Arrivals",
+          "shopLink2": "Sneakers",
+          "shopLink3": "Men",
+          "shopLink4": "Women",
+          "shopLink5": "Sale",
+          "brandHeading": "Brand",
+          "brandLink1": "Our Story",
+          "brandLink2": "Collections",
+          "brandLink3": "Contact",
+          "supportHeading": "Support",
+          "supportLink1": "Shipping & Returns",
+          "supportLink2": "Size Guide",
+          "supportLink3": "WhatsApp Orders",
+          "contactHeading": "Contact",
+          "instagramUrl": "https://instagram.com"
+        }
+      },
+      "home": {
+        "heroTitle": "Engineered for Motion",
+        "heroSummary": "Premium performance and lifestyle sneakers — designed in Colombo, built for the street.",
+        "heroImage": "/hero/shoe-black-nb.png",
+        "heroImageVelocity": "/hero/shoe-black-velocity.png",
+        "heroImageFlux": "/hero/shoe-white-flux.png",
+        "heroImageMono": "/hero/shoe-yellow-mono.png",
+        "heroDisplayLine1": "AERO",
+        "heroDisplayLine2": "MOTION",
+        "heroSlideName": "VANTA Aero X",
+        "heroSlideDesc": "Lightweight performance runner with responsive foam midsole and breathable engineered mesh — precision-built for daily miles and urban tempo.",
+        "heroSlideVelocityName": "VANTA Velocity",
+        "heroSlideVelocityDesc": "Race-day inspired speed trainer with a propulsive plate and featherweight upper — engineered for runners who chase personal bests.",
+        "heroSlideFluxName": "VANTA Flux 01",
+        "heroSlideFluxDesc": "Retro-inspired silhouette with modern comfort technology — archive design language refined for contemporary streetwear.",
+        "heroSlideMonoName": "VANTA Mono",
+        "heroSlideMonoDesc": "Minimal lifestyle sneaker with monochromatic design language — clean lines, premium leather, and versatile everyday presence.",
+        "primaryCtaLabel": "Shop Collection",
+        "secondaryCtaLabel": "Our Story",
+        "tickerItem1": "Free Delivery Colombo",
+        "tickerItem2": "New Arrivals Weekly",
+        "tickerItem3": "Order via WhatsApp",
+        "tickerItem4": "Premium Materials",
+        "tickerItem5": "Engineered for Motion",
+        "tickerItem6": "Limited Collections",
+        "tickerItem7": "14-Day Exchanges",
+        "newArrivalsLabel": "Just Dropped",
+        "newArrivalsTitle": "New Arrivals",
+        "newArrivalsDesc": "The latest silhouettes from our design lab — limited runs, premium materials.",
+        "categoryLabel": "Categories",
+        "categoryTitle": "Find Your Silhouette",
+        "categoryDesc": "From performance runners to street-ready classics — explore categories built for every movement.",
+        "editorialEyebrow": "Featured Model",
+        "editorialTitle": "Built Beyond Limits",
+        "editorialDesc": "The VANTA Velocity combines race-day propulsion with everyday durability. A carbon-infused plate, featherweight upper, and precision-engineered outsole — designed for runners who refuse to compromise.",
+        "editorialCtaLabel": "Shop Velocity",
+        "editorialImage": "https://images.unsplash.com/photo-1605348532760-67531229b928?w=1200&q=85",
+        "bestSellersLabel": "Top Picks",
+        "bestSellersTitle": "Best Sellers",
+        "bestSellersDesc": "Community favorites — the pairs our customers keep coming back for.",
+        "storyLabel": "Our Philosophy",
+        "storyTitle": "Design Without Compromise",
+        "storyDesc": "VANTA was born from a simple belief: footwear should perform as beautifully as it looks. Every silhouette is developed in our Colombo design lab — tested on streets, refined in studio, built for real life.",
+        "storyImage": "https://images.unsplash.com/photo-1556906781-95a1881c47f2?w=900&q=85",
+        "stat1Value": "12+",
+        "stat1Label": "Original Silhouettes",
+        "stat2Value": "48h",
+        "stat2Label": "WhatsApp Response",
+        "stat3Value": "100%",
+        "stat3Label": "Premium Materials",
+        "promoTitle": "Archive Sale — Up to 20% Off",
+        "promoDesc": "Selected styles from previous seasons. Limited sizes available.",
+        "promoCtaLabel": "Shop the Sale",
+        "collectionLabel": "Full Range",
+        "collectionTitle": "The Collection",
+        "whatsappLabel": "Easy Ordering",
+        "whatsappTitle": "Order Directly via WhatsApp",
+        "whatsappDesc": "Select your size, add to your bag, and send your order in one tap. Our team confirms availability within hours.",
+        "whatsappCtaLabel": "Start a Conversation",
+        "whatsappCtaUrl": "https://wa.me/94771234567?text=Hi%2C%20I'd%20like%20to%20order%3A%0A%0AI'm%20interested%20in%20VANTA%20footwear.%20Can%20you%20help%20me%20choose%20a%20pair%3F",
+        "categoryLabel1": "Performance",
+        "categoryLabel2": "Sneakers",
+        "categoryLabel3": "Lifestyle",
+        "categoryLabel4": "Training",
+        "product1Name": "VANTA Aero X",
+        "product1Category": "Performance",
+        "product1Price": "LKR 32,500",
+        "product1Badge": "New",
+        "product1Image": "/products/vanta-aero-x.jpg",
+        "product2Name": "VANTA Flux 01",
+        "product2Category": "Sneakers",
+        "product2Price": "LKR 28,900",
+        "product2Badge": "",
+        "product2Image": "/products/vanta-flux-01.jpg",
+        "product3Name": "VANTA Core Runner",
+        "product3Category": "Performance",
+        "product3Price": "LKR 21,200",
+        "product3Badge": "Sale",
+        "product3Image": "/products/vanta-core-runner.jpg",
+        "product4Name": "VANTA Mono",
+        "product4Category": "Lifestyle",
+        "product4Price": "LKR 24,800",
+        "product4Badge": "",
+        "product4Image": "/products/vanta-mono.jpg",
+        "product5Name": "VANTA Street 02",
+        "product5Category": "Sneakers",
+        "product5Price": "LKR 27,500",
+        "product5Badge": "",
+        "product5Image": "/products/vanta-street-02.jpg",
+        "product6Name": "VANTA Velocity",
+        "product6Category": "Performance",
+        "product6Price": "LKR 35,800",
+        "product6Badge": "Pro",
+        "product6Image": "/products/vanta-velocity.jpg",
+        "product7Name": "VANTA Apex Hi",
+        "product7Category": "Sneakers",
+        "product7Price": "LKR 31,200",
+        "product7Badge": "",
+        "product7Image": "/products/vanta-apex-hi.jpg",
+        "product8Name": "VANTA Train Pro",
+        "product8Category": "Training",
+        "product8Price": "LKR 22,800",
+        "product8Badge": "Sale",
+        "product8Image": "/products/vanta-train-pro.jpg",
+        "product9Name": "VANTA Aero X",
+        "product9Category": "Performance",
+        "product9Price": "LKR 32,500",
+        "product9Badge": "New",
+        "product9Image": "/products/vanta-aero-x.jpg",
+        "product10Name": "VANTA Flux 01",
+        "product10Category": "Sneakers",
+        "product10Price": "LKR 28,900",
+        "product10Badge": "",
+        "product10Image": "/products/vanta-flux-01.jpg",
+        "product11Name": "VANTA Core Runner",
+        "product11Category": "Performance",
+        "product11Price": "LKR 21,200",
+        "product11Badge": "Sale",
+        "product11Image": "/products/vanta-core-runner.jpg",
+        "product12Name": "VANTA Mono",
+        "product12Category": "Lifestyle",
+        "product12Price": "LKR 24,800",
+        "product12Badge": "",
+        "product12Image": "/products/vanta-mono.jpg"
+      },
+      "product": {
+        "name": "VANTA Aero X",
+        "price": "LKR 32,500",
+        "description": "Lightweight performance runner with responsive foam midsole and breathable engineered mesh — precision-built for daily miles and urban tempo.",
+        "badge": "NEW",
+        "featuredImage": "/products/vanta-aero-x.jpg",
+        "addToSelectionLabel": "Add to Selection",
+        "specsTitle": "Specifications",
+        "shippingTitle": "Shipping & Returns",
+        "shippingSummary": "Free Islandwide Delivery within 2-3 business days. Cash on delivery available.",
+        "shippingReturns": "14-day hassle-free exchanges for unworn footwear in original condition.",
+        "relatedLabel": "You May Also Like",
+        "relatedTitle": "Related Products"
+      }
+    },
+    "signatures": {
+      "keywords": [
+        "product",
+        "shoe",
+        "cart",
+        "shop",
+        "collection",
+        "sneaker",
+        "store",
+        "apparel",
+        "price",
+        "sale",
+        "order"
+      ],
+      "componentRoles": [
+        "Navbar",
+        "Hero",
+        "ProductGrid",
+        "ProductCard",
+        "CategorySection",
+        "EditorialSection",
+        "BrandStory",
+        "PromoBanner",
+        "WhatsAppCTA",
+        "Footer",
+        "ProductDetail"
+      ]
+    },
+    "raw": {
+      "name": "ecommerce-storefront",
+      "label": "Modern E-Commerce Storefront",
+      "description": "Comprehensive recipe for apparel, footwear, and retail storefronts with multi-card product grids, heroes, categories, brand stories, and strict Fivora compliance.",
+      "signatures": {
+        "keywords": [
+          "product",
+          "shoe",
+          "cart",
+          "shop",
+          "collection",
+          "sneaker",
+          "store",
+          "apparel",
+          "price",
+          "sale",
+          "order"
+        ],
+        "componentRoles": [
+          "Navbar",
+          "Hero",
+          "ProductGrid",
+          "ProductCard",
+          "CategorySection",
+          "EditorialSection",
+          "BrandStory",
+          "PromoBanner",
+          "WhatsAppCTA",
+          "Footer",
+          "ProductDetail"
+        ]
+      },
+      "gridRules": {
+        "cardComponentNames": [
+          "ProductCard",
+          "Card",
+          "ItemCard",
+          "ShoeCard",
+          "ProductItem"
+        ],
+        "cardFields": [
+          {
+            "suffix": "Image",
+            "type": "image",
+            "label": "Image"
+          },
+          {
+            "suffix": "Badge",
+            "type": "text",
+            "label": "Badge"
+          },
+          {
+            "suffix": "Category",
+            "type": "text",
+            "label": "Category"
+          },
+          {
+            "suffix": "Name",
+            "type": "text",
+            "label": "Title"
+          },
+          {
+            "suffix": "Price",
+            "type": "text",
+            "label": "Price"
+          }
+        ],
+        "autoIndex": true,
+        "defaultCardPrefix": "product"
+      },
+      "sensitiveAttributeRules": {
+        "anchorTags": {
+          "nonBoundDefault": "data-preview-static=\"navigation-link\"",
+          "disallowActionTextConflict": true
+        },
+        "imageTags": {
+          "nonBoundDefault": "data-preview-static=\"decorative-image\""
+        },
+        "buttons": {
+          "nonBoundControlsDefault": "data-preview-static=\"action-button\""
+        }
+      },
+      "sections": [
+        {
+          "id": "common",
+          "path": "common",
+          "type": "object",
+          "label": "Shared Storefront Content",
+          "fields": [
+            {
+              "key": "websiteTitle",
+              "type": "text",
+              "label": "Brand Name",
+              "required": true
+            },
+            {
+              "key": "shortDescription",
+              "type": "textarea",
+              "label": "Brand Description"
+            },
+            {
+              "key": "logoUrl",
+              "type": "image",
+              "label": "Website Logo",
+              "recommendedWidth": 512,
+              "recommendedHeight": 512
+            },
+            {
+              "key": "brandUrl",
+              "type": "text",
+              "label": "Brand Link URL"
+            },
+            {
+              "key": "headerCtaLabel",
+              "type": "text",
+              "label": "Header Button Label"
+            },
+            {
+              "key": "tagline",
+              "type": "text",
+              "label": "Brand Tagline"
+            },
+            {
+              "key": "navLabels",
+              "type": "object",
+              "label": "Navigation Labels",
+              "fields": [
+                {
+                  "key": "home",
+                  "type": "text",
+                  "label": "Home Link"
+                },
+                {
+                  "key": "shop",
+                  "type": "text",
+                  "label": "Shop Link"
+                },
+                {
+                  "key": "collections",
+                  "type": "text",
+                  "label": "Collections Link"
+                },
+                {
+                  "key": "about",
+                  "type": "text",
+                  "label": "About Link"
+                },
+                {
+                  "key": "contact",
+                  "type": "text",
+                  "label": "Contact Link"
+                }
+              ]
+            },
+            {
+              "key": "business",
+              "type": "object",
+              "label": "Business Information",
+              "fields": [
+                {
+                  "key": "phone",
+                  "type": "tel",
+                  "label": "Phone Number"
+                },
+                {
+                  "key": "whatsapp",
+                  "type": "text",
+                  "label": "WhatsApp Number"
+                },
+                {
+                  "key": "email",
+                  "type": "email",
+                  "label": "Contact Email"
+                },
+                {
+                  "key": "location",
+                  "type": "object",
+                  "label": "Store Location",
+                  "fields": [
+                    {
+                      "key": "address",
+                      "type": "text",
+                      "label": "Street Address"
+                    },
+                    {
+                      "key": "city",
+                      "type": "text",
+                      "label": "City"
+                    },
+                    {
+                      "key": "country",
+                      "type": "text",
+                      "label": "Country"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "key": "copyright",
+              "type": "text",
+              "label": "Copyright Text"
+            },
+            {
+              "key": "footer",
+              "type": "object",
+              "label": "Footer Content",
+              "fields": [
+                {
+                  "key": "shopHeading",
+                  "type": "text",
+                  "label": "Shop Column Heading"
+                },
+                {
+                  "key": "shopLink1",
+                  "type": "text",
+                  "label": "Shop Link 1"
+                },
+                {
+                  "key": "shopLink2",
+                  "type": "text",
+                  "label": "Shop Link 2"
+                },
+                {
+                  "key": "shopLink3",
+                  "type": "text",
+                  "label": "Shop Link 3"
+                },
+                {
+                  "key": "shopLink4",
+                  "type": "text",
+                  "label": "Shop Link 4"
+                },
+                {
+                  "key": "shopLink5",
+                  "type": "text",
+                  "label": "Shop Link 5"
+                },
+                {
+                  "key": "brandHeading",
+                  "type": "text",
+                  "label": "Brand Column Heading"
+                },
+                {
+                  "key": "brandLink1",
+                  "type": "text",
+                  "label": "Brand Link 1"
+                },
+                {
+                  "key": "brandLink2",
+                  "type": "text",
+                  "label": "Brand Link 2"
+                },
+                {
+                  "key": "brandLink3",
+                  "type": "text",
+                  "label": "Brand Link 3"
+                },
+                {
+                  "key": "supportHeading",
+                  "type": "text",
+                  "label": "Support Column Heading"
+                },
+                {
+                  "key": "supportLink1",
+                  "type": "text",
+                  "label": "Support Link 1"
+                },
+                {
+                  "key": "supportLink2",
+                  "type": "text",
+                  "label": "Support Link 2"
+                },
+                {
+                  "key": "supportLink3",
+                  "type": "text",
+                  "label": "Support Link 3"
+                },
+                {
+                  "key": "contactHeading",
+                  "type": "text",
+                  "label": "Contact Column Heading"
+                },
+                {
+                  "key": "instagramUrl",
+                  "type": "text",
+                  "label": "Instagram Profile URL"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "home",
+          "path": "home",
+          "type": "object",
+          "label": "Home Showcase Content",
+          "fields": [
+            {
+              "key": "heroTitle",
+              "type": "text",
+              "label": "Hero Headline",
+              "required": true
+            },
+            {
+              "key": "heroSummary",
+              "type": "textarea",
+              "label": "Hero Summary"
+            },
+            {
+              "key": "heroImage",
+              "type": "image",
+              "label": "Featured Shoe Image (Aero X)",
+              "recommendedWidth": 900,
+              "recommendedHeight": 600
+            },
+            {
+              "key": "heroImageVelocity",
+              "type": "image",
+              "label": "Featured Shoe Image (Velocity)",
+              "recommendedWidth": 900,
+              "recommendedHeight": 600
+            },
+            {
+              "key": "heroImageFlux",
+              "type": "image",
+              "label": "Featured Shoe Image (Flux 01)",
+              "recommendedWidth": 900,
+              "recommendedHeight": 600
+            },
+            {
+              "key": "heroImageMono",
+              "type": "image",
+              "label": "Featured Shoe Image (Mono)",
+              "recommendedWidth": 900,
+              "recommendedHeight": 600
+            },
+            {
+              "key": "heroDisplayLine1",
+              "type": "text",
+              "label": "Hero Background Word 1"
+            },
+            {
+              "key": "heroDisplayLine2",
+              "type": "text",
+              "label": "Hero Background Word 2"
+            },
+            {
+              "key": "heroSlideName",
+              "type": "text",
+              "label": "Hero Slide Name (Aero X)"
+            },
+            {
+              "key": "heroSlideDesc",
+              "type": "textarea",
+              "label": "Hero Slide Description (Aero X)"
+            },
+            {
+              "key": "heroSlideVelocityName",
+              "type": "text",
+              "label": "Hero Slide Name (Velocity)"
+            },
+            {
+              "key": "heroSlideVelocityDesc",
+              "type": "textarea",
+              "label": "Hero Slide Description (Velocity)"
+            },
+            {
+              "key": "heroSlideFluxName",
+              "type": "text",
+              "label": "Hero Slide Name (Flux 01)"
+            },
+            {
+              "key": "heroSlideFluxDesc",
+              "type": "textarea",
+              "label": "Hero Slide Description (Flux 01)"
+            },
+            {
+              "key": "heroSlideMonoName",
+              "type": "text",
+              "label": "Hero Slide Name (Mono)"
+            },
+            {
+              "key": "heroSlideMonoDesc",
+              "type": "textarea",
+              "label": "Hero Slide Description (Mono)"
+            },
+            {
+              "key": "primaryCtaLabel",
+              "type": "text",
+              "label": "Primary CTA Label"
+            },
+            {
+              "key": "secondaryCtaLabel",
+              "type": "text",
+              "label": "Secondary CTA Label"
+            },
+            {
+              "key": "tickerItem1",
+              "type": "text",
+              "label": "Ticker Item 1"
+            },
+            {
+              "key": "tickerItem2",
+              "type": "text",
+              "label": "Ticker Item 2"
+            },
+            {
+              "key": "tickerItem3",
+              "type": "text",
+              "label": "Ticker Item 3"
+            },
+            {
+              "key": "tickerItem4",
+              "type": "text",
+              "label": "Ticker Item 4"
+            },
+            {
+              "key": "tickerItem5",
+              "type": "text",
+              "label": "Ticker Item 5"
+            },
+            {
+              "key": "tickerItem6",
+              "type": "text",
+              "label": "Ticker Item 6"
+            },
+            {
+              "key": "tickerItem7",
+              "type": "text",
+              "label": "Ticker Item 7"
+            },
+            {
+              "key": "newArrivalsLabel",
+              "type": "text",
+              "label": "New Arrivals Section Label"
+            },
+            {
+              "key": "newArrivalsTitle",
+              "type": "text",
+              "label": "New Arrivals Title"
+            },
+            {
+              "key": "newArrivalsDesc",
+              "type": "textarea",
+              "label": "New Arrivals Description"
+            },
+            {
+              "key": "categoryLabel",
+              "type": "text",
+              "label": "Category Section Label"
+            },
+            {
+              "key": "categoryTitle",
+              "type": "text",
+              "label": "Category Section Title"
+            },
+            {
+              "key": "categoryDesc",
+              "type": "textarea",
+              "label": "Category Section Description"
+            },
+            {
+              "key": "editorialEyebrow",
+              "type": "text",
+              "label": "Editorial Eyebrow"
+            },
+            {
+              "key": "editorialTitle",
+              "type": "text",
+              "label": "Editorial Title"
+            },
+            {
+              "key": "editorialDesc",
+              "type": "textarea",
+              "label": "Editorial Description"
+            },
+            {
+              "key": "editorialCtaLabel",
+              "type": "text",
+              "label": "Editorial CTA Label"
+            },
+            {
+              "key": "editorialImage",
+              "type": "image",
+              "label": "Editorial Feature Image",
+              "recommendedWidth": 1200,
+              "recommendedHeight": 1400
+            },
+            {
+              "key": "bestSellersLabel",
+              "type": "text",
+              "label": "Best Sellers Section Label"
+            },
+            {
+              "key": "bestSellersTitle",
+              "type": "text",
+              "label": "Best Sellers Title"
+            },
+            {
+              "key": "bestSellersDesc",
+              "type": "textarea",
+              "label": "Best Sellers Description"
+            },
+            {
+              "key": "storyLabel",
+              "type": "text",
+              "label": "Brand Story Section Label"
+            },
+            {
+              "key": "storyTitle",
+              "type": "text",
+              "label": "Brand Story Title"
+            },
+            {
+              "key": "storyDesc",
+              "type": "textarea",
+              "label": "Brand Story Description"
+            },
+            {
+              "key": "storyImage",
+              "type": "image",
+              "label": "Brand Story Image",
+              "recommendedWidth": 900,
+              "recommendedHeight": 700
+            },
+            {
+              "key": "stat1Value",
+              "type": "text",
+              "label": "Stat 1 Value"
+            },
+            {
+              "key": "stat1Label",
+              "type": "text",
+              "label": "Stat 1 Label"
+            },
+            {
+              "key": "stat2Value",
+              "type": "text",
+              "label": "Stat 2 Value"
+            },
+            {
+              "key": "stat2Label",
+              "type": "text",
+              "label": "Stat 2 Label"
+            },
+            {
+              "key": "stat3Value",
+              "type": "text",
+              "label": "Stat 3 Value"
+            },
+            {
+              "key": "stat3Label",
+              "type": "text",
+              "label": "Stat 3 Label"
+            },
+            {
+              "key": "promoTitle",
+              "type": "text",
+              "label": "Promo Banner Title"
+            },
+            {
+              "key": "promoDesc",
+              "type": "textarea",
+              "label": "Promo Banner Description"
+            },
+            {
+              "key": "promoCtaLabel",
+              "type": "text",
+              "label": "Promo CTA Label"
+            },
+            {
+              "key": "collectionLabel",
+              "type": "text",
+              "label": "Collection Section Label"
+            },
+            {
+              "key": "collectionTitle",
+              "type": "text",
+              "label": "Collection Section Title"
+            },
+            {
+              "key": "whatsappLabel",
+              "type": "text",
+              "label": "WhatsApp Section Label"
+            },
+            {
+              "key": "whatsappTitle",
+              "type": "text",
+              "label": "WhatsApp Section Title"
+            },
+            {
+              "key": "whatsappDesc",
+              "type": "textarea",
+              "label": "WhatsApp Section Description"
+            },
+            {
+              "key": "whatsappCtaLabel",
+              "type": "text",
+              "label": "WhatsApp CTA Button Label"
+            },
+            {
+              "key": "whatsappCtaUrl",
+              "type": "text",
+              "label": "WhatsApp CTA Link URL"
+            },
+            {
+              "key": "categoryLabel1",
+              "type": "text",
+              "label": "Category Card 1 Label"
+            },
+            {
+              "key": "categoryLabel2",
+              "type": "text",
+              "label": "Category Card 2 Label"
+            },
+            {
+              "key": "categoryLabel3",
+              "type": "text",
+              "label": "Category Card 3 Label"
+            },
+            {
+              "key": "categoryLabel4",
+              "type": "text",
+              "label": "Category Card 4 Label"
+            },
+            {
+              "key": "product1Name",
+              "type": "text",
+              "label": "Product 1 Name"
+            },
+            {
+              "key": "product1Category",
+              "type": "text",
+              "label": "Product 1 Category"
+            },
+            {
+              "key": "product1Price",
+              "type": "text",
+              "label": "Product 1 Price"
+            },
+            {
+              "key": "product1Badge",
+              "type": "text",
+              "label": "Product 1 Badge"
+            },
+            {
+              "key": "product1Image",
+              "type": "image",
+              "label": "Product 1 Image"
+            },
+            {
+              "key": "product2Name",
+              "type": "text",
+              "label": "Product 2 Name"
+            },
+            {
+              "key": "product2Category",
+              "type": "text",
+              "label": "Product 2 Category"
+            },
+            {
+              "key": "product2Price",
+              "type": "text",
+              "label": "Product 2 Price"
+            },
+            {
+              "key": "product2Badge",
+              "type": "text",
+              "label": "Product 2 Badge"
+            },
+            {
+              "key": "product2Image",
+              "type": "image",
+              "label": "Product 2 Image"
+            },
+            {
+              "key": "product3Name",
+              "type": "text",
+              "label": "Product 3 Name"
+            },
+            {
+              "key": "product3Category",
+              "type": "text",
+              "label": "Product 3 Category"
+            },
+            {
+              "key": "product3Price",
+              "type": "text",
+              "label": "Product 3 Price"
+            },
+            {
+              "key": "product3Badge",
+              "type": "text",
+              "label": "Product 3 Badge"
+            },
+            {
+              "key": "product3Image",
+              "type": "image",
+              "label": "Product 3 Image"
+            },
+            {
+              "key": "product4Name",
+              "type": "text",
+              "label": "Product 4 Name"
+            },
+            {
+              "key": "product4Category",
+              "type": "text",
+              "label": "Product 4 Category"
+            },
+            {
+              "key": "product4Price",
+              "type": "text",
+              "label": "Product 4 Price"
+            },
+            {
+              "key": "product4Badge",
+              "type": "text",
+              "label": "Product 4 Badge"
+            },
+            {
+              "key": "product4Image",
+              "type": "image",
+              "label": "Product 4 Image"
+            },
+            {
+              "key": "product5Name",
+              "type": "text",
+              "label": "Product 5 Name"
+            },
+            {
+              "key": "product5Category",
+              "type": "text",
+              "label": "Product 5 Category"
+            },
+            {
+              "key": "product5Price",
+              "type": "text",
+              "label": "Product 5 Price"
+            },
+            {
+              "key": "product5Badge",
+              "type": "text",
+              "label": "Product 5 Badge"
+            },
+            {
+              "key": "product5Image",
+              "type": "image",
+              "label": "Product 5 Image"
+            },
+            {
+              "key": "product6Name",
+              "type": "text",
+              "label": "Product 6 Name"
+            },
+            {
+              "key": "product6Category",
+              "type": "text",
+              "label": "Product 6 Category"
+            },
+            {
+              "key": "product6Price",
+              "type": "text",
+              "label": "Product 6 Price"
+            },
+            {
+              "key": "product6Badge",
+              "type": "text",
+              "label": "Product 6 Badge"
+            },
+            {
+              "key": "product6Image",
+              "type": "image",
+              "label": "Product 6 Image"
+            },
+            {
+              "key": "product7Name",
+              "type": "text",
+              "label": "Product 7 Name"
+            },
+            {
+              "key": "product7Category",
+              "type": "text",
+              "label": "Product 7 Category"
+            },
+            {
+              "key": "product7Price",
+              "type": "text",
+              "label": "Product 7 Price"
+            },
+            {
+              "key": "product7Badge",
+              "type": "text",
+              "label": "Product 7 Badge"
+            },
+            {
+              "key": "product7Image",
+              "type": "image",
+              "label": "Product 7 Image"
+            },
+            {
+              "key": "product8Name",
+              "type": "text",
+              "label": "Product 8 Name"
+            },
+            {
+              "key": "product8Category",
+              "type": "text",
+              "label": "Product 8 Category"
+            },
+            {
+              "key": "product8Price",
+              "type": "text",
+              "label": "Product 8 Price"
+            },
+            {
+              "key": "product8Badge",
+              "type": "text",
+              "label": "Product 8 Badge"
+            },
+            {
+              "key": "product8Image",
+              "type": "image",
+              "label": "Product 8 Image"
+            },
+            {
+              "key": "product9Name",
+              "type": "text",
+              "label": "Collection Product 1 Name"
+            },
+            {
+              "key": "product9Category",
+              "type": "text",
+              "label": "Collection Product 1 Category"
+            },
+            {
+              "key": "product9Price",
+              "type": "text",
+              "label": "Collection Product 1 Price"
+            },
+            {
+              "key": "product9Badge",
+              "type": "text",
+              "label": "Collection Product 1 Badge"
+            },
+            {
+              "key": "product9Image",
+              "type": "image",
+              "label": "Collection Product 1 Image"
+            },
+            {
+              "key": "product10Name",
+              "type": "text",
+              "label": "Collection Product 2 Name"
+            },
+            {
+              "key": "product10Category",
+              "type": "text",
+              "label": "Collection Product 2 Category"
+            },
+            {
+              "key": "product10Price",
+              "type": "text",
+              "label": "Collection Product 2 Price"
+            },
+            {
+              "key": "product10Badge",
+              "type": "text",
+              "label": "Collection Product 2 Badge"
+            },
+            {
+              "key": "product10Image",
+              "type": "image",
+              "label": "Collection Product 2 Image"
+            },
+            {
+              "key": "product11Name",
+              "type": "text",
+              "label": "Collection Product 3 Name"
+            },
+            {
+              "key": "product11Category",
+              "type": "text",
+              "label": "Collection Product 3 Category"
+            },
+            {
+              "key": "product11Price",
+              "type": "text",
+              "label": "Collection Product 3 Price"
+            },
+            {
+              "key": "product11Badge",
+              "type": "text",
+              "label": "Collection Product 3 Badge"
+            },
+            {
+              "key": "product11Image",
+              "type": "image",
+              "label": "Collection Product 3 Image"
+            },
+            {
+              "key": "product12Name",
+              "type": "text",
+              "label": "Collection Product 4 Name"
+            },
+            {
+              "key": "product12Category",
+              "type": "text",
+              "label": "Collection Product 4 Category"
+            },
+            {
+              "key": "product12Price",
+              "type": "text",
+              "label": "Collection Product 4 Price"
+            },
+            {
+              "key": "product12Badge",
+              "type": "text",
+              "label": "Collection Product 4 Badge"
+            },
+            {
+              "key": "product12Image",
+              "type": "image",
+              "label": "Collection Product 4 Image"
+            }
+          ]
+        },
+        {
+          "id": "product",
+          "label": "Product Detail Page",
+          "fields": [
+            {
+              "key": "name",
+              "type": "text",
+              "label": "Product Title"
+            },
+            {
+              "key": "price",
+              "type": "text",
+              "label": "Product Price"
+            },
+            {
+              "key": "description",
+              "type": "textarea",
+              "label": "Product Description"
+            },
+            {
+              "key": "badge",
+              "type": "text",
+              "label": "Product Badge"
+            },
+            {
+              "key": "featuredImage",
+              "type": "image",
+              "label": "Featured Product Image"
+            },
+            {
+              "key": "addToSelectionLabel",
+              "type": "text",
+              "label": "Add to Selection Button Label"
+            },
+            {
+              "key": "specsTitle",
+              "type": "text",
+              "label": "Specifications Heading"
+            },
+            {
+              "key": "shippingTitle",
+              "type": "text",
+              "label": "Shipping Heading"
+            },
+            {
+              "key": "shippingSummary",
+              "type": "text",
+              "label": "Shipping Summary"
+            },
+            {
+              "key": "shippingReturns",
+              "type": "text",
+              "label": "Shipping Returns Note"
+            },
+            {
+              "key": "relatedLabel",
+              "type": "text",
+              "label": "Related Products Label"
+            },
+            {
+              "key": "relatedTitle",
+              "type": "text",
+              "label": "Related Products Heading"
+            }
+          ]
+        }
+      ],
+      "defaults": {
+        "common": {
+          "websiteTitle": "VANTA",
+          "shortDescription": "Premium performance and lifestyle sneakers engineered for motion, designed for the street.",
+          "tagline": "Footwear Laboratory",
+          "logoUrl": "/logo.svg",
+          "brandUrl": "/",
+          "headerCtaLabel": "Shop Now",
+          "copyright": "© 2026 VANTA Footwear. All rights reserved.",
+          "navLabels": {
+            "home": "Home",
+            "shop": "Shop",
+            "collections": "Collections",
+            "about": "About",
+            "contact": "Contact"
+          },
+          "business": {
+            "phone": "+94 77 123 4567",
+            "whatsapp": "94771234567",
+            "email": "hello@vantafootwear.com",
+            "location": {
+              "address": "42 Park Street, Colombo 03",
+              "city": "Colombo",
+              "country": "Sri Lanka"
+            }
+          },
+          "footer": {
+            "shopHeading": "Shop",
+            "shopLink1": "New Arrivals",
+            "shopLink2": "Sneakers",
+            "shopLink3": "Men",
+            "shopLink4": "Women",
+            "shopLink5": "Sale",
+            "brandHeading": "Brand",
+            "brandLink1": "Our Story",
+            "brandLink2": "Collections",
+            "brandLink3": "Contact",
+            "supportHeading": "Support",
+            "supportLink1": "Shipping & Returns",
+            "supportLink2": "Size Guide",
+            "supportLink3": "WhatsApp Orders",
+            "contactHeading": "Contact",
+            "instagramUrl": "https://instagram.com"
+          }
+        },
+        "home": {
+          "heroTitle": "Engineered for Motion",
+          "heroSummary": "Premium performance and lifestyle sneakers — designed in Colombo, built for the street.",
+          "heroImage": "/hero/shoe-black-nb.png",
+          "heroImageVelocity": "/hero/shoe-black-velocity.png",
+          "heroImageFlux": "/hero/shoe-white-flux.png",
+          "heroImageMono": "/hero/shoe-yellow-mono.png",
+          "heroDisplayLine1": "AERO",
+          "heroDisplayLine2": "MOTION",
+          "heroSlideName": "VANTA Aero X",
+          "heroSlideDesc": "Lightweight performance runner with responsive foam midsole and breathable engineered mesh — precision-built for daily miles and urban tempo.",
+          "heroSlideVelocityName": "VANTA Velocity",
+          "heroSlideVelocityDesc": "Race-day inspired speed trainer with a propulsive plate and featherweight upper — engineered for runners who chase personal bests.",
+          "heroSlideFluxName": "VANTA Flux 01",
+          "heroSlideFluxDesc": "Retro-inspired silhouette with modern comfort technology — archive design language refined for contemporary streetwear.",
+          "heroSlideMonoName": "VANTA Mono",
+          "heroSlideMonoDesc": "Minimal lifestyle sneaker with monochromatic design language — clean lines, premium leather, and versatile everyday presence.",
+          "primaryCtaLabel": "Shop Collection",
+          "secondaryCtaLabel": "Our Story",
+          "tickerItem1": "Free Delivery Colombo",
+          "tickerItem2": "New Arrivals Weekly",
+          "tickerItem3": "Order via WhatsApp",
+          "tickerItem4": "Premium Materials",
+          "tickerItem5": "Engineered for Motion",
+          "tickerItem6": "Limited Collections",
+          "tickerItem7": "14-Day Exchanges",
+          "newArrivalsLabel": "Just Dropped",
+          "newArrivalsTitle": "New Arrivals",
+          "newArrivalsDesc": "The latest silhouettes from our design lab — limited runs, premium materials.",
+          "categoryLabel": "Categories",
+          "categoryTitle": "Find Your Silhouette",
+          "categoryDesc": "From performance runners to street-ready classics — explore categories built for every movement.",
+          "editorialEyebrow": "Featured Model",
+          "editorialTitle": "Built Beyond Limits",
+          "editorialDesc": "The VANTA Velocity combines race-day propulsion with everyday durability. A carbon-infused plate, featherweight upper, and precision-engineered outsole — designed for runners who refuse to compromise.",
+          "editorialCtaLabel": "Shop Velocity",
+          "editorialImage": "https://images.unsplash.com/photo-1605348532760-67531229b928?w=1200&q=85",
+          "bestSellersLabel": "Top Picks",
+          "bestSellersTitle": "Best Sellers",
+          "bestSellersDesc": "Community favorites — the pairs our customers keep coming back for.",
+          "storyLabel": "Our Philosophy",
+          "storyTitle": "Design Without Compromise",
+          "storyDesc": "VANTA was born from a simple belief: footwear should perform as beautifully as it looks. Every silhouette is developed in our Colombo design lab — tested on streets, refined in studio, built for real life.",
+          "storyImage": "https://images.unsplash.com/photo-1556906781-95a1881c47f2?w=900&q=85",
+          "stat1Value": "12+",
+          "stat1Label": "Original Silhouettes",
+          "stat2Value": "48h",
+          "stat2Label": "WhatsApp Response",
+          "stat3Value": "100%",
+          "stat3Label": "Premium Materials",
+          "promoTitle": "Archive Sale — Up to 20% Off",
+          "promoDesc": "Selected styles from previous seasons. Limited sizes available.",
+          "promoCtaLabel": "Shop the Sale",
+          "collectionLabel": "Full Range",
+          "collectionTitle": "The Collection",
+          "whatsappLabel": "Easy Ordering",
+          "whatsappTitle": "Order Directly via WhatsApp",
+          "whatsappDesc": "Select your size, add to your bag, and send your order in one tap. Our team confirms availability within hours.",
+          "whatsappCtaLabel": "Start a Conversation",
+          "whatsappCtaUrl": "https://wa.me/94771234567?text=Hi%2C%20I'd%20like%20to%20order%3A%0A%0AI'm%20interested%20in%20VANTA%20footwear.%20Can%20you%20help%20me%20choose%20a%20pair%3F",
+          "categoryLabel1": "Performance",
+          "categoryLabel2": "Sneakers",
+          "categoryLabel3": "Lifestyle",
+          "categoryLabel4": "Training",
+          "product1Name": "VANTA Aero X",
+          "product1Category": "Performance",
+          "product1Price": "LKR 32,500",
+          "product1Badge": "New",
+          "product1Image": "/products/vanta-aero-x.jpg",
+          "product2Name": "VANTA Flux 01",
+          "product2Category": "Sneakers",
+          "product2Price": "LKR 28,900",
+          "product2Badge": "",
+          "product2Image": "/products/vanta-flux-01.jpg",
+          "product3Name": "VANTA Core Runner",
+          "product3Category": "Performance",
+          "product3Price": "LKR 21,200",
+          "product3Badge": "Sale",
+          "product3Image": "/products/vanta-core-runner.jpg",
+          "product4Name": "VANTA Mono",
+          "product4Category": "Lifestyle",
+          "product4Price": "LKR 24,800",
+          "product4Badge": "",
+          "product4Image": "/products/vanta-mono.jpg",
+          "product5Name": "VANTA Street 02",
+          "product5Category": "Sneakers",
+          "product5Price": "LKR 27,500",
+          "product5Badge": "",
+          "product5Image": "/products/vanta-street-02.jpg",
+          "product6Name": "VANTA Velocity",
+          "product6Category": "Performance",
+          "product6Price": "LKR 35,800",
+          "product6Badge": "Pro",
+          "product6Image": "/products/vanta-velocity.jpg",
+          "product7Name": "VANTA Apex Hi",
+          "product7Category": "Sneakers",
+          "product7Price": "LKR 31,200",
+          "product7Badge": "",
+          "product7Image": "/products/vanta-apex-hi.jpg",
+          "product8Name": "VANTA Train Pro",
+          "product8Category": "Training",
+          "product8Price": "LKR 22,800",
+          "product8Badge": "Sale",
+          "product8Image": "/products/vanta-train-pro.jpg",
+          "product9Name": "VANTA Aero X",
+          "product9Category": "Performance",
+          "product9Price": "LKR 32,500",
+          "product9Badge": "New",
+          "product9Image": "/products/vanta-aero-x.jpg",
+          "product10Name": "VANTA Flux 01",
+          "product10Category": "Sneakers",
+          "product10Price": "LKR 28,900",
+          "product10Badge": "",
+          "product10Image": "/products/vanta-flux-01.jpg",
+          "product11Name": "VANTA Core Runner",
+          "product11Category": "Performance",
+          "product11Price": "LKR 21,200",
+          "product11Badge": "Sale",
+          "product11Image": "/products/vanta-core-runner.jpg",
+          "product12Name": "VANTA Mono",
+          "product12Category": "Lifestyle",
+          "product12Price": "LKR 24,800",
+          "product12Badge": "",
+          "product12Image": "/products/vanta-mono.jpg"
+        },
+        "product": {
+          "name": "VANTA Aero X",
+          "price": "LKR 32,500",
+          "description": "Lightweight performance runner with responsive foam midsole and breathable engineered mesh — precision-built for daily miles and urban tempo.",
+          "badge": "NEW",
+          "featuredImage": "/products/vanta-aero-x.jpg",
+          "addToSelectionLabel": "Add to Selection",
+          "specsTitle": "Specifications",
+          "shippingTitle": "Shipping & Returns",
+          "shippingSummary": "Free Islandwide Delivery within 2-3 business days. Cash on delivery available.",
+          "shippingReturns": "14-day hassle-free exchanges for unworn footwear in original condition.",
+          "relatedLabel": "You May Also Like",
+          "relatedTitle": "Related Products"
+        }
+      },
+      "isBuiltIn": true
+    }
+  },
+  "filesChanged": [
+    "src/app/layout.tsx",
+    "src/app/page.tsx",
+    "next.config.ts"
+  ],
+  "transformedFilesCount": 3,
+  "totalTransformedElements": 17,
+  "totalFields": 27,
+  "coverage": {
+    "detectedEditableCandidates": 10,
+    "safelyTransformed": 17,
+    "alreadyEditable": 0,
+    "skippedDynamic": 0,
+    "skippedLowConfidence": 0,
+    "transformCoverage": 100,
+    "visualCovered": 13,
+    "visualRequired": 13,
+    "uncoveredVisibleText": 0,
+    "visualCoverage": 100,
+    "editableCoverage": 100,
+    "actionLinkContracts": 0,
+    "contractCollisions": 0
+  },
+  "designPreservation": 100,
+  "validation": {
+    "syntaxPassed": true,
+    "fivoraContractPassed": true,
+    "fivoraContractErrors": [],
+    "uncoveredVisibleText": 0,
+    "emptyStatePassed": true,
+    "contractPassed": true,
+    "orphans": 0,
+    "missingSchema": 0,
+    "actionCollisions": 0,
+    "staticAncestorCollisions": 0,
+    "astFailures": [],
+    "transformFailures": [],
+    "designPreservation": 100,
+    "runtimeVerification": {
+      "mode": "in-process-contract-simulation",
+      "passed": true,
+      "totalTested": 22,
+      "verifiedCount": 22,
+      "failedCount": 0,
+      "runtimeEditabilityScore": 100,
+      "verifiedFields": [
+        "common.websiteTitle",
+        "common.shortDescription",
+        "common.logoUrl",
+        "common.headerCtaLabel",
+        "common.copyright",
+        "common.navLabels.home",
+        "common.business.phone",
+        "common.business.whatsapp",
+        "common.business.email",
+        "home.nextJsLogoImage",
+        "home.title",
+        "home.subtitle",
+        "home.templatesUrl",
+        "home.templatesLabel",
+        "home.learningUrl",
+        "home.learningLabel",
+        "home.deployNowUrl",
+        "home.deployNowLabel",
+        "home.vercelLogomarkImage",
+        "home.documentationUrl",
+        "home.documentationLabel",
+        "home.pageTsx"
+      ],
+      "failedFields": [],
+      "collectionResults": []
+    },
+    "assetIntegrity": {
+      "passed": true,
+      "missingAssets": [],
+      "verifiedAssets": [
+        {
+          "path": "/next.svg",
+          "source": "site-data.json -> siteData.content.home.nextJsLogoImage"
+        },
+        {
+          "path": "/vercel.svg",
+          "source": "site-data.json -> siteData.content.home.vercelLogomarkImage"
+        }
+      ],
+      "existingPublicAssets": [
+        "/file.svg",
+        "/globe.svg",
+        "/next.svg",
+        "/vercel.svg",
+        "/window.svg"
+      ],
+      "errors": []
+    },
+    "acceptance": {
+      "passed": true,
+      "status": "CONVERSION_PASSED",
+      "gates": {
+        "sourceAnalysis": {
+          "name": "Source Analysis",
+          "passed": true,
+          "critical": true
+        },
+        "astTransformation": {
+          "name": "AST Transformation",
+          "passed": true,
+          "critical": true
+        },
+        "typescriptValidation": {
+          "name": "TypeScript / JS Validation",
+          "passed": true,
+          "critical": true
+        },
+        "buildSuccess": {
+          "name": "Next.js Build",
+          "passed": true,
+          "critical": true
+        },
+        "fivoraContract": {
+          "name": "Fivora Contract",
+          "passed": true,
+          "critical": true
+        },
+        "manifestSiteData": {
+          "name": "Manifest / Site Data",
+          "passed": true,
+          "critical": true
+        },
+        "runtimeDataBinding": {
+          "name": "Runtime Data Binding",
+          "passed": true,
+          "critical": true
+        },
+        "runtimeCollectionOps": {
+          "name": "Runtime Collection Operations",
+          "passed": true,
+          "critical": true
+        },
+        "runtimeImageEditing": {
+          "name": "Runtime Image Editing",
+          "passed": true,
+          "critical": false
+        },
+        "routeCoverage": {
+          "name": "Route Coverage",
+          "passed": true,
+          "critical": false
+        },
+        "designPreservation": {
+          "name": "Design Preservation",
+          "passed": true,
+          "critical": false
+        },
+        "controlOnlyProtection": {
+          "name": "Control-Only Protection",
+          "passed": true,
+          "critical": true
+        },
+        "assetIntegrity": {
+          "name": "Asset Integrity",
+          "passed": true,
+          "critical": true
+        },
+        "rscClientIntegrity": {
+          "name": "RSC & Client Hook Integrity",
+          "passed": true,
+          "critical": true
+        },
+        "browserConsoleCleanliness": {
+          "name": "Browser Console Cleanliness",
+          "passed": true,
+          "critical": false
+        }
+      },
+      "allCriticalPassed": true,
+      "editabilityCoverage": 100,
+      "designPreservation": 100
+    }
+  },
+  "outcome": "success",
+  "fontIds": [
+    "outfit",
+    "inter"
+  ]
+}

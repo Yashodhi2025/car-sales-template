@@ -1,0 +1,75 @@
+{
+  "runId": "arc-2026-10-26T09-42-53-505Z",
+  "timestamp": "2026-10-26T09:42:53.505Z",
+  "projectName": "car-sales-template",
+  "outcome": "success",
+  "scorecard": {
+    "contractValidity": "100%",
+    "editabilityCoverage": "100%",
+    "visualBound": "13/13",
+    "designPreservation": "100%",
+    "runtimeEditability": "100%"
+  },
+  "runtimeVerification": {
+    "mode": "in-process-contract-simulation",
+    "passed": true,
+    "totalTested": 22,
+    "verifiedCount": 22,
+    "failedCount": 0,
+    "runtimeEditabilityScore": 100,
+    "verifiedFields": [
+      "common.websiteTitle",
+      "common.shortDescription",
+      "common.logoUrl",
+      "common.headerCtaLabel",
+      "common.copyright",
+      "common.navLabels.home",
+      "common.business.phone",
+      "common.business.whatsapp",
+      "common.business.email",
+      "home.nextJsLogoImage",
+      "home.title",
+      "home.subtitle",
+      "home.templatesUrl",
+      "home.templatesLabel",
+      "home.learningUrl",
+      "home.learningLabel",
+      "home.deployNowUrl",
+      "home.deployNowLabel",
+      "home.vercelLogomarkImage",
+      "home.documentationUrl",
+      "home.documentationLabel",
+      "home.pageTsx"
+    ],
+    "failedFields": [],
+    "collectionResults": []
+  },
+  "diagnosticsBySeverity": {
+    "info": 0,
+    "warning": 0,
+    "error": 0,
+    "blocking": 0
+  },
+  "unresolvedCount": 0,
+  "unresolved": [],
+  "categories": {
+    "text": {
+      "planned": 4
+    },
+    "images": {
+      "planned": 2
+    },
+    "links": {
+      "planned": 4
+    },
+    "collections": {
+      "planned": 0
+    },
+    "backgrounds": {
+      "planned": 0
+    },
+    "componentProps": {
+      "planned": 0
+    }
+  }
+}

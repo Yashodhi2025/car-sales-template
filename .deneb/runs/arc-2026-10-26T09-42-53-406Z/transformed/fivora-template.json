@@ -1,0 +1,220 @@
+{
+  "framework": "nextjs-static-export",
+  "version": 2,
+  "arcVersion": "2.2.0",
+  "schemaVersion": 2,
+  "visualEditing": {
+    "contractVersion": 1,
+    "mode": "strict",
+    "controlOnlyPaths": [
+      "common.business.email",
+      "common.business.phone",
+      "common.business.whatsapp",
+      "common.copyright",
+      "common.headerCtaLabel",
+      "common.logoUrl",
+      "common.navLabels.home",
+      "common.shortDescription",
+      "common.websiteTitle"
+    ]
+  },
+  "siteDataFile": "src/data/site-data.json",
+  "outputDirectory": "out",
+  "installCommand": "npm install",
+  "buildCommand": "npm run build",
+  "basePathEnvVar": "NEXT_PUBLIC_SITE_BASE_PATH",
+  "pages": [
+    {
+      "id": "home",
+      "label": "Home",
+      "route": "/",
+      "required": true
+    }
+  ],
+  "editorSchema": {
+    "version": 1,
+    "sections": [
+      {
+        "id": "common",
+        "path": "common",
+        "type": "object",
+        "label": "Shared Website Content",
+        "fields": [
+          {
+            "key": "websiteTitle",
+            "type": "text",
+            "label": "Website Title",
+            "required": true
+          },
+          {
+            "key": "shortDescription",
+            "type": "textarea",
+            "label": "Short Description"
+          },
+          {
+            "key": "logoUrl",
+            "type": "image",
+            "label": "Website Logo"
+          },
+          {
+            "key": "headerCtaLabel",
+            "type": "text",
+            "label": "Header Button Label"
+          },
+          {
+            "key": "navLabels",
+            "type": "object",
+            "label": "Navigation Labels",
+            "fields": [
+              {
+                "key": "home",
+                "type": "text",
+                "label": "Home Link"
+              }
+            ]
+          },
+          {
+            "key": "copyright",
+            "type": "text",
+            "label": "Copyright"
+          },
+          {
+            "key": "business",
+            "type": "object",
+            "label": "Business",
+            "fields": [
+              {
+                "key": "phone",
+                "type": "tel",
+                "label": "Phone"
+              },
+              {
+                "key": "whatsapp",
+                "type": "tel",
+                "label": "Whatsapp"
+              },
+              {
+                "key": "email",
+                "type": "email",
+                "label": "Email"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "home",
+        "path": "home",
+        "type": "object",
+        "label": "Home Content",
+        "fields": [
+          {
+            "key": "nextJsLogoImage",
+            "type": "image",
+            "label": "Next Js Logo Image"
+          },
+          {
+            "key": "title",
+            "type": "text",
+            "label": "Title"
+          },
+          {
+            "key": "subtitle",
+            "type": "textarea",
+            "label": "Subtitle"
+          },
+          {
+            "key": "templatesUrl",
+            "type": "text",
+            "label": "Templates Url"
+          },
+          {
+            "key": "templatesLabel",
+            "type": "text",
+            "label": "Templates Label"
+          },
+          {
+            "key": "learningUrl",
+            "type": "text",
+            "label": "Learning Url"
+          },
+          {
+            "key": "learningLabel",
+            "type": "text",
+            "label": "Learning Label"
+          },
+          {
+            "key": "deployNowUrl",
+            "type": "text",
+            "label": "Deploy Now Url"
+          },
+          {
+            "key": "deployNowLabel",
+            "type": "text",
+            "label": "Deploy Now Label"
+          },
+          {
+            "key": "vercelLogomarkImage",
+            "type": "image",
+            "label": "Vercel Logomark Image"
+          },
+          {
+            "key": "documentationUrl",
+            "type": "text",
+            "label": "Documentation Url"
+          },
+          {
+            "key": "documentationLabel",
+            "type": "text",
+            "label": "Documentation Label"
+          },
+          {
+            "key": "pageTsx",
+            "type": "text",
+            "label": "Page Tsx"
+          }
+        ],
+        "pageKey": "home"
+      },
+      {
+        "id": "__fivoraIntake",
+        "path": "__fivoraIntake",
+        "type": "object",
+        "label": "AI Intake (Platform Managed)",
+        "fields": [
+          {
+            "key": "tone",
+            "type": "text",
+            "label": "Brand tone"
+          },
+          {
+            "key": "outputLanguage",
+            "type": "text",
+            "label": "Output language"
+          },
+          {
+            "key": "businessSummary",
+            "type": "textarea",
+            "label": "Business summary"
+          },
+          {
+            "key": "additionalBusinessDetails",
+            "type": "textarea",
+            "label": "Additional business details"
+          },
+          {
+            "key": "referenceWebsiteUrl",
+            "type": "url",
+            "label": "Reference website URL"
+          },
+          {
+            "key": "guidanceNotes",
+            "type": "object",
+            "label": "AI Guidance Notes",
+            "fields": []
+          }
+        ]
+      }
+    ]
+  }
+}
