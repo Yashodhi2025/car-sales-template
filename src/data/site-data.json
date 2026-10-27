@@ -19,7 +19,15 @@
         "home",
         "inventory",
         "about",
-        "contact"
+        "contact",
+        "car-porsche-panamera",
+        "car-bmw-m5",
+        "car-mercedes-amg",
+        "car-audi-rs6",
+        "car-tesla-model-3",
+        "car-honda-crv",
+        "car-chevrolet-camaro",
+        "car-ferrari-458"
       ],
       "theme": {
         "primaryColor": "#377dff",
@@ -40,7 +48,15 @@
       "home",
       "inventory",
       "about",
-      "contact"
+      "contact",
+      "car-porsche-panamera",
+      "car-bmw-m5",
+      "car-mercedes-amg",
+      "car-audi-rs6",
+      "car-tesla-model-3",
+      "car-honda-crv",
+      "car-chevrolet-camaro",
+      "car-ferrari-458"
     ],
     "requiredFeatures": []
   },
@@ -457,35 +473,99 @@
       "vehicles": {
         "porsche-panamera": {
           "image0": "/images/hero-porsche.jpg",
-          "imageAlt": "Black Porsche Panamera Turbo on a road"
+          "imageAlt": "Black Porsche Panamera Turbo on a road",
+          "caption": "The Vanguard selection",
+          "gallery": [
+            {
+              "image": "/images/gallery/porsche-panamera-reference.jpg",
+              "imageAlt": "Porsche Panamera Turbo model-reference photograph; trim and finish may differ",
+              "caption": "Model reference"
+            }
+          ]
         },
         "bmw-m5": {
           "image0": "/images/bmw.jpg",
-          "imageAlt": "White BMW M5 on a palm-lined road"
+          "imageAlt": "White BMW M5 on a palm-lined road",
+          "caption": "The Vanguard selection",
+          "gallery": [
+            {
+              "image": "/images/gallery/bmw-m5-reference.jpg",
+              "imageAlt": "BMW M5 model-reference photograph; trim and finish may differ",
+              "caption": "Model reference"
+            }
+          ]
         },
         "mercedes-amg": {
           "image0": "/images/mercedes.jpg",
-          "imageAlt": "Silver Mercedes-Benz AMG GT"
+          "imageAlt": "Silver Mercedes-Benz AMG GT",
+          "caption": "The Vanguard selection",
+          "gallery": [
+            {
+              "image": "/images/gallery/mercedes-amg-reference.jpg",
+              "imageAlt": "Mercedes-Benz AMG GT model-reference photograph; trim and finish may differ",
+              "caption": "Model reference"
+            }
+          ]
         },
         "audi-rs6": {
           "image0": "/images/audi.jpg",
-          "imageAlt": "Black Audi RS6 Avant photographed from the front"
+          "imageAlt": "Black Audi RS6 Avant photographed from the front",
+          "caption": "The Vanguard selection",
+          "gallery": [
+            {
+              "image": "/images/gallery/audi-rs6-reference.jpg",
+              "imageAlt": "Audi RS6 Avant model-reference photograph; trim and finish may differ",
+              "caption": "Model reference"
+            }
+          ]
         },
         "tesla-model-3": {
           "image0": "/images/tesla.jpg",
-          "imageAlt": "White Tesla Model 3 on a coastal mountain road"
+          "imageAlt": "White Tesla Model 3 on a coastal mountain road",
+          "caption": "The Vanguard selection",
+          "gallery": [
+            {
+              "image": "/images/gallery/tesla-model-3-reference.jpg",
+              "imageAlt": "Tesla Model 3 model-reference photograph; trim and finish may differ",
+              "caption": "Model reference"
+            }
+          ]
         },
         "honda-crv": {
           "image0": "/images/honda-crv.jpg",
-          "imageAlt": "White Honda CR-V on a rugged landscape in the mountains"
+          "imageAlt": "White Honda CR-V on a rugged landscape in the mountains",
+          "caption": "The Vanguard selection",
+          "gallery": [
+            {
+              "image": "/images/gallery/honda-crv-reference.jpg",
+              "imageAlt": "Honda CR-V EX model-reference photograph; trim and finish may differ",
+              "caption": "Model reference"
+            }
+          ]
         },
         "chevrolet-camaro": {
           "image0": "/images/camaro.jpg",
-          "imageAlt": "Blue Chevrolet Camaro SS on a desert road at sunset"
+          "imageAlt": "Blue Chevrolet Camaro SS on a desert road at sunset",
+          "caption": "The Vanguard selection",
+          "gallery": [
+            {
+              "image": "/images/gallery/chevrolet-camaro-reference.jpg",
+              "imageAlt": "Chevrolet Camaro SS model-reference photograph; trim and finish may differ",
+              "caption": "Model reference"
+            }
+          ]
         },
         "ferrari-458": {
           "image0": "/images/experience.jpg",
-          "imageAlt": "Yellow Ferrari 458 Speciale on a tree-lined road"
+          "imageAlt": "Yellow Ferrari 458 Speciale on a tree-lined road",
+          "caption": "The Vanguard selection",
+          "gallery": [
+            {
+              "image": "/images/gallery/ferrari-458-reference.jpg",
+              "imageAlt": "Ferrari 458 Speciale model-reference photograph; trim and finish may differ",
+              "caption": "Model reference"
+            }
+          ]
         }
       }
     },
@@ -607,6 +687,190 @@
         "description": "Tell us about your ideal drive. Our team can talk you through the collection and help you explore your options.",
         "buttonLabel": "Talk to our team",
         "buttonLink": "/contact"
+      }
+    },
+    "vehicleDetails": {
+      "collectionLabel": "THE VANGUARD COLLECTION",
+      "backLabel": "Back to inventory",
+      "viewDetailsLabel": "Explore this vehicle",
+      "overviewEyebrow": "A CLOSER CONNECTION",
+      "overviewTitle": "A car with character.",
+      "specsEyebrow": "THE DETAILS THAT MATTER",
+      "specsTitle": "The specification.",
+      "specsNote": "Details reflect the supplied demonstration listing. Unconfirmed specifications should be checked with our team before purchase.",
+      "featuresTitle": "Equipment & highlights.",
+      "featuresNote": "Highlights from the supplied listing. Ask our team to confirm the complete equipment specification.",
+      "priceLabel": "Offered at",
+      "availabilityLabel": "Availability",
+      "viewingLabel": "Request a viewing",
+      "inquiryHint": "A personal conversation is the best place to start. Our team can help you explore this vehicle and confirm the details.",
+      "viewingNote": "Viewing requests open your email app. A viewing is confirmed only after you hear from our team. Demonstration contact details must be replaced before launch.",
+      "reservedNotice": "Currently reserved. Ask our team about availability or similar vehicles.",
+      "notSupplied": "Confirm with our team",
+      "relatedEyebrow": "MORE WAYS TO MOVE YOU",
+      "relatedTitle": "A different route.\nThe same standard.",
+      "relatedLink": "/inventory",
+      "relatedLabel": "Explore all vehicles",
+      "labels": {
+        "year": "Model year",
+        "mileage": "Mileage",
+        "engine": "Engine / motor",
+        "fuel": "Fuel type",
+        "transmission": "Transmission",
+        "drivetrain": "Drivetrain",
+        "power": "Power output",
+        "body": "Body style"
+      },
+      "bodyStyles": {
+        "sedan": "Saloon",
+        "coupe": "Coupe",
+        "estate": "Estate",
+        "suv": "SUV"
+      },
+      "gallery": {
+        "title": "The gallery",
+        "photoLabel": "photographs",
+        "previousLabel": "Previous photograph",
+        "nextLabel": "Next photograph",
+        "enlargeLabel": "View full screen",
+        "closeLabel": "Close image viewer",
+        "thumbnailLabel": "Show photograph",
+        "keyboardHint": "Use the arrow keys to browse. Escape closes the full-screen viewer.",
+        "photoNote": "Demonstration and model-reference photography. Trim, finish and model year may differ; request actual stock photographs before purchase.",
+        "openImageLabel": "Open full-size photograph"
+      }
+    },
+    "vehicles": {
+      "porsche-panamera": {
+        "description": "A grand tourer with an unmistakable presence. This Panamera brings the listed 4.0 V8, Sport Chrono and AWD specification together in a car made for the journey as much as the destination.",
+        "engine": "4.0 V8",
+        "drivetrain": "AWD",
+        "power": "",
+        "detailLink": "/cars/porsche-panamera",
+        "viewingLink": "mailto:hello@vanguardmotors.example?subject=Viewing%20request%3A%20Porsche%20Panamera%20Turbo&body=Hello%20Vanguard%20Motors%2C%0A%0AI%20would%20like%20to%20request%20a%20viewing%20of%20the%20Porsche%20Panamera%20Turbo.%0A%0AMy%20preferred%20date%2Ftime%3A%0AMy%20name%3A%0AMy%20contact%20number%3A%0A%0APlease%20confirm%20availability%20and%20the%20appointment%20details.",
+        "features": [
+          {
+            "name": "Sport Chrono"
+          },
+          {
+            "name": "AWD"
+          }
+        ]
+      },
+      "bmw-m5": {
+        "description": "A distinctive interpretation of the performance saloon. The supplied specification pairs a 4.4 V8 TwinPower Turbo engine with M xDrive, with the understated presence that makes this M5 stand apart.",
+        "engine": "4.4 V8 TwinPower Turbo",
+        "drivetrain": "M xDrive",
+        "power": "",
+        "detailLink": "/cars/bmw-m5",
+        "viewingLink": "mailto:hello@vanguardmotors.example?subject=Viewing%20request%3A%20BMW%20M5&body=Hello%20Vanguard%20Motors%2C%0A%0AI%20would%20like%20to%20request%20a%20viewing%20of%20the%20BMW%20M5.%0A%0AMy%20preferred%20date%2Ftime%3A%0AMy%20name%3A%0AMy%20contact%20number%3A%0A%0APlease%20confirm%20availability%20and%20the%20appointment%20details.",
+        "features": [
+          {
+            "name": "TwinPower Turbo"
+          },
+          {
+            "name": "M xDrive"
+          }
+        ]
+      },
+      "mercedes-amg": {
+        "description": "A purposeful silhouette and a compelling place in the collection. This AMG GT is listed with a 4.0 V8 Biturbo engine and AMG Speedshift transmission. Explore its character in a personal viewing.",
+        "engine": "4.0 V8 Biturbo",
+        "drivetrain": "",
+        "power": "",
+        "detailLink": "/cars/mercedes-amg",
+        "viewingLink": "mailto:hello@vanguardmotors.example?subject=Viewing%20request%3A%20Mercedes-Benz%20AMG%20GT&body=Hello%20Vanguard%20Motors%2C%0A%0AI%20would%20like%20to%20request%20a%20viewing%20of%20the%20Mercedes-Benz%20AMG%20GT.%0A%0AMy%20preferred%20date%2Ftime%3A%0AMy%20name%3A%0AMy%20contact%20number%3A%0A%0APlease%20confirm%20availability%20and%20the%20appointment%20details.",
+        "features": [
+          {
+            "name": "V8 Biturbo"
+          },
+          {
+            "name": "AMG Speedshift"
+          }
+        ]
+      },
+      "audi-rs6": {
+        "description": "An estate with a performance-led character. The listed 4.0 TFSI, Quattro and Tiptronic specification gives this RS6 Avant its own distinctive place in the Vanguard collection.",
+        "engine": "4.0 TFSI",
+        "drivetrain": "Quattro",
+        "power": "",
+        "detailLink": "/cars/audi-rs6",
+        "viewingLink": "mailto:hello@vanguardmotors.example?subject=Viewing%20request%3A%20Audi%20RS6%20Avant&body=Hello%20Vanguard%20Motors%2C%0A%0AI%20would%20like%20to%20request%20a%20viewing%20of%20the%20Audi%20RS6%20Avant.%0A%0AMy%20preferred%20date%2Ftime%3A%0AMy%20name%3A%0AMy%20contact%20number%3A%0A%0APlease%20confirm%20availability%20and%20the%20appointment%20details.",
+        "features": [
+          {
+            "name": "Quattro"
+          },
+          {
+            "name": "Tiptronic"
+          }
+        ]
+      },
+      "tesla-model-3": {
+        "description": "A fresh perspective on the everyday drive. This Model 3 is listed in Long Range specification, with Dual Motor and AWD configuration. Speak with our team about its individual history and condition.",
+        "engine": "Dual Motor",
+        "drivetrain": "AWD",
+        "power": "",
+        "detailLink": "/cars/tesla-model-3",
+        "viewingLink": "mailto:hello@vanguardmotors.example?subject=Viewing%20request%3A%20Tesla%20Model%203%20Long%20Range&body=Hello%20Vanguard%20Motors%2C%0A%0AI%20would%20like%20to%20request%20a%20viewing%20of%20the%20Tesla%20Model%203%20Long%20Range.%0A%0AMy%20preferred%20date%2Ftime%3A%0AMy%20name%3A%0AMy%20contact%20number%3A%0A%0APlease%20confirm%20availability%20and%20the%20appointment%20details.",
+        "features": [
+          {
+            "name": "Dual Motor"
+          },
+          {
+            "name": "AWD"
+          },
+          {
+            "name": "Long Range"
+          }
+        ]
+      },
+      "honda-crv": {
+        "description": "Room for a wider horizon. This CR-V EX brings a touring SUV to the collection, with a listed 1.6 i-DTEC engine and AWD configuration. Arrange a conversation to explore the details that matter to you.",
+        "engine": "1.6 i-DTEC",
+        "drivetrain": "AWD",
+        "power": "",
+        "detailLink": "/cars/honda-crv",
+        "viewingLink": "mailto:hello@vanguardmotors.example?subject=Viewing%20request%3A%20Honda%20CR-V%20EX&body=Hello%20Vanguard%20Motors%2C%0A%0AI%20would%20like%20to%20request%20a%20viewing%20of%20the%20Honda%20CR-V%20EX.%0A%0AMy%20preferred%20date%2Ftime%3A%0AMy%20name%3A%0AMy%20contact%20number%3A%0A%0APlease%20confirm%20availability%20and%20the%20appointment%20details.",
+        "features": [
+          {
+            "name": "AWD"
+          },
+          {
+            "name": "EX specification"
+          }
+        ]
+      },
+      "chevrolet-camaro": {
+        "description": "An expressive coupe with an analogue spirit. Its supplied specification lists a 6.2 V8, six-speed manual transmission and SS designation. A distinctive choice for someone who enjoys being part of the drive.",
+        "engine": "6.2 V8",
+        "drivetrain": "",
+        "power": "",
+        "detailLink": "/cars/chevrolet-camaro",
+        "viewingLink": "mailto:hello@vanguardmotors.example?subject=Viewing%20request%3A%20Chevrolet%20Camaro%20SS&body=Hello%20Vanguard%20Motors%2C%0A%0AI%20would%20like%20to%20request%20a%20viewing%20of%20the%20Chevrolet%20Camaro%20SS.%0A%0AMy%20preferred%20date%2Ftime%3A%0AMy%20name%3A%0AMy%20contact%20number%3A%0A%0APlease%20confirm%20availability%20and%20the%20appointment%20details.",
+        "features": [
+          {
+            "name": "Six-speed manual"
+          },
+          {
+            "name": "SS specification"
+          }
+        ]
+      },
+      "ferrari-458": {
+        "description": "An unmistakable silhouette and a special place in the collection. The supplied listing describes a 4.5 V8, F1 dual-clutch transmission and Speciale specification. This demonstration vehicle is currently marked reserved.",
+        "engine": "4.5 V8",
+        "drivetrain": "",
+        "power": "",
+        "detailLink": "/cars/ferrari-458",
+        "viewingLink": "mailto:hello@vanguardmotors.example?subject=Viewing%20request%3A%20Ferrari%20458%20Speciale&body=Hello%20Vanguard%20Motors%2C%0A%0AI%20would%20like%20to%20request%20a%20viewing%20of%20the%20Ferrari%20458%20Speciale.%0A%0AMy%20preferred%20date%2Ftime%3A%0AMy%20name%3A%0AMy%20contact%20number%3A%0A%0APlease%20confirm%20availability%20and%20the%20appointment%20details.",
+        "features": [
+          {
+            "name": "F1 dual-clutch"
+          },
+          {
+            "name": "Speciale specification"
+          }
+        ]
       }
     }
   },

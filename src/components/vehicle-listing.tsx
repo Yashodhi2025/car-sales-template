@@ -3,17 +3,21 @@
 import { EditableIcon, EditableImage, EditableLink, EditableText, EditableVehicleCard, withBasePath } from "@deneb-ui/ui";
 import { useSiteContent, type VehicleId } from "@/lib/site-content";
 import { Arrow } from "./vanguard-arrow";
+import { carPageKey } from "@/lib/vehicles";
 
 /** Vanguard's presentation of the installed Deneb card, reused across its pages. */
 export function VehicleListing({ id, index = 0 }: { id: VehicleId; index?: number }) {
   const { t, legacyMissing, data } = useSiteContent();
   const canEnquire = data.requirements.requiredPages.includes("contact");
+  const canView = data.requirements.requiredPages.includes(carPageKey(id));
   return (
-    <EditableVehicleCard vehicleId={id} className="vm-vehicle-card"
+    <EditableVehicleCard vehicleId={id} className="vm-vehicle-card" href={canView ? withBasePath(t(`vehicles.${id}.detailLink`)) : undefined}
       imageSlot={
         <div className="vm-vehicle-image-wrap">
-          <EditableImage id={`photos.vehicles.${id}.image0`} src={t(`photos.vehicles.${id}.image0`)}
-            alt={t(`photos.vehicles.${id}.imageAlt`)} width={800} height={540} loading="lazy" className="vm-vehicle-image" />
+          {canView ? <EditableLink href={withBasePath(t(`vehicles.${id}.detailLink`))} data-preview-field-path={`vehicles.${id}.detailLink`} targetPage={carPageKey(id)} className="vm-vehicle-photo-link">
+            <EditableImage id={`photos.vehicles.${id}.image0`} src={t(`photos.vehicles.${id}.image0`)} alt={t(`photos.vehicles.${id}.imageAlt`)} width={800} height={540} loading="lazy" className="vm-vehicle-image" />
+            <span className="vm-vehicle-explore"><EditableText id="vehicleDetails.viewDetailsLabel">{t("vehicleDetails.viewDetailsLabel")}</EditableText><Arrow /></span>
+          </EditableLink> : <EditableImage id={`photos.vehicles.${id}.image0`} src={t(`photos.vehicles.${id}.image0`)} alt={t(`photos.vehicles.${id}.imageAlt`)} width={800} height={540} loading="lazy" className="vm-vehicle-image" />}
           <span className="vm-vehicle-index" aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
         </div>
       }

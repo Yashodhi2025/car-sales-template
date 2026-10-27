@@ -64,14 +64,28 @@
       "inventory.results.sortOldest",
       "inventory.results.sortPriceHigh",
       "inventory.results.sortPriceLow",
+      "photos.vehicles.audi-rs6.gallery.0.imageAlt",
       "photos.vehicles.audi-rs6.imageAlt",
+      "photos.vehicles.bmw-m5.gallery.0.imageAlt",
       "photos.vehicles.bmw-m5.imageAlt",
+      "photos.vehicles.chevrolet-camaro.gallery.0.imageAlt",
       "photos.vehicles.chevrolet-camaro.imageAlt",
+      "photos.vehicles.ferrari-458.gallery.0.imageAlt",
       "photos.vehicles.ferrari-458.imageAlt",
+      "photos.vehicles.honda-crv.gallery.0.imageAlt",
       "photos.vehicles.honda-crv.imageAlt",
+      "photos.vehicles.mercedes-amg.gallery.0.imageAlt",
       "photos.vehicles.mercedes-amg.imageAlt",
+      "photos.vehicles.porsche-panamera.gallery.0.imageAlt",
       "photos.vehicles.porsche-panamera.imageAlt",
-      "photos.vehicles.tesla-model-3.imageAlt"
+      "photos.vehicles.tesla-model-3.gallery.0.imageAlt",
+      "photos.vehicles.tesla-model-3.imageAlt",
+      "vehicleDetails.gallery.closeLabel",
+      "vehicleDetails.gallery.nextLabel",
+      "vehicleDetails.gallery.openImageLabel",
+      "vehicleDetails.gallery.previousLabel",
+      "vehicleDetails.gallery.thumbnailLabel",
+      "vehicleDetails.notSupplied"
     ]
   },
   "siteDataFile": "src/data/site-data.json",
@@ -102,6 +116,54 @@
       "id": "contact",
       "label": "Contact",
       "route": "/contact",
+      "required": true
+    },
+    {
+      "id": "car-porsche-panamera",
+      "label": "Porsche Panamera Turbo",
+      "route": "/cars/porsche-panamera",
+      "required": true
+    },
+    {
+      "id": "car-bmw-m5",
+      "label": "BMW M5",
+      "route": "/cars/bmw-m5",
+      "required": true
+    },
+    {
+      "id": "car-mercedes-amg",
+      "label": "Mercedes-Benz AMG GT",
+      "route": "/cars/mercedes-amg",
+      "required": true
+    },
+    {
+      "id": "car-audi-rs6",
+      "label": "Audi RS6 Avant",
+      "route": "/cars/audi-rs6",
+      "required": true
+    },
+    {
+      "id": "car-tesla-model-3",
+      "label": "Tesla Model 3 Long Range",
+      "route": "/cars/tesla-model-3",
+      "required": true
+    },
+    {
+      "id": "car-honda-crv",
+      "label": "Honda CR-V EX",
+      "route": "/cars/honda-crv",
+      "required": true
+    },
+    {
+      "id": "car-chevrolet-camaro",
+      "label": "Chevrolet Camaro SS",
+      "route": "/cars/chevrolet-camaro",
+      "required": true
+    },
+    {
+      "id": "car-ferrari-458",
+      "label": "Ferrari 458 Speciale",
+      "route": "/cars/ferrari-458",
       "required": true
     }
   ],
@@ -2276,144 +2338,6 @@
         ]
       },
       {
-        "id": "photos.vehicles",
-        "path": "photos.vehicles",
-        "type": "collection",
-        "label": "Photos vehicles",
-        "collectionType": "keyed",
-        "pageKey": "inventory",
-        "items": [
-          {
-            "key": "porsche-panamera",
-            "label": "Porsche panamera",
-            "fields": [
-              {
-                "key": "image0",
-                "type": "image",
-                "label": "Image0"
-              },
-              {
-                "key": "imageAlt",
-                "type": "text",
-                "label": "Image Alt"
-              }
-            ]
-          },
-          {
-            "key": "bmw-m5",
-            "label": "Bmw m5",
-            "fields": [
-              {
-                "key": "image0",
-                "type": "image",
-                "label": "Image0"
-              },
-              {
-                "key": "imageAlt",
-                "type": "text",
-                "label": "Image Alt"
-              }
-            ]
-          },
-          {
-            "key": "mercedes-amg",
-            "label": "Mercedes amg",
-            "fields": [
-              {
-                "key": "image0",
-                "type": "image",
-                "label": "Image0"
-              },
-              {
-                "key": "imageAlt",
-                "type": "text",
-                "label": "Image Alt"
-              }
-            ]
-          },
-          {
-            "key": "audi-rs6",
-            "label": "Audi rs6",
-            "fields": [
-              {
-                "key": "image0",
-                "type": "image",
-                "label": "Image0"
-              },
-              {
-                "key": "imageAlt",
-                "type": "text",
-                "label": "Image Alt"
-              }
-            ]
-          },
-          {
-            "key": "tesla-model-3",
-            "label": "Tesla model 3",
-            "fields": [
-              {
-                "key": "image0",
-                "type": "image",
-                "label": "Image0"
-              },
-              {
-                "key": "imageAlt",
-                "type": "text",
-                "label": "Image Alt"
-              }
-            ]
-          },
-          {
-            "key": "honda-crv",
-            "label": "Honda crv",
-            "fields": [
-              {
-                "key": "image0",
-                "type": "image",
-                "label": "Image0"
-              },
-              {
-                "key": "imageAlt",
-                "type": "text",
-                "label": "Image Alt"
-              }
-            ]
-          },
-          {
-            "key": "chevrolet-camaro",
-            "label": "Chevrolet camaro",
-            "fields": [
-              {
-                "key": "image0",
-                "type": "image",
-                "label": "Image0"
-              },
-              {
-                "key": "imageAlt",
-                "type": "text",
-                "label": "Image Alt"
-              }
-            ]
-          },
-          {
-            "key": "ferrari-458",
-            "label": "Ferrari 458",
-            "fields": [
-              {
-                "key": "image0",
-                "type": "image",
-                "label": "Image0"
-              },
-              {
-                "key": "imageAlt",
-                "type": "text",
-                "label": "Image Alt"
-              }
-            ]
-          }
-        ]
-      },
-      {
         "id": "catalog",
         "path": "catalog",
         "type": "collection",
@@ -2617,6 +2541,1270 @@
                 "key": "notes",
                 "type": "text",
                 "label": "Notes"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "vehicleDetails",
+        "path": "vehicleDetails",
+        "type": "object",
+        "label": "Vehicle Details",
+        "fields": [
+          {
+            "key": "collectionLabel",
+            "type": "text",
+            "label": "Collection Label"
+          },
+          {
+            "key": "backLabel",
+            "type": "text",
+            "label": "Back Label"
+          },
+          {
+            "key": "viewDetailsLabel",
+            "type": "text",
+            "label": "View Details Label"
+          },
+          {
+            "key": "overviewEyebrow",
+            "type": "text",
+            "label": "Overview Eyebrow"
+          },
+          {
+            "key": "overviewTitle",
+            "type": "text",
+            "label": "Overview Title"
+          },
+          {
+            "key": "specsEyebrow",
+            "type": "text",
+            "label": "Specs Eyebrow"
+          },
+          {
+            "key": "specsTitle",
+            "type": "text",
+            "label": "Specs Title"
+          },
+          {
+            "key": "specsNote",
+            "type": "text",
+            "label": "Specs Note"
+          },
+          {
+            "key": "featuresTitle",
+            "type": "text",
+            "label": "Features Title"
+          },
+          {
+            "key": "featuresNote",
+            "type": "text",
+            "label": "Features Note"
+          },
+          {
+            "key": "priceLabel",
+            "type": "text",
+            "label": "Price Label"
+          },
+          {
+            "key": "availabilityLabel",
+            "type": "text",
+            "label": "Availability Label"
+          },
+          {
+            "key": "viewingLabel",
+            "type": "text",
+            "label": "Viewing Label"
+          },
+          {
+            "key": "inquiryHint",
+            "type": "text",
+            "label": "Inquiry Hint"
+          },
+          {
+            "key": "viewingNote",
+            "type": "text",
+            "label": "Viewing Note"
+          },
+          {
+            "key": "reservedNotice",
+            "type": "text",
+            "label": "Reserved Notice"
+          },
+          {
+            "key": "notSupplied",
+            "type": "text",
+            "label": "Not Supplied"
+          },
+          {
+            "key": "relatedEyebrow",
+            "type": "text",
+            "label": "Related Eyebrow"
+          },
+          {
+            "key": "relatedTitle",
+            "type": "text",
+            "label": "Related Title"
+          },
+          {
+            "key": "relatedLink",
+            "type": "url",
+            "label": "Related Link"
+          },
+          {
+            "key": "relatedLabel",
+            "type": "text",
+            "label": "Related Label"
+          },
+          {
+            "key": "labels",
+            "type": "object",
+            "label": "Labels",
+            "fields": [
+              {
+                "key": "year",
+                "type": "text",
+                "label": "Year"
+              },
+              {
+                "key": "mileage",
+                "type": "text",
+                "label": "Mileage"
+              },
+              {
+                "key": "engine",
+                "type": "text",
+                "label": "Engine"
+              },
+              {
+                "key": "fuel",
+                "type": "text",
+                "label": "Fuel"
+              },
+              {
+                "key": "transmission",
+                "type": "text",
+                "label": "Transmission"
+              },
+              {
+                "key": "drivetrain",
+                "type": "text",
+                "label": "Drivetrain"
+              },
+              {
+                "key": "power",
+                "type": "text",
+                "label": "Power"
+              },
+              {
+                "key": "body",
+                "type": "text",
+                "label": "Body"
+              }
+            ]
+          },
+          {
+            "key": "bodyStyles",
+            "type": "object",
+            "label": "Body Styles",
+            "fields": [
+              {
+                "key": "sedan",
+                "type": "text",
+                "label": "Sedan"
+              },
+              {
+                "key": "coupe",
+                "type": "text",
+                "label": "Coupe"
+              },
+              {
+                "key": "estate",
+                "type": "text",
+                "label": "Estate"
+              },
+              {
+                "key": "suv",
+                "type": "text",
+                "label": "Suv"
+              }
+            ]
+          },
+          {
+            "key": "gallery",
+            "type": "object",
+            "label": "Gallery",
+            "fields": [
+              {
+                "key": "title",
+                "type": "text",
+                "label": "Title"
+              },
+              {
+                "key": "photoLabel",
+                "type": "text",
+                "label": "Photo Label"
+              },
+              {
+                "key": "previousLabel",
+                "type": "text",
+                "label": "Previous Label"
+              },
+              {
+                "key": "nextLabel",
+                "type": "text",
+                "label": "Next Label"
+              },
+              {
+                "key": "enlargeLabel",
+                "type": "text",
+                "label": "Enlarge Label"
+              },
+              {
+                "key": "closeLabel",
+                "type": "text",
+                "label": "Close Label"
+              },
+              {
+                "key": "thumbnailLabel",
+                "type": "text",
+                "label": "Thumbnail Label"
+              },
+              {
+                "key": "keyboardHint",
+                "type": "text",
+                "label": "Keyboard Hint"
+              },
+              {
+                "key": "photoNote",
+                "type": "text",
+                "label": "Photo Note"
+              },
+              {
+                "key": "openImageLabel",
+                "type": "text",
+                "label": "Open Image Label"
+              }
+            ]
+          }
+        ],
+        "pageKey": "car-porsche-panamera"
+      },
+      {
+        "id": "vehicles.porsche-panamera",
+        "path": "vehicles.porsche-panamera",
+        "type": "object",
+        "label": "Vehicles porsche panamera",
+        "fields": [
+          {
+            "key": "description",
+            "type": "textarea",
+            "label": "Description"
+          },
+          {
+            "key": "engine",
+            "type": "text",
+            "label": "Engine"
+          },
+          {
+            "key": "drivetrain",
+            "type": "text",
+            "label": "Drivetrain"
+          },
+          {
+            "key": "power",
+            "type": "text",
+            "label": "Power"
+          },
+          {
+            "key": "detailLink",
+            "type": "url",
+            "label": "Detail Link"
+          },
+          {
+            "key": "viewingLink",
+            "type": "url",
+            "label": "Viewing Link"
+          }
+        ],
+        "pageKey": "car-porsche-panamera"
+      },
+      {
+        "id": "vehicles.porsche-panamera.features",
+        "path": "vehicles.porsche-panamera.features",
+        "type": "collection",
+        "label": "Vehicles porsche panamera features",
+        "collectionType": "list",
+        "pageKey": "car-porsche-panamera",
+        "items": [
+          {
+            "key": "0",
+            "label": "Sport Chrono",
+            "fields": [
+              {
+                "key": "name",
+                "type": "text",
+                "label": "Name"
+              }
+            ]
+          },
+          {
+            "key": "1",
+            "label": "AWD",
+            "fields": [
+              {
+                "key": "name",
+                "type": "text",
+                "label": "Name"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "photos.vehicles.porsche-panamera",
+        "path": "photos.vehicles.porsche-panamera",
+        "type": "object",
+        "label": "Photos vehicles porsche panamera",
+        "fields": [
+          {
+            "key": "image0",
+            "type": "image",
+            "label": "Image0"
+          },
+          {
+            "key": "imageAlt",
+            "type": "text",
+            "label": "Image Alt"
+          },
+          {
+            "key": "caption",
+            "type": "text",
+            "label": "Caption"
+          }
+        ],
+        "pageKey": "car-porsche-panamera"
+      },
+      {
+        "id": "photos.vehicles.porsche-panamera.gallery",
+        "path": "photos.vehicles.porsche-panamera.gallery",
+        "type": "collection",
+        "label": "Photos vehicles porsche panamera gallery",
+        "collectionType": "list",
+        "pageKey": "car-porsche-panamera",
+        "items": [
+          {
+            "key": "0",
+            "label": "0",
+            "fields": [
+              {
+                "key": "image",
+                "type": "image",
+                "label": "Image"
+              },
+              {
+                "key": "imageAlt",
+                "type": "text",
+                "label": "Image Alt"
+              },
+              {
+                "key": "caption",
+                "type": "text",
+                "label": "Caption"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "vehicles.bmw-m5",
+        "path": "vehicles.bmw-m5",
+        "type": "object",
+        "label": "Vehicles bmw m5",
+        "fields": [
+          {
+            "key": "description",
+            "type": "textarea",
+            "label": "Description"
+          },
+          {
+            "key": "engine",
+            "type": "text",
+            "label": "Engine"
+          },
+          {
+            "key": "drivetrain",
+            "type": "text",
+            "label": "Drivetrain"
+          },
+          {
+            "key": "power",
+            "type": "text",
+            "label": "Power"
+          },
+          {
+            "key": "detailLink",
+            "type": "url",
+            "label": "Detail Link"
+          },
+          {
+            "key": "viewingLink",
+            "type": "url",
+            "label": "Viewing Link"
+          }
+        ],
+        "pageKey": "car-bmw-m5"
+      },
+      {
+        "id": "vehicles.bmw-m5.features",
+        "path": "vehicles.bmw-m5.features",
+        "type": "collection",
+        "label": "Vehicles bmw m5 features",
+        "collectionType": "list",
+        "pageKey": "car-bmw-m5",
+        "items": [
+          {
+            "key": "0",
+            "label": "TwinPower Turbo",
+            "fields": [
+              {
+                "key": "name",
+                "type": "text",
+                "label": "Name"
+              }
+            ]
+          },
+          {
+            "key": "1",
+            "label": "M xDrive",
+            "fields": [
+              {
+                "key": "name",
+                "type": "text",
+                "label": "Name"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "photos.vehicles.bmw-m5",
+        "path": "photos.vehicles.bmw-m5",
+        "type": "object",
+        "label": "Photos vehicles bmw m5",
+        "fields": [
+          {
+            "key": "image0",
+            "type": "image",
+            "label": "Image0"
+          },
+          {
+            "key": "imageAlt",
+            "type": "text",
+            "label": "Image Alt"
+          },
+          {
+            "key": "caption",
+            "type": "text",
+            "label": "Caption"
+          }
+        ],
+        "pageKey": "car-bmw-m5"
+      },
+      {
+        "id": "photos.vehicles.bmw-m5.gallery",
+        "path": "photos.vehicles.bmw-m5.gallery",
+        "type": "collection",
+        "label": "Photos vehicles bmw m5 gallery",
+        "collectionType": "list",
+        "pageKey": "car-bmw-m5",
+        "items": [
+          {
+            "key": "0",
+            "label": "0",
+            "fields": [
+              {
+                "key": "image",
+                "type": "image",
+                "label": "Image"
+              },
+              {
+                "key": "imageAlt",
+                "type": "text",
+                "label": "Image Alt"
+              },
+              {
+                "key": "caption",
+                "type": "text",
+                "label": "Caption"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "vehicles.mercedes-amg",
+        "path": "vehicles.mercedes-amg",
+        "type": "object",
+        "label": "Vehicles mercedes amg",
+        "fields": [
+          {
+            "key": "description",
+            "type": "textarea",
+            "label": "Description"
+          },
+          {
+            "key": "engine",
+            "type": "text",
+            "label": "Engine"
+          },
+          {
+            "key": "drivetrain",
+            "type": "text",
+            "label": "Drivetrain"
+          },
+          {
+            "key": "power",
+            "type": "text",
+            "label": "Power"
+          },
+          {
+            "key": "detailLink",
+            "type": "url",
+            "label": "Detail Link"
+          },
+          {
+            "key": "viewingLink",
+            "type": "url",
+            "label": "Viewing Link"
+          }
+        ],
+        "pageKey": "car-mercedes-amg"
+      },
+      {
+        "id": "vehicles.mercedes-amg.features",
+        "path": "vehicles.mercedes-amg.features",
+        "type": "collection",
+        "label": "Vehicles mercedes amg features",
+        "collectionType": "list",
+        "pageKey": "car-mercedes-amg",
+        "items": [
+          {
+            "key": "0",
+            "label": "V8 Biturbo",
+            "fields": [
+              {
+                "key": "name",
+                "type": "text",
+                "label": "Name"
+              }
+            ]
+          },
+          {
+            "key": "1",
+            "label": "AMG Speedshift",
+            "fields": [
+              {
+                "key": "name",
+                "type": "text",
+                "label": "Name"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "photos.vehicles.mercedes-amg",
+        "path": "photos.vehicles.mercedes-amg",
+        "type": "object",
+        "label": "Photos vehicles mercedes amg",
+        "fields": [
+          {
+            "key": "image0",
+            "type": "image",
+            "label": "Image0"
+          },
+          {
+            "key": "imageAlt",
+            "type": "text",
+            "label": "Image Alt"
+          },
+          {
+            "key": "caption",
+            "type": "text",
+            "label": "Caption"
+          }
+        ],
+        "pageKey": "car-mercedes-amg"
+      },
+      {
+        "id": "photos.vehicles.mercedes-amg.gallery",
+        "path": "photos.vehicles.mercedes-amg.gallery",
+        "type": "collection",
+        "label": "Photos vehicles mercedes amg gallery",
+        "collectionType": "list",
+        "pageKey": "car-mercedes-amg",
+        "items": [
+          {
+            "key": "0",
+            "label": "0",
+            "fields": [
+              {
+                "key": "image",
+                "type": "image",
+                "label": "Image"
+              },
+              {
+                "key": "imageAlt",
+                "type": "text",
+                "label": "Image Alt"
+              },
+              {
+                "key": "caption",
+                "type": "text",
+                "label": "Caption"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "vehicles.audi-rs6",
+        "path": "vehicles.audi-rs6",
+        "type": "object",
+        "label": "Vehicles audi rs6",
+        "fields": [
+          {
+            "key": "description",
+            "type": "textarea",
+            "label": "Description"
+          },
+          {
+            "key": "engine",
+            "type": "text",
+            "label": "Engine"
+          },
+          {
+            "key": "drivetrain",
+            "type": "text",
+            "label": "Drivetrain"
+          },
+          {
+            "key": "power",
+            "type": "text",
+            "label": "Power"
+          },
+          {
+            "key": "detailLink",
+            "type": "url",
+            "label": "Detail Link"
+          },
+          {
+            "key": "viewingLink",
+            "type": "url",
+            "label": "Viewing Link"
+          }
+        ],
+        "pageKey": "car-audi-rs6"
+      },
+      {
+        "id": "vehicles.audi-rs6.features",
+        "path": "vehicles.audi-rs6.features",
+        "type": "collection",
+        "label": "Vehicles audi rs6 features",
+        "collectionType": "list",
+        "pageKey": "car-audi-rs6",
+        "items": [
+          {
+            "key": "0",
+            "label": "Quattro",
+            "fields": [
+              {
+                "key": "name",
+                "type": "text",
+                "label": "Name"
+              }
+            ]
+          },
+          {
+            "key": "1",
+            "label": "Tiptronic",
+            "fields": [
+              {
+                "key": "name",
+                "type": "text",
+                "label": "Name"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "photos.vehicles.audi-rs6",
+        "path": "photos.vehicles.audi-rs6",
+        "type": "object",
+        "label": "Photos vehicles audi rs6",
+        "fields": [
+          {
+            "key": "image0",
+            "type": "image",
+            "label": "Image0"
+          },
+          {
+            "key": "imageAlt",
+            "type": "text",
+            "label": "Image Alt"
+          },
+          {
+            "key": "caption",
+            "type": "text",
+            "label": "Caption"
+          }
+        ],
+        "pageKey": "car-audi-rs6"
+      },
+      {
+        "id": "photos.vehicles.audi-rs6.gallery",
+        "path": "photos.vehicles.audi-rs6.gallery",
+        "type": "collection",
+        "label": "Photos vehicles audi rs6 gallery",
+        "collectionType": "list",
+        "pageKey": "car-audi-rs6",
+        "items": [
+          {
+            "key": "0",
+            "label": "0",
+            "fields": [
+              {
+                "key": "image",
+                "type": "image",
+                "label": "Image"
+              },
+              {
+                "key": "imageAlt",
+                "type": "text",
+                "label": "Image Alt"
+              },
+              {
+                "key": "caption",
+                "type": "text",
+                "label": "Caption"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "vehicles.tesla-model-3",
+        "path": "vehicles.tesla-model-3",
+        "type": "object",
+        "label": "Vehicles tesla model 3",
+        "fields": [
+          {
+            "key": "description",
+            "type": "textarea",
+            "label": "Description"
+          },
+          {
+            "key": "engine",
+            "type": "text",
+            "label": "Engine"
+          },
+          {
+            "key": "drivetrain",
+            "type": "text",
+            "label": "Drivetrain"
+          },
+          {
+            "key": "power",
+            "type": "text",
+            "label": "Power"
+          },
+          {
+            "key": "detailLink",
+            "type": "url",
+            "label": "Detail Link"
+          },
+          {
+            "key": "viewingLink",
+            "type": "url",
+            "label": "Viewing Link"
+          }
+        ],
+        "pageKey": "car-tesla-model-3"
+      },
+      {
+        "id": "vehicles.tesla-model-3.features",
+        "path": "vehicles.tesla-model-3.features",
+        "type": "collection",
+        "label": "Vehicles tesla model 3 features",
+        "collectionType": "list",
+        "pageKey": "car-tesla-model-3",
+        "items": [
+          {
+            "key": "0",
+            "label": "Dual Motor",
+            "fields": [
+              {
+                "key": "name",
+                "type": "text",
+                "label": "Name"
+              }
+            ]
+          },
+          {
+            "key": "1",
+            "label": "AWD",
+            "fields": [
+              {
+                "key": "name",
+                "type": "text",
+                "label": "Name"
+              }
+            ]
+          },
+          {
+            "key": "2",
+            "label": "Long Range",
+            "fields": [
+              {
+                "key": "name",
+                "type": "text",
+                "label": "Name"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "photos.vehicles.tesla-model-3",
+        "path": "photos.vehicles.tesla-model-3",
+        "type": "object",
+        "label": "Photos vehicles tesla model 3",
+        "fields": [
+          {
+            "key": "image0",
+            "type": "image",
+            "label": "Image0"
+          },
+          {
+            "key": "imageAlt",
+            "type": "text",
+            "label": "Image Alt"
+          },
+          {
+            "key": "caption",
+            "type": "text",
+            "label": "Caption"
+          }
+        ],
+        "pageKey": "car-tesla-model-3"
+      },
+      {
+        "id": "photos.vehicles.tesla-model-3.gallery",
+        "path": "photos.vehicles.tesla-model-3.gallery",
+        "type": "collection",
+        "label": "Photos vehicles tesla model 3 gallery",
+        "collectionType": "list",
+        "pageKey": "car-tesla-model-3",
+        "items": [
+          {
+            "key": "0",
+            "label": "0",
+            "fields": [
+              {
+                "key": "image",
+                "type": "image",
+                "label": "Image"
+              },
+              {
+                "key": "imageAlt",
+                "type": "text",
+                "label": "Image Alt"
+              },
+              {
+                "key": "caption",
+                "type": "text",
+                "label": "Caption"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "vehicles.honda-crv",
+        "path": "vehicles.honda-crv",
+        "type": "object",
+        "label": "Vehicles honda crv",
+        "fields": [
+          {
+            "key": "description",
+            "type": "textarea",
+            "label": "Description"
+          },
+          {
+            "key": "engine",
+            "type": "text",
+            "label": "Engine"
+          },
+          {
+            "key": "drivetrain",
+            "type": "text",
+            "label": "Drivetrain"
+          },
+          {
+            "key": "power",
+            "type": "text",
+            "label": "Power"
+          },
+          {
+            "key": "detailLink",
+            "type": "url",
+            "label": "Detail Link"
+          },
+          {
+            "key": "viewingLink",
+            "type": "url",
+            "label": "Viewing Link"
+          }
+        ],
+        "pageKey": "car-honda-crv"
+      },
+      {
+        "id": "vehicles.honda-crv.features",
+        "path": "vehicles.honda-crv.features",
+        "type": "collection",
+        "label": "Vehicles honda crv features",
+        "collectionType": "list",
+        "pageKey": "car-honda-crv",
+        "items": [
+          {
+            "key": "0",
+            "label": "AWD",
+            "fields": [
+              {
+                "key": "name",
+                "type": "text",
+                "label": "Name"
+              }
+            ]
+          },
+          {
+            "key": "1",
+            "label": "EX specification",
+            "fields": [
+              {
+                "key": "name",
+                "type": "text",
+                "label": "Name"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "photos.vehicles.honda-crv",
+        "path": "photos.vehicles.honda-crv",
+        "type": "object",
+        "label": "Photos vehicles honda crv",
+        "fields": [
+          {
+            "key": "image0",
+            "type": "image",
+            "label": "Image0"
+          },
+          {
+            "key": "imageAlt",
+            "type": "text",
+            "label": "Image Alt"
+          },
+          {
+            "key": "caption",
+            "type": "text",
+            "label": "Caption"
+          }
+        ],
+        "pageKey": "car-honda-crv"
+      },
+      {
+        "id": "photos.vehicles.honda-crv.gallery",
+        "path": "photos.vehicles.honda-crv.gallery",
+        "type": "collection",
+        "label": "Photos vehicles honda crv gallery",
+        "collectionType": "list",
+        "pageKey": "car-honda-crv",
+        "items": [
+          {
+            "key": "0",
+            "label": "0",
+            "fields": [
+              {
+                "key": "image",
+                "type": "image",
+                "label": "Image"
+              },
+              {
+                "key": "imageAlt",
+                "type": "text",
+                "label": "Image Alt"
+              },
+              {
+                "key": "caption",
+                "type": "text",
+                "label": "Caption"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "vehicles.chevrolet-camaro",
+        "path": "vehicles.chevrolet-camaro",
+        "type": "object",
+        "label": "Vehicles chevrolet camaro",
+        "fields": [
+          {
+            "key": "description",
+            "type": "textarea",
+            "label": "Description"
+          },
+          {
+            "key": "engine",
+            "type": "text",
+            "label": "Engine"
+          },
+          {
+            "key": "drivetrain",
+            "type": "text",
+            "label": "Drivetrain"
+          },
+          {
+            "key": "power",
+            "type": "text",
+            "label": "Power"
+          },
+          {
+            "key": "detailLink",
+            "type": "url",
+            "label": "Detail Link"
+          },
+          {
+            "key": "viewingLink",
+            "type": "url",
+            "label": "Viewing Link"
+          }
+        ],
+        "pageKey": "car-chevrolet-camaro"
+      },
+      {
+        "id": "vehicles.chevrolet-camaro.features",
+        "path": "vehicles.chevrolet-camaro.features",
+        "type": "collection",
+        "label": "Vehicles chevrolet camaro features",
+        "collectionType": "list",
+        "pageKey": "car-chevrolet-camaro",
+        "items": [
+          {
+            "key": "0",
+            "label": "Six-speed manual",
+            "fields": [
+              {
+                "key": "name",
+                "type": "text",
+                "label": "Name"
+              }
+            ]
+          },
+          {
+            "key": "1",
+            "label": "SS specification",
+            "fields": [
+              {
+                "key": "name",
+                "type": "text",
+                "label": "Name"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "photos.vehicles.chevrolet-camaro",
+        "path": "photos.vehicles.chevrolet-camaro",
+        "type": "object",
+        "label": "Photos vehicles chevrolet camaro",
+        "fields": [
+          {
+            "key": "image0",
+            "type": "image",
+            "label": "Image0"
+          },
+          {
+            "key": "imageAlt",
+            "type": "text",
+            "label": "Image Alt"
+          },
+          {
+            "key": "caption",
+            "type": "text",
+            "label": "Caption"
+          }
+        ],
+        "pageKey": "car-chevrolet-camaro"
+      },
+      {
+        "id": "photos.vehicles.chevrolet-camaro.gallery",
+        "path": "photos.vehicles.chevrolet-camaro.gallery",
+        "type": "collection",
+        "label": "Photos vehicles chevrolet camaro gallery",
+        "collectionType": "list",
+        "pageKey": "car-chevrolet-camaro",
+        "items": [
+          {
+            "key": "0",
+            "label": "0",
+            "fields": [
+              {
+                "key": "image",
+                "type": "image",
+                "label": "Image"
+              },
+              {
+                "key": "imageAlt",
+                "type": "text",
+                "label": "Image Alt"
+              },
+              {
+                "key": "caption",
+                "type": "text",
+                "label": "Caption"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "vehicles.ferrari-458",
+        "path": "vehicles.ferrari-458",
+        "type": "object",
+        "label": "Vehicles ferrari 458",
+        "fields": [
+          {
+            "key": "description",
+            "type": "textarea",
+            "label": "Description"
+          },
+          {
+            "key": "engine",
+            "type": "text",
+            "label": "Engine"
+          },
+          {
+            "key": "drivetrain",
+            "type": "text",
+            "label": "Drivetrain"
+          },
+          {
+            "key": "power",
+            "type": "text",
+            "label": "Power"
+          },
+          {
+            "key": "detailLink",
+            "type": "url",
+            "label": "Detail Link"
+          },
+          {
+            "key": "viewingLink",
+            "type": "url",
+            "label": "Viewing Link"
+          }
+        ],
+        "pageKey": "car-ferrari-458"
+      },
+      {
+        "id": "vehicles.ferrari-458.features",
+        "path": "vehicles.ferrari-458.features",
+        "type": "collection",
+        "label": "Vehicles ferrari 458 features",
+        "collectionType": "list",
+        "pageKey": "car-ferrari-458",
+        "items": [
+          {
+            "key": "0",
+            "label": "F1 dual-clutch",
+            "fields": [
+              {
+                "key": "name",
+                "type": "text",
+                "label": "Name"
+              }
+            ]
+          },
+          {
+            "key": "1",
+            "label": "Speciale specification",
+            "fields": [
+              {
+                "key": "name",
+                "type": "text",
+                "label": "Name"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "photos.vehicles.ferrari-458",
+        "path": "photos.vehicles.ferrari-458",
+        "type": "object",
+        "label": "Photos vehicles ferrari 458",
+        "fields": [
+          {
+            "key": "image0",
+            "type": "image",
+            "label": "Image0"
+          },
+          {
+            "key": "imageAlt",
+            "type": "text",
+            "label": "Image Alt"
+          },
+          {
+            "key": "caption",
+            "type": "text",
+            "label": "Caption"
+          }
+        ],
+        "pageKey": "car-ferrari-458"
+      },
+      {
+        "id": "photos.vehicles.ferrari-458.gallery",
+        "path": "photos.vehicles.ferrari-458.gallery",
+        "type": "collection",
+        "label": "Photos vehicles ferrari 458 gallery",
+        "collectionType": "list",
+        "pageKey": "car-ferrari-458",
+        "items": [
+          {
+            "key": "0",
+            "label": "0",
+            "fields": [
+              {
+                "key": "image",
+                "type": "image",
+                "label": "Image"
+              },
+              {
+                "key": "imageAlt",
+                "type": "text",
+                "label": "Image Alt"
+              },
+              {
+                "key": "caption",
+                "type": "text",
+                "label": "Caption"
               }
             ]
           }

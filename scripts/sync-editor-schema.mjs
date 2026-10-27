@@ -21,10 +21,14 @@ function fields(object, prefix) {
     if (path.startsWith("catalog.") || /imageAlt$|previousLabel$|nextLabel$|allBrands$|allBodies$/.test(path)
       || /^inventory\.filters\.(any\w+|availableLabel|reservedLabel|removeLabel|minPlaceholder|maxPlaceholder)$/.test(path)
       || /^inventory\.results\.(sort(?!Label)\w+|noScript)$/.test(path)) controls.add(path);
+    if (/^vehicleDetails\.gallery\.(previousLabel|nextLabel|closeLabel|thumbnailLabel|openImageLabel)$/.test(path) || path === "vehicleDetails.notSupplied") controls.add(path);
     return { key, type, label: label(key), ...(key === "icon" ? { control: "icon-picker" } : {}) };
   });
 }
 function owner(path) {
+  const vehicle = path.match(/^(?:vehicles|photos\.vehicles)\.([^.]+)/)?.[1];
+  if (vehicle && Object.hasOwn(data.content.vehicles, vehicle)) return `car-${vehicle}`;
+  if (path === "vehicleDetails") return `car-${Object.keys(data.content.vehicles)[0]}`;
   if (/^(inventory|catalog|photos\.vehicles|cards\.vehicles)/.test(path) || path === "home.collection.emptyTitle" || path === "home.collection.emptyDescription") return "inventory";
   if (/^about|^home\.(promise|benefits|experience)/.test(path)) return "about";
   if (/^contact|^showrooms|^home\.contact/.test(path)) return "contact";
@@ -48,7 +52,12 @@ for (const [key, value] of Object.entries(data.content.home)) {
 for (const [key, value] of Object.entries(data.content.inventory)) sections.push(objectSection(`inventory.${key}`, value));
 sections.push(objectSection("about", data.content.about), objectSection("contact", data.content.contact));
 for (const [key, value] of Object.entries(data.content.cards)) sections.push(collection(`cards.${key}`, value));
-sections.push(collection("photos.vehicles", data.content.photos.vehicles), collection("catalog", data.content.catalog), collection("showrooms", data.content.showrooms));
+sections.push(collection("catalog", data.content.catalog), collection("showrooms", data.content.showrooms), objectSection("vehicleDetails", data.content.vehicleDetails));
+for (const [id, vehicle] of Object.entries(data.content.vehicles)) {
+  const { features, ...details } = vehicle;
+  const { gallery, ...photos } = data.content.photos.vehicles[id];
+  sections.push(objectSection(`vehicles.${id}`, details), collection(`vehicles.${id}.features`, features), objectSection(`photos.vehicles.${id}`, photos), collection(`photos.vehicles.${id}.gallery`, gallery));
+}
 if (intake) sections.push(intake);
 manifest.name = "Vanguard Motors";
 manifest.pages = [
@@ -56,6 +65,7 @@ manifest.pages = [
   { id: "inventory", label: "Inventory", route: "/inventory", required: true },
   { id: "about", label: "About", route: "/about", required: true },
   { id: "contact", label: "Contact", route: "/contact", required: true },
+  ...Object.keys(data.content.vehicles).map(id => ({ id: `car-${id}`, label: data.content.cards.vehicles[id].name, route: `/cars/${id}`, required: true })),
 ];
 manifest.editorSchema.sections = sections;
 manifest.visualEditing = { ...manifest.visualEditing, contractVersion: 1, mode: "strict", controlOnlyPaths: [...new Set([...(manifest.visualEditing.controlOnlyPaths || []).filter(path => path.startsWith("__fivoraIntake.")), ...controls])].sort() };

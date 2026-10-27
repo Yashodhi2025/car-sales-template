@@ -83,7 +83,7 @@ await withBrowser(async ({ send, evaluate, navigate, until, screenshot, value, c
     const leaves=[];
     const walk=(obj,prefix="")=>{for(const [key,value]of Object.entries(obj)){const p=prefix?`${prefix}.${key}`:key;if(value&&typeof value==='object')walk(value,p);else leaves.push(p)}};
     walk(data.content);
-    const expected = leaves.filter(path=>!manifest.visualEditing.controlOnlyPaths.includes(path));
+    const expected = leaves.filter(path=>!manifest.visualEditing.controlOnlyPaths.includes(path) && !path.startsWith("vehicles.") && !path.startsWith("vehicleDetails.") && !/^photos\.vehicles\.[^.]+\.(caption|gallery)(\.|$)/.test(path));
     const missing = expected.filter(path=>!mounted.has(path));
     check(`All ${expected.length} editable fields are mounted across the four routes (${missing.join(', ')})`, missing.length===0);
     await evaluate("document.querySelector('iframe').src='/inventory'");
