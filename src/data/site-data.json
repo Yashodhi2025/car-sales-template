@@ -2,110 +2,625 @@
   "arcVersion": "2.2.0",
   "schemaVersion": 2,
   "project": {
-    "id": "car-sales-template-project",
-    "title": "car-sales-template",
+    "id": "template-validation",
+    "title": "Vanguard Motors",
     "status": "APPROVED"
   },
   "merchant": {
-    "businessName": "car-sales-template",
-    "description": "A modern commerce storefront built for the Fivora platform."
+    "businessName": "Vanguard Motors",
+    "description": "An independent destination for exceptional automobiles."
   },
   "template": {
     "id": "car-sales-template-template",
-    "name": "car-sales-template",
+    "name": "Vanguard Motors",
     "engine": "NEXT_STATIC_EXPORT",
     "structure": {
       "pages": [
-        "home"
+        "home",
+        "inventory",
+        "about",
+        "contact"
       ],
       "theme": {
-        "primaryColor": "#0284c7",
-        "secondaryColor": "#0f172a",
-        "accentColor": "#38bdf8",
-        "backgroundColor": "#ffffff",
-        "cardBackgroundColor": "#f8fafc",
-        "textColor": "#0f172a",
-        "borderColor": "#e2e8f0",
+        "primaryColor": "#377dff",
+        "secondaryColor": "#161a20",
+        "accentColor": "#8cafff",
+        "backgroundColor": "#0a0c0f",
+        "cardBackgroundColor": "#12151a",
+        "textColor": "#f3f4f6",
+        "borderColor": "#282d35",
         "headingFont": "Outfit, sans-serif",
         "bodyFont": "Inter, sans-serif",
-        "borderRadius": "12px",
-        "dark": {
-          "primaryColor": "#38bdf8",
-          "secondaryColor": "#f8fafc",
-          "accentColor": "#0284c7",
-          "backgroundColor": "#0b0f19",
-          "cardBackgroundColor": "#111827",
-          "textColor": "#f9fafb",
-          "borderColor": "#1f2937"
-        }
+        "borderRadius": "4px"
       }
     }
   },
   "requirements": {
     "requiredPages": [
-      "home"
+      "home",
+      "inventory",
+      "about",
+      "contact"
     ],
     "requiredFeatures": []
   },
   "content": {
     "common": {
-      "websiteTitle": "car-sales-template",
-      "shortDescription": "A high-converting storefront built for the Fivora platform.",
-      "logoUrl": "",
-      "headerCtaLabel": "Contact Us",
-      "copyright": "© 2026 car-sales-template. All rights reserved.",
+      "websiteTitle": "VANGUARD MOTORS",
+      "shortDescription": "For the love of the drive. An independent destination for exceptional automobiles and a more personal way to find yours.",
+      "logoUrl": "/images/vanguard-mark.svg",
+      "headerCtaLabel": "Visit our showroom",
+      "headerCtaLink": "/contact",
+      "copyright": "© 2026 Vanguard Motors. All rights reserved.",
+      "demoNotice": "Concept dealership. Inventory, prices, reviews and contact details are illustrative.",
       "navLabels": {
-        "home": "Home"
+        "home": "Home",
+        "collection": "Inventory",
+        "experience": "About us",
+        "contact": "Contact"
+      },
+      "navLinks": {
+        "home": "/",
+        "collection": "/inventory",
+        "experience": "/about",
+        "contact": "/contact"
       },
       "business": {
-        "phone": "",
+        "phone": "+44 (0)20 7946 0000",
         "whatsapp": "",
-        "email": ""
-      }
+        "email": "hello@vanguardmotors.example"
+      },
+      "footerExplore": "Discover Vanguard",
+      "footerContact": "Start a conversation",
+      "backToTop": "Back to top"
     },
     "home": {
-      "nextJsLogoImage": "/next.svg",
-      "title": "To get started, edit the file.",
-      "subtitle": "Looking for a starting point or more instructions? Head over to or the center.",
-      "templatesUrl": "https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app",
-      "templatesLabel": "Templates",
-      "learningUrl": "https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app",
-      "learningLabel": "Learning",
-      "deployNowUrl": "https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app",
-      "deployNowLabel": "Deploy Now",
-      "vercelLogomarkImage": "/vercel.svg",
-      "documentationUrl": "https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app",
-      "documentationLabel": "Documentation",
-      "pageTsx": "page.tsx"
+      "hero": {
+        "eyebrow": "DRIVEN BY DISTINCTION",
+        "title": "Beyond the ordinary.",
+        "titleAccent": "Ahead of the curve.",
+        "description": "Exceptional cars. Considered service. Discover a collection for those who believe the journey should be as remarkable as the destination.",
+        "image": "/images/hero-porsche.jpg",
+        "imageAlt": "Black Porsche Panamera on an open road at dusk",
+        "primaryLabel": "Explore the collection",
+        "primaryLink": "/inventory",
+        "secondaryLabel": "The Vanguard approach",
+        "secondaryLink": "/about",
+        "imageCaption": "PORSCHE PANAMERA TURBO",
+        "imageSubcaption": "Performance, without compromise.",
+        "scrollLabel": "SCROLL TO DISCOVER",
+        "edition": "THE VANGUARD COLLECTION / 2026"
+      },
+      "search": {
+        "eyebrow": "YOUR NEXT CHAPTER STARTS HERE",
+        "title": "Find your exceptional.",
+        "keywordLabel": "Search the collection",
+        "keywordPlaceholder": "Model or keyword",
+        "brandLabel": "Preferred marque",
+        "allBrands": "All marques",
+        "bodyLabel": "Your driving style",
+        "allBodies": "All body styles",
+        "buttonLabel": "Find my car",
+        "resetLabel": "Clear selection"
+      },
+      "collection": {
+        "eyebrow": "HANDPICKED. NEVER ORDINARY.",
+        "title": "The curated collection.",
+        "description": "Distinctive design. Compelling performance. Every car has a story worth taking further.",
+        "allLabel": "View all vehicles",
+        "enquireLabel": "Enquire about this car",
+        "resultsLabel": "featured vehicles",
+        "emptyTitle": "Your next car is still out there.",
+        "emptyDescription": "Try a different marque, body style or keyword to explore more of the collection.",
+        "allLink": "/inventory"
+      },
+      "brands": {
+        "eyebrow": "ICONS OF AUTOMOTIVE EXCELLENCE",
+        "title": "Extraordinary marques."
+      },
+      "bodyTypes": {
+        "eyebrow": "A CAR FOR THE WAY YOU LIVE",
+        "title": "Find your driving style."
+      },
+      "promise": {
+        "eyebrow": "THE VANGUARD STANDARD",
+        "title": "A higher standard.\nAt every turn.",
+        "description": "Finding the right car should feel as good as driving it. We put care, clarity and your ambitions at the heart of the experience."
+      },
+      "benefits": [
+        {
+          "number": "01",
+          "title": "Chosen with intention",
+          "text": "A considered collection of distinctive cars, selected for their character, condition and the way they make you feel."
+        },
+        {
+          "number": "02",
+          "title": "Clarity from the start",
+          "text": "Open conversations, straightforward pricing and time to make the decision that is right for you."
+        },
+        {
+          "number": "03",
+          "title": "A personal connection",
+          "text": "One point of contact who takes the time to understand your priorities, from your first conversation to your next chapter."
+        },
+        {
+          "number": "04",
+          "title": "Beyond the handover",
+          "text": "Guidance on ownership, care and your next move. Because the relationship matters as much as the car."
+        }
+      ],
+      "experience": {
+        "eyebrow": "MORE THAN A DESTINATION",
+        "title": "For the moments\nthat move you.",
+        "description": "The first glimpse. The feel of the wheel. The road opening up ahead. Some things deserve to be experienced in person. Step away from the everyday and into the world of Vanguard.",
+        "image": "/images/experience.jpg",
+        "imageAlt": "A yellow performance car on a sunlit road",
+        "imageCaption": "A SHARED PASSION. AN OPEN ROAD.",
+        "buttonLabel": "Plan your visit",
+        "buttonLink": "/contact",
+        "signature": "Exceptional cars. Human connections."
+      },
+      "testimonials": {
+        "eyebrow": "THE PEOPLE BEHIND THE JOURNEYS",
+        "title": "The drive is only\npart of the story.",
+        "sampleLabel": "ILLUSTRATIVE CUSTOMER STORIES",
+        "previousLabel": "Previous customer story",
+        "nextLabel": "Next customer story"
+      },
+      "reviews": [
+        {
+          "quote": "From the first conversation to the moment I drove away, every detail felt personal. Exactly how finding your next car should be.",
+          "name": "James R.",
+          "detail": "Porsche owner · Sample review",
+          "initials": "JR"
+        },
+        {
+          "quote": "Time to explore, honest answers and a car that makes every journey feel special. A refreshingly considered experience.",
+          "name": "Sophie M.",
+          "detail": "Mercedes-Benz owner · Sample review",
+          "initials": "SM"
+        },
+        {
+          "quote": "A shared enthusiasm for great cars made all the difference. The experience was as memorable as the first drive home.",
+          "name": "Daniel W.",
+          "detail": "BMW owner · Sample review",
+          "initials": "DW"
+        }
+      ],
+      "contact": {
+        "eyebrow": "THE NEXT CHAPTER IS YOURS",
+        "title": "Your extraordinary\nstarts here.",
+        "description": "Come for the cars. Stay for the conversation. Let’s find something that moves you.",
+        "emailLabel": "Email our team",
+        "emailLink": "mailto:hello@vanguardmotors.example",
+        "phoneLabel": "Call the showroom",
+        "phoneLink": "tel:+442079460000",
+        "demoNote": "Showroom concept · Replace these demonstration contact details before launch."
+      },
+      "cta": {
+        "eyebrow": "LET'S FIND YOUR NEXT CHAPTER",
+        "title": "A conversation.\nAn extraordinary possibility.",
+        "description": "Tell us what moves you. We will help you find the car that feels like yours.",
+        "buttonLabel": "Meet Vanguard",
+        "buttonLink": "/contact"
+      }
+    },
+    "cards": {
+      "vehicles": {
+        "porsche-panamera": {
+          "name": "Porsche Panamera Turbo",
+          "meta": "2018 · Grand touring",
+          "details": "4.0 V8 · Sport Chrono · AWD",
+          "badge": "SELECTED BY VANGUARD",
+          "mileage": "32,400 miles",
+          "fuel": "Petrol",
+          "transmission": "Automatic",
+          "price": "£64,950",
+          "specs": {
+            "mileage": {
+              "icon": "gauge"
+            },
+            "fuel": {
+              "icon": "fuel"
+            },
+            "transmission": {
+              "icon": "settings"
+            }
+          },
+          "enquiryLink": "/contact?vehicle=porsche-panamera",
+          "availability": "Available"
+        },
+        "bmw-m5": {
+          "name": "BMW M5",
+          "meta": "2019 · Performance saloon",
+          "details": "4.4 V8 TwinPower Turbo · M xDrive",
+          "badge": "PURE DRIVING PLEASURE",
+          "mileage": "26,800 miles",
+          "fuel": "Petrol",
+          "transmission": "Automatic",
+          "price": "£49,950",
+          "specs": {
+            "mileage": {
+              "icon": "gauge"
+            },
+            "fuel": {
+              "icon": "fuel"
+            },
+            "transmission": {
+              "icon": "settings"
+            }
+          },
+          "enquiryLink": "/contact?vehicle=bmw-m5",
+          "availability": "Available"
+        },
+        "mercedes-amg": {
+          "name": "Mercedes-Benz AMG GT",
+          "meta": "2020 · Sports coupé",
+          "details": "4.0 V8 Biturbo · AMG Speedshift",
+          "badge": "AN UNMISTAKABLE PRESENCE",
+          "mileage": "18,600 miles",
+          "fuel": "Petrol",
+          "transmission": "Automatic",
+          "price": "£79,950",
+          "specs": {
+            "mileage": {
+              "icon": "gauge"
+            },
+            "fuel": {
+              "icon": "fuel"
+            },
+            "transmission": {
+              "icon": "settings"
+            }
+          },
+          "enquiryLink": "/contact?vehicle=mercedes-amg",
+          "availability": "Available"
+        },
+        "audi-rs6": {
+          "name": "Audi RS6 Avant",
+          "meta": "2017 · Performance estate",
+          "details": "4.0 TFSI · Quattro · Tiptronic",
+          "badge": "UNDERSTATED EXCELLENCE",
+          "mileage": "29,200 miles",
+          "fuel": "Petrol",
+          "transmission": "Automatic",
+          "price": "£46,950",
+          "specs": {
+            "mileage": {
+              "icon": "gauge"
+            },
+            "fuel": {
+              "icon": "fuel"
+            },
+            "transmission": {
+              "icon": "settings"
+            }
+          },
+          "enquiryLink": "/contact?vehicle=audi-rs6",
+          "availability": "Available"
+        },
+        "tesla-model-3": {
+          "name": "Tesla Model 3 Long Range",
+          "meta": "2021 · Electric saloon",
+          "details": "Dual Motor · AWD · Long Range",
+          "badge": "A DIFFERENT KIND OF ENERGY",
+          "mileage": "21,600 miles",
+          "fuel": "Electric",
+          "transmission": "Automatic",
+          "price": "£32,450",
+          "specs": {
+            "mileage": {
+              "icon": "gauge"
+            },
+            "fuel": {
+              "icon": "fuel"
+            },
+            "transmission": {
+              "icon": "settings"
+            }
+          },
+          "enquiryLink": "/contact?vehicle=tesla-model-3",
+          "availability": "Available"
+        },
+        "honda-crv": {
+          "name": "Honda CR-V EX",
+          "meta": "2016 · Touring SUV",
+          "details": "1.6 i-DTEC · AWD · EX",
+          "badge": "READY FOR A WIDER HORIZON",
+          "mileage": "44,200 miles",
+          "fuel": "Diesel",
+          "transmission": "Automatic",
+          "price": "£19,950",
+          "specs": {
+            "mileage": {
+              "icon": "gauge"
+            },
+            "fuel": {
+              "icon": "fuel"
+            },
+            "transmission": {
+              "icon": "settings"
+            }
+          },
+          "enquiryLink": "/contact?vehicle=honda-crv",
+          "availability": "Available"
+        },
+        "chevrolet-camaro": {
+          "name": "Chevrolet Camaro SS",
+          "meta": "2018 · Performance coupe",
+          "details": "6.2 V8 · Six-speed manual · SS",
+          "badge": "AN ANALOGUE KIND OF THRILL",
+          "mileage": "24,900 miles",
+          "fuel": "Petrol",
+          "transmission": "Manual",
+          "price": "£42,950",
+          "specs": {
+            "mileage": {
+              "icon": "gauge"
+            },
+            "fuel": {
+              "icon": "fuel"
+            },
+            "transmission": {
+              "icon": "settings"
+            }
+          },
+          "enquiryLink": "/contact?vehicle=chevrolet-camaro",
+          "availability": "Available"
+        },
+        "ferrari-458": {
+          "name": "Ferrari 458 Speciale",
+          "meta": "2014 · Supercar",
+          "details": "4.5 V8 · F1 dual-clutch · Speciale",
+          "badge": "FOR THE LOVE OF THE DRIVE",
+          "mileage": "12,800 miles",
+          "fuel": "Petrol",
+          "transmission": "Automatic",
+          "price": "£239,950",
+          "specs": {
+            "mileage": {
+              "icon": "gauge"
+            },
+            "fuel": {
+              "icon": "fuel"
+            },
+            "transmission": {
+              "icon": "settings"
+            }
+          },
+          "enquiryLink": "/contact?vehicle=ferrari-458",
+          "availability": "Reserved"
+        }
+      },
+      "brands": {
+        "porsche": {
+          "displayName": "PORSCHE",
+          "countLabel": "Precision. Passion. Porsche."
+        },
+        "bmw": {
+          "displayName": "BMW",
+          "countLabel": "The joy of the drive."
+        },
+        "mercedes": {
+          "displayName": "Mercedes-Benz",
+          "countLabel": "An unmistakable presence."
+        },
+        "audi": {
+          "displayName": "Audi",
+          "countLabel": "Progress through design."
+        },
+        "tesla": {
+          "displayName": "Tesla",
+          "countLabel": "A new kind of momentum."
+        },
+        "honda": {
+          "displayName": "Honda",
+          "countLabel": "Room for every possibility."
+        },
+        "chevrolet": {
+          "displayName": "Chevrolet",
+          "countLabel": "Character without compromise."
+        },
+        "ferrari": {
+          "displayName": "Ferrari",
+          "countLabel": "Passion in its purest form."
+        }
+      },
+      "bodyTypes": {
+        "sedan": {
+          "displayName": "Grand tourers",
+          "description": "Make every mile an occasion.",
+          "image": "/images/hero-porsche.jpg",
+          "imageAlt": "Porsche grand tourer on the road"
+        },
+        "coupe": {
+          "displayName": "Performance coupés",
+          "description": "For the thrill of the drive.",
+          "image": "/images/mercedes.jpg",
+          "imageAlt": "Silver Mercedes-Benz AMG GT sports coupe"
+        },
+        "estate": {
+          "displayName": "Performance estates",
+          "description": "Space. Style. No compromise.",
+          "image": "/images/audi.jpg",
+          "imageAlt": "Black Audi RS6 Avant performance estate"
+        },
+        "suv": {
+          "displayName": "SUVs & crossovers",
+          "description": "Take the road less ordinary.",
+          "image": "/images/honda-crv.jpg",
+          "imageAlt": "Honda CR-V touring SUV in the mountains"
+        }
+      }
+    },
+    "photos": {
+      "vehicles": {
+        "porsche-panamera": {
+          "image0": "/images/hero-porsche.jpg",
+          "imageAlt": "Black Porsche Panamera Turbo on a road"
+        },
+        "bmw-m5": {
+          "image0": "/images/bmw.jpg",
+          "imageAlt": "White BMW M5 on a palm-lined road"
+        },
+        "mercedes-amg": {
+          "image0": "/images/mercedes.jpg",
+          "imageAlt": "Silver Mercedes-Benz AMG GT"
+        },
+        "audi-rs6": {
+          "image0": "/images/audi.jpg",
+          "imageAlt": "Black Audi RS6 Avant photographed from the front"
+        },
+        "tesla-model-3": {
+          "image0": "/images/tesla.jpg",
+          "imageAlt": "White Tesla Model 3 on a coastal mountain road"
+        },
+        "honda-crv": {
+          "image0": "/images/honda-crv.jpg",
+          "imageAlt": "White Honda CR-V on a rugged landscape in the mountains"
+        },
+        "chevrolet-camaro": {
+          "image0": "/images/camaro.jpg",
+          "imageAlt": "Blue Chevrolet Camaro SS on a desert road at sunset"
+        },
+        "ferrari-458": {
+          "image0": "/images/experience.jpg",
+          "imageAlt": "Yellow Ferrari 458 Speciale on a tree-lined road"
+        }
+      }
+    },
+    "catalog": {
+      "porsche-panamera": {
+        "brand": "porsche",
+        "bodyType": "sedan",
+        "priceValue": 64950
+      },
+      "bmw-m5": {
+        "brand": "bmw",
+        "bodyType": "sedan",
+        "priceValue": 49950
+      },
+      "mercedes-amg": {
+        "brand": "mercedes",
+        "bodyType": "coupe",
+        "priceValue": 79950
+      },
+      "audi-rs6": {
+        "brand": "audi",
+        "bodyType": "estate",
+        "priceValue": 46950
+      },
+      "tesla-model-3": {
+        "brand": "tesla",
+        "bodyType": "sedan",
+        "priceValue": 32450
+      },
+      "honda-crv": {
+        "brand": "honda",
+        "bodyType": "suv",
+        "priceValue": 19950
+      },
+      "chevrolet-camaro": {
+        "brand": "chevrolet",
+        "bodyType": "coupe",
+        "priceValue": 42950
+      },
+      "ferrari-458": {
+        "brand": "ferrari",
+        "bodyType": "coupe",
+        "priceValue": 239950
+      }
+    },
+    "showrooms": {
+      "flagship": {
+        "name": "THE VANGUARD SHOWROOM",
+        "address": "London, United Kingdom",
+        "notes": "A personal viewing, by appointment."
+      }
+    },
+    "about": {
+      "eyebrow": "THE PEOPLE BEHIND THE DRIVE",
+      "title": "A shared passion.\nA considered approach.",
+      "description": "We believe the best cars bring people together. Vanguard is an independent destination for distinctive automobiles and a more personal ownership journey."
+    },
+    "contact": {
+      "selectedLabel": "Your selected vehicle",
+      "selectedNote": "Mention this vehicle when contacting our team.",
+      "collectionLabel": "Back to the collection",
+      "collectionLink": "/inventory"
+    },
+    "inventory": {
+      "hero": {
+        "eyebrow": "THE VANGUARD COLLECTION",
+        "title": "Find the one.\nFeel the difference.",
+        "description": "Performance icons, effortless grand tourers and remarkable everyday drives. Explore a collection chosen for the way it makes you feel.",
+        "image": "/images/mercedes.jpg",
+        "imageAlt": "Mercedes-AMG GT, a distinctive performance coupe",
+        "imageCaption": "CHARACTER IN EVERY CURVE.",
+        "demoNote": "Demonstration inventory. Prices, specifications and availability are illustrative."
+      },
+      "filters": {
+        "title": "Refine your search",
+        "description": "Your priorities. Your next drive.",
+        "searchLabel": "Model or keyword",
+        "searchPlaceholder": "Try Porsche, V8 or electric",
+        "brandLabel": "Marque",
+        "bodyLabel": "Body style",
+        "priceLabel": "Price range (GBP)",
+        "minLabel": "From",
+        "maxLabel": "To",
+        "minPlaceholder": "No minimum",
+        "maxPlaceholder": "No maximum",
+        "fuelLabel": "Fuel type",
+        "transmissionLabel": "Transmission",
+        "availabilityLabel": "Availability",
+        "anyBrand": "All marques",
+        "anyBody": "All body styles",
+        "anyFuel": "All fuel types",
+        "anyTransmission": "All transmissions",
+        "anyAvailability": "Any availability",
+        "availableLabel": "Available",
+        "reservedLabel": "Reserved",
+        "resetLabel": "Reset all filters",
+        "applyLabel": "Show matching vehicles",
+        "mobileLabel": "Filter the collection",
+        "invalidPrice": "Enter a valid price range. The minimum must not exceed the maximum.",
+        "activeLabel": "Active filters",
+        "removeLabel": "Remove filter"
+      },
+      "results": {
+        "title": "The collection",
+        "countLabel": "vehicles found",
+        "totalLabel": "in the collection",
+        "sortLabel": "Sort by",
+        "sortFeatured": "Curated order",
+        "sortPriceLow": "Price: low to high",
+        "sortPriceHigh": "Price: high to low",
+        "sortNewest": "Year: newest first",
+        "sortOldest": "Year: oldest first",
+        "sortMileage": "Mileage: lowest first",
+        "noScript": "The complete collection is shown below. Enable JavaScript to use search, filters and sorting."
+      },
+      "concierge": {
+        "eyebrow": "SOMETHING PARTICULAR IN MIND?",
+        "title": "The right car is worth\na conversation.",
+        "description": "Tell us about your ideal drive. Our team can talk you through the collection and help you explore your options.",
+        "buttonLabel": "Talk to our team",
+        "buttonLink": "/contact"
+      }
     }
   },
-  "styles": {
-    "home.title": {},
-    "home.subtitle": {},
-    "home.templatesLabel": {},
-    "home.learningLabel": {},
-    "home.deployNowLabel": {},
-    "home.documentationLabel": {}
-  },
+  "styles": {},
   "theme": {
-    "primaryColor": "#0284c7",
-    "secondaryColor": "#0f172a",
-    "accentColor": "#38bdf8",
-    "backgroundColor": "#ffffff",
-    "cardBackgroundColor": "#f8fafc",
-    "textColor": "#0f172a",
-    "borderColor": "#e2e8f0",
+    "primaryColor": "#377dff",
+    "secondaryColor": "#161a20",
+    "accentColor": "#8cafff",
+    "backgroundColor": "#0a0c0f",
+    "cardBackgroundColor": "#12151a",
+    "textColor": "#f3f4f6",
+    "borderColor": "#282d35",
     "headingFont": "Outfit, sans-serif",
     "bodyFont": "Inter, sans-serif",
-    "borderRadius": "12px",
-    "dark": {
-      "primaryColor": "#38bdf8",
-      "secondaryColor": "#f8fafc",
-      "accentColor": "#0284c7",
-      "backgroundColor": "#0b0f19",
-      "cardBackgroundColor": "#111827",
-      "textColor": "#f9fafb",
-      "borderColor": "#1f2937"
-    }
+    "borderRadius": "4px"
   }
 }
