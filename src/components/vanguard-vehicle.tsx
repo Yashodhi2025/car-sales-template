@@ -7,6 +7,7 @@ import { carPageKey, relatedVehicles, vehicleYear } from "@/lib/vehicles";
 import { usePageEffects } from "./use-page-effects";
 import { VehicleGallery } from "./vehicle-gallery";
 import { VehicleListing } from "./vehicle-listing";
+import { VehicleViewing } from "./vehicle-viewing";
 import { Arrow } from "./vanguard-arrow";
 
 export function VanguardVehicle({ vehicleId: id }: { vehicleId: VehicleId }) {
@@ -72,6 +73,7 @@ export function VanguardVehicle({ vehicleId: id }: { vehicleId: VehicleId }) {
           <EditableText id="vehicleDetails.viewingNote" as="p" className="vm-car-small-print vm-car-viewing-note">{t("vehicleDetails.viewingNote")}</EditableText>
         </div></aside>
       </div>
+      <VehicleViewing vehicleId={id} />
       <section className="vm-car-related"><div className="vm-container">
         <div className="vm-section-heading" data-reveal><div><EditableText id="vehicleDetails.relatedEyebrow" as="p" className="vm-eyebrow">{t("vehicleDetails.relatedEyebrow")}</EditableText><EditableText id="vehicleDetails.relatedTitle" as="h2" className="vm-title">{t("vehicleDetails.relatedTitle")}</EditableText></div><EditableLink href={withBasePath(t("vehicleDetails.relatedLink"))} data-preview-field-path="vehicleDetails.relatedLink" targetPage="inventory" className="vm-text-link"><EditableText id="vehicleDetails.relatedLabel">{t("vehicleDetails.relatedLabel")}</EditableText><Arrow /></EditableLink></div>
         <div className="vm-vehicle-grid vm-related-grid">{related.map((other, index) => <div key={other} className="vm-vehicle-wrap" data-reveal><VehicleListing id={other} index={index} /></div>)}</div>

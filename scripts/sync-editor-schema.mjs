@@ -13,15 +13,17 @@ function fields(object, prefix) {
     if (value && typeof value === "object") return { key, type: "object", label: label(key), fields: fields(value, path) };
     let type = "text";
     if (typeof value === "number") type = "number";
-    else if (/^(image\d*|logoUrl)$/.test(key)) type = "image";
+    else if (typeof value === "boolean") type = "boolean";
+    else if (/^(image\d*|logoUrl)$|Image$/.test(key)) type = "image";
     else if (/Link$/.test(key) || prefix === "common.navLinks") type = "url";
-    else if (/email$/i.test(key)) type = "email";
-    else if (/phone|whatsapp/i.test(key)) type = "tel";
+    else if (/email$/i.test(key) && !prefix.endsWith(".errors")) type = "email";
+    else if (/^(phone|whatsapp)$/i.test(key) && !prefix.endsWith(".errors")) type = "tel";
     else if (/description|quote|text|shortDescription|demoNotice/i.test(key)) type = "textarea";
-    if (path.startsWith("catalog.") || /imageAlt$|previousLabel$|nextLabel$|allBrands$|allBodies$/.test(path)
+    if (path.startsWith("catalog.") || /imageAlt$|previousLabel$|nextLabel$|allBrands$|allBodies$/i.test(path)
       || /^inventory\.filters\.(any\w+|availableLabel|reservedLabel|removeLabel|minPlaceholder|maxPlaceholder)$/.test(path)
       || /^inventory\.results\.(sort(?!Label)\w+|noScript)$/.test(path)) controls.add(path);
     if (/^vehicleDetails\.gallery\.(previousLabel|nextLabel|closeLabel|thumbnailLabel|openImageLabel)$/.test(path) || path === "vehicleDetails.notSupplied") controls.add(path);
+    if (/^requests\.(fields\.[^.]+\.placeholder|types\.|contactSubject$|viewingSubject$|noVehicle$|draftTextLabel$|noScript$)/.test(path) || path === "viewing.messagePlaceholder" || path.startsWith("motion.")) controls.add(path);
     return { key, type, label: label(key), ...(key === "icon" ? { control: "icon-picker" } : {}) };
   });
 }
@@ -29,6 +31,8 @@ function owner(path) {
   const vehicle = path.match(/^(?:vehicles|photos\.vehicles)\.([^.]+)/)?.[1];
   if (vehicle && Object.hasOwn(data.content.vehicles, vehicle)) return `car-${vehicle}`;
   if (path === "vehicleDetails") return `car-${Object.keys(data.content.vehicles)[0]}`;
+  if (/^viewing|^requests\.fields\.(date|time)/.test(path)) return `car-${Object.keys(data.content.vehicles)[0]}`;
+  if (path.startsWith("requests")) return "contact";
   if (/^(inventory|catalog|photos\.vehicles|cards\.vehicles)/.test(path) || path === "home.collection.emptyTitle" || path === "home.collection.emptyDescription") return "inventory";
   if (/^about|^home\.(promise|benefits|experience)/.test(path)) return "about";
   if (/^contact|^showrooms|^home\.contact/.test(path)) return "contact";
@@ -50,7 +54,13 @@ for (const [key, value] of Object.entries(data.content.home)) {
   } else sections.push(Array.isArray(value) ? collection(`home.${key}`, value) : objectSection(`home.${key}`, value));
 }
 for (const [key, value] of Object.entries(data.content.inventory)) sections.push(objectSection(`inventory.${key}`, value));
-sections.push(objectSection("about", data.content.about), objectSection("contact", data.content.contact));
+const { journey, ...about } = data.content.about;
+sections.push(objectSection("about", about), collection("about.journey", journey), objectSection("contact", data.content.contact));
+const { fields: requestFields, types, errors, ...requestCopy } = data.content.requests;
+const { date: dateError, pastDate, time: timeError, ...sharedErrors } = errors;
+sections.push(objectSection("requests", { ...requestCopy, errors: sharedErrors }), collection("requests.types", types));
+for (const [key, value] of Object.entries(requestFields)) sections.push(objectSection(`requests.fields.${key}`, value));
+sections.push({ ...objectSection("requests.errors", { date: dateError, pastDate, time: timeError }), id: "viewing.errors", pageKey: `car-${Object.keys(data.content.vehicles)[0]}` }, objectSection("viewing", data.content.viewing), objectSection("motion", data.content.motion));
 for (const [key, value] of Object.entries(data.content.cards)) sections.push(collection(`cards.${key}`, value));
 sections.push(collection("catalog", data.content.catalog), collection("showrooms", data.content.showrooms), objectSection("vehicleDetails", data.content.vehicleDetails));
 for (const [id, vehicle] of Object.entries(data.content.vehicles)) {

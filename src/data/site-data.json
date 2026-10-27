@@ -621,13 +621,55 @@
     "about": {
       "eyebrow": "THE PEOPLE BEHIND THE DRIVE",
       "title": "A shared passion.\nA considered approach.",
-      "description": "We believe the best cars bring people together. Vanguard is an independent destination for distinctive automobiles and a more personal ownership journey."
+      "description": "We believe the best cars bring people together. Vanguard is an independent destination for distinctive automobiles and a more personal ownership journey.",
+      "heroImage": "/images/hero-porsche.jpg",
+      "heroImageAlt": "Porsche Panamera on an open road",
+      "imageCaption": "A LOVE OF THE DRIVE. A RESPECT FOR THE JOURNEY.",
+      "storyEyebrow": "OUR POINT OF VIEW",
+      "storyTitle": "The car matters.\nSo does the conversation.",
+      "storyDescription": "A remarkable car deserves a considered introduction. Vanguard is built around a simple idea: take time to understand the person, explore the possibilities and make the details clear.",
+      "storyNote": "Our philosophy is an invitation to a more personal buying experience. This demonstration website makes no claim to a trading history, awards or accreditations.",
+      "journeyEyebrow": "YOUR VANGUARD EXPERIENCE",
+      "journeyTitle": "From first look\nto your next chapter.",
+      "journeyDescription": "A clear path, at your pace. Start with a car that catches your eye and a conversation about what matters to you.",
+      "journey": [
+        {
+          "number": "01",
+          "title": "Discover your direction",
+          "text": "Explore the collection, compare the details and save your questions for the team."
+        },
+        {
+          "number": "02",
+          "title": "Have the conversation",
+          "text": "Ask about condition, history and specification. Confirm the facts before making a decision."
+        },
+        {
+          "number": "03",
+          "title": "Make time for the drive",
+          "text": "Request a personal viewing. The team will confirm the vehicle, date and arrangements with you."
+        }
+      ],
+      "ctaTitle": "Find what moves you.",
+      "inventoryLabel": "Explore the collection",
+      "inventoryLink": "/inventory",
+      "contactLabel": "Start a conversation",
+      "contactLink": "/contact"
     },
     "contact": {
       "selectedLabel": "Your selected vehicle",
-      "selectedNote": "Mention this vehicle when contacting our team.",
+      "selectedNote": "Your vehicle is already selected in the inquiry below. You can change it at any time.",
       "collectionLabel": "Back to the collection",
-      "collectionLink": "/inventory"
+      "collectionLink": "/inventory",
+      "heroImage": "/images/mercedes.jpg",
+      "heroImageAlt": "Silver performance car in an architectural setting",
+      "imageCaption": "GOOD CONVERSATIONS. EXCEPTIONAL CARS.",
+      "emailTitle": "Write to us",
+      "phoneTitle": "Speak to the team",
+      "locationTitle": "Find your way here",
+      "visitNote": "Arrange your visit with the team before travelling. This template uses demonstration showroom details.",
+      "formEyebrow": "A PERSONAL CONVERSATION",
+      "formTitle": "Let’s talk about\nyour next chapter.",
+      "formDescription": "Tell us what you have in mind. We’ll help you prepare an inquiry for the Vanguard team."
     },
     "inventory": {
       "hero": {
@@ -704,7 +746,7 @@
       "availabilityLabel": "Availability",
       "viewingLabel": "Request a viewing",
       "inquiryHint": "A personal conversation is the best place to start. Our team can help you explore this vehicle and confirm the details.",
-      "viewingNote": "Viewing requests open your email app. A viewing is confirmed only after you hear from our team. Demonstration contact details must be replaced before launch.",
+      "viewingNote": "Choose a preferred date and time in the viewing request below. Send the prepared email, then wait for the team to confirm. Demonstration contact details apply.",
       "reservedNotice": "Currently reserved. Ask our team about availability or similar vehicles.",
       "notSupplied": "Confirm with our team",
       "relatedEyebrow": "MORE WAYS TO MOVE YOU",
@@ -747,7 +789,7 @@
         "drivetrain": "AWD",
         "power": "",
         "detailLink": "/cars/porsche-panamera",
-        "viewingLink": "mailto:hello@vanguardmotors.example?subject=Viewing%20request%3A%20Porsche%20Panamera%20Turbo&body=Hello%20Vanguard%20Motors%2C%0A%0AI%20would%20like%20to%20request%20a%20viewing%20of%20the%20Porsche%20Panamera%20Turbo.%0A%0AMy%20preferred%20date%2Ftime%3A%0AMy%20name%3A%0AMy%20contact%20number%3A%0A%0APlease%20confirm%20availability%20and%20the%20appointment%20details.",
+        "viewingLink": "#request-viewing",
         "features": [
           {
             "name": "Sport Chrono"
@@ -763,7 +805,7 @@
         "drivetrain": "M xDrive",
         "power": "",
         "detailLink": "/cars/bmw-m5",
-        "viewingLink": "mailto:hello@vanguardmotors.example?subject=Viewing%20request%3A%20BMW%20M5&body=Hello%20Vanguard%20Motors%2C%0A%0AI%20would%20like%20to%20request%20a%20viewing%20of%20the%20BMW%20M5.%0A%0AMy%20preferred%20date%2Ftime%3A%0AMy%20name%3A%0AMy%20contact%20number%3A%0A%0APlease%20confirm%20availability%20and%20the%20appointment%20details.",
+        "viewingLink": "#request-viewing",
         "features": [
           {
             "name": "TwinPower Turbo"
@@ -779,7 +821,7 @@
         "drivetrain": "",
         "power": "",
         "detailLink": "/cars/mercedes-amg",
-        "viewingLink": "mailto:hello@vanguardmotors.example?subject=Viewing%20request%3A%20Mercedes-Benz%20AMG%20GT&body=Hello%20Vanguard%20Motors%2C%0A%0AI%20would%20like%20to%20request%20a%20viewing%20of%20the%20Mercedes-Benz%20AMG%20GT.%0A%0AMy%20preferred%20date%2Ftime%3A%0AMy%20name%3A%0AMy%20contact%20number%3A%0A%0APlease%20confirm%20availability%20and%20the%20appointment%20details.",
+        "viewingLink": "#request-viewing",
         "features": [
           {
             "name": "V8 Biturbo"
@@ -795,7 +837,7 @@
         "drivetrain": "Quattro",
         "power": "",
         "detailLink": "/cars/audi-rs6",
-        "viewingLink": "mailto:hello@vanguardmotors.example?subject=Viewing%20request%3A%20Audi%20RS6%20Avant&body=Hello%20Vanguard%20Motors%2C%0A%0AI%20would%20like%20to%20request%20a%20viewing%20of%20the%20Audi%20RS6%20Avant.%0A%0AMy%20preferred%20date%2Ftime%3A%0AMy%20name%3A%0AMy%20contact%20number%3A%0A%0APlease%20confirm%20availability%20and%20the%20appointment%20details.",
+        "viewingLink": "#request-viewing",
         "features": [
           {
             "name": "Quattro"
@@ -811,7 +853,7 @@
         "drivetrain": "AWD",
         "power": "",
         "detailLink": "/cars/tesla-model-3",
-        "viewingLink": "mailto:hello@vanguardmotors.example?subject=Viewing%20request%3A%20Tesla%20Model%203%20Long%20Range&body=Hello%20Vanguard%20Motors%2C%0A%0AI%20would%20like%20to%20request%20a%20viewing%20of%20the%20Tesla%20Model%203%20Long%20Range.%0A%0AMy%20preferred%20date%2Ftime%3A%0AMy%20name%3A%0AMy%20contact%20number%3A%0A%0APlease%20confirm%20availability%20and%20the%20appointment%20details.",
+        "viewingLink": "#request-viewing",
         "features": [
           {
             "name": "Dual Motor"
@@ -830,7 +872,7 @@
         "drivetrain": "AWD",
         "power": "",
         "detailLink": "/cars/honda-crv",
-        "viewingLink": "mailto:hello@vanguardmotors.example?subject=Viewing%20request%3A%20Honda%20CR-V%20EX&body=Hello%20Vanguard%20Motors%2C%0A%0AI%20would%20like%20to%20request%20a%20viewing%20of%20the%20Honda%20CR-V%20EX.%0A%0AMy%20preferred%20date%2Ftime%3A%0AMy%20name%3A%0AMy%20contact%20number%3A%0A%0APlease%20confirm%20availability%20and%20the%20appointment%20details.",
+        "viewingLink": "#request-viewing",
         "features": [
           {
             "name": "AWD"
@@ -846,7 +888,7 @@
         "drivetrain": "",
         "power": "",
         "detailLink": "/cars/chevrolet-camaro",
-        "viewingLink": "mailto:hello@vanguardmotors.example?subject=Viewing%20request%3A%20Chevrolet%20Camaro%20SS&body=Hello%20Vanguard%20Motors%2C%0A%0AI%20would%20like%20to%20request%20a%20viewing%20of%20the%20Chevrolet%20Camaro%20SS.%0A%0AMy%20preferred%20date%2Ftime%3A%0AMy%20name%3A%0AMy%20contact%20number%3A%0A%0APlease%20confirm%20availability%20and%20the%20appointment%20details.",
+        "viewingLink": "#request-viewing",
         "features": [
           {
             "name": "Six-speed manual"
@@ -862,7 +904,7 @@
         "drivetrain": "",
         "power": "",
         "detailLink": "/cars/ferrari-458",
-        "viewingLink": "mailto:hello@vanguardmotors.example?subject=Viewing%20request%3A%20Ferrari%20458%20Speciale&body=Hello%20Vanguard%20Motors%2C%0A%0AI%20would%20like%20to%20request%20a%20viewing%20of%20the%20Ferrari%20458%20Speciale.%0A%0AMy%20preferred%20date%2Ftime%3A%0AMy%20name%3A%0AMy%20contact%20number%3A%0A%0APlease%20confirm%20availability%20and%20the%20appointment%20details.",
+        "viewingLink": "#request-viewing",
         "features": [
           {
             "name": "F1 dual-clutch"
@@ -872,6 +914,94 @@
           }
         ]
       }
+    },
+    "requests": {
+      "requiredNote": "Fields marked * are required. Your details stay in this browser until you send the email.",
+      "emailNote": "This form opens a draft in your email application. You must send it yourself. Nothing is submitted or booked on this website.",
+      "demoNote": "Demonstration contact details — replace the email and phone before launch.",
+      "submitLabel": "Prepare email draft",
+      "draftTitle": "Your draft is ready to send.",
+      "draftNote": "If your email application did not open, use the link below or copy the draft text. Nothing has been sent, and a viewing is confirmed only by the dealership.",
+      "reopenLabel": "Open email draft",
+      "previewLabel": "Review / copy draft text",
+      "draftTextLabel": "Prepared email text",
+      "errorTitle": "Please check the highlighted fields.",
+      "noScript": "Enable JavaScript to prepare a detailed request, or contact the team directly using the email link.",
+      "contactSubject": "Vanguard Motors inquiry",
+      "viewingSubject": "Vanguard Motors viewing request",
+      "noVehicle": "No vehicle selected",
+      "fields": {
+        "name": {
+          "label": "Your name",
+          "placeholder": "Full name"
+        },
+        "email": {
+          "label": "Email address",
+          "placeholder": "you@example.com"
+        },
+        "phone": {
+          "label": "Phone number",
+          "placeholder": "+44 …"
+        },
+        "inquiry": {
+          "label": "Inquiry type",
+          "placeholder": "Choose an inquiry"
+        },
+        "vehicle": {
+          "label": "Selected vehicle",
+          "placeholder": "Choose a vehicle (optional)"
+        },
+        "message": {
+          "label": "Your message",
+          "placeholder": "Tell us what you would like to know…"
+        },
+        "date": {
+          "label": "Preferred date",
+          "helper": "Choose today or a future date. Availability will be confirmed by the team."
+        },
+        "time": {
+          "label": "Preferred time",
+          "helper": "Your preferred local showroom time; this is a request, not an available slot."
+        }
+      },
+      "types": [
+        {
+          "key": "general",
+          "label": "General inquiry"
+        },
+        {
+          "key": "vehicle",
+          "label": "About a vehicle"
+        },
+        {
+          "key": "viewing",
+          "label": "Planning a visit"
+        }
+      ],
+      "errors": {
+        "required": "Please complete this field.",
+        "email": "Enter a valid email address.",
+        "phone": "Enter a valid phone number, including an area or country code.",
+        "date": "Enter a valid calendar date.",
+        "pastDate": "Choose today or a future date.",
+        "time": "Choose a valid preferred time.",
+        "choice": "Choose an option from the list.",
+        "recipient": "The dealership email is not configured correctly. Please use another contact method.",
+        "length": "Please shorten this entry to fit the field limit."
+      }
+    },
+    "viewing": {
+      "eyebrow": "EXPERIENCE IT IN PERSON",
+      "title": "Some things are better\nfrom the driver’s seat.",
+      "description": "Choose a preferred date and time. Your request will open as an email draft for you to review and send.",
+      "vehicleLabel": "YOUR VIEWING REQUEST",
+      "messageLabel": "Anything we should know? (optional)",
+      "messagePlaceholder": "Questions, access requirements or anything you would like us to prepare…",
+      "dateNote": "No appointment is booked by completing this form. Please wait for the team to confirm the vehicle and your preferred time."
+    },
+    "motion": {
+      "enabled": true,
+      "durationMs": 750
     }
   },
   "styles": {},

@@ -59,11 +59,8 @@ test("related vehicles exclude self and duplicates and prefer the same body styl
   }
   assert.equal(content.catalog[relatedVehicles(content, "porsche-panamera")[0]].bodyType, "sedan");
 });
-test("viewing actions prepare an honest vehicle-specific request", () => {
+test("viewing actions lead to the inline request experience", () => {
   for (const id of ids) {
-    const link = new URL(content.vehicles[id].viewingLink);
-    assert.equal(link.protocol, "mailto:");
-    assert(link.searchParams.get("subject").includes(content.cards.vehicles[id].name));
-    assert(link.searchParams.get("body").includes("Please confirm availability"));
+    assert.equal(content.vehicles[id].viewingLink, "#request-viewing");
   }
 });

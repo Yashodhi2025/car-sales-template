@@ -17,5 +17,8 @@ function LiveTheme() {
   const data = useSiteData<typeof initialSiteData>();
   const theme = data.template.structure.theme;
   useEffect(() => { syncThemeToDocument(theme); }, [theme]);
+  useEffect(() => {
+    document.documentElement.dataset.vanguardMotion = String(Boolean(data.content.motion.enabled));
+  }, [data.content.motion.enabled]);
   return <ThemeStyles theme={theme} enableDualMode={false} />;
 }

@@ -12,6 +12,7 @@
       "__fivoraIntake.outputLanguage",
       "__fivoraIntake.referenceWebsiteUrl",
       "__fivoraIntake.tone",
+      "about.heroImageAlt",
       "cards.bodyTypes.coupe.imageAlt",
       "cards.bodyTypes.estate.imageAlt",
       "cards.bodyTypes.sedan.imageAlt",
@@ -40,6 +41,7 @@
       "catalog.tesla-model-3.bodyType",
       "catalog.tesla-model-3.brand",
       "catalog.tesla-model-3.priceValue",
+      "contact.heroImageAlt",
       "home.experience.imageAlt",
       "home.hero.imageAlt",
       "home.search.allBodies",
@@ -64,6 +66,8 @@
       "inventory.results.sortOldest",
       "inventory.results.sortPriceHigh",
       "inventory.results.sortPriceLow",
+      "motion.durationMs",
+      "motion.enabled",
       "photos.vehicles.audi-rs6.gallery.0.imageAlt",
       "photos.vehicles.audi-rs6.imageAlt",
       "photos.vehicles.bmw-m5.gallery.0.imageAlt",
@@ -80,12 +84,30 @@
       "photos.vehicles.porsche-panamera.imageAlt",
       "photos.vehicles.tesla-model-3.gallery.0.imageAlt",
       "photos.vehicles.tesla-model-3.imageAlt",
+      "requests.contactSubject",
+      "requests.draftTextLabel",
+      "requests.fields.email.placeholder",
+      "requests.fields.inquiry.placeholder",
+      "requests.fields.message.placeholder",
+      "requests.fields.name.placeholder",
+      "requests.fields.phone.placeholder",
+      "requests.fields.vehicle.placeholder",
+      "requests.noScript",
+      "requests.noVehicle",
+      "requests.types.0.key",
+      "requests.types.0.label",
+      "requests.types.1.key",
+      "requests.types.1.label",
+      "requests.types.2.key",
+      "requests.types.2.label",
+      "requests.viewingSubject",
       "vehicleDetails.gallery.closeLabel",
       "vehicleDetails.gallery.nextLabel",
       "vehicleDetails.gallery.openImageLabel",
       "vehicleDetails.gallery.previousLabel",
       "vehicleDetails.gallery.thumbnailLabel",
-      "vehicleDetails.notSupplied"
+      "vehicleDetails.notSupplied",
+      "viewing.messagePlaceholder"
     ]
   },
   "siteDataFile": "src/data/site-data.json",
@@ -870,7 +892,7 @@
           },
           {
             "key": "phoneLabel",
-            "type": "tel",
+            "type": "text",
             "label": "Phone Label"
           },
           {
@@ -1226,9 +1248,157 @@
             "key": "description",
             "type": "textarea",
             "label": "Description"
+          },
+          {
+            "key": "heroImage",
+            "type": "image",
+            "label": "Hero Image"
+          },
+          {
+            "key": "heroImageAlt",
+            "type": "text",
+            "label": "Hero Image Alt"
+          },
+          {
+            "key": "imageCaption",
+            "type": "text",
+            "label": "Image Caption"
+          },
+          {
+            "key": "storyEyebrow",
+            "type": "text",
+            "label": "Story Eyebrow"
+          },
+          {
+            "key": "storyTitle",
+            "type": "text",
+            "label": "Story Title"
+          },
+          {
+            "key": "storyDescription",
+            "type": "textarea",
+            "label": "Story Description"
+          },
+          {
+            "key": "storyNote",
+            "type": "text",
+            "label": "Story Note"
+          },
+          {
+            "key": "journeyEyebrow",
+            "type": "text",
+            "label": "Journey Eyebrow"
+          },
+          {
+            "key": "journeyTitle",
+            "type": "text",
+            "label": "Journey Title"
+          },
+          {
+            "key": "journeyDescription",
+            "type": "textarea",
+            "label": "Journey Description"
+          },
+          {
+            "key": "ctaTitle",
+            "type": "text",
+            "label": "Cta Title"
+          },
+          {
+            "key": "inventoryLabel",
+            "type": "text",
+            "label": "Inventory Label"
+          },
+          {
+            "key": "inventoryLink",
+            "type": "url",
+            "label": "Inventory Link"
+          },
+          {
+            "key": "contactLabel",
+            "type": "text",
+            "label": "Contact Label"
+          },
+          {
+            "key": "contactLink",
+            "type": "url",
+            "label": "Contact Link"
           }
         ],
         "pageKey": "about"
+      },
+      {
+        "id": "about.journey",
+        "path": "about.journey",
+        "type": "collection",
+        "label": "About journey",
+        "collectionType": "list",
+        "pageKey": "about",
+        "items": [
+          {
+            "key": "0",
+            "label": "Discover your direction",
+            "fields": [
+              {
+                "key": "number",
+                "type": "text",
+                "label": "Number"
+              },
+              {
+                "key": "title",
+                "type": "text",
+                "label": "Title"
+              },
+              {
+                "key": "text",
+                "type": "textarea",
+                "label": "Text"
+              }
+            ]
+          },
+          {
+            "key": "1",
+            "label": "Have the conversation",
+            "fields": [
+              {
+                "key": "number",
+                "type": "text",
+                "label": "Number"
+              },
+              {
+                "key": "title",
+                "type": "text",
+                "label": "Title"
+              },
+              {
+                "key": "text",
+                "type": "textarea",
+                "label": "Text"
+              }
+            ]
+          },
+          {
+            "key": "2",
+            "label": "Make time for the drive",
+            "fields": [
+              {
+                "key": "number",
+                "type": "text",
+                "label": "Number"
+              },
+              {
+                "key": "title",
+                "type": "text",
+                "label": "Title"
+              },
+              {
+                "key": "text",
+                "type": "textarea",
+                "label": "Text"
+              }
+            ]
+          }
+        ]
       },
       {
         "id": "contact",
@@ -1255,9 +1425,472 @@
             "key": "collectionLink",
             "type": "url",
             "label": "Collection Link"
+          },
+          {
+            "key": "heroImage",
+            "type": "image",
+            "label": "Hero Image"
+          },
+          {
+            "key": "heroImageAlt",
+            "type": "text",
+            "label": "Hero Image Alt"
+          },
+          {
+            "key": "imageCaption",
+            "type": "text",
+            "label": "Image Caption"
+          },
+          {
+            "key": "emailTitle",
+            "type": "text",
+            "label": "Email Title"
+          },
+          {
+            "key": "phoneTitle",
+            "type": "text",
+            "label": "Phone Title"
+          },
+          {
+            "key": "locationTitle",
+            "type": "text",
+            "label": "Location Title"
+          },
+          {
+            "key": "visitNote",
+            "type": "text",
+            "label": "Visit Note"
+          },
+          {
+            "key": "formEyebrow",
+            "type": "text",
+            "label": "Form Eyebrow"
+          },
+          {
+            "key": "formTitle",
+            "type": "text",
+            "label": "Form Title"
+          },
+          {
+            "key": "formDescription",
+            "type": "textarea",
+            "label": "Form Description"
           }
         ],
         "pageKey": "contact"
+      },
+      {
+        "id": "requests",
+        "path": "requests",
+        "type": "object",
+        "label": "Requests",
+        "fields": [
+          {
+            "key": "requiredNote",
+            "type": "text",
+            "label": "Required Note"
+          },
+          {
+            "key": "emailNote",
+            "type": "text",
+            "label": "Email Note"
+          },
+          {
+            "key": "demoNote",
+            "type": "text",
+            "label": "Demo Note"
+          },
+          {
+            "key": "submitLabel",
+            "type": "text",
+            "label": "Submit Label"
+          },
+          {
+            "key": "draftTitle",
+            "type": "text",
+            "label": "Draft Title"
+          },
+          {
+            "key": "draftNote",
+            "type": "text",
+            "label": "Draft Note"
+          },
+          {
+            "key": "reopenLabel",
+            "type": "text",
+            "label": "Reopen Label"
+          },
+          {
+            "key": "previewLabel",
+            "type": "text",
+            "label": "Preview Label"
+          },
+          {
+            "key": "draftTextLabel",
+            "type": "textarea",
+            "label": "Draft Text Label"
+          },
+          {
+            "key": "errorTitle",
+            "type": "text",
+            "label": "Error Title"
+          },
+          {
+            "key": "noScript",
+            "type": "text",
+            "label": "No Script"
+          },
+          {
+            "key": "contactSubject",
+            "type": "text",
+            "label": "Contact Subject"
+          },
+          {
+            "key": "viewingSubject",
+            "type": "text",
+            "label": "Viewing Subject"
+          },
+          {
+            "key": "noVehicle",
+            "type": "text",
+            "label": "No Vehicle"
+          },
+          {
+            "key": "errors",
+            "type": "object",
+            "label": "Errors",
+            "fields": [
+              {
+                "key": "required",
+                "type": "text",
+                "label": "Required"
+              },
+              {
+                "key": "email",
+                "type": "text",
+                "label": "Email"
+              },
+              {
+                "key": "phone",
+                "type": "text",
+                "label": "Phone"
+              },
+              {
+                "key": "choice",
+                "type": "text",
+                "label": "Choice"
+              },
+              {
+                "key": "recipient",
+                "type": "text",
+                "label": "Recipient"
+              },
+              {
+                "key": "length",
+                "type": "text",
+                "label": "Length"
+              }
+            ]
+          }
+        ],
+        "pageKey": "contact"
+      },
+      {
+        "id": "requests.types",
+        "path": "requests.types",
+        "type": "collection",
+        "label": "Requests types",
+        "collectionType": "list",
+        "pageKey": "contact",
+        "items": [
+          {
+            "key": "0",
+            "label": "0",
+            "fields": [
+              {
+                "key": "key",
+                "type": "text",
+                "label": "Key"
+              },
+              {
+                "key": "label",
+                "type": "text",
+                "label": "Label"
+              }
+            ]
+          },
+          {
+            "key": "1",
+            "label": "1",
+            "fields": [
+              {
+                "key": "key",
+                "type": "text",
+                "label": "Key"
+              },
+              {
+                "key": "label",
+                "type": "text",
+                "label": "Label"
+              }
+            ]
+          },
+          {
+            "key": "2",
+            "label": "2",
+            "fields": [
+              {
+                "key": "key",
+                "type": "text",
+                "label": "Key"
+              },
+              {
+                "key": "label",
+                "type": "text",
+                "label": "Label"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "requests.fields.name",
+        "path": "requests.fields.name",
+        "type": "object",
+        "label": "Requests fields name",
+        "fields": [
+          {
+            "key": "label",
+            "type": "text",
+            "label": "Label"
+          },
+          {
+            "key": "placeholder",
+            "type": "text",
+            "label": "Placeholder"
+          }
+        ],
+        "pageKey": "contact"
+      },
+      {
+        "id": "requests.fields.email",
+        "path": "requests.fields.email",
+        "type": "object",
+        "label": "Requests fields email",
+        "fields": [
+          {
+            "key": "label",
+            "type": "text",
+            "label": "Label"
+          },
+          {
+            "key": "placeholder",
+            "type": "text",
+            "label": "Placeholder"
+          }
+        ],
+        "pageKey": "contact"
+      },
+      {
+        "id": "requests.fields.phone",
+        "path": "requests.fields.phone",
+        "type": "object",
+        "label": "Requests fields phone",
+        "fields": [
+          {
+            "key": "label",
+            "type": "text",
+            "label": "Label"
+          },
+          {
+            "key": "placeholder",
+            "type": "text",
+            "label": "Placeholder"
+          }
+        ],
+        "pageKey": "contact"
+      },
+      {
+        "id": "requests.fields.inquiry",
+        "path": "requests.fields.inquiry",
+        "type": "object",
+        "label": "Requests fields inquiry",
+        "fields": [
+          {
+            "key": "label",
+            "type": "text",
+            "label": "Label"
+          },
+          {
+            "key": "placeholder",
+            "type": "text",
+            "label": "Placeholder"
+          }
+        ],
+        "pageKey": "contact"
+      },
+      {
+        "id": "requests.fields.vehicle",
+        "path": "requests.fields.vehicle",
+        "type": "object",
+        "label": "Requests fields vehicle",
+        "fields": [
+          {
+            "key": "label",
+            "type": "text",
+            "label": "Label"
+          },
+          {
+            "key": "placeholder",
+            "type": "text",
+            "label": "Placeholder"
+          }
+        ],
+        "pageKey": "contact"
+      },
+      {
+        "id": "requests.fields.message",
+        "path": "requests.fields.message",
+        "type": "object",
+        "label": "Requests fields message",
+        "fields": [
+          {
+            "key": "label",
+            "type": "text",
+            "label": "Label"
+          },
+          {
+            "key": "placeholder",
+            "type": "text",
+            "label": "Placeholder"
+          }
+        ],
+        "pageKey": "contact"
+      },
+      {
+        "id": "requests.fields.date",
+        "path": "requests.fields.date",
+        "type": "object",
+        "label": "Requests fields date",
+        "fields": [
+          {
+            "key": "label",
+            "type": "text",
+            "label": "Label"
+          },
+          {
+            "key": "helper",
+            "type": "text",
+            "label": "Helper"
+          }
+        ],
+        "pageKey": "car-porsche-panamera"
+      },
+      {
+        "id": "requests.fields.time",
+        "path": "requests.fields.time",
+        "type": "object",
+        "label": "Requests fields time",
+        "fields": [
+          {
+            "key": "label",
+            "type": "text",
+            "label": "Label"
+          },
+          {
+            "key": "helper",
+            "type": "text",
+            "label": "Helper"
+          }
+        ],
+        "pageKey": "car-porsche-panamera"
+      },
+      {
+        "id": "viewing.errors",
+        "path": "requests.errors",
+        "type": "object",
+        "label": "Requests errors",
+        "fields": [
+          {
+            "key": "date",
+            "type": "text",
+            "label": "Date"
+          },
+          {
+            "key": "pastDate",
+            "type": "text",
+            "label": "Past Date"
+          },
+          {
+            "key": "time",
+            "type": "text",
+            "label": "Time"
+          }
+        ],
+        "pageKey": "car-porsche-panamera"
+      },
+      {
+        "id": "viewing",
+        "path": "viewing",
+        "type": "object",
+        "label": "Viewing",
+        "fields": [
+          {
+            "key": "eyebrow",
+            "type": "text",
+            "label": "Eyebrow"
+          },
+          {
+            "key": "title",
+            "type": "text",
+            "label": "Title"
+          },
+          {
+            "key": "description",
+            "type": "textarea",
+            "label": "Description"
+          },
+          {
+            "key": "vehicleLabel",
+            "type": "text",
+            "label": "Vehicle Label"
+          },
+          {
+            "key": "messageLabel",
+            "type": "text",
+            "label": "Message Label"
+          },
+          {
+            "key": "messagePlaceholder",
+            "type": "text",
+            "label": "Message Placeholder"
+          },
+          {
+            "key": "dateNote",
+            "type": "text",
+            "label": "Date Note"
+          }
+        ],
+        "pageKey": "car-porsche-panamera"
+      },
+      {
+        "id": "motion",
+        "path": "motion",
+        "type": "object",
+        "label": "Motion",
+        "fields": [
+          {
+            "key": "enabled",
+            "type": "boolean",
+            "label": "Enabled"
+          },
+          {
+            "key": "durationMs",
+            "type": "number",
+            "label": "Duration Ms"
+          }
+        ],
+        "pageKey": "home"
       },
       {
         "id": "cards.vehicles",

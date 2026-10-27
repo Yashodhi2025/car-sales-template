@@ -49,7 +49,7 @@ export async function withBrowser(task) {
     fs.writeFileSync(path.join(output, name), Buffer.from(result.data, "base64"));
   }
   async function value(selector, text, documentExpression = "document") {
-    await evaluate(`(() => { const el=${documentExpression}.querySelector(${JSON.stringify(selector)});if(!el)throw new Error('Missing control');const win=el.ownerDocument.defaultView; const proto=el.tagName==='SELECT'?win.HTMLSelectElement.prototype:win.HTMLInputElement.prototype;Object.getOwnPropertyDescriptor(proto,'value').set.call(el,${JSON.stringify(text)});el.dispatchEvent(new win.Event(el.tagName==='SELECT'?'change':'input',{bubbles:true}));})()`);
+    await evaluate(`(() => { const el=${documentExpression}.querySelector(${JSON.stringify(selector)});if(!el)throw new Error('Missing control');const win=el.ownerDocument.defaultView; const proto=el.tagName==='SELECT'?win.HTMLSelectElement.prototype:el.tagName==='TEXTAREA'?win.HTMLTextAreaElement.prototype:win.HTMLInputElement.prototype;Object.getOwnPropertyDescriptor(proto,'value').set.call(el,${JSON.stringify(text)});el.dispatchEvent(new win.Event(el.tagName==='SELECT'?'change':'input',{bubbles:true}));})()`);
     await sleep(120);
   }
   function check(name, result) { assert(result, name); checks.push(name); console.log(`PASS ${name}`); }

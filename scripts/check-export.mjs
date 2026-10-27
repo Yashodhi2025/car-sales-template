@@ -24,7 +24,7 @@ const server = http.createServer((request, response) => {
 await new Promise(resolve => server.listen(0, "127.0.0.1", resolve));
 const base = `http://127.0.0.1:${server.address().port}`;
 try {
-  await withBrowser(async ({ send, evaluate, navigate, screenshot, check, checks, exceptions, consoleErrors }) => {
+  await withBrowser(async ({ send, evaluate, navigate, until, screenshot, check, checks, exceptions, consoleErrors }) => {
     for (const [route, key] of [["/", "home"], ["/inventory", "inventory"], ["/about", "about"], ["/contact", "contact"], ...vehicles.map(id => [`/cars/${id}`, `car-${id}`])]) {
       check(`Static route ${route} returns its own HTML`, (await fetch(base + route)).status === 200);
       await navigate(base + route, key);
@@ -32,7 +32,12 @@ try {
     }
     check("Unknown routes do not silently serve the homepage", (await fetch(base + "/missing-page")).status === 404);
     check("Unknown vehicle routes return 404", (await fetch(base + "/cars/missing-vehicle")).status === 404);
+    await navigate(base + "/contact?vehicle=bmw-m5", "contact");
+    await until("document.querySelector('#vm-contact-vehicle')?.value==='bmw-m5'");
+    check("Production Contact hydrates and restores the selected vehicle", await evaluate("!document.querySelector('.vm-contact-form fieldset').disabled && document.querySelector('.vm-selected-vehicle').textContent.includes('BMW M5')"));
     await send("Emulation.setScriptExecutionDisabled", { value: true });
+    await navigate(base + "/contact", "contact");
+    check("No-JavaScript Contact keeps direct email links and explains its form limitation", await evaluate("document.querySelector('.vm-contact-form fieldset').disabled && document.querySelector('.vm-draft-submit').disabled && [...document.querySelectorAll('noscript')].some(n=>n.textContent.includes('Enable JavaScript')) && !!document.querySelector('.vm-contact-details a[href^=\"mailto:\"]')"));
     await navigate(base + "/inventory", "inventory");
     check("Exported Inventory contains all eight cards without JavaScript", await evaluate("document.querySelectorAll('.vm-vehicle-card').length===8 && document.querySelectorAll('.vm-vehicle-wrap:not([hidden])').length===8"));
     check("Inventory custom CSS and fonts load in the export", await evaluate("getComputedStyle(document.querySelector('.vm-inventory-layout')).display==='grid' && parseFloat(getComputedStyle(document.querySelector('.vm-inventory-title')).fontSize)>40"));
@@ -42,7 +47,7 @@ try {
     check("Homepage hero remains readable without JavaScript", await evaluate("getComputedStyle(document.querySelector('.vm-hero-line')).opacity==='1' && document.querySelector('.vm-hero h1').textContent.includes('Beyond the ordinary')"));
     for (const id of vehicles) {
       await navigate(`${base}/cars/${id}`, `car-${id}`);
-      check(`Exported ${id} keeps specifications, equipment, photography and inquiries without JavaScript`, await evaluate(`document.querySelector('.vm-car-title').textContent===${JSON.stringify(data.content.cards.vehicles[id].name)} && document.querySelectorAll('[data-spec]').length===8 && document.querySelectorAll('.vm-car-features li').length>0 && getComputedStyle(document.querySelector('.vm-gallery-slide.is-active')).opacity==='1' && document.querySelectorAll('.vm-gallery-no-js a').length===2 && document.querySelector('.vm-car-viewing').getAttribute('href').startsWith('mailto:') && document.querySelectorAll('.vm-related-grid .vm-vehicle-photo-link').length===3`));
+      check(`Exported ${id} keeps specifications, equipment, photography and inquiries without JavaScript`, await evaluate(`document.querySelector('.vm-car-title').textContent===${JSON.stringify(data.content.cards.vehicles[id].name)} && document.querySelectorAll('[data-spec]').length===8 && document.querySelectorAll('.vm-car-features li').length>0 && getComputedStyle(document.querySelector('.vm-gallery-slide.is-active')).opacity==='1' && document.querySelectorAll('.vm-gallery-no-js a').length===2 && document.querySelector('.vm-car-viewing').getAttribute('href')==='#request-viewing' && document.querySelector('.vm-viewing-form fieldset').disabled && [...document.querySelectorAll('noscript')].some(n=>n.textContent.includes('Enable JavaScript')) && document.querySelectorAll('.vm-related-grid .vm-vehicle-photo-link').length===3`));
     }
     check(`Production has no uncaught exceptions (${exceptions.join('; ')})`, exceptions.length===0);
     check(`Production has no console errors (${consoleErrors.join('; ')})`, consoleErrors.length===0);
