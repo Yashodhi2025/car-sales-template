@@ -153,6 +153,8 @@
       "vehicleDetails.gallery.openImageLabel",
       "vehicleDetails.gallery.previousLabel",
       "vehicleDetails.gallery.thumbnailLabel",
+      "vehicleDetails.navigation.enquiry",
+      "vehicleDetails.navigation.label",
       "vehicleDetails.notSupplied",
       "viewing.messagePlaceholder"
     ]
@@ -4359,6 +4361,43 @@
         "label": "Vehicle Details",
         "fields": [
           {
+            "key": "navigation",
+            "type": "object",
+            "label": "Navigation",
+            "fields": [
+              {
+                "key": "label",
+                "type": "text",
+                "label": "Label"
+              },
+              {
+                "key": "enquiry",
+                "type": "text",
+                "label": "Enquiry"
+              },
+              {
+                "key": "overview",
+                "type": "text",
+                "label": "Overview"
+              },
+              {
+                "key": "specifications",
+                "type": "text",
+                "label": "Specifications"
+              },
+              {
+                "key": "features",
+                "type": "text",
+                "label": "Features"
+              },
+              {
+                "key": "viewing",
+                "type": "text",
+                "label": "Viewing"
+              }
+            ]
+          },
+          {
             "key": "collectionLabel",
             "type": "text",
             "label": "Collection Label"
@@ -4556,6 +4595,11 @@
                 "key": "title",
                 "type": "text",
                 "label": "Title"
+              },
+              {
+                "key": "fitLabel",
+                "type": "text",
+                "label": "Fit Label"
               },
               {
                 "key": "photoLabel",

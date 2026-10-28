@@ -14,7 +14,7 @@ await withBrowser(async ({ send, evaluate, navigate, until, screenshot, check, s
   if (!process.argv.includes("--lab-only")) {
     for (const id of ids) {
       await navigate(`${base}/cars/${id}`, `car-${id}`);
-      check(`${id}: direct route, name, price and specification render`, await evaluate(`document.querySelector('.vm-car-title').textContent===${JSON.stringify(data.content.cards.vehicles[id].name)} && document.querySelector('.vm-car-intro-price').textContent.includes(${JSON.stringify(data.content.cards.vehicles[id].price)}) && document.querySelectorAll('.vm-car-spec-grid > div').length===10`));
+      check(`${id}: direct route, name, price and specification render`, await evaluate(`document.querySelector('.vm-car-title').textContent===${JSON.stringify(data.content.cards.vehicles[id].name)} && document.querySelector('.vm-car-inquiry-card').textContent.includes(${JSON.stringify(data.content.cards.vehicles[id].price)}) && document.querySelectorAll('.vm-car-spec-grid > div').length===10`));
       await evaluate("Promise.all([...document.querySelectorAll('.vm-car-gallery img')].map(i=>{i.loading='eager';return i.decode().catch(()=>null)}))");
       check(`${id}: both gallery photos load and equipment stays editable`, await evaluate("document.querySelectorAll('.vm-gallery-slide').length>=2 && [...document.querySelectorAll('.vm-gallery-stage img')].every(i=>i.naturalWidth>0) && document.querySelectorAll('.vm-car-features [data-preview-field-path]').length>=2"));
       check(`${id}: power output is honestly unconfirmed`, await evaluate("document.querySelector('[data-spec=power] dd').textContent.includes('Confirm with our team')"));

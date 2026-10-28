@@ -784,6 +784,14 @@
       }
     },
     "vehicleDetails": {
+      "navigation": {
+        "label": "Vehicle details sections",
+        "enquiry": "Vehicle price and enquiries",
+        "overview": "Overview",
+        "specifications": "Specifications",
+        "features": "Equipment",
+        "viewing": "Arrange a viewing"
+      },
       "collectionLabel": "THE VANGUARD COLLECTION",
       "backLabel": "Back to inventory",
       "viewDetailsLabel": "View details",
@@ -825,6 +833,7 @@
       },
       "gallery": {
         "title": "The gallery",
+        "fitLabel": "Fit image",
         "photoLabel": "photographs",
         "previousLabel": "Previous photograph",
         "nextLabel": "Next photograph",

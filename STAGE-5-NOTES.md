@@ -1,5 +1,43 @@
 # Stage 5 — services, stories, FAQ and vehicle details
 
+## Latest Car Details redesign — cinematic gallery and editorial dossier
+
+All eight vehicle routes now share a dark photographic opening with a prominent
+vehicle title, compact pricing/availability panel, quick facts and the existing
+enquiry, viewing, test-drive and dealer actions. The supplied descriptions,
+specifications, finish information and equipment are arranged as numbered editorial
+chapters on warm paper surfaces, with compact section links and scroll reveals.
+The viewing panel is an inset dark/light composition using the unchanged validated
+email-draft form. No backend or booking confirmation was introduced.
+
+The gallery keeps every existing source photo mounted and adds directional sliding
+transitions, subtle image zoom, refined thumbnails, desktop drag and touch swipe.
+The existing Deneb full-screen dialog retains keyboard navigation, focus trapping,
+Escape, focus restoration and inert background handling. A Fit image toggle lets
+visitors see the complete supplied photograph instead of the default cinematic
+crop. The separate large multi-angle rendering was consolidated into compact
+controls that select the same main gallery, removing duplicate image sections.
+No photographs, vehicle specifications or 360 angles were fabricated.
+
+Existing content and saved-style paths are preserved. New section-navigation and
+image-fit labels live in vehicleDetails and are included in the synchronized
+Fivora schema; two accessibility-only labels are explicitly control-only. The
+existing inactive-photo Lab focus handler is retained, and focusing explorer copy
+opens its compact native disclosure. No Deneb Core component is required.
+
+Validation: TypeScript and the production/static-export build passed, including
+all eight vehicle routes. Focused browser checks passed for next/previous,
+thumbnails, inert inactive slides, shared multi-angle selection, viewer keyboard
+navigation/Escape/focus restoration, missing-field validation, reduced motion and
+320–1440px layout/price/icon bounds. Desktop and mobile screenshots were reviewed.
+Subsequent finishing changes added the Fit image control, moved request notes into
+the viewing panel and tightened the secondary actions. The final live Deneb Lab,
+drag and email-draft check was not run because browser-launch permission was
+declined. Existing bindings were inspected and schema synchronization passed;
+live-edit/persistence verification of this redesign remains pending.
+
+Preview: http://127.0.0.1:4173/cars/porsche-panamera
+
 ## Latest vehicle card correction — automotive layout and hover outline
 
 Restored the previous edge-to-edge vehicle photography, 14px outer corners,

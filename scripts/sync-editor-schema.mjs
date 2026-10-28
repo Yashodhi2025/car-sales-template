@@ -26,6 +26,7 @@ function fields(object, prefix) {
       || /^inventory\.filters\.(any\w+|availableLabel|reservedLabel|removeLabel|minPlaceholder|maxPlaceholder)$/.test(path)
       || /^inventory\.results\.(sort(?!Label)\w+|noScript)$/.test(path)) controls.add(path);
     if (/^vehicleDetails\.gallery\.(previousLabel|nextLabel|closeLabel|thumbnailLabel|openImageLabel)$/.test(path) || path === "vehicleDetails.notSupplied") controls.add(path);
+    if (/^vehicleDetails\.navigation\.(label|enquiry)$/.test(path)) controls.add(path);
     if (/^requests\.(fields\.[^.]+\.placeholder|types\.|contactSubject$|viewingSubject$|noVehicle$|draftTextLabel$|noScript$)/.test(path) || path === "viewing.messagePlaceholder" || path.startsWith("motion.")) controls.add(path);
     if (/^home\.testimonials\.(carouselLabel|storyLabel)$/.test(path) || /^services\.items\.\d+\.targetPage$/.test(path)) controls.add(path);
     return { key, type, label: label(key), ...(key === "icon" || prefix === "vehicleDetails.specIcons" ? { control: "icon-picker" } : {}) };
