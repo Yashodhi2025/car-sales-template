@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, type CSSProperties } from "react";
 import { EditableIcon, EditableLink, EditableText, withBasePath } from "@deneb-ui/ui";
 import { useSiteContent, type VehicleId } from "@/lib/site-content";
 import { carPageKey, relatedVehicles, vehicleYear } from "@/lib/vehicles";
@@ -9,11 +9,14 @@ import { VehicleGallery } from "./vehicle-gallery";
 import { VehicleListing } from "./vehicle-listing";
 import { VehicleViewing } from "./vehicle-viewing";
 import { Arrow } from "./vanguard-arrow";
+import { useVehicleSections, vehicleSections } from "./use-vehicle-sections";
 
 export function VanguardVehicle({ vehicleId: id }: { vehicleId: VehicleId }) {
   const { data, content, t } = useSiteContent();
   const root = useRef<HTMLElement>(null);
   usePageEffects(root);
+  const navigation = useVehicleSections(root, Boolean(content.motion.enabled));
+  const sectionIndex = vehicleSections.findIndex(section => section.key === navigation.active);
   const card = content.cards.vehicles[id];
   const catalog = content.catalog[id];
   const cp = (field: string) => `cards.vehicles.${id}.${field}`;
@@ -27,7 +30,7 @@ export function VanguardVehicle({ vehicleId: id }: { vehicleId: VehicleId }) {
   ];
   if (!data.requirements.requiredPages.includes(carPageKey(id))) return null;
   return (
-    <main id="main-content" ref={root} className={`vm-page vm-car-page vm-car-editorial-page ${/reserved/i.test(String(card.availability)) ? "is-reserved" : ""}`} data-preview-page-key={carPageKey(id)}>
+    <main id="main-content" ref={root} className={`vm-page vm-car-page vm-car-editorial-page ${/reserved/i.test(String(card.availability)) ? "is-reserved" : ""}`} data-section-navigation={navigation.ready ? "true" : undefined} data-preview-page-key={carPageKey(id)}>
       <section className="vm-car-showcase" aria-labelledby="vehicle-title"><div className="vm-container">
       <header className="vm-car-intro">
         <div className="vm-car-intro-top">
@@ -63,18 +66,25 @@ export function VanguardVehicle({ vehicleId: id }: { vehicleId: VehicleId }) {
         </div></aside>
       </div>
       </div></section>
-      <nav className="vm-car-section-nav" aria-label={t("vehicleDetails.navigation.label")}><div className="vm-container">
-        {([['overview', 'vehicle-overview'], ['specifications', 'vehicle-specifications'], ['features', 'vehicle-features'], ['viewing', 'request-viewing']] as const).map(([key, target]) => <a key={key} href={`#${target}`}><EditableText id={`vehicleDetails.navigation.${key}`}>{t(`vehicleDetails.navigation.${key}`)}</EditableText><Arrow /></a>)}
+      <div className="vm-car-information">
+      <nav ref={navigation.nav} className="vm-car-section-nav" aria-label={t("vehicleDetails.navigation.label")}><div className="vm-container vm-car-tablist"
+        style={{ "--active-tab": sectionIndex, "--active-tab-column": sectionIndex % 2, "--active-tab-row": Math.floor(sectionIndex / 2) } as CSSProperties}>
+        <span className="vm-car-tab-indicator" hidden={!navigation.ready} aria-hidden="true" />
+        {vehicleSections.map(({ key, target }, index) => <a key={key} id={`vehicle-nav-${key}`} href={`#${target}`} className={navigation.active === key ? "is-active" : ""} aria-current={navigation.active === key ? "location" : undefined}
+          onClick={event => { if (navigation.ready && event.button === 0 && !event.ctrlKey && !event.metaKey && !event.shiftKey && !event.altKey && !(event.target as HTMLElement).isContentEditable) { event.preventDefault(); navigation.navigate(key, true); } }}>
+          <span className="vm-car-tab-index" aria-hidden="true">{String(index + 1).padStart(2, "0")}</span><EditableText id={`vehicleDetails.navigation.${key}`}>{t(`vehicleDetails.navigation.${key}`)}</EditableText><Arrow />
+        </a>)}
       </div></nav>
+      <div className="vm-car-details-panels">
       <div className="vm-container vm-car-content">
         <div className="vm-car-editorial">
-          <section id="vehicle-overview" className="vm-car-overview vm-car-editorial-row" data-reveal>
+          <section id="vehicle-overview" className="vm-car-overview vm-car-editorial-row vm-car-details-panel" data-detail-section="overview" data-reveal>
             <div className="vm-car-section-heading"><span className="vm-car-section-number" aria-hidden="true">01</span>
             <EditableText id="vehicleDetails.overviewEyebrow" as="p" className="vm-eyebrow">{t("vehicleDetails.overviewEyebrow")}</EditableText>
             <EditableText id="vehicleDetails.overviewTitle" as="h2" className="vm-title">{t("vehicleDetails.overviewTitle")}</EditableText>
             </div><EditableText id={`vehicles.${id}.description`} as="p" className="vm-car-description">{t(`vehicles.${id}.description`)}</EditableText>
           </section>
-          <section id="vehicle-specifications" className="vm-car-specifications vm-car-editorial-row" data-reveal>
+          <section id="vehicle-specifications" className="vm-car-specifications vm-car-editorial-row vm-car-details-panel" data-detail-section="specifications" data-reveal>
             <div className="vm-car-section-heading"><span className="vm-car-section-number" aria-hidden="true">02</span>
             <EditableText id="vehicleDetails.specsEyebrow" as="p" className="vm-eyebrow">{t("vehicleDetails.specsEyebrow")}</EditableText>
             <EditableText id="vehicleDetails.specsTitle" as="h2" className="vm-title">{t("vehicleDetails.specsTitle")}</EditableText>
@@ -86,7 +96,7 @@ export function VanguardVehicle({ vehicleId: id }: { vehicleId: VehicleId }) {
             <EditableText id="vehicleDetails.specsNote" as="p" className="vm-car-small-print">{t("vehicleDetails.specsNote")}</EditableText>
             </div>
           </section>
-          <section id="vehicle-features" className="vm-car-features vm-car-editorial-row" data-reveal>
+          <section id="vehicle-features" className="vm-car-features vm-car-editorial-row vm-car-details-panel" data-detail-section="features" data-reveal>
             <div className="vm-car-section-heading"><span className="vm-car-section-number" aria-hidden="true">03</span>
             <EditableText id="vehicleDetails.featuresTitle" as="h2" className="vm-title">{t("vehicleDetails.featuresTitle")}</EditableText>
             </div><div>
@@ -96,7 +106,9 @@ export function VanguardVehicle({ vehicleId: id }: { vehicleId: VehicleId }) {
           </section>
         </div>
       </div>
-      <VehicleViewing vehicleId={id} />
+      <div id="vehicle-viewing-panel" className="vm-car-details-panel" data-detail-section="viewing"><VehicleViewing vehicleId={id} /></div>
+      </div>
+      </div>
       <section className="vm-car-related"><div className="vm-container">
         <div className="vm-section-heading" data-reveal><div><EditableText id="vehicleDetails.relatedEyebrow" as="p" className="vm-eyebrow">{t("vehicleDetails.relatedEyebrow")}</EditableText><EditableText id="vehicleDetails.relatedTitle" as="h2" className="vm-title">{t("vehicleDetails.relatedTitle")}</EditableText></div><EditableLink href={withBasePath(t("vehicleDetails.relatedLink"))} data-preview-field-path="vehicleDetails.relatedLink" targetPage="inventory" className="vm-text-link"><EditableText id="vehicleDetails.relatedLabel">{t("vehicleDetails.relatedLabel")}</EditableText><Arrow /></EditableLink></div>
         <div className="vm-vehicle-grid vm-related-grid">{related.map((other, index) => <div key={other} className="vm-vehicle-wrap" data-reveal><VehicleListing id={other} index={index} /></div>)}</div>

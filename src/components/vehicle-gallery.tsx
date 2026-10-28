@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState, type KeyboardEvent, type PointerEvent } from "react";
+import { useCallback, useEffect, useId, useRef, useState, type KeyboardEvent, type PointerEvent } from "react";
 import { createPortal } from "react-dom";
 import { EditableDialog, EditableText, withBasePath } from "@deneb-ui/ui";
 import { VanguardImage } from "./vanguard-image";
@@ -13,6 +13,7 @@ import { VehicleImageExplorer } from "./vehicle-image-explorer";
 /** Vanguard-only gallery composition; editable UI remains the installed Deneb UI. */
 export function VehicleGallery({ vehicleId }: { vehicleId: VehicleId }) {
   const { content, t } = useSiteContent();
+  const curveClipId = `vehicle-gallery-curve-${useId().replace(/[^a-zA-Z0-9_-]/g, "")}`;
   const photos = vehiclePhotos(content, vehicleId);
   const [selected, setSelected] = useState(0);
   const [previous, setPrevious] = useState<number | null>(null);
@@ -23,7 +24,9 @@ export function VehicleGallery({ vehicleId }: { vehicleId: VehicleId }) {
   const imageRefs = useRef<(HTMLImageElement | null)[]>([]);
   const viewer = useRef<HTMLDivElement>(null);
   const thumbnails = useRef<HTMLDivElement>(null);
+  const panels = useRef<HTMLDivElement>(null);
   const touch = useRef<{ x: number; y: number } | null>(null);
+  const dragged = useRef(false);
   const request = useRef(0);
   const focusPhoto = useCallback((index: number) => { request.current++; setPrevious(null); setSelected(index); }, []);
   useVehiclePhotoFocus(vehicleId, photos.length, focusPhoto);
@@ -40,32 +43,47 @@ export function VehicleGallery({ vehicleId }: { vehicleId: VehicleId }) {
     void image.decode().catch(() => undefined).then(() => { if (request.current === ticket) commit(); });
   }
   function pointerDown(event: PointerEvent<HTMLDivElement>) {
-    if (window.self !== window.top || event.button !== 0 || (event.target as HTMLElement).closest("button,a,[contenteditable='true']")) return;
+    if (window.self !== window.top || event.button !== 0 || (event.target as HTMLElement).closest("button:not(.vm-gallery-panel-open),a,[contenteditable='true']")) return;
+    dragged.current = false;
     touch.current = { x: event.clientX, y: event.clientY };
-    event.currentTarget.setPointerCapture(event.pointerId);
+    const capture = (event.target as HTMLElement).closest<HTMLElement>(".vm-gallery-panel-open") || event.currentTarget;
+    capture.setPointerCapture(event.pointerId);
   }
   function pointerUp(event: PointerEvent<HTMLDivElement>) {
     if (!touch.current) return;
     const dx = event.clientX - touch.current.x, dy = event.clientY - touch.current.y;
     touch.current = null;
+    dragged.current = event.currentTarget.classList.contains("vm-gallery-stage") && (Math.abs(dx) > 10 || Math.abs(dy) > 10);
     if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.3) select(active + (dx < 0 ? 1 : -1));
   }
-  const pointerEvents = { onPointerDown: pointerDown, onPointerUp: pointerUp, onPointerCancel: () => { touch.current = null; } };
+  const pointerEvents = { onPointerDown: pointerDown, onPointerUp: pointerUp, onPointerCancel: () => { touch.current = null; dragged.current = false; } };
   const slideClass = (index: number) => `vm-gallery-slide ${index === active ? "is-active" : index === previous ? "is-leaving" : ""}`;
+  function openPhoto(index: number) {
+    if (window.self !== window.top) return;
+    dragged.current = false;
+    focusPhoto(index);
+    setExpanded(true);
+  }
   function keyboard(event: KeyboardEvent<HTMLElement>) {
     const target = event.target as HTMLElement;
     if (target.isContentEditable || target.closest("input,textarea,select")) return;
     if (event.key === "ArrowLeft" || event.key === "ArrowRight") {
-      event.preventDefault(); event.stopPropagation(); select(active + (event.key === "ArrowRight" ? 1 : -1));
+      event.preventDefault(); event.stopPropagation();
+      const next = active + (event.key === "ArrowRight" ? 1 : -1);
+      select(next);
+      if (target.closest(".vm-gallery-panel-open")) {
+        panels.current?.children[(next + photos.length) % photos.length]?.querySelector<HTMLButtonElement>(".vm-gallery-panel-open")?.focus({ preventScroll: true });
+      }
     }
   }
   useEffect(() => {
-    const rail = thumbnails.current;
-    const item = rail?.children[active] as HTMLElement | undefined;
-    if (!rail || !item) return;
-    const left = item.getBoundingClientRect().left - rail.getBoundingClientRect().left + rail.scrollLeft;
-    if (left < rail.scrollLeft || left + item.offsetWidth > rail.scrollLeft + rail.clientWidth) {
-      rail.scrollTo({ left: Math.max(0, left - 4), behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches || !content.motion.enabled || window.self !== window.top ? "instant" : "smooth" });
+    for (const rail of [thumbnails.current, panels.current]) {
+      const item = rail?.children[active] as HTMLElement | undefined;
+      if (!rail || !item) continue;
+      const left = item.getBoundingClientRect().left - rail.getBoundingClientRect().left + rail.scrollLeft;
+      if (left < rail.scrollLeft || left + item.offsetWidth > rail.scrollLeft + rail.clientWidth) {
+        rail.scrollTo({ left: Math.max(0, left - 12), behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches || !content.motion.enabled || window.self !== window.top ? "instant" : "smooth" });
+      }
     }
   }, [active, content.motion.enabled]);
   useEffect(() => {
@@ -92,17 +110,31 @@ export function VehicleGallery({ vehicleId }: { vehicleId: VehicleId }) {
   }, [expanded]);
 
   return (
-    <section className="vm-car-gallery vm-gallery-cinematic" aria-label={t("vehicleDetails.gallery.title")} onKeyDown={keyboard}>
-      <div className="vm-gallery-stage" data-direction={direction} data-fit={fit ? "contain" : "cover"} {...pointerEvents}>
+    <section className="vm-car-gallery vm-gallery-cinematic vm-curved-gallery" data-photo-count={photos.length} aria-label={t("vehicleDetails.gallery.title")} onKeyDown={keyboard}>
+      <svg className="vm-gallery-clip-definitions" width="0" height="0" aria-hidden="true" focusable="false">
+        <defs><clipPath id={curveClipId} clipPathUnits="objectBoundingBox"><path d="M0 0H.909091C.915 .25 .99 .73 1 1H0Z" /></clipPath></defs>
+      </svg>
+      <div className="vm-gallery-stage" data-direction={direction} data-fit={fit ? "contain" : "cover"} {...pointerEvents}
+        onClickCapture={event => { if (dragged.current) { event.preventDefault(); event.stopPropagation(); dragged.current = false; } }}>
+        <div className="vm-curved-gallery-track" ref={panels}>
         {photos.map((photo, index) => (
-          <figure key={photo.imagePath} className={slideClass(index)} aria-hidden={index !== active} inert={index !== active} data-photo-index={index}>
-            <div ref={node => { imageRefs.current[index] = node?.querySelector("img") || null; }}>
+          <figure key={photo.imagePath} className={`vm-gallery-panel ${index === active ? "is-active" : ""}`} data-photo-index={index} style={{ zIndex: photos.length - index }}>
+            <div className="vm-gallery-panel-shape" style={{ clipPath: index < photos.length - 1 ? `url(#${curveClipId})` : "none" }} ref={node => { imageRefs.current[index] = node?.querySelector("img") || null; }}>
+              <div className="vm-gallery-panel-media">
               <VanguardImage id={photo.imagePath} src={photo.image} alt={photo.imageAlt} width={1800} height={1100}
-                loading={index === 0 ? "eager" : "lazy"} fetchPriority={index === 0 ? "high" : "auto"} draggable={false} />
+                loading={index < 2 ? "eager" : "lazy"} fetchPriority={index === 0 ? "high" : "auto"} draggable={false} />
+              </div>
+              <button type="button" className="vm-gallery-panel-open" aria-haspopup="dialog" onFocus={() => select(index)} onClick={() => openPhoto(index)}
+                aria-label={`${t("vehicleDetails.gallery.enlargeLabel")}: ${photo.caption || t("vehicleDetails.gallery.title")} ${index + 1}`}>
+                <span aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M8 3H3v5m13-5h5v5M3 16v5h5m13-5v5h-5" /></svg></span>
+              </button>
             </div>
-            <figcaption><EditableText id={photo.captionPath}>{photo.caption}</EditableText></figcaption>
+            <figcaption><span aria-hidden="true">{String(index + 1).padStart(2, "0")}</span><EditableText id={photo.captionPath}>{photo.caption}</EditableText></figcaption>
           </figure>
         ))}
+        </div>
+      </div>
+      <div className="vm-curved-gallery-toolbar">
         <div className="vm-gallery-controls">
           <button type="button" className="vm-gallery-arrow" aria-label={t("vehicleDetails.gallery.previousLabel")} onClick={() => select(active - 1)} disabled={photos.length < 2}><Arrow back /></button>
           <button type="button" className="vm-gallery-arrow" aria-label={t("vehicleDetails.gallery.nextLabel")} onClick={() => select(active + 1)} disabled={photos.length < 2}><Arrow /></button>

@@ -1,6 +1,101 @@
 # Stage 5 — services, stories, FAQ and vehicle details
 
-## Latest Car Details redesign — cinematic gallery and editorial dossier
+## Latest navigation correction — continuous sections with scroll tracking
+
+Restored all Overview, Specifications, Equipment and Viewing content to the same
+continuous page. Nothing is hidden or swapped. The refined navigation now uses
+normal section anchors with aria-current="location", and stays beneath the main
+navbar while the information sections are being read. It stops sticking before
+Related Vehicles. Manual scrolling automatically moves the coloured selection to
+the relevant section without changing the URL or keyboard focus.
+
+Clicking a heading scrolls its section below both navigation bars and gives it a
+brief upward reveal on arrival. The selected heading stays stable during that
+scroll; wheel, touch or keyboard interruption returns selection to the viewport.
+Hash links, browser history, #request-viewing, native keyboard link navigation,
+reduced motion and disabled/editor motion remain supported. All merchant fields
+and form values remain continuously available, so editor field selection requires
+no tab-opening behavior. Gallery, pricing and forms are unchanged.
+
+TypeScript, focused scroll-logic checks and route render checks passed. The logic
+checks cover manual section tracking, click offsets/reveal, interruption and
+reduced-motion behavior. Browser visual verification remains pending. No schema
+changes, dependency, Deneb Core changes, commit or push were made.
+
+## Previous vehicle information refinement — animated content tabs (superseded)
+
+Overview, Specifications, Equipment and Arrange a viewing now form a compact,
+rounded tab bar with a moving charcoal selection, subtle blue details and clear
+active labels. Selecting a tab displays its corresponding content in one shared
+stage, with a short fade/reveal and animated height changes. Mobile uses a balanced
+two-by-two navigation layout. The panoramic gallery and pricing panel are unchanged.
+
+The existing sections and viewing form stay mounted, preserving entered form
+values, validation and email-draft state. Arrow keys, Home/End and Enter/Space work
+with ARIA tab/tabpanel semantics and roving focus. Original section hashes,
+browser history and #request-viewing links open the appropriate tab. With JavaScript
+unavailable, all sections remain visible and the navigation stays native anchors.
+Reduced motion, disabled motion and editor previews suppress animations. Fivora
+focus messages reveal the tab containing a requested editable field; shared visible
+gallery/price fields do not switch the content tab unnecessarily.
+
+No new merchant copy, schema fields, dependency or Deneb Core component was needed.
+Existing source-backed labels and content paths are preserved. TypeScript and
+focused Porsche/BMW HTTP render checks passed for the four navigation bindings,
+mounted sections, progressive fallback, gallery and original viewing form/link.
+Browser interaction, animation and live Lab verification remain pending; no new
+browser-launch request or full suite was run.
+
+## Previous gallery correction — connected panoramic frame
+
+Replaced the separated, tilted rounded panels with one shared panoramic frame.
+Photos remain aligned at equal height with no inter-panel gaps, rotation, individual
+corner rounding or card shadows. A shared vector clip defines each overlapping
+curved seam; a 2px media offset supplies the narrow divider. Only the complete
+gallery has outer corners. The clip scales with panel width, keeping seams filled
+throughout expansion instead of exposing empty wedges.
+
+Desktop hover expands the hovered photo as its neighbours shrink using a smooth
+CSS flex transition. Keyboard focus offers the same interaction; arrow keys move
+between image buttons. Touch layouts expand the selected image and retain swipes,
+thumbnails and next/previous controls. Additional images remain mounted and use
+the same rail with minimum widths rather than becoming unusably narrow. Reduced
+motion and Lab previews disable expansion; Lab caption/image targets stay editable.
+Existing per-photo lightbox opening, full-screen controls, original image sources,
+price/details panel and viewing form are preserved. No data/schema changes or
+dependencies were introduced.
+
+TypeScript and focused Porsche/Ferrari HTTP render checks passed, including clip
+references, both source-backed images, lightbox triggers, prices and the existing
+form. A geometry check confirmed the curved clip always overlaps its neighbour
+at any relative panel width. Browser interaction/visual verification remains
+pending; no new browser-launch request or full suite was run.
+
+## Previous gallery refinement — curved photographic panels (superseded)
+
+The existing two supplied photos now appear together in complementary organic
+panels, with gentle opposing angles, curved hairline dividers and restrained hover
+zoom. Each panel opens its own original photograph in the existing Deneb lightbox.
+The full-screen viewer retains navigation, keyboard handling and focus restoration.
+Main-gallery arrows, thumbnails, Fit image and multi-angle controls remain wired
+to the same selection. Desktop dragging/mobile swipes advance selection without
+opening the viewer after a drag; extra photos use the same horizontal rail.
+
+Mobile uses a wide primary panel with a visible next-panel preview. All photo and
+caption entries remain mounted, including empty entries. Sources are unchanged;
+no raster assets were generated or recompressed. Lab previews remove the click
+overlay and transforms so the actual editable image targets remain accessible.
+Reduced motion disables transforms/zoom transitions and uses instant rail changes.
+No data/schema additions or dependencies were needed.
+
+TypeScript and focused HTTP render checks passed for the Porsche and reserved
+Ferrari routes, including both source-backed photo panels and their lightbox
+triggers. Browser interaction and visual verification were not run for this
+refinement; the prior browser-launch denial was respected. The existing vehicle
+browser-check selectors were updated for the new panel markup without running
+the full suite.
+
+## Previous Car Details redesign — cinematic gallery and editorial dossier
 
 All eight vehicle routes now share a dark photographic opening with a prominent
 vehicle title, compact pricing/availability panel, quick facts and the existing
