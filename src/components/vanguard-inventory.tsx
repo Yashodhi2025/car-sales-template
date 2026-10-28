@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState, type FormEvent } from "react";
-import { EditableImage, EditableLink, EditableText, withBasePath } from "@deneb-ui/ui";
+import { EditableLink, EditableText, withBasePath } from "@deneb-ui/ui";
+import { VanguardImage } from "./vanguard-image";
 import { useSiteContent, type VehicleId } from "@/lib/site-content";
 import { defaultFilters, filterQuery, invalidPrices, matchingVehicles, parseFilters, type InventoryFilters } from "@/lib/inventory";
 import { Arrow } from "./vanguard-arrow";
@@ -89,8 +90,8 @@ export function VanguardInventory() {
   const chipLabel = (key: keyof InventoryFilters) => {
     if (key === "brand") return brands.find(brand => brand.value === filters.brand)?.label || filters.brand;
     if (key === "bodyType") return bodies.find(body => body.value === filters.bodyType)?.label || filters.bodyType;
-    if (key === "minPrice") return `${t("inventory.filters.minLabel")} GBP ${filters.minPrice}`;
-    if (key === "maxPrice") return `${t("inventory.filters.maxLabel")} GBP ${filters.maxPrice}`;
+    if (key === "minPrice") return `${t("inventory.filters.minLabel")} ${t("common.currencyCode")} ${Number(filters.minPrice).toLocaleString("en-LK")}`;
+    if (key === "maxPrice") return `${t("inventory.filters.maxLabel")} ${t("common.currencyCode")} ${Number(filters.maxPrice).toLocaleString("en-LK")}`;
     return filters[key];
   };
   if (!data.requirements.requiredPages.includes("inventory")) return null;
@@ -108,7 +109,7 @@ export function VanguardInventory() {
           <EditableText id="inventory.hero.description" as="p" className="vm-copy vm-hero-enter">{t("inventory.hero.description")}</EditableText>
         </div>
         <figure className="vm-inventory-cover">
-          <EditableImage id="inventory.hero.image" src={t("inventory.hero.image")} alt={t("inventory.hero.imageAlt")}
+          <VanguardImage id="inventory.hero.image" src={t("inventory.hero.image")} alt={t("inventory.hero.imageAlt")}
             width={1100} height={750} loading="eager" fetchPriority="high" />
           <figcaption><span aria-hidden="true">{String(ids.length).padStart(2, "0")}</span><EditableText id="inventory.hero.imageCaption">{t("inventory.hero.imageCaption")}</EditableText></figcaption>
         </figure>

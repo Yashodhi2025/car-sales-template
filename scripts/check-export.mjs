@@ -25,7 +25,7 @@ await new Promise(resolve => server.listen(0, "127.0.0.1", resolve));
 const base = `http://127.0.0.1:${server.address().port}`;
 try {
   await withBrowser(async ({ send, evaluate, navigate, until, screenshot, check, checks, exceptions, consoleErrors }) => {
-    for (const [route, key] of [["/", "home"], ["/inventory", "inventory"], ["/about", "about"], ["/contact", "contact"], ...vehicles.map(id => [`/cars/${id}`, `car-${id}`])]) {
+    for (const [route, key] of [["/", "home"], ["/inventory", "inventory"], ["/services", "services"], ["/about", "about"], ["/contact", "contact"], ...vehicles.map(id => [`/cars/${id}`, `car-${id}`])]) {
       check(`Static route ${route} returns its own HTML`, (await fetch(base + route)).status === 200);
       await navigate(base + route, key);
       check(`Production ${key} has one header/footer and no overflow`, await evaluate("document.querySelectorAll('.vm-header').length===1 && document.querySelectorAll('.vm-footer').length===1 && document.documentElement.scrollWidth<=innerWidth"));
@@ -47,7 +47,7 @@ try {
     check("Homepage hero remains readable without JavaScript", await evaluate("getComputedStyle(document.querySelector('.vm-hero-line')).opacity==='1' && document.querySelector('.vm-hero h1').textContent.includes('Beyond the ordinary')"));
     for (const id of vehicles) {
       await navigate(`${base}/cars/${id}`, `car-${id}`);
-      check(`Exported ${id} keeps specifications, equipment, photography and inquiries without JavaScript`, await evaluate(`document.querySelector('.vm-car-title').textContent===${JSON.stringify(data.content.cards.vehicles[id].name)} && document.querySelectorAll('[data-spec]').length===8 && document.querySelectorAll('.vm-car-features li').length>0 && getComputedStyle(document.querySelector('.vm-gallery-slide.is-active')).opacity==='1' && document.querySelectorAll('.vm-gallery-no-js a').length===2 && document.querySelector('.vm-car-viewing').getAttribute('href')==='#request-viewing' && document.querySelector('.vm-viewing-form fieldset').disabled && [...document.querySelectorAll('noscript')].some(n=>n.textContent.includes('Enable JavaScript')) && document.querySelectorAll('.vm-related-grid .vm-vehicle-photo-link').length===3`));
+      check(`Exported ${id} keeps specifications, equipment, photography and inquiries without JavaScript`, await evaluate(`document.querySelector('.vm-car-title').textContent===${JSON.stringify(data.content.cards.vehicles[id].name)} && document.querySelectorAll('[data-spec]').length===10 && document.querySelectorAll('.vm-car-features li').length>0 && getComputedStyle(document.querySelector('.vm-gallery-slide.is-active')).opacity==='1' && document.querySelectorAll('.vm-gallery-no-js a').length===2 && document.querySelector('.vm-car-viewing').getAttribute('href')==='#request-viewing' && document.querySelector('.vm-viewing-form fieldset').disabled && [...document.querySelectorAll('noscript')].some(n=>n.textContent.includes('Enable JavaScript')) && document.querySelectorAll('.vm-related-grid .vm-vehicle-photo-link').length===3`));
     }
     check(`Production has no uncaught exceptions (${exceptions.join('; ')})`, exceptions.length===0);
     check(`Production has no console errors (${consoleErrors.join('; ')})`, consoleErrors.length===0);

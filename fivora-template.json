@@ -17,6 +17,22 @@
       "cards.bodyTypes.estate.imageAlt",
       "cards.bodyTypes.sedan.imageAlt",
       "cards.bodyTypes.suv.imageAlt",
+      "cards.brands.audi.countLabel",
+      "cards.brands.audi.imageAlt",
+      "cards.brands.bmw.countLabel",
+      "cards.brands.bmw.imageAlt",
+      "cards.brands.chevrolet.countLabel",
+      "cards.brands.chevrolet.imageAlt",
+      "cards.brands.ferrari.countLabel",
+      "cards.brands.ferrari.imageAlt",
+      "cards.brands.honda.countLabel",
+      "cards.brands.honda.imageAlt",
+      "cards.brands.mercedes.countLabel",
+      "cards.brands.mercedes.imageAlt",
+      "cards.brands.porsche.countLabel",
+      "cards.brands.porsche.imageAlt",
+      "cards.brands.tesla.countLabel",
+      "cards.brands.tesla.imageAlt",
       "catalog.audi-rs6.bodyType",
       "catalog.audi-rs6.brand",
       "catalog.audi-rs6.priceValue",
@@ -41,13 +57,25 @@
       "catalog.tesla-model-3.bodyType",
       "catalog.tesla-model-3.brand",
       "catalog.tesla-model-3.priceValue",
+      "common.currencyCode",
+      "common.searchLabel",
+      "common.searchPlaceholder",
       "contact.heroImageAlt",
       "home.experience.imageAlt",
       "home.hero.imageAlt",
+      "home.reviews.0.imageAlt",
+      "home.reviews.1.imageAlt",
+      "home.reviews.2.imageAlt",
       "home.search.allBodies",
       "home.search.allBrands",
+      "home.search.description",
+      "home.search.eyebrow",
+      "home.search.resetLabel",
+      "home.search.title",
+      "home.testimonials.carouselLabel",
       "home.testimonials.nextLabel",
       "home.testimonials.previousLabel",
+      "home.testimonials.storyLabel",
       "inventory.filters.anyAvailability",
       "inventory.filters.anyBody",
       "inventory.filters.anyBrand",
@@ -100,7 +128,24 @@
       "requests.types.1.label",
       "requests.types.2.key",
       "requests.types.2.label",
+      "requests.types.3.key",
+      "requests.types.3.label",
+      "requests.types.4.key",
+      "requests.types.4.label",
+      "requests.types.5.key",
+      "requests.types.5.label",
+      "requests.types.6.key",
+      "requests.types.6.label",
+      "requests.types.7.key",
+      "requests.types.7.label",
       "requests.viewingSubject",
+      "services.heroImageAlt",
+      "services.items.0.targetPage",
+      "services.items.1.targetPage",
+      "services.items.2.targetPage",
+      "services.items.3.targetPage",
+      "services.items.4.targetPage",
+      "services.items.5.targetPage",
       "vehicleDetails.gallery.closeLabel",
       "vehicleDetails.gallery.nextLabel",
       "vehicleDetails.gallery.openImageLabel",
@@ -126,6 +171,12 @@
       "id": "inventory",
       "label": "Inventory",
       "route": "/inventory",
+      "required": true
+    },
+    {
+      "id": "services",
+      "label": "Services",
+      "route": "/services",
       "required": true
     },
     {
@@ -249,6 +300,11 @@
                 "label": "Collection"
               },
               {
+                "key": "services",
+                "type": "text",
+                "label": "Services"
+              },
+              {
                 "key": "experience",
                 "type": "text",
                 "label": "Experience"
@@ -274,6 +330,11 @@
                 "key": "collection",
                 "type": "url",
                 "label": "Collection"
+              },
+              {
+                "key": "services",
+                "type": "url",
+                "label": "Services"
               },
               {
                 "key": "experience",
@@ -323,6 +384,21 @@
             "key": "backToTop",
             "type": "text",
             "label": "Back To Top"
+          },
+          {
+            "key": "searchLabel",
+            "type": "text",
+            "label": "Search Label"
+          },
+          {
+            "key": "searchPlaceholder",
+            "type": "text",
+            "label": "Search Placeholder"
+          },
+          {
+            "key": "currencyCode",
+            "type": "text",
+            "label": "Currency Code"
           }
         ]
       },
@@ -460,6 +536,11 @@
             "key": "resetLabel",
             "type": "text",
             "label": "Reset Label"
+          },
+          {
+            "key": "description",
+            "type": "textarea",
+            "label": "Description"
           }
         ],
         "pageKey": "home"
@@ -504,6 +585,16 @@
             "key": "allLink",
             "type": "url",
             "label": "All Link"
+          },
+          {
+            "key": "priceCaption",
+            "type": "text",
+            "label": "Price Caption"
+          },
+          {
+            "key": "cardEnquireLabel",
+            "type": "text",
+            "label": "Card Enquire Label"
           }
         ],
         "pageKey": "home"
@@ -767,6 +858,26 @@
             "key": "nextLabel",
             "type": "text",
             "label": "Next Label"
+          },
+          {
+            "key": "cardLabel",
+            "type": "text",
+            "label": "Card Label"
+          },
+          {
+            "key": "carouselLabel",
+            "type": "text",
+            "label": "Carousel Label"
+          },
+          {
+            "key": "storyLabel",
+            "type": "text",
+            "label": "Story Label"
+          },
+          {
+            "key": "counterLabel",
+            "type": "text",
+            "label": "Counter Label"
           }
         ],
         "pageKey": "home"
@@ -802,6 +913,16 @@
                 "key": "initials",
                 "type": "text",
                 "label": "Initials"
+              },
+              {
+                "key": "image",
+                "type": "image",
+                "label": "Image"
+              },
+              {
+                "key": "imageAlt",
+                "type": "text",
+                "label": "Image Alt"
               }
             ]
           },
@@ -828,6 +949,16 @@
                 "key": "initials",
                 "type": "text",
                 "label": "Initials"
+              },
+              {
+                "key": "image",
+                "type": "image",
+                "label": "Image"
+              },
+              {
+                "key": "imageAlt",
+                "type": "text",
+                "label": "Image Alt"
               }
             ]
           },
@@ -854,6 +985,16 @@
                 "key": "initials",
                 "type": "text",
                 "label": "Initials"
+              },
+              {
+                "key": "image",
+                "type": "image",
+                "label": "Image"
+              },
+              {
+                "key": "imageAlt",
+                "type": "text",
+                "label": "Image Alt"
               }
             ]
           }
@@ -938,6 +1079,67 @@
             "key": "buttonLink",
             "type": "url",
             "label": "Button Link"
+          }
+        ],
+        "pageKey": "home"
+      },
+      {
+        "id": "home.servicesPreview",
+        "path": "home.servicesPreview",
+        "type": "object",
+        "label": "Home services Preview",
+        "fields": [
+          {
+            "key": "eyebrow",
+            "type": "text",
+            "label": "Eyebrow"
+          },
+          {
+            "key": "title",
+            "type": "text",
+            "label": "Title"
+          },
+          {
+            "key": "description",
+            "type": "textarea",
+            "label": "Description"
+          },
+          {
+            "key": "buttonLabel",
+            "type": "text",
+            "label": "Button Label"
+          },
+          {
+            "key": "buttonLink",
+            "type": "url",
+            "label": "Button Link"
+          },
+          {
+            "key": "demoNote",
+            "type": "text",
+            "label": "Demo Note"
+          },
+          {
+            "key": "summaries",
+            "type": "object",
+            "label": "Summaries",
+            "fields": [
+              {
+                "key": "0",
+                "type": "text",
+                "label": "0"
+              },
+              {
+                "key": "3",
+                "type": "text",
+                "label": "3"
+              },
+              {
+                "key": "4",
+                "type": "text",
+                "label": "4"
+              }
+            ]
           }
         ],
         "pageKey": "home"
@@ -1480,6 +1682,800 @@
         "pageKey": "contact"
       },
       {
+        "id": "services",
+        "path": "services",
+        "type": "object",
+        "label": "Services",
+        "fields": [
+          {
+            "key": "eyebrow",
+            "type": "text",
+            "label": "Eyebrow"
+          },
+          {
+            "key": "title",
+            "type": "text",
+            "label": "Title"
+          },
+          {
+            "key": "description",
+            "type": "textarea",
+            "label": "Description"
+          },
+          {
+            "key": "demoNote",
+            "type": "text",
+            "label": "Demo Note"
+          },
+          {
+            "key": "heroTitle",
+            "type": "text",
+            "label": "Hero Title"
+          },
+          {
+            "key": "heroImage",
+            "type": "image",
+            "label": "Hero Image"
+          },
+          {
+            "key": "heroImageAlt",
+            "type": "text",
+            "label": "Hero Image Alt"
+          },
+          {
+            "key": "heroCaption",
+            "type": "text",
+            "label": "Hero Caption"
+          },
+          {
+            "key": "heroPrimaryLabel",
+            "type": "text",
+            "label": "Hero Primary Label"
+          },
+          {
+            "key": "heroPrimaryLink",
+            "type": "url",
+            "label": "Hero Primary Link"
+          },
+          {
+            "key": "heroSecondaryLabel",
+            "type": "text",
+            "label": "Hero Secondary Label"
+          },
+          {
+            "key": "heroSecondaryLink",
+            "type": "url",
+            "label": "Hero Secondary Link"
+          },
+          {
+            "key": "indexLabel",
+            "type": "text",
+            "label": "Index Label"
+          },
+          {
+            "key": "heroDescription",
+            "type": "textarea",
+            "label": "Hero Description"
+          },
+          {
+            "key": "closingEyebrow",
+            "type": "text",
+            "label": "Closing Eyebrow"
+          },
+          {
+            "key": "closingTitle",
+            "type": "text",
+            "label": "Closing Title"
+          },
+          {
+            "key": "closingDescription",
+            "type": "textarea",
+            "label": "Closing Description"
+          },
+          {
+            "key": "closingButtonLabel",
+            "type": "text",
+            "label": "Closing Button Label"
+          },
+          {
+            "key": "closingButtonLink",
+            "type": "url",
+            "label": "Closing Button Link"
+          }
+        ],
+        "pageKey": "services"
+      },
+      {
+        "id": "services.items",
+        "path": "services.items",
+        "type": "collection",
+        "label": "Services items",
+        "collectionType": "list",
+        "pageKey": "services",
+        "items": [
+          {
+            "key": "0",
+            "label": "Luxury Vehicle Sales",
+            "fields": [
+              {
+                "key": "name",
+                "type": "text",
+                "label": "Name"
+              },
+              {
+                "key": "description",
+                "type": "textarea",
+                "label": "Description"
+              },
+              {
+                "key": "icon",
+                "type": "text",
+                "label": "Icon",
+                "control": "icon-picker"
+              },
+              {
+                "key": "buttonLabel",
+                "type": "text",
+                "label": "Button Label"
+              },
+              {
+                "key": "buttonLink",
+                "type": "url",
+                "label": "Button Link"
+              },
+              {
+                "key": "targetPage",
+                "type": "text",
+                "label": "Target Page"
+              },
+              {
+                "key": "imageUrl",
+                "type": "image",
+                "label": "Image Url"
+              },
+              {
+                "key": "kicker",
+                "type": "text",
+                "label": "Kicker"
+              },
+              {
+                "key": "includes",
+                "type": "object",
+                "label": "Includes",
+                "fields": [
+                  {
+                    "key": "0",
+                    "type": "object",
+                    "label": "0",
+                    "fields": [
+                      {
+                        "key": "name",
+                        "type": "text",
+                        "label": "Name"
+                      }
+                    ]
+                  },
+                  {
+                    "key": "1",
+                    "type": "object",
+                    "label": "1",
+                    "fields": [
+                      {
+                        "key": "name",
+                        "type": "text",
+                        "label": "Name"
+                      }
+                    ]
+                  },
+                  {
+                    "key": "2",
+                    "type": "object",
+                    "label": "2",
+                    "fields": [
+                      {
+                        "key": "name",
+                        "type": "text",
+                        "label": "Name"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "key": "1",
+            "label": "Vehicle Trade-In Assistance",
+            "fields": [
+              {
+                "key": "name",
+                "type": "text",
+                "label": "Name"
+              },
+              {
+                "key": "description",
+                "type": "textarea",
+                "label": "Description"
+              },
+              {
+                "key": "icon",
+                "type": "text",
+                "label": "Icon",
+                "control": "icon-picker"
+              },
+              {
+                "key": "buttonLabel",
+                "type": "text",
+                "label": "Button Label"
+              },
+              {
+                "key": "buttonLink",
+                "type": "url",
+                "label": "Button Link"
+              },
+              {
+                "key": "targetPage",
+                "type": "text",
+                "label": "Target Page"
+              },
+              {
+                "key": "imageUrl",
+                "type": "image",
+                "label": "Image Url"
+              },
+              {
+                "key": "kicker",
+                "type": "text",
+                "label": "Kicker"
+              },
+              {
+                "key": "includes",
+                "type": "object",
+                "label": "Includes",
+                "fields": [
+                  {
+                    "key": "0",
+                    "type": "object",
+                    "label": "0",
+                    "fields": [
+                      {
+                        "key": "name",
+                        "type": "text",
+                        "label": "Name"
+                      }
+                    ]
+                  },
+                  {
+                    "key": "1",
+                    "type": "object",
+                    "label": "1",
+                    "fields": [
+                      {
+                        "key": "name",
+                        "type": "text",
+                        "label": "Name"
+                      }
+                    ]
+                  },
+                  {
+                    "key": "2",
+                    "type": "object",
+                    "label": "2",
+                    "fields": [
+                      {
+                        "key": "name",
+                        "type": "text",
+                        "label": "Name"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "key": "2",
+            "label": "Financing Guidance",
+            "fields": [
+              {
+                "key": "name",
+                "type": "text",
+                "label": "Name"
+              },
+              {
+                "key": "description",
+                "type": "textarea",
+                "label": "Description"
+              },
+              {
+                "key": "icon",
+                "type": "text",
+                "label": "Icon",
+                "control": "icon-picker"
+              },
+              {
+                "key": "buttonLabel",
+                "type": "text",
+                "label": "Button Label"
+              },
+              {
+                "key": "buttonLink",
+                "type": "url",
+                "label": "Button Link"
+              },
+              {
+                "key": "targetPage",
+                "type": "text",
+                "label": "Target Page"
+              },
+              {
+                "key": "imageUrl",
+                "type": "image",
+                "label": "Image Url"
+              },
+              {
+                "key": "kicker",
+                "type": "text",
+                "label": "Kicker"
+              },
+              {
+                "key": "includes",
+                "type": "object",
+                "label": "Includes",
+                "fields": [
+                  {
+                    "key": "0",
+                    "type": "object",
+                    "label": "0",
+                    "fields": [
+                      {
+                        "key": "name",
+                        "type": "text",
+                        "label": "Name"
+                      }
+                    ]
+                  },
+                  {
+                    "key": "1",
+                    "type": "object",
+                    "label": "1",
+                    "fields": [
+                      {
+                        "key": "name",
+                        "type": "text",
+                        "label": "Name"
+                      }
+                    ]
+                  },
+                  {
+                    "key": "2",
+                    "type": "object",
+                    "label": "2",
+                    "fields": [
+                      {
+                        "key": "name",
+                        "type": "text",
+                        "label": "Name"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "key": "3",
+            "label": "Test Drive Arrangements",
+            "fields": [
+              {
+                "key": "name",
+                "type": "text",
+                "label": "Name"
+              },
+              {
+                "key": "description",
+                "type": "textarea",
+                "label": "Description"
+              },
+              {
+                "key": "icon",
+                "type": "text",
+                "label": "Icon",
+                "control": "icon-picker"
+              },
+              {
+                "key": "buttonLabel",
+                "type": "text",
+                "label": "Button Label"
+              },
+              {
+                "key": "buttonLink",
+                "type": "url",
+                "label": "Button Link"
+              },
+              {
+                "key": "targetPage",
+                "type": "text",
+                "label": "Target Page"
+              },
+              {
+                "key": "imageUrl",
+                "type": "image",
+                "label": "Image Url"
+              },
+              {
+                "key": "kicker",
+                "type": "text",
+                "label": "Kicker"
+              },
+              {
+                "key": "includes",
+                "type": "object",
+                "label": "Includes",
+                "fields": [
+                  {
+                    "key": "0",
+                    "type": "object",
+                    "label": "0",
+                    "fields": [
+                      {
+                        "key": "name",
+                        "type": "text",
+                        "label": "Name"
+                      }
+                    ]
+                  },
+                  {
+                    "key": "1",
+                    "type": "object",
+                    "label": "1",
+                    "fields": [
+                      {
+                        "key": "name",
+                        "type": "text",
+                        "label": "Name"
+                      }
+                    ]
+                  },
+                  {
+                    "key": "2",
+                    "type": "object",
+                    "label": "2",
+                    "fields": [
+                      {
+                        "key": "name",
+                        "type": "text",
+                        "label": "Name"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "key": "4",
+            "label": "Vehicle Sourcing",
+            "fields": [
+              {
+                "key": "name",
+                "type": "text",
+                "label": "Name"
+              },
+              {
+                "key": "description",
+                "type": "textarea",
+                "label": "Description"
+              },
+              {
+                "key": "icon",
+                "type": "text",
+                "label": "Icon",
+                "control": "icon-picker"
+              },
+              {
+                "key": "buttonLabel",
+                "type": "text",
+                "label": "Button Label"
+              },
+              {
+                "key": "buttonLink",
+                "type": "url",
+                "label": "Button Link"
+              },
+              {
+                "key": "targetPage",
+                "type": "text",
+                "label": "Target Page"
+              },
+              {
+                "key": "imageUrl",
+                "type": "image",
+                "label": "Image Url"
+              },
+              {
+                "key": "kicker",
+                "type": "text",
+                "label": "Kicker"
+              },
+              {
+                "key": "includes",
+                "type": "object",
+                "label": "Includes",
+                "fields": [
+                  {
+                    "key": "0",
+                    "type": "object",
+                    "label": "0",
+                    "fields": [
+                      {
+                        "key": "name",
+                        "type": "text",
+                        "label": "Name"
+                      }
+                    ]
+                  },
+                  {
+                    "key": "1",
+                    "type": "object",
+                    "label": "1",
+                    "fields": [
+                      {
+                        "key": "name",
+                        "type": "text",
+                        "label": "Name"
+                      }
+                    ]
+                  },
+                  {
+                    "key": "2",
+                    "type": "object",
+                    "label": "2",
+                    "fields": [
+                      {
+                        "key": "name",
+                        "type": "text",
+                        "label": "Name"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "key": "5",
+            "label": "After-Sales Support",
+            "fields": [
+              {
+                "key": "name",
+                "type": "text",
+                "label": "Name"
+              },
+              {
+                "key": "description",
+                "type": "textarea",
+                "label": "Description"
+              },
+              {
+                "key": "icon",
+                "type": "text",
+                "label": "Icon",
+                "control": "icon-picker"
+              },
+              {
+                "key": "buttonLabel",
+                "type": "text",
+                "label": "Button Label"
+              },
+              {
+                "key": "buttonLink",
+                "type": "url",
+                "label": "Button Link"
+              },
+              {
+                "key": "targetPage",
+                "type": "text",
+                "label": "Target Page"
+              },
+              {
+                "key": "imageUrl",
+                "type": "image",
+                "label": "Image Url"
+              },
+              {
+                "key": "kicker",
+                "type": "text",
+                "label": "Kicker"
+              },
+              {
+                "key": "includes",
+                "type": "object",
+                "label": "Includes",
+                "fields": [
+                  {
+                    "key": "0",
+                    "type": "object",
+                    "label": "0",
+                    "fields": [
+                      {
+                        "key": "name",
+                        "type": "text",
+                        "label": "Name"
+                      }
+                    ]
+                  },
+                  {
+                    "key": "1",
+                    "type": "object",
+                    "label": "1",
+                    "fields": [
+                      {
+                        "key": "name",
+                        "type": "text",
+                        "label": "Name"
+                      }
+                    ]
+                  },
+                  {
+                    "key": "2",
+                    "type": "object",
+                    "label": "2",
+                    "fields": [
+                      {
+                        "key": "name",
+                        "type": "text",
+                        "label": "Name"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "faq",
+        "path": "faq",
+        "type": "object",
+        "label": "Faq",
+        "fields": [
+          {
+            "key": "eyebrow",
+            "type": "text",
+            "label": "Eyebrow"
+          },
+          {
+            "key": "title",
+            "type": "text",
+            "label": "Title"
+          },
+          {
+            "key": "description",
+            "type": "textarea",
+            "label": "Description"
+          },
+          {
+            "key": "buttonLabel",
+            "type": "text",
+            "label": "Button Label"
+          },
+          {
+            "key": "buttonLink",
+            "type": "url",
+            "label": "Button Link"
+          }
+        ],
+        "pageKey": "contact"
+      },
+      {
+        "id": "faq.items",
+        "path": "faq.items",
+        "type": "collection",
+        "label": "Faq items",
+        "collectionType": "list",
+        "pageKey": "contact",
+        "items": [
+          {
+            "key": "0",
+            "label": "How do I arrange a vehicle viewing?",
+            "fields": [
+              {
+                "key": "question",
+                "type": "text",
+                "label": "Question"
+              },
+              {
+                "key": "answer",
+                "type": "textarea",
+                "label": "Answer"
+              }
+            ]
+          },
+          {
+            "key": "1",
+            "label": "How can I request a test drive?",
+            "fields": [
+              {
+                "key": "question",
+                "type": "text",
+                "label": "Question"
+              },
+              {
+                "key": "answer",
+                "type": "textarea",
+                "label": "Answer"
+              }
+            ]
+          },
+          {
+            "key": "2",
+            "label": "Is financing assistance available?",
+            "fields": [
+              {
+                "key": "question",
+                "type": "text",
+                "label": "Question"
+              },
+              {
+                "key": "answer",
+                "type": "textarea",
+                "label": "Answer"
+              }
+            ]
+          },
+          {
+            "key": "3",
+            "label": "How does a vehicle trade-in work?",
+            "fields": [
+              {
+                "key": "question",
+                "type": "text",
+                "label": "Question"
+              },
+              {
+                "key": "answer",
+                "type": "textarea",
+                "label": "Answer"
+              }
+            ]
+          },
+          {
+            "key": "4",
+            "label": "How can I check a vehicle’s availability?",
+            "fields": [
+              {
+                "key": "question",
+                "type": "text",
+                "label": "Question"
+              },
+              {
+                "key": "answer",
+                "type": "textarea",
+                "label": "Answer"
+              }
+            ]
+          },
+          {
+            "key": "5",
+            "label": "What is the best way to contact the dealership?",
+            "fields": [
+              {
+                "key": "question",
+                "type": "text",
+                "label": "Question"
+              },
+              {
+                "key": "answer",
+                "type": "textarea",
+                "label": "Answer"
+              }
+            ]
+          }
+        ]
+      },
+      {
         "id": "requests",
         "path": "requests",
         "type": "object",
@@ -1638,6 +2634,86 @@
           {
             "key": "2",
             "label": "2",
+            "fields": [
+              {
+                "key": "key",
+                "type": "text",
+                "label": "Key"
+              },
+              {
+                "key": "label",
+                "type": "text",
+                "label": "Label"
+              }
+            ]
+          },
+          {
+            "key": "3",
+            "label": "3",
+            "fields": [
+              {
+                "key": "key",
+                "type": "text",
+                "label": "Key"
+              },
+              {
+                "key": "label",
+                "type": "text",
+                "label": "Label"
+              }
+            ]
+          },
+          {
+            "key": "4",
+            "label": "4",
+            "fields": [
+              {
+                "key": "key",
+                "type": "text",
+                "label": "Key"
+              },
+              {
+                "key": "label",
+                "type": "text",
+                "label": "Label"
+              }
+            ]
+          },
+          {
+            "key": "5",
+            "label": "5",
+            "fields": [
+              {
+                "key": "key",
+                "type": "text",
+                "label": "Key"
+              },
+              {
+                "key": "label",
+                "type": "text",
+                "label": "Label"
+              }
+            ]
+          },
+          {
+            "key": "6",
+            "label": "6",
+            "fields": [
+              {
+                "key": "key",
+                "type": "text",
+                "label": "Key"
+              },
+              {
+                "key": "label",
+                "type": "text",
+                "label": "Label"
+              }
+            ]
+          },
+          {
+            "key": "7",
+            "label": "7",
             "fields": [
               {
                 "key": "key",
@@ -2739,6 +3815,16 @@
                 "key": "countLabel",
                 "type": "text",
                 "label": "Count Label"
+              },
+              {
+                "key": "image",
+                "type": "image",
+                "label": "Image"
+              },
+              {
+                "key": "imageAlt",
+                "type": "text",
+                "label": "Image Alt"
               }
             ]
           },
@@ -2755,6 +3841,16 @@
                 "key": "countLabel",
                 "type": "text",
                 "label": "Count Label"
+              },
+              {
+                "key": "image",
+                "type": "image",
+                "label": "Image"
+              },
+              {
+                "key": "imageAlt",
+                "type": "text",
+                "label": "Image Alt"
               }
             ]
           },
@@ -2771,6 +3867,16 @@
                 "key": "countLabel",
                 "type": "text",
                 "label": "Count Label"
+              },
+              {
+                "key": "image",
+                "type": "image",
+                "label": "Image"
+              },
+              {
+                "key": "imageAlt",
+                "type": "text",
+                "label": "Image Alt"
               }
             ]
           },
@@ -2787,6 +3893,16 @@
                 "key": "countLabel",
                 "type": "text",
                 "label": "Count Label"
+              },
+              {
+                "key": "image",
+                "type": "image",
+                "label": "Image"
+              },
+              {
+                "key": "imageAlt",
+                "type": "text",
+                "label": "Image Alt"
               }
             ]
           },
@@ -2803,6 +3919,16 @@
                 "key": "countLabel",
                 "type": "text",
                 "label": "Count Label"
+              },
+              {
+                "key": "image",
+                "type": "image",
+                "label": "Image"
+              },
+              {
+                "key": "imageAlt",
+                "type": "text",
+                "label": "Image Alt"
               }
             ]
           },
@@ -2819,6 +3945,16 @@
                 "key": "countLabel",
                 "type": "text",
                 "label": "Count Label"
+              },
+              {
+                "key": "image",
+                "type": "image",
+                "label": "Image"
+              },
+              {
+                "key": "imageAlt",
+                "type": "text",
+                "label": "Image Alt"
               }
             ]
           },
@@ -2835,6 +3971,16 @@
                 "key": "countLabel",
                 "type": "text",
                 "label": "Count Label"
+              },
+              {
+                "key": "image",
+                "type": "image",
+                "label": "Image"
+              },
+              {
+                "key": "imageAlt",
+                "type": "text",
+                "label": "Image Alt"
               }
             ]
           },
@@ -2851,6 +3997,16 @@
                 "key": "countLabel",
                 "type": "text",
                 "label": "Count Label"
+              },
+              {
+                "key": "image",
+                "type": "image",
+                "label": "Image"
+              },
+              {
+                "key": "imageAlt",
+                "type": "text",
+                "label": "Image Alt"
               }
             ]
           }
@@ -3334,6 +4490,16 @@
                 "key": "body",
                 "type": "text",
                 "label": "Body"
+              },
+              {
+                "key": "interiorColor",
+                "type": "text",
+                "label": "Interior Color"
+              },
+              {
+                "key": "exteriorColor",
+                "type": "text",
+                "label": "Exterior Color"
               }
             ]
           },
@@ -3420,6 +4586,128 @@
                 "label": "Open Image Label"
               }
             ]
+          },
+          {
+            "key": "finishTitle",
+            "type": "text",
+            "label": "Finish Title"
+          },
+          {
+            "key": "finishNote",
+            "type": "text",
+            "label": "Finish Note"
+          },
+          {
+            "key": "testDriveLabel",
+            "type": "text",
+            "label": "Test Drive Label"
+          },
+          {
+            "key": "testDriveNote",
+            "type": "text",
+            "label": "Test Drive Note"
+          },
+          {
+            "key": "dealerLabel",
+            "type": "text",
+            "label": "Dealer Label"
+          },
+          {
+            "key": "dealerLink",
+            "type": "url",
+            "label": "Dealer Link"
+          },
+          {
+            "key": "specIcons",
+            "type": "object",
+            "label": "Spec Icons",
+            "fields": [
+              {
+                "key": "year",
+                "type": "text",
+                "label": "Year",
+                "control": "icon-picker"
+              },
+              {
+                "key": "mileage",
+                "type": "text",
+                "label": "Mileage",
+                "control": "icon-picker"
+              },
+              {
+                "key": "fuel",
+                "type": "text",
+                "label": "Fuel",
+                "control": "icon-picker"
+              },
+              {
+                "key": "transmission",
+                "type": "text",
+                "label": "Transmission",
+                "control": "icon-picker"
+              },
+              {
+                "key": "engine",
+                "type": "text",
+                "label": "Engine",
+                "control": "icon-picker"
+              },
+              {
+                "key": "drivetrain",
+                "type": "text",
+                "label": "Drivetrain",
+                "control": "icon-picker"
+              },
+              {
+                "key": "power",
+                "type": "text",
+                "label": "Power",
+                "control": "icon-picker"
+              },
+              {
+                "key": "body",
+                "type": "text",
+                "label": "Body",
+                "control": "icon-picker"
+              }
+            ]
+          },
+          {
+            "key": "explorer",
+            "type": "object",
+            "label": "Explorer",
+            "fields": [
+              {
+                "key": "eyebrow",
+                "type": "text",
+                "label": "Eyebrow"
+              },
+              {
+                "key": "title",
+                "type": "text",
+                "label": "Title"
+              },
+              {
+                "key": "description",
+                "type": "textarea",
+                "label": "Description"
+              },
+              {
+                "key": "notice",
+                "type": "text",
+                "label": "Notice"
+              },
+              {
+                "key": "hint",
+                "type": "text",
+                "label": "Hint"
+              },
+              {
+                "key": "viewLabel",
+                "type": "text",
+                "label": "View Label"
+              }
+            ]
           }
         ],
         "pageKey": "car-porsche-panamera"
@@ -3459,6 +4747,21 @@
             "key": "viewingLink",
             "type": "url",
             "label": "Viewing Link"
+          },
+          {
+            "key": "interiorColor",
+            "type": "text",
+            "label": "Interior Color"
+          },
+          {
+            "key": "exteriorColor",
+            "type": "text",
+            "label": "Exterior Color"
+          },
+          {
+            "key": "testDriveLink",
+            "type": "url",
+            "label": "Test Drive Link"
           }
         ],
         "pageKey": "car-porsche-panamera"
@@ -3585,6 +4888,21 @@
             "key": "viewingLink",
             "type": "url",
             "label": "Viewing Link"
+          },
+          {
+            "key": "interiorColor",
+            "type": "text",
+            "label": "Interior Color"
+          },
+          {
+            "key": "exteriorColor",
+            "type": "text",
+            "label": "Exterior Color"
+          },
+          {
+            "key": "testDriveLink",
+            "type": "url",
+            "label": "Test Drive Link"
           }
         ],
         "pageKey": "car-bmw-m5"
@@ -3711,6 +5029,21 @@
             "key": "viewingLink",
             "type": "url",
             "label": "Viewing Link"
+          },
+          {
+            "key": "interiorColor",
+            "type": "text",
+            "label": "Interior Color"
+          },
+          {
+            "key": "exteriorColor",
+            "type": "text",
+            "label": "Exterior Color"
+          },
+          {
+            "key": "testDriveLink",
+            "type": "url",
+            "label": "Test Drive Link"
           }
         ],
         "pageKey": "car-mercedes-amg"
@@ -3837,6 +5170,21 @@
             "key": "viewingLink",
             "type": "url",
             "label": "Viewing Link"
+          },
+          {
+            "key": "interiorColor",
+            "type": "text",
+            "label": "Interior Color"
+          },
+          {
+            "key": "exteriorColor",
+            "type": "text",
+            "label": "Exterior Color"
+          },
+          {
+            "key": "testDriveLink",
+            "type": "url",
+            "label": "Test Drive Link"
           }
         ],
         "pageKey": "car-audi-rs6"
@@ -3963,6 +5311,21 @@
             "key": "viewingLink",
             "type": "url",
             "label": "Viewing Link"
+          },
+          {
+            "key": "interiorColor",
+            "type": "text",
+            "label": "Interior Color"
+          },
+          {
+            "key": "exteriorColor",
+            "type": "text",
+            "label": "Exterior Color"
+          },
+          {
+            "key": "testDriveLink",
+            "type": "url",
+            "label": "Test Drive Link"
           }
         ],
         "pageKey": "car-tesla-model-3"
@@ -4100,6 +5463,21 @@
             "key": "viewingLink",
             "type": "url",
             "label": "Viewing Link"
+          },
+          {
+            "key": "interiorColor",
+            "type": "text",
+            "label": "Interior Color"
+          },
+          {
+            "key": "exteriorColor",
+            "type": "text",
+            "label": "Exterior Color"
+          },
+          {
+            "key": "testDriveLink",
+            "type": "url",
+            "label": "Test Drive Link"
           }
         ],
         "pageKey": "car-honda-crv"
@@ -4226,6 +5604,21 @@
             "key": "viewingLink",
             "type": "url",
             "label": "Viewing Link"
+          },
+          {
+            "key": "interiorColor",
+            "type": "text",
+            "label": "Interior Color"
+          },
+          {
+            "key": "exteriorColor",
+            "type": "text",
+            "label": "Exterior Color"
+          },
+          {
+            "key": "testDriveLink",
+            "type": "url",
+            "label": "Test Drive Link"
           }
         ],
         "pageKey": "car-chevrolet-camaro"
@@ -4352,6 +5745,21 @@
             "key": "viewingLink",
             "type": "url",
             "label": "Viewing Link"
+          },
+          {
+            "key": "interiorColor",
+            "type": "text",
+            "label": "Interior Color"
+          },
+          {
+            "key": "exteriorColor",
+            "type": "text",
+            "label": "Exterior Color"
+          },
+          {
+            "key": "testDriveLink",
+            "type": "url",
+            "label": "Test Drive Link"
           }
         ],
         "pageKey": "car-ferrari-458"

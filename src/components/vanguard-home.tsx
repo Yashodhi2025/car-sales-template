@@ -1,23 +1,25 @@
 "use client";
-import { useRef, useState } from "react";
-import { EditableBodyTypeCard, EditableBrandCard, EditableImage, EditableLink, EditableText, withBasePath } from "@deneb-ui/ui";
+import { useRef } from "react";
+import { EditableBodyTypeCard, EditableBrandCard, EditableLink, EditableText, withBasePath } from "@deneb-ui/ui";
+import { VanguardImage } from "./vanguard-image";
 import { useSiteContent, type VehicleId } from "@/lib/site-content";
 import { usePageEffects } from "./use-page-effects";
 import { VehicleListing } from "./vehicle-listing";
 import { Arrow } from "./vanguard-arrow";
+import { HomeVehicleSearch } from "./home-vehicle-search";
+import { VanguardReviews } from "./vanguard-reviews";
 
 export function VanguardHome() {
  const { data, content, t, legacyMissing } = useSiteContent();
  const root = useRef<HTMLElement>(null);
  usePageEffects(root);
- const [review, setReview] = useState(0);
  const vehicleIds = Object.keys(content.cards.vehicles) as VehicleId[];
  const brandIds = Object.keys(content.cards.brands) as (keyof typeof content.cards.brands)[];
  const bodyIds = Object.keys(content.cards.bodyTypes) as (keyof typeof content.cards.bodyTypes)[];
  if (!data.requirements.requiredPages.includes("home")) return null;
  return <main id="main-content" ref={root} data-preview-page-key="home" className="vm-page vm-home-page">
  <section id="home" className="vm-hero" aria-labelledby="hero-title">
-          <div className="vm-hero-image-wrap"><EditableImage id="home.hero.image" src={t("home.hero.image")} alt={t("home.hero.imageAlt")} width={2000} height={1334} loading="eager" fetchPriority="high" className="vm-hero-image" /></div>
+          <div className="vm-hero-image-wrap"><VanguardImage id="home.hero.image" src={t("home.hero.image")} alt={t("home.hero.imageAlt")} width={2000} height={1334} loading="eager" fetchPriority="high" className="vm-hero-image" /></div>
           <div className="vm-hero-shade" aria-hidden="true" />
           <div className="vm-container vm-hero-inner">
             <div className="vm-hero-copy">
@@ -37,34 +39,29 @@ export function VanguardHome() {
           </div>
         </section>
 
-        <section id="search" data-target-page="inventory" className="vm-search-section" aria-label={t("home.search.title")}>
-          <div className="vm-container vm-search-layout" data-reveal>
-            <div><EditableText id="home.search.eyebrow" as="p" className="vm-eyebrow">{t("home.search.eyebrow")}</EditableText><EditableText id="home.search.title" as="h2" className="vm-search-title" aria-label={t("home.search.title")} data-section-heading="search">{t("home.search.title")}</EditableText></div>
-            <form className="vm-search-form" action={withBasePath("/inventory")} method="get" role="search" aria-label="Search featured vehicles">
-              <label className="vm-search-field"><EditableText id="home.search.keywordLabel">{t("home.search.keywordLabel")}</EditableText><input type="search" name="q" placeholder={t("home.search.keywordPlaceholder")} data-preview-field-path="home.search.keywordPlaceholder" /></label>
-              <label className="vm-search-field"><EditableText id="home.search.brandLabel">{t("home.search.brandLabel")}</EditableText><select name="brand"><option value="">{t("home.search.allBrands")}</option>{brandIds.map(id => <option key={id} value={id}>{content.cards.brands[id].displayName}</option>)}</select></label>
-              <label className="vm-search-field"><EditableText id="home.search.bodyLabel">{t("home.search.bodyLabel")}</EditableText><select name="bodyType"><option value="">{t("home.search.allBodies")}</option>{bodyIds.map(id => <option key={id} value={id}>{content.cards.bodyTypes[id].displayName}</option>)}</select></label>
-              <button className="vm-button vm-button-primary" type="submit"><EditableText id="home.search.buttonLabel">{t("home.search.buttonLabel")}</EditableText><Arrow /></button>
-            <button type="reset" className="vm-home-search-reset"><EditableText id="home.search.resetLabel">{t("home.search.resetLabel")}</EditableText></button></form>
-          </div>
-        </section>
+        <HomeVehicleSearch />
+
+        <section className="vm-section vm-container vm-category-section" aria-label={t("home.bodyTypes.title")}><div className="vm-section-heading" data-reveal><div><EditableText id="home.bodyTypes.eyebrow" as="p" className="vm-eyebrow">{t("home.bodyTypes.eyebrow")}</EditableText><EditableText id="home.bodyTypes.title" as="h2" className="vm-title">{t("home.bodyTypes.title")}</EditableText></div></div><div data-target-page="inventory" className="vm-body-grid">
+          {bodyIds.map(id => <div key={id} data-reveal data-browse={id}><EditableBodyTypeCard typeSlug={id} href={withBasePath(`/inventory?bodyType=${id}`)} className="vm-body-card" imageSlot={<div className="vm-body-image-wrap"><VanguardImage id={`cards.bodyTypes.${id}.image`} src={t(`cards.bodyTypes.${id}.image`)} alt={t(`cards.bodyTypes.${id}.imageAlt`)} width={800} height={600} loading="lazy" /></div>}><Arrow />{legacyMissing(`cards.bodyTypes.${id}.description`) && <EditableText id={`cards.bodyTypes.${id}.description`} className="vm-empty-target">{t(`cards.bodyTypes.${id}.description`)}</EditableText>}</EditableBodyTypeCard></div>)}
+        </div></section>
+<section id="brands" data-target-page="inventory" className="vm-brands-section" aria-label={t("home.brands.title")}><div className="vm-container" data-reveal><div className="vm-brands-heading"><EditableText id="home.brands.eyebrow" as="p" className="vm-eyebrow">{t("home.brands.eyebrow")}</EditableText><EditableText id="home.brands.title" as="h2">{t("home.brands.title")}</EditableText></div><div className="vm-brand-grid">
+          {brandIds.map(id => <div key={id} className="vm-browse-wrap" data-browse={id} data-reveal><EditableBrandCard makeSlug={id} href={withBasePath(`/inventory?brand=${id}`)} className={`vm-brand-card vm-marque-${id}`}><div className="vm-brand-logo"><VanguardImage id={`cards.brands.${id}.image`} src={t(`cards.brands.${id}.image`)} fallbackSrc="/images/brands/placeholder.svg" alt={t(`cards.brands.${id}.imageAlt`)} width={160} height={100} /></div></EditableBrandCard></div>)}
+        </div></div></section>
 
         <section id="collection" data-target-page="inventory" className="vm-section vm-container" aria-label={t("home.collection.title")}>
           <div className="vm-section-heading" data-reveal><div><EditableText id="home.collection.eyebrow" as="p" className="vm-eyebrow">{t("home.collection.eyebrow")}</EditableText><EditableText id="home.collection.title" as="h2" className="vm-title" aria-label={t("home.collection.title")} data-section-heading="collection">{t("home.collection.title")}</EditableText></div><EditableText id="home.collection.description" as="p" className="vm-section-description">{t("home.collection.description")}</EditableText></div>
           <div className="vm-collection-toolbar"><EditableLink href={withBasePath(t("home.collection.allLink"))} data-preview-field-path="home.collection.allLink" targetPage="inventory" className="vm-text-link"><EditableText id="home.collection.allLabel">{t("home.collection.allLabel")}</EditableText><Arrow /></EditableLink><p className="vm-results">{String(Math.min(3, vehicleIds.length)).padStart(2, "0")} <EditableText id="home.collection.resultsLabel">{t("home.collection.resultsLabel")}</EditableText></p></div><div className="vm-vehicle-grid vm-featured-grid">
   {vehicleIds.slice(0, 3).map((id, index) => <div key={id} className="vm-vehicle-wrap" data-reveal><VehicleListing id={id} index={index} /></div>)}
   </div></section>
-<section data-target-page="inventory" className="vm-brands-section" aria-label={t("home.brands.title")}><div className="vm-container" data-reveal><div className="vm-brands-heading"><EditableText id="home.brands.eyebrow" as="p" className="vm-eyebrow">{t("home.brands.eyebrow")}</EditableText><EditableText id="home.brands.title" as="h2">{t("home.brands.title")}</EditableText></div><div className="vm-brand-grid">
-          {brandIds.map((id, index) => <div key={id} className="vm-browse-wrap" data-browse={id}><EditableBrandCard makeSlug={id} href={withBasePath(`/inventory?brand=${id}`)} className={`vm-brand-card vm-marque-${id}`}><span className="vm-brand-number" aria-hidden="true">0{index + 1}</span><Arrow /></EditableBrandCard></div>)}
-        </div></div></section>
 
-        <section className="vm-section vm-container" aria-label={t("home.bodyTypes.title")}><div className="vm-section-heading" data-reveal><div><EditableText id="home.bodyTypes.eyebrow" as="p" className="vm-eyebrow">{t("home.bodyTypes.eyebrow")}</EditableText><EditableText id="home.bodyTypes.title" as="h2" className="vm-title">{t("home.bodyTypes.title")}</EditableText></div></div><div data-target-page="inventory" className="vm-body-grid">
-          {bodyIds.map(id => <div key={id} data-reveal data-browse={id}><EditableBodyTypeCard typeSlug={id} href={withBasePath(`/inventory?bodyType=${id}`)} className="vm-body-card" imageSlot={<div className="vm-body-image-wrap"><EditableImage id={`cards.bodyTypes.${id}.image`} src={t(`cards.bodyTypes.${id}.image`)} alt={t(`cards.bodyTypes.${id}.imageAlt`)} width={800} height={600} loading="lazy" /></div>}><Arrow />{legacyMissing(`cards.bodyTypes.${id}.description`) && <EditableText id={`cards.bodyTypes.${id}.description`} className="vm-empty-target">{t(`cards.bodyTypes.${id}.description`)}</EditableText>}</EditableBodyTypeCard></div>)}
+        <section className="vm-home-services" data-target-page="services"><div className="vm-container">
+          <div className="vm-section-heading" data-reveal><div><EditableText id="home.servicesPreview.eyebrow" as="p" className="vm-eyebrow">{t("home.servicesPreview.eyebrow")}</EditableText><EditableText id="home.servicesPreview.title" as="h2" className="vm-title">{t("home.servicesPreview.title")}</EditableText></div><div className="vm-home-services-aside"><EditableText id="home.servicesPreview.description" as="p" className="vm-copy vm-home-services-intro">{t("home.servicesPreview.description")}</EditableText><EditableLink href={withBasePath(t("home.servicesPreview.buttonLink"))} data-preview-field-path="home.servicesPreview.buttonLink" targetPage="services" className="vm-text-link"><EditableText id="home.servicesPreview.buttonLabel">{t("home.servicesPreview.buttonLabel")}</EditableText><Arrow /></EditableLink></div></div>
+          <div className="vm-home-service-grid">{[0,3,4].map(index=>{const service=content.services.items[index];const path=`services.items.${index}`;return <EditableLink key={index} href={withBasePath(t("home.servicesPreview.buttonLink"))+`#service-${index}`} targetPage="services" className="vm-home-service" data-reveal><VanguardImage id={`${path}.imageUrl`} src={service.imageUrl} alt={service.name} width={900} height={600} /><div><EditableText id={`${path}.name`} as="h3">{service.name}</EditableText><EditableText id={`home.servicesPreview.summaries.${index}`} as="p">{t(`home.servicesPreview.summaries.${index}`)}</EditableText><Arrow /></div></EditableLink>})}</div>
+          <EditableText id="home.servicesPreview.demoNote" as="p" className="vm-home-services-note">{t("home.servicesPreview.demoNote")}</EditableText>
         </div></section>
 
-        <section className="vm-testimonials-section"><div className="vm-container vm-testimonials" data-reveal><div><EditableText id="home.testimonials.eyebrow" as="p" className="vm-eyebrow">{t("home.testimonials.eyebrow")}</EditableText><EditableText id="home.testimonials.title" as="h2" className="vm-title">{t("home.testimonials.title")}</EditableText><EditableText id="home.testimonials.sampleLabel" as="p" className="vm-sample-label">{t("home.testimonials.sampleLabel")}</EditableText><div className="vm-slider-controls"><button type="button" className="vm-icon-button" aria-label={t("home.testimonials.previousLabel")} onClick={() => setReview((review - 1 + content.home.reviews.length) % content.home.reviews.length)}><Arrow back /></button><span aria-live="polite">0{review + 1}<span className="vm-slider-total"> / 0{content.home.reviews.length}</span></span><button type="button" className="vm-icon-button" aria-label={t("home.testimonials.nextLabel")} onClick={() => setReview((review + 1) % content.home.reviews.length)}><Arrow /></button></div></div><div className="vm-review-stack" aria-roledescription="carousel" aria-label="Customer stories">
-          {content.home.reviews.map((item, i) => <figure key={i} className={`vm-review ${i === review ? "is-current" : ""}`} inert={i !== review} aria-hidden={i !== review} data-preview-item-path={`home.reviews.${i}`}><span className="vm-quote-mark" aria-hidden="true">“</span><EditableText id={`home.reviews.${i}.quote`} as="blockquote">{item.quote}</EditableText><figcaption><EditableText id={`home.reviews.${i}.initials`} className="vm-avatar">{item.initials}</EditableText><div><EditableText id={`home.reviews.${i}.name`} as="p" className="vm-review-name">{item.name}</EditableText><EditableText id={`home.reviews.${i}.detail`} as="p" className="vm-review-detail">{item.detail}</EditableText></div></figcaption></figure>)}
-        </div></div></section>
+
+        <VanguardReviews />
 
         
  <section className="vm-section vm-container vm-home-cta" data-reveal><div><EditableText id="home.cta.eyebrow" as="p" className="vm-eyebrow">{t("home.cta.eyebrow")}</EditableText><EditableText id="home.cta.title" as="h2" className="vm-title">{t("home.cta.title")}</EditableText><EditableText id="home.cta.description" as="p" className="vm-copy">{t("home.cta.description")}</EditableText></div><EditableLink href={withBasePath(t("home.cta.buttonLink"))} data-preview-field-path="home.cta.buttonLink" targetPage="contact" className="vm-button vm-button-primary"><EditableText id="home.cta.buttonLabel">{t("home.cta.buttonLabel")}</EditableText><Arrow /></EditableLink></section>

@@ -13,13 +13,13 @@ test("all stock, multi-word search and empty results", () => {
 });
 test("brand, body, fuel, transmission and availability combine with AND", () => {
   assert.deepEqual(find({ brand: "tesla", fuel: "Electric", bodyType: "sedan", transmission: "Automatic" }), ["tesla-model-3"]);
-  assert.deepEqual(find({ bodyType: "coupe", fuel: "Petrol", transmission: "Manual", minPrice: "40000", maxPrice: "45000" }), ["chevrolet-camaro"]);
+  assert.deepEqual(find({ bodyType: "coupe", fuel: "Petrol", transmission: "Manual", minPrice: "40000000", maxPrice: "45000000" }), ["chevrolet-camaro"]);
   assert.deepEqual(find({ fuel: "Diesel" }), ["honda-crv"]);
   assert.deepEqual(find({ availability: "Reserved" }), ["ferrari-458"]);
   assert.equal(find({ availability: "Available" }).length, 7);
 });
 test("inclusive price boundaries, zero and invalid ranges", () => {
-  assert.deepEqual(find({ minPrice: "19950", maxPrice: "19950" }), ["honda-crv"]);
+  assert.deepEqual(find({ minPrice: "16800000", maxPrice: "16800000" }), ["honda-crv"]);
   assert.deepEqual(find({ maxPrice: "0" }), []);
   assert(invalidPrices({ ...defaultFilters, minPrice: "80000", maxPrice: "20000" }));
   assert(invalidPrices({ ...defaultFilters, minPrice: "-1" }));
@@ -36,11 +36,11 @@ test("all sort modes use numeric values, not lexical ordering", () => {
 });
 test("live editable price/spec changes also affect filtering and sorting", () => {
   const edited = structuredClone(content);
-  edited.cards.vehicles["bmw-m5"].price = "GBP 10,000";
+  edited.cards.vehicles["bmw-m5"].price = "LKR 10,000,000";
   edited.cards.vehicles["bmw-m5"].fuel = "Electric";
-  assert.deepEqual(find({ maxPrice: "15000", fuel: "Electric" }, edited), ["bmw-m5"]);
+  assert.deepEqual(find({ maxPrice: "15000000", fuel: "Electric" }, edited), ["bmw-m5"]);
   assert.equal(find({ sort: "price-low" }, edited)[0], "bmw-m5");
-  assert.equal(edited.catalog["bmw-m5"].priceValue, 49950);
+  assert.equal(edited.catalog["bmw-m5"].priceValue, content.catalog["bmw-m5"].priceValue);
 });
 test("unpriced vehicles sort last and stay out of numeric budgets", () => {
   const edited = structuredClone(content);

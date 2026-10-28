@@ -1,9 +1,10 @@
 "use client";
 
-import { EditableIcon, EditableImage, EditableLink, EditableText, EditableVehicleCard, withBasePath } from "@deneb-ui/ui";
+import { EditableIcon, EditableLink, EditableText, EditableVehicleCard, withBasePath } from "@deneb-ui/ui";
 import { useSiteContent, type VehicleId } from "@/lib/site-content";
 import { Arrow } from "./vanguard-arrow";
 import { carPageKey } from "@/lib/vehicles";
+import { VanguardImage } from "./vanguard-image";
 
 /** Vanguard's presentation of the installed Deneb card, reused across its pages. */
 export function VehicleListing({ id, index = 0 }: { id: VehicleId; index?: number }) {
@@ -11,22 +12,22 @@ export function VehicleListing({ id, index = 0 }: { id: VehicleId; index?: numbe
   const canEnquire = data.requirements.requiredPages.includes("contact");
   const canView = data.requirements.requiredPages.includes(carPageKey(id));
   return (
-    <EditableVehicleCard vehicleId={id} className="vm-vehicle-card" href={canView ? withBasePath(t(`vehicles.${id}.detailLink`)) : undefined}
+    <EditableVehicleCard vehicleId={id} className={`vm-vehicle-card ${/reserved/i.test(t(`cards.vehicles.${id}.availability`)) ? "is-reserved" : ""}`} href={canView ? withBasePath(t(`vehicles.${id}.detailLink`)) : undefined}
       imageSlot={
         <div className="vm-vehicle-image-wrap">
           {canView ? <EditableLink href={withBasePath(t(`vehicles.${id}.detailLink`))} data-preview-field-path={`vehicles.${id}.detailLink`} targetPage={carPageKey(id)} className="vm-vehicle-photo-link">
-            <EditableImage id={`photos.vehicles.${id}.image0`} src={t(`photos.vehicles.${id}.image0`)} alt={t(`photos.vehicles.${id}.imageAlt`)} width={800} height={540} loading="lazy" className="vm-vehicle-image" />
+            <VanguardImage id={`photos.vehicles.${id}.image0`} src={t(`photos.vehicles.${id}.image0`)} alt={t(`photos.vehicles.${id}.imageAlt`)} width={800} height={540} className="vm-vehicle-image" />
             <span className="vm-vehicle-explore"><EditableText id="vehicleDetails.viewDetailsLabel">{t("vehicleDetails.viewDetailsLabel")}</EditableText><Arrow /></span>
-          </EditableLink> : <EditableImage id={`photos.vehicles.${id}.image0`} src={t(`photos.vehicles.${id}.image0`)} alt={t(`photos.vehicles.${id}.imageAlt`)} width={800} height={540} loading="lazy" className="vm-vehicle-image" />}
+          </EditableLink> : <VanguardImage id={`photos.vehicles.${id}.image0`} src={t(`photos.vehicles.${id}.image0`)} alt={t(`photos.vehicles.${id}.imageAlt`)} width={800} height={540} className="vm-vehicle-image" />}
           <span className="vm-vehicle-index" aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
         </div>
       }
-      actionsSlot={canEnquire ? (
+      actionsSlot={<div className="vm-vehicle-card-actions"><EditableText id="home.collection.priceCaption" as="p" className="vm-card-price-caption">{t("home.collection.priceCaption")}</EditableText><div className="vm-card-action-row">{canView && <EditableLink href={withBasePath(t(`vehicles.${id}.detailLink`))} data-preview-field-path={`vehicles.${id}.detailLink`} targetPage={carPageKey(id)} className="vm-card-detail-link"><EditableText id="vehicleDetails.viewDetailsLabel">{t("vehicleDetails.viewDetailsLabel")}</EditableText><Arrow /></EditableLink>}{canEnquire && (
         <EditableLink href={withBasePath(t(`cards.vehicles.${id}.enquiryLink`))}
           data-preview-field-path={`cards.vehicles.${id}.enquiryLink`} targetPage="contact" className="vm-vehicle-action">
-          <EditableText id="home.collection.enquireLabel">{t("home.collection.enquireLabel")}</EditableText><Arrow />
+          <EditableText id="home.collection.cardEnquireLabel">{t("home.collection.cardEnquireLabel")}</EditableText>
         </EditableLink>
-      ) : undefined}>
+      )}</div></div>}>
       <div className="vm-availability">
         <span className="vm-status-dot" aria-hidden="true" />
         <EditableText id={`cards.vehicles.${id}.availability`}>{t(`cards.vehicles.${id}.availability`)}</EditableText>

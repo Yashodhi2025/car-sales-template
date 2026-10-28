@@ -1,0 +1,78 @@
+import fs from 'node:fs';
+import {withBrowser} from './browser-session.mjs';
+const base=(process.argv[2]||'http://127.0.0.1:4173').replace(/\/$/,'');
+const source=JSON.parse(fs.readFileSync('src/data/site-data.json','utf8'));
+const manifest=JSON.parse(fs.readFileSync('fivora-template.json','utf8'));
+await withBrowser(async({send,evaluate,navigate,until,value,screenshot,check,sleep,checks,exceptions,consoleErrors})=>{
+ const mounted=new Set();const collect=async()=>{(await evaluate("[...document.querySelectorAll('[data-preview-field-path]')].map(e=>e.dataset.previewFieldPath)")).forEach(p=>mounted.add(p))};
+ if(!process.argv.includes('--lab-only')){
+ await navigate(base+'/services','services');await collect();
+ check('Six genuine Deneb service cards display editable demo services',await evaluate("document.querySelectorAll('.editable-service-card.vm-service-card').length===6 && document.querySelector('.vm-services-note').textContent.includes('Illustrative') && [...document.querySelectorAll('.service-card-price-wrap')].every(e=>getComputedStyle(e).display==='none')"));
+ await evaluate("document.querySelector('#offerings').scrollIntoView({behavior:'instant'})");await sleep(300);await screenshot('stage5-services-desktop.png');
+ check('All service links lead to Inventory or meaningful inquiry types',await evaluate("[...document.querySelectorAll('.vm-service-card a')].every(a=>a.getAttribute('href').startsWith('/inventory')||new URL(a.href).searchParams.has('inquiry'))"));
+ await evaluate("document.querySelectorAll('.vm-service-card a')[2].click()");await until("document.querySelector('#vm-contact-inquiry')?.value==='finance'");
+ check('Financing service preselects the inquiry type on Contact',true);await collect();
+ check('FAQ has six native accessible disclosures and mounted answers',await evaluate("document.querySelectorAll('.vm-faq-item').length===6 && [...document.querySelectorAll('.vm-faq-item')].every(e=>e.querySelector('summary')&&e.querySelector('.vm-faq-answer [data-preview-field-path]'))"));
+ await evaluate("document.querySelectorAll('.vm-faq-item summary')[1].focus()");await send('Page.bringToFront');
+ const enter=async()=>{await send('Input.dispatchKeyEvent',{type:'keyDown',key:'Enter',code:'Enter',windowsVirtualKeyCode:13,text:'\r'});await send('Input.dispatchKeyEvent',{type:'keyUp',key:'Enter',code:'Enter',windowsVirtualKeyCode:13})};
+ await enter();await sleep(400);check('Enter opens FAQ with focus retained',await evaluate("document.querySelectorAll('.vm-faq-item')[1].open && document.activeElement===document.querySelectorAll('.vm-faq-item summary')[1]"));
+ await enter();await sleep(400);check('Enter closes FAQ again',await evaluate("!document.querySelectorAll('.vm-faq-item')[1].open"));
+ await evaluate("document.querySelector('#faq').scrollIntoView({behavior:'instant'})");await screenshot('stage5-faq-desktop.png');
+ await navigate(base,'home');await collect();
+ check('Home keeps exactly one sample-review section without rating claims',await evaluate("document.querySelectorAll('.vm-testimonials-section').length===1 && document.querySelectorAll('.vm-review').length===3 && document.querySelector('.vm-sample-label').textContent.includes('NOT VERIFIED') && !document.querySelector('[data-preview-static=testimonial-star]')"));
+ await evaluate("Promise.all([...document.querySelectorAll('.vm-review img')].map(i=>{i.loading='eager';return i.decode()}))");
+ check('Existing stories now have editable automotive images',await evaluate("[...document.querySelectorAll('.vm-review-top img')].every(i=>i.naturalWidth>0)"));
+ await evaluate("document.querySelector('.vm-review-stack').focus()");await send('Input.dispatchKeyEvent',{type:'keyDown',key:'ArrowRight',code:'ArrowRight'});await sleep(450);
+ check('Story keyboard navigation selects the next card',await evaluate("document.querySelector('.vm-review.is-current').textContent.includes('Sophie M.')"));
+ await evaluate("document.querySelectorAll('.vm-story-dots button')[2].click()");check('Story pagination selects the requested slide',await evaluate("document.querySelector('.vm-review.is-current').textContent.includes('Daniel W.') && document.querySelectorAll('.vm-story-dots button')[2].getAttribute('aria-pressed')==='true'"));
+ await evaluate("document.querySelector('.vm-slider-controls button:last-child').click()");check('Review carousel wraps without autoplay',await evaluate("document.querySelector('.vm-review.is-current').textContent.includes('James R.') && [...document.querySelectorAll('.vm-review:not(.is-current)')].every(e=>e.inert)"));
+ await evaluate("document.querySelector('.vm-testimonials-section').scrollIntoView({behavior:'instant'})");await sleep(400);await screenshot('stage5-reviews-desktop.png');
+ for(const [id,v]of Object.entries(source.content.vehicles)){
+  check(`${id}: new fields are consistent and colours remain unconfirmed`,Object.hasOwn(v,'interiorColor')&&Object.hasOwn(v,'exteriorColor')&&v.interiorColor===''&&v.exteriorColor===''&&new URL(v.testDriveLink,base).searchParams.get('vehicle')===id);
+  await navigate(base+'/cars/'+id,'car-'+id);await collect();
+  check(`${id}: ten specs, two gallery photos, features, prices, availability and existing viewing form remain`,await evaluate("document.querySelectorAll('[data-spec]').length===10 && [...document.querySelectorAll('.vm-car-finish-grid dd')].every(e=>e.textContent.includes('Confirm with our team')) && document.querySelectorAll('.vm-gallery-slide').length===2 && document.querySelectorAll('.vm-car-features li').length>=2 && !!document.querySelector('.vm-car-price') && !!document.querySelector('.vm-car-status') && !!document.querySelector('.vm-viewing-form') && document.querySelectorAll('.vm-related-grid .vm-vehicle-card').length===3"));
+ }
+ await evaluate("document.querySelector('.vm-gallery-controls button:last-child').click()");await until("document.querySelector('.vm-gallery-slide.is-active').dataset.photoIndex==='1'");
+ await evaluate("document.querySelector('.vm-gallery-enlarge').click()");await until("!!document.querySelector('[role=dialog]')");await send('Input.dispatchKeyEvent',{type:'keyDown',key:'Escape',code:'Escape'});await until("!document.querySelector('[role=dialog]')");check('Existing gallery and enlarged viewer still work',true);
+ await evaluate("document.querySelector('.vm-car-test-drive').click()");await until("document.querySelector('#vm-contact-vehicle')?.value==='ferrari-458' && document.querySelector('#vm-contact-inquiry')?.value==='test-drive'");
+ check('Vehicle test-drive link preselects the exact car and inquiry type',true);
+ await evaluate("window.__drafts=[];document.addEventListener('click',e=>{const a=e.target.closest?.('a[href^=\"mailto:\"]');if(a){window.__drafts.push(a.href);e.preventDefault()}},true)");
+ await value('#vm-contact-name','Demo Driver');await value('#vm-contact-email','driver@example.com');await value('#vm-contact-message','Please confirm whether a test drive is possible.');
+ await evaluate("document.querySelector('.vm-contact-form').requestSubmit()");await sleep(100);
+ check('Test-drive draft includes request type and car without claiming a booking',await evaluate("new URL(window.__drafts.at(-1)).searchParams.get('body').includes('Test drive request') && new URL(window.__drafts.at(-1)).searchParams.get('body').includes('Ferrari 458') && document.querySelector('.vm-draft-status').textContent.includes('Nothing has been sent')"));
+ const leaves=[];const walk=(o,p='')=>{for(const[k,v]of Object.entries(o)){const path=p?p+'.'+k:k;if(v&&typeof v==='object')walk(v,path);else leaves.push(path)}};walk(source.content);
+ const newPaths=leaves.filter(p=>/^(services|faq)\./.test(p)||/^vehicles\.[^.]+\.(interiorColor|exteriorColor|testDriveLink)$/.test(p)||/^vehicleDetails\.(finishTitle|finishNote|testDriveLabel|testDriveNote|labels\.(interiorColor|exteriorColor))$/.test(p)||/^home\.reviews\.\d+\.image(Alt)?$/.test(p)||/^home\.testimonials\.(cardLabel|counterLabel|carouselLabel|storyLabel)$/.test(p)).filter(p=>!manifest.visualEditing.controlOnlyPaths.includes(p));
+ const missing=newPaths.filter(p=>!mounted.has(p));check(`All ${newPaths.length} new on-canvas fields mount across their source-backed pages (${missing.join(', ')})`,missing.length===0);
+ for(const [route,key,section] of [['/services','services','#offerings'],['/contact','contact','#faq'],['/','home','.vm-testimonials-section'],['/cars/porsche-panamera','car-porsche-panamera','.vm-car-specifications']]){
+  await navigate(base+route,key);await evaluate(`document.querySelector(${JSON.stringify(section)}).scrollIntoView({behavior:'instant'})`);
+  for(const width of [1440,768,390,320]){await send('Emulation.setDeviceMetricsOverride',{width,height:950,deviceScaleFactor:1,mobile:width<600});await sleep(80);check(`${key} stays within ${width}px with bounded icons`,await evaluate("document.documentElement.scrollWidth<=innerWidth && [...document.querySelectorAll('.vanguard svg')].every(s=>{const r=s.getBoundingClientRect();return r.width<=32&&r.height<=32})"));if(width===390)await screenshot(`stage5-${key}-mobile.png`)}
+ }
+ await send('Emulation.setEmulatedMedia',{features:[{name:'prefers-reduced-motion',value:'reduce'}]});check('Changed interactions respect reduced motion',await evaluate("getComputedStyle(document.querySelector('.vm-page')).animationName==='none'"));await send('Emulation.setEmulatedMedia',{features:[]});
+ await send('Emulation.setDeviceMetricsOverride',{width:1440,height:1000,deviceScaleFactor:1,mobile:false});
+ }
+ if(process.argv.includes('--lab')){
+  await send('Page.navigate',{url:'http://127.0.0.1:4174/__fivora_local_preview'});const frame="document.querySelector('iframe')",doc=frame+'.contentDocument';await until(`${doc}?.documentElement.getAttribute('data-gramm')==='false'`);
+  const route=async(url,key)=>{await evaluate(`${frame}.src=${JSON.stringify(url)}`);await until(`!!${doc}?.querySelector('[data-preview-page-key="${key}"]') && ${doc}?.documentElement.getAttribute('data-gramm')==='false'`)};
+  const post=async data=>{await evaluate(`${frame}.contentWindow.postMessage({type:'FIVORA_PREVIEW_SITE_DATA',siteData:${JSON.stringify(data)}},location.origin)`);await sleep(180)};
+  try{
+   await route('/services','services');const live=structuredClone(source);live.content.services.items[0].name='Live luxury service';live.content.services.items[0].description='A saved service description.';live.content.services.items[0].icon='heart';live.content.services.items[0].buttonLink='/inventory?brand=porsche';live.styles={'services.items.0.name':{color:'#00ffcc'}};await post(live);
+   check('Lab edits service titles, descriptions, icons, links and saved styles',await evaluate(`${doc}.querySelector('.service-card-title').textContent==='Live luxury service' && ${doc}.querySelector('.service-card-description').textContent==='A saved service description.' && ${doc}.querySelector('.vm-service-card [data-preview-icon]').getAttribute('data-preview-icon')==='heart' && ${doc}.querySelector('.vm-service-card a').getAttribute('href').includes('brand=porsche') && ${frame}.contentWindow.getComputedStyle(${doc}.querySelector('.service-card-title')).color==='rgb(0, 255, 204)'`));
+   live.content.services.items[0].name='';live.content.services.items[0].description=0;await post(live);check('Empty and zero service fields retain their real Deneb targets',await evaluate(`!!${doc}.querySelector('[data-preview-field-path="services.items.0.name"]') && ${doc}.querySelector('.service-card-description').textContent==='0'`));
+   await post(source);await route('/contact','contact');live.content.faq.items[1].question='Live FAQ question';live.content.faq.items[1].answer='A saved FAQ answer.';await post(live);
+   await evaluate(`${frame}.contentWindow.postMessage({type:'FIVORA_PREVIEW_FOCUS_PAGE',focusOnly:true,pageKey:'contact',pageRoute:'/contact',fieldPath:'faq.items.1.answer'},location.origin)`);await sleep(200);
+   check('Lab edits FAQ text and opens a closed answer for field focus',await evaluate(`${doc}.querySelectorAll('.vm-faq-item')[1].open && ${doc}.querySelectorAll('.vm-faq-item')[1].textContent.includes('A saved FAQ answer.')`));
+   live.content.faq.items[1].question='';live.content.faq.items[1].answer=false;await post(live);check('Blank and false FAQ fields keep their editable targets',await evaluate(`!!${doc}.querySelector('[data-preview-field-path="faq.items.1.question"]') && ${doc}.querySelector('[data-preview-field-path="faq.items.1.answer"]').textContent==='false'`));
+   await post(source);await route('/','home');live.content.home.reviews[1].name='Live sample name';live.content.home.reviews[1].quote='A saved illustrative quote.';live.content.home.reviews[1].image='/images/tesla.jpg';await post(live);
+   await evaluate(`${frame}.contentWindow.postMessage({type:'FIVORA_PREVIEW_FOCUS_PAGE',focusOnly:true,pageKey:'home',pageRoute:'/',fieldPath:'home.reviews.1.quote'},location.origin)`);await sleep(200);
+   if(process.argv.includes('--debug')) console.log(await evaluate(`({route:${frame}.contentWindow.location.pathname,active:${doc}.querySelector('.vm-review.is-current')?.getAttribute('data-preview-item-path'),quotes:[...${doc}.querySelectorAll('.vm-review blockquote')].map(e=>e.textContent),stored:${frame}.contentWindow.__FIVORA_PREVIEW_SITE_DATA__?.content.home.reviews[1],html:${doc}.querySelector('.vm-review.is-current')?.outerHTML.slice(0,250)})`));
+   await until(`${doc}.querySelector('.vm-review.is-current blockquote')?.textContent==='A saved illustrative quote.'`);
+   check('Lab edits and focuses inactive review content and images',await evaluate(`${doc}.querySelector('.vm-review.is-current').textContent.includes('Live sample name') && ${doc}.querySelector('.vm-review.is-current blockquote').textContent==='A saved illustrative quote.' && ${doc}.querySelector('.vm-review.is-current img').getAttribute('src').endsWith('tesla.jpg')`));
+   live.content.home.reviews[1].image='';live.content.home.reviews[1].quote='';await post(live);check('Empty review image and quote targets remain mounted',await evaluate(`!!${doc}.querySelector('[data-preview-field-path="home.reviews.1.image"]') && !!${doc}.querySelector('[data-preview-field-path="home.reviews.1.quote"]')`));
+   await post(source);await route('/cars/porsche-panamera','car-porsche-panamera');live.content.vehicles['porsche-panamera'].interiorColor='Demo charcoal';live.content.vehicles['porsche-panamera'].exteriorColor='Demo silver';live.content.vehicles['porsche-panamera'].testDriveLink='/contact?vehicle=porsche-panamera&inquiry=test-drive#contact';await post(live);
+   check('Lab updates newly added vehicle finish values and test-drive destinations',await evaluate(`${doc}.querySelector('[data-spec=interiorColor] dd').textContent==='Demo charcoal' && ${doc}.querySelector('[data-spec=exteriorColor] dd').textContent==='Demo silver' && ${doc}.querySelector('.vm-car-test-drive').getAttribute('href').includes('inquiry=test-drive')`));
+   live.content.vehicles['porsche-panamera'].interiorColor='';live.content.vehicles['porsche-panamera'].exteriorColor=0;await post(live);check('Empty and zero finish targets remain editable',await evaluate(`!!${doc}.querySelector('[data-preview-field-path="vehicles.porsche-panamera.interiorColor"]') && ${doc}.querySelector('[data-spec=exteriorColor] dd').textContent==='0'`));
+  }finally{await post(source)}
+ }
+ check(`No browser exceptions (${exceptions.join('; ')})`,exceptions.length===0);check(`No console errors (${consoleErrors.join('; ')})`,consoleErrors.length===0);
+ fs.writeFileSync('.qa/stage5-checks.json',JSON.stringify({checks,exceptions,consoleErrors},null,2));console.log(`Verified ${checks.length} focused Stage 5 checks.`);
+});

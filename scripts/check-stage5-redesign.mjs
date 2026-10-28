@@ -1,0 +1,55 @@
+import fs from 'node:fs';
+import {withBrowser} from './browser-session.mjs';
+const base=(process.argv[2]||'http://127.0.0.1:4173').replace(/\/$/,'');
+const source=JSON.parse(fs.readFileSync('src/data/site-data.json','utf8'));
+const manifest=JSON.parse(fs.readFileSync('fivora-template.json','utf8'));
+await withBrowser(async({send,evaluate,navigate,until,screenshot,value,sleep,check,checks,exceptions,consoleErrors})=>{
+ await navigate(base+'/services','services');
+ check('Services is a dedicated route with one shared header/footer',await evaluate("document.querySelectorAll('.vm-header').length===1 && document.querySelectorAll('.vm-footer').length===1 && !!document.querySelector('.vm-services-hero h1')"));
+ check('Services is linked in desktop, mobile and footer navigation',await evaluate("[...document.querySelectorAll('.vm-desktop-nav,.vm-mobile-menu nav,.vm-footer nav')].every(n=>n.querySelector('a[href=\"/services\"]'))"));
+ await evaluate("Promise.all([...document.querySelectorAll('.vm-services-page img')].map(i=>{i.loading='eager';return i.decode()}))");
+ check('Cinematic hero and all six Deneb service photographs load locally',await evaluate("document.querySelectorAll('.editable-service-card').length===6 && [...document.querySelectorAll('.vm-services-page img')].every(i=>i.naturalWidth>0)"));
+ check('Service layouts include split, offset and full-bleed compositions',await evaluate("getComputedStyle(document.querySelector('.vm-editorial-service-0')).display==='grid' && getComputedStyle(document.querySelector('.vm-editorial-service-1')).display==='block' && getComputedStyle(document.querySelector('.vm-editorial-service-3 .service-card-image-wrap')).position==='absolute'"));
+ check('All six offerings and demo wording are preserved',source.content.services.items.length===6 && await evaluate("document.querySelector('.vm-services-note').textContent.includes('Illustrative') && [...document.querySelectorAll('.service-card-price-wrap')].every(e=>getComputedStyle(e).display==='none')"));
+ await screenshot('services-redesign-hero.png');await evaluate("document.querySelector('.vm-services-hero .vm-button').click()");await sleep(900);
+ check('Hero scroll CTA reaches the editorial services',await evaluate("location.hash==='#offerings' && document.querySelector('#offerings').getBoundingClientRect().top<150"));
+ await screenshot('services-redesign-full.png',true);
+ await evaluate("document.querySelector('.vm-editorial-service-2 a').click()");await until("document.querySelector('#vm-contact-inquiry')?.value==='finance'");check('Service CTA still preselects the correct Contact inquiry',true);
+ check('FAQ retains six questions and native disclosures',await evaluate("document.querySelectorAll('.vm-faq-item').length===6 && [...document.querySelectorAll('.vm-faq-item')].every(d=>d.querySelector('summary')&&d.querySelector('.vm-faq-answer'))"));
+ await evaluate("document.querySelectorAll('.vm-faq-item summary')[1].focus()");await send('Page.bringToFront');await send('Input.dispatchKeyEvent',{type:'keyDown',key:'Enter',code:'Enter',windowsVirtualKeyCode:13,text:'\r'});await send('Input.dispatchKeyEvent',{type:'keyUp',key:'Enter',code:'Enter',windowsVirtualKeyCode:13});await sleep(400);
+ check('FAQ keyboard toggle has a visible active treatment',await evaluate("document.querySelectorAll('.vm-faq-item')[1].open && getComputedStyle(document.querySelectorAll('.vm-faq-item')[1],'::before').opacity==='1'"));
+ await evaluate("document.querySelector('#faq').scrollIntoView({behavior:'instant'})");await screenshot('faq-redesign.png');
+ await navigate(base+'/about','about');check('About retains storytelling and no longer duplicates Services',await evaluate("!!document.querySelector('.vm-about-story') && !!document.querySelector('.vm-about-journey') && !document.querySelector('.editable-service-card')"));
+ await navigate(base,'home');await evaluate("document.querySelector('#testimonials').scrollIntoView({behavior:'instant'});Promise.all([...document.querySelectorAll('.vm-review img')].map(i=>{i.loading='eager';return i.decode()}))");
+ check('One editorial carousel uses large imagery and explicit demo labels',await evaluate("document.querySelectorAll('.vm-testimonials-section').length===1 && document.querySelector('.vm-review-media').getBoundingClientRect().width>500 && document.querySelector('.vm-sample-label').textContent.includes('NOT VERIFIED')"));
+ await screenshot('testimonials-redesign.png');
+ await evaluate("document.querySelector('.vm-slider-controls button:last-child').click()");await sleep(450);check('Existing next control and active slide state work',await evaluate("document.querySelector('.vm-review.is-current').getAttribute('data-preview-item-path')==='home.reviews.1'"));
+ await evaluate("document.querySelector('.vm-review-stack').focus()");await send('Input.dispatchKeyEvent',{type:'keyDown',key:'ArrowRight',code:'ArrowRight'});await sleep(400);check('Existing keyboard carousel navigation works',await evaluate("document.querySelector('.vm-review.is-current').getAttribute('data-preview-item-path')==='home.reviews.2'"));
+ await evaluate("const e=document.querySelector('.vm-review-stack');e.dispatchEvent(new PointerEvent('pointerdown',{bubbles:true,pointerType:'touch',clientX:250,clientY:100}));e.dispatchEvent(new PointerEvent('pointerup',{bubbles:true,pointerType:'touch',clientX:100,clientY:102}))");await sleep(400);check('Touch swipe wraps to the first story',await evaluate("document.querySelector('.vm-review.is-current').getAttribute('data-preview-item-path')==='home.reviews.0'"));
+ for(const[route,key,anchor]of [['/services','services','#offerings'],['/','home','#testimonials'],['/contact','contact','#faq']]){
+  await navigate(base+route,key);
+  for(const width of [1440,1024,768,390,320]){await send('Emulation.setDeviceMetricsOverride',{width,height:950,deviceScaleFactor:1,mobile:width<600});await evaluate(`document.querySelector('${anchor}').scrollIntoView({behavior:'instant'})`);await sleep(120);check(`${key} is responsive at ${width}px with bounded icons`,await evaluate("document.documentElement.scrollWidth<=innerWidth && [...document.querySelectorAll('.vanguard svg')].every(s=>{const r=s.getBoundingClientRect();return r.width<=32&&r.height<=32})"));if(width===390)await screenshot(`redesign-${key}-mobile.png`)}
+ }
+ await evaluate("document.querySelector('.vm-mobile-menu summary').click();document.querySelector('.vm-mobile-menu a[href=\"/services\"]').click()");await until("!!document.querySelector('[data-preview-page-key=services]')");check('Mobile Services navigation works and closes the menu',await evaluate("!document.querySelector('.vm-mobile-menu').open"));
+ await send('Emulation.setEmulatedMedia',{features:[{name:'prefers-reduced-motion',value:'reduce'}]});check('Services entrance respects reduced motion',await evaluate("getComputedStyle(document.querySelector('.vm-services-hero-photo img')).animationName==='none'"));await send('Emulation.setEmulatedMedia',{features:[]});
+ await send('Emulation.setDeviceMetricsOverride',{width:1440,height:1000,deviceScaleFactor:1,mobile:false});
+ if(process.argv.includes('--lab')){
+  await send('Page.navigate',{url:'http://127.0.0.1:4174/__fivora_local_preview'});const f="document.querySelector('iframe')",d=f+'.contentDocument';await until(`${d}?.documentElement.getAttribute('data-gramm')==='false'`);
+  const route=async(url,key)=>{await evaluate(`${f}.src=${JSON.stringify(url)}`);await until(`!!${d}?.querySelector('[data-preview-page-key="${key}"]') && ${d}?.documentElement.getAttribute('data-gramm')==='false'`)};
+  const post=async data=>{await evaluate(`${f}.contentWindow.postMessage({type:'FIVORA_PREVIEW_SITE_DATA',siteData:${JSON.stringify(data)}},location.origin)`);await sleep(180)};
+  try{
+   await route('/services','services');const live=structuredClone(source);live.content.services.heroTitle='Live cinematic heading';live.content.services.heroImage='/images/bmw.jpg';live.content.services.items[2].imageUrl='/images/tesla.jpg';live.content.services.items[2].kicker='LIVE EDITORIAL LABEL';live.styles={'services.heroTitle':{color:'#00ffcc'}};await post(live);
+   await until(`${d}.querySelector('.vm-services-hero-title').textContent==='Live cinematic heading'`);
+   check('Lab edits Services hero, editorial imagery, labels and saved styles',await evaluate(`${d}.querySelector('.vm-services-hero-photo img').getAttribute('src').endsWith('bmw.jpg') && ${d}.querySelector('.vm-editorial-service-2 img').getAttribute('src').endsWith('tesla.jpg') && ${d}.querySelector('.vm-editorial-service-2').textContent.includes('LIVE EDITORIAL LABEL') && ${f}.contentWindow.getComputedStyle(${d}.querySelector('.vm-services-hero-title')).color==='rgb(0, 255, 204)'`));
+   check('All Services source fields have real targets or explicit controls',await evaluate(`${JSON.stringify(manifest.editorSchema.sections.filter(s=>s.pageKey==='services').flatMap(s=>s.type==='collection'?s.items.flatMap(i=>i.fields.filter(v=>!manifest.visualEditing.controlOnlyPaths.includes(s.path+'.'+i.key+'.'+v.key)).map(v=>s.path+'.'+i.key+'.'+v.key)):s.fields.filter(v=>!manifest.visualEditing.controlOnlyPaths.includes(s.path+'.'+v.key)).map(v=>s.path+'.'+v.key)))}.every(p=>${d}.querySelector('[data-preview-field-path="'+p+'"]'))`));
+   live.content.services.heroTitle=0;live.content.services.items[0].imageUrl='';await post(live);check('Zero hero text and blank service images retain editor targets',await evaluate(`${d}.querySelector('.vm-services-hero-title').textContent==='0' && !!${d}.querySelector('[data-preview-field-path="services.items.0.imageUrl"]')`));await post(source);
+   await route('/','home');for(const index of [1,2,0]){
+    await evaluate(`${f}.contentWindow.postMessage({type:'FIVORA_PREVIEW_FOCUS_PAGE',pageKey:'home',pageRoute:'/',focusOnly:true,fieldPath:'home.reviews.${index}.quote'},location.origin)`);await until(`${d}.querySelector('.vm-review.is-current')?.getAttribute('data-preview-item-path')==='home.reviews.${index}'`);
+    check(`Lab can reveal and select story ${index+1} without inert/hidden targets`,await evaluate(`!${d}.querySelector('.vm-review.is-current').inert && ${d}.querySelector('.vm-review.is-current').getAttribute('aria-hidden')==='false'`));
+   }
+   await evaluate(`${f}.contentWindow.eval("window.postMessage({type:'DENEB_PREVIEW_FOCUS_PAGE',focusOnly:true,pageKey:'home',fieldPath:'home.reviews[2].image'},location.origin)")`);await until(`${d}.querySelector('.vm-review.is-current')?.getAttribute('data-preview-item-path')==='home.reviews.2'`);check('Same-origin relayed editor focus reveals inactive imagery',true);
+  }finally{await post(source)}
+ }
+ check(`No browser exceptions (${exceptions.join('; ')})`,exceptions.length===0);check(`No console errors (${consoleErrors.join('; ')})`,consoleErrors.length===0);
+ fs.writeFileSync('.qa/stage5-redesign-checks.json',JSON.stringify({checks,exceptions,consoleErrors},null,2));console.log(`Verified ${checks.length} focused redesign checks.`);
+});

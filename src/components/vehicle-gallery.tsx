@@ -1,11 +1,13 @@
 "use client";
 
-import { useEffect, useRef, useState, type KeyboardEvent } from "react";
+import { useCallback, useEffect, useRef, useState, type KeyboardEvent } from "react";
 import { createPortal } from "react-dom";
-import { EditableDialog, EditableImage, EditableText, withBasePath } from "@deneb-ui/ui";
+import { EditableDialog, EditableText, withBasePath } from "@deneb-ui/ui";
+import { VanguardImage } from "./vanguard-image";
 import { useSiteContent, type VehicleId } from "@/lib/site-content";
 import { vehiclePhotos } from "@/lib/vehicles";
 import { Arrow } from "./vanguard-arrow";
+import { useVehiclePhotoFocus } from "./use-vehicle-photo-focus";
 
 /** Vanguard-only gallery composition; editable UI remains the installed Deneb UI. */
 export function VehicleGallery({ vehicleId }: { vehicleId: VehicleId }) {
@@ -18,6 +20,8 @@ export function VehicleGallery({ vehicleId }: { vehicleId: VehicleId }) {
   const viewer = useRef<HTMLDivElement>(null);
   const touch = useRef<{ x: number; y: number } | null>(null);
   const request = useRef(0);
+  const focusPhoto = useCallback((index: number) => { request.current++; setSelected(index); }, []);
+  useVehiclePhotoFocus(vehicleId, photos.length, focusPhoto);
 
   function select(index: number) {
     const next = (index + photos.length) % photos.length;
@@ -71,7 +75,7 @@ export function VehicleGallery({ vehicleId }: { vehicleId: VehicleId }) {
         {photos.map((photo, index) => (
           <figure key={photo.imagePath} className={`vm-gallery-slide ${index === active ? "is-active" : ""}`} aria-hidden={index !== active} inert={index !== active} data-photo-index={index}>
             <div ref={node => { imageRefs.current[index] = node?.querySelector("img") || null; }}>
-              <EditableImage id={photo.imagePath} src={photo.image} alt={photo.imageAlt} width={1800} height={1100}
+              <VanguardImage id={photo.imagePath} src={photo.image} alt={photo.imageAlt} width={1800} height={1100}
                 loading={index === 0 ? "eager" : "lazy"} fetchPriority={index === 0 ? "high" : "auto"} draggable={false} />
             </div>
             <figcaption><EditableText id={photo.captionPath}>{photo.caption}</EditableText></figcaption>
@@ -91,7 +95,7 @@ export function VehicleGallery({ vehicleId }: { vehicleId: VehicleId }) {
           {photos.map((photo, index) => (
             <button key={photo.imagePath} type="button" className={index === active ? "is-active" : ""} onClick={() => select(index)} aria-pressed={index === active}
               aria-label={`${t("vehicleDetails.gallery.thumbnailLabel")} ${index + 1}: ${photo.caption}`}>
-              <EditableImage id={photo.imagePath} src={photo.image} alt="" width={180} height={115} loading="lazy" />
+              <VanguardImage id={photo.imagePath} src={photo.image} alt="" width={180} height={115} loading="lazy" />
               <EditableText id={photo.captionPath}>{photo.caption}</EditableText>
             </button>
           ))}
@@ -111,7 +115,7 @@ export function VehicleGallery({ vehicleId }: { vehicleId: VehicleId }) {
             <header className="vm-viewer-header"><div><h2 id="vehicle-viewer-title"><EditableText id={`cards.vehicles.${vehicleId}.name`}>{t(`cards.vehicles.${vehicleId}.name`)}</EditableText></h2><p>{String(active + 1).padStart(2, "0")} / {String(photos.length).padStart(2, "0")}</p></div>
               <button type="button" className="vm-viewer-close vm-icon-button" aria-label={t("vehicleDetails.gallery.closeLabel")} onClick={() => setExpanded(false)}><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true"><path d="m6 6 12 12M6 18 18 6" /></svg></button>
             </header>
-            <div className="vm-viewer-image"><EditableImage key={photos[active].imagePath} id={photos[active].imagePath} src={photos[active].image} alt={photos[active].imageAlt} width={1800} height={1200} />
+            <div className="vm-viewer-image"><VanguardImage key={photos[active].imagePath} id={photos[active].imagePath} src={photos[active].image} alt={photos[active].imageAlt} width={1800} height={1200} />
               <button type="button" className="vm-gallery-arrow vm-viewer-prev" aria-label={t("vehicleDetails.gallery.previousLabel")} onClick={() => select(active - 1)} disabled={photos.length < 2}><Arrow back /></button>
               <button type="button" className="vm-gallery-arrow vm-viewer-next" aria-label={t("vehicleDetails.gallery.nextLabel")} onClick={() => select(active + 1)} disabled={photos.length < 2}><Arrow /></button>
             </div>

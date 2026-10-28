@@ -1,5 +1,6 @@
 import '../fonts/deneb-fonts.css';
 import './globals.css';
+import './premium.css';
 import { SiteProviders } from "@/components/site-providers";
 import { VanguardShell } from "@/components/vanguard-shell";
 import initialSiteData from "@/data/site-data.json";

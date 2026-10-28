@@ -18,6 +18,7 @@
       "pages": [
         "home",
         "inventory",
+        "services",
         "about",
         "contact",
         "car-porsche-panamera",
@@ -47,6 +48,7 @@
     "requiredPages": [
       "home",
       "inventory",
+      "services",
       "about",
       "contact",
       "car-porsche-panamera",
@@ -65,19 +67,21 @@
       "websiteTitle": "VANGUARD MOTORS",
       "shortDescription": "For the love of the drive. An independent destination for exceptional automobiles and a more personal way to find yours.",
       "logoUrl": "/images/vanguard-mark.svg",
-      "headerCtaLabel": "Visit our showroom",
-      "headerCtaLink": "/contact",
+      "headerCtaLabel": "Book a viewing",
+      "headerCtaLink": "/contact?inquiry=viewing#contact",
       "copyright": "© 2026 Vanguard Motors. All rights reserved.",
       "demoNotice": "Concept dealership. Inventory, prices, reviews and contact details are illustrative.",
       "navLabels": {
         "home": "Home",
         "collection": "Inventory",
+        "services": "Services",
         "experience": "About us",
         "contact": "Contact"
       },
       "navLinks": {
         "home": "/",
         "collection": "/inventory",
+        "services": "/services",
         "experience": "/about",
         "contact": "/contact"
       },
@@ -88,7 +92,10 @@
       },
       "footerExplore": "Discover Vanguard",
       "footerContact": "Start a conversation",
-      "backToTop": "Back to top"
+      "backToTop": "Back to top",
+      "searchLabel": "Find your next car",
+      "searchPlaceholder": "Search...",
+      "currencyCode": "LKR"
     },
     "home": {
       "hero": {
@@ -98,7 +105,7 @@
         "description": "Exceptional cars. Considered service. Discover a collection for those who believe the journey should be as remarkable as the destination.",
         "image": "/images/hero-porsche.jpg",
         "imageAlt": "Black Porsche Panamera on an open road at dusk",
-        "primaryLabel": "Explore the collection",
+        "primaryLabel": "Browse inventory",
         "primaryLink": "/inventory",
         "secondaryLabel": "The Vanguard approach",
         "secondaryLink": "/about",
@@ -110,14 +117,15 @@
       "search": {
         "eyebrow": "YOUR NEXT CHAPTER STARTS HERE",
         "title": "Find your exceptional.",
-        "keywordLabel": "Search the collection",
+        "keywordLabel": "Vehicle search",
         "keywordPlaceholder": "Model or keyword",
-        "brandLabel": "Preferred marque",
-        "allBrands": "All marques",
-        "bodyLabel": "Your driving style",
+        "brandLabel": "Brand",
+        "allBrands": "All brands",
+        "bodyLabel": "Body style",
         "allBodies": "All body styles",
         "buttonLabel": "Find my car",
-        "resetLabel": "Clear selection"
+        "resetLabel": "Reset filters",
+        "description": "Choose your marque and driving style. Find the cars that feel right for you."
       },
       "collection": {
         "eyebrow": "HANDPICKED. NEVER ORDINARY.",
@@ -128,7 +136,9 @@
         "resultsLabel": "featured vehicles",
         "emptyTitle": "Your next car is still out there.",
         "emptyDescription": "Try a different marque, body style or keyword to explore more of the collection.",
-        "allLink": "/inventory"
+        "allLink": "/inventory",
+        "priceCaption": "Demo asking price",
+        "cardEnquireLabel": "Enquire"
       },
       "brands": {
         "eyebrow": "ICONS OF AUTOMOTIVE EXCELLENCE",
@@ -179,28 +189,38 @@
       "testimonials": {
         "eyebrow": "THE PEOPLE BEHIND THE JOURNEYS",
         "title": "The drive is only\npart of the story.",
-        "sampleLabel": "ILLUSTRATIVE CUSTOMER STORIES",
+        "sampleLabel": "DEMONSTRATION REVIEWS · NOT VERIFIED ENDORSEMENTS",
         "previousLabel": "Previous customer story",
-        "nextLabel": "Next customer story"
+        "nextLabel": "Next customer story",
+        "cardLabel": "Illustrative customer story",
+        "carouselLabel": "Demonstration customer stories",
+        "storyLabel": "Show customer story",
+        "counterLabel": "Story"
       },
       "reviews": [
         {
           "quote": "From the first conversation to the moment I drove away, every detail felt personal. Exactly how finding your next car should be.",
           "name": "James R.",
           "detail": "Porsche owner · Sample review",
-          "initials": "JR"
+          "initials": "JR",
+          "image": "/images/hero-porsche.jpg",
+          "imageAlt": "Illustrative automotive image for a sample customer story; not a customer portrait"
         },
         {
           "quote": "Time to explore, honest answers and a car that makes every journey feel special. A refreshingly considered experience.",
           "name": "Sophie M.",
           "detail": "Mercedes-Benz owner · Sample review",
-          "initials": "SM"
+          "initials": "SM",
+          "image": "/images/mercedes.jpg",
+          "imageAlt": "Illustrative automotive image for a sample customer story; not a customer portrait"
         },
         {
           "quote": "A shared enthusiasm for great cars made all the difference. The experience was as memorable as the first drive home.",
           "name": "Daniel W.",
           "detail": "BMW owner · Sample review",
-          "initials": "DW"
+          "initials": "DW",
+          "image": "/images/bmw.jpg",
+          "imageAlt": "Illustrative automotive image for a sample customer story; not a customer portrait"
         }
       ],
       "contact": {
@@ -219,6 +239,19 @@
         "description": "Tell us what moves you. We will help you find the car that feels like yours.",
         "buttonLabel": "Meet Vanguard",
         "buttonLink": "/contact"
+      },
+      "servicesPreview": {
+        "eyebrow": "BEYOND THE COLLECTION",
+        "title": "Considered service.\nEvery step of the way.",
+        "description": "From finding your next car to planning a viewing, start with a clear conversation. Explore our example services.",
+        "buttonLabel": "Explore all services",
+        "buttonLink": "/services",
+        "demoNote": "Illustrative services. Availability and arrangements must be confirmed with the dealership.",
+        "summaries": {
+          "0": "Explore the collection and discuss the details that matter before taking the next step.",
+          "3": "Get closer to your next car. Ask about a viewing or test drive, subject to confirmation.",
+          "4": "A particular model in mind? Share your wish list and discuss the possibilities with the team."
+        }
       }
     },
     "cards": {
@@ -228,10 +261,10 @@
           "meta": "2018 · Grand touring",
           "details": "4.0 V8 · Sport Chrono · AWD",
           "badge": "SELECTED BY VANGUARD",
-          "mileage": "32,400 miles",
+          "mileage": "52,100 km",
           "fuel": "Petrol",
           "transmission": "Automatic",
-          "price": "£64,950",
+          "price": "LKR 69,500,000",
           "specs": {
             "mileage": {
               "icon": "gauge"
@@ -251,10 +284,10 @@
           "meta": "2019 · Performance saloon",
           "details": "4.4 V8 TwinPower Turbo · M xDrive",
           "badge": "PURE DRIVING PLEASURE",
-          "mileage": "26,800 miles",
+          "mileage": "43,100 km",
           "fuel": "Petrol",
           "transmission": "Automatic",
-          "price": "£49,950",
+          "price": "LKR 59,500,000",
           "specs": {
             "mileage": {
               "icon": "gauge"
@@ -274,10 +307,10 @@
           "meta": "2020 · Sports coupé",
           "details": "4.0 V8 Biturbo · AMG Speedshift",
           "badge": "AN UNMISTAKABLE PRESENCE",
-          "mileage": "18,600 miles",
+          "mileage": "29,900 km",
           "fuel": "Petrol",
           "transmission": "Automatic",
-          "price": "£79,950",
+          "price": "LKR 89,500,000",
           "specs": {
             "mileage": {
               "icon": "gauge"
@@ -297,10 +330,10 @@
           "meta": "2017 · Performance estate",
           "details": "4.0 TFSI · Quattro · Tiptronic",
           "badge": "UNDERSTATED EXCELLENCE",
-          "mileage": "29,200 miles",
+          "mileage": "47,000 km",
           "fuel": "Petrol",
           "transmission": "Automatic",
-          "price": "£46,950",
+          "price": "LKR 49,500,000",
           "specs": {
             "mileage": {
               "icon": "gauge"
@@ -320,10 +353,10 @@
           "meta": "2021 · Electric saloon",
           "details": "Dual Motor · AWD · Long Range",
           "badge": "A DIFFERENT KIND OF ENERGY",
-          "mileage": "21,600 miles",
+          "mileage": "34,800 km",
           "fuel": "Electric",
           "transmission": "Automatic",
-          "price": "£32,450",
+          "price": "LKR 28,500,000",
           "specs": {
             "mileage": {
               "icon": "gauge"
@@ -343,10 +376,10 @@
           "meta": "2016 · Touring SUV",
           "details": "1.6 i-DTEC · AWD · EX",
           "badge": "READY FOR A WIDER HORIZON",
-          "mileage": "44,200 miles",
+          "mileage": "71,100 km",
           "fuel": "Diesel",
           "transmission": "Automatic",
-          "price": "£19,950",
+          "price": "LKR 16,800,000",
           "specs": {
             "mileage": {
               "icon": "gauge"
@@ -366,10 +399,10 @@
           "meta": "2018 · Performance coupe",
           "details": "6.2 V8 · Six-speed manual · SS",
           "badge": "AN ANALOGUE KIND OF THRILL",
-          "mileage": "24,900 miles",
+          "mileage": "40,100 km",
           "fuel": "Petrol",
           "transmission": "Manual",
-          "price": "£42,950",
+          "price": "LKR 45,000,000",
           "specs": {
             "mileage": {
               "icon": "gauge"
@@ -389,10 +422,10 @@
           "meta": "2014 · Supercar",
           "details": "4.5 V8 · F1 dual-clutch · Speciale",
           "badge": "FOR THE LOVE OF THE DRIVE",
-          "mileage": "12,800 miles",
+          "mileage": "20,600 km",
           "fuel": "Petrol",
           "transmission": "Automatic",
-          "price": "£239,950",
+          "price": "LKR 225,000,000",
           "specs": {
             "mileage": {
               "icon": "gauge"
@@ -411,35 +444,51 @@
       "brands": {
         "porsche": {
           "displayName": "PORSCHE",
-          "countLabel": "Precision. Passion. Porsche."
+          "countLabel": "Precision. Passion. Porsche.",
+          "image": "/images/brands/porsche.png",
+          "imageAlt": "PORSCHE brand logo"
         },
         "bmw": {
           "displayName": "BMW",
-          "countLabel": "The joy of the drive."
+          "countLabel": "The joy of the drive.",
+          "image": "/images/brands/bmw-symbol.svg",
+          "imageAlt": "BMW brand logo"
         },
         "mercedes": {
           "displayName": "Mercedes-Benz",
-          "countLabel": "An unmistakable presence."
+          "countLabel": "An unmistakable presence.",
+          "image": "/images/brands/mercedes-symbol.svg",
+          "imageAlt": "Mercedes-Benz brand logo"
         },
         "audi": {
           "displayName": "Audi",
-          "countLabel": "Progress through design."
+          "countLabel": "Progress through design.",
+          "image": "/images/brands/audi-symbol.svg",
+          "imageAlt": "Audi brand logo"
         },
         "tesla": {
           "displayName": "Tesla",
-          "countLabel": "A new kind of momentum."
+          "countLabel": "A new kind of momentum.",
+          "image": "/images/brands/tesla-symbol.svg",
+          "imageAlt": "Tesla brand logo"
         },
         "honda": {
           "displayName": "Honda",
-          "countLabel": "Room for every possibility."
+          "countLabel": "Room for every possibility.",
+          "image": "/images/brands/honda-symbol.svg",
+          "imageAlt": "Honda brand logo"
         },
         "chevrolet": {
           "displayName": "Chevrolet",
-          "countLabel": "Character without compromise."
+          "countLabel": "Character without compromise.",
+          "image": "/images/brands/chevrolet-symbol.svg",
+          "imageAlt": "Chevrolet brand logo"
         },
         "ferrari": {
           "displayName": "Ferrari",
-          "countLabel": "Passion in its purest form."
+          "countLabel": "Passion in its purest form.",
+          "image": "/images/brands/ferrari-symbol.svg",
+          "imageAlt": "Ferrari brand logo"
         }
       },
       "bodyTypes": {
@@ -573,42 +622,42 @@
       "porsche-panamera": {
         "brand": "porsche",
         "bodyType": "sedan",
-        "priceValue": 64950
+        "priceValue": 69500000
       },
       "bmw-m5": {
         "brand": "bmw",
         "bodyType": "sedan",
-        "priceValue": 49950
+        "priceValue": 59500000
       },
       "mercedes-amg": {
         "brand": "mercedes",
         "bodyType": "coupe",
-        "priceValue": 79950
+        "priceValue": 89500000
       },
       "audi-rs6": {
         "brand": "audi",
         "bodyType": "estate",
-        "priceValue": 46950
+        "priceValue": 49500000
       },
       "tesla-model-3": {
         "brand": "tesla",
         "bodyType": "sedan",
-        "priceValue": 32450
+        "priceValue": 28500000
       },
       "honda-crv": {
         "brand": "honda",
         "bodyType": "suv",
-        "priceValue": 19950
+        "priceValue": 16800000
       },
       "chevrolet-camaro": {
         "brand": "chevrolet",
         "bodyType": "coupe",
-        "priceValue": 42950
+        "priceValue": 45000000
       },
       "ferrari-458": {
         "brand": "ferrari",
         "bodyType": "coupe",
-        "priceValue": 239950
+        "priceValue": 225000000
       }
     },
     "showrooms": {
@@ -622,8 +671,8 @@
       "eyebrow": "THE PEOPLE BEHIND THE DRIVE",
       "title": "A shared passion.\nA considered approach.",
       "description": "We believe the best cars bring people together. Vanguard is an independent destination for distinctive automobiles and a more personal ownership journey.",
-      "heroImage": "/images/hero-porsche.jpg",
-      "heroImageAlt": "Porsche Panamera on an open road",
+      "heroImage": "/images/gallery/mercedes-amg-reference.jpg",
+      "heroImageAlt": "Mercedes-AMG in a tree-lined automotive setting; illustrative brand photography",
       "imageCaption": "A LOVE OF THE DRIVE. A RESPECT FOR THE JOURNEY.",
       "storyEyebrow": "OUR POINT OF VIEW",
       "storyTitle": "The car matters.\nSo does the conversation.",
@@ -679,7 +728,7 @@
         "image": "/images/mercedes.jpg",
         "imageAlt": "Mercedes-AMG GT, a distinctive performance coupe",
         "imageCaption": "CHARACTER IN EVERY CURVE.",
-        "demoNote": "Demonstration inventory. Prices, specifications and availability are illustrative."
+        "demoNote": "Demonstration inventory. LKR prices are illustrative examples, not current market valuations. Specifications, mileage and availability must be confirmed."
       },
       "filters": {
         "title": "Refine your search",
@@ -688,7 +737,7 @@
         "searchPlaceholder": "Try Porsche, V8 or electric",
         "brandLabel": "Marque",
         "bodyLabel": "Body style",
-        "priceLabel": "Price range (GBP)",
+        "priceLabel": "Price range (LKR)",
         "minLabel": "From",
         "maxLabel": "To",
         "minPlaceholder": "No minimum",
@@ -734,7 +783,7 @@
     "vehicleDetails": {
       "collectionLabel": "THE VANGUARD COLLECTION",
       "backLabel": "Back to inventory",
-      "viewDetailsLabel": "Explore this vehicle",
+      "viewDetailsLabel": "View details",
       "overviewEyebrow": "A CLOSER CONNECTION",
       "overviewTitle": "A car with character.",
       "specsEyebrow": "THE DETAILS THAT MATTER",
@@ -742,7 +791,7 @@
       "specsNote": "Details reflect the supplied demonstration listing. Unconfirmed specifications should be checked with our team before purchase.",
       "featuresTitle": "Equipment & highlights.",
       "featuresNote": "Highlights from the supplied listing. Ask our team to confirm the complete equipment specification.",
-      "priceLabel": "Offered at",
+      "priceLabel": "Demo asking price",
       "availabilityLabel": "Availability",
       "viewingLabel": "Request a viewing",
       "inquiryHint": "A personal conversation is the best place to start. Our team can help you explore this vehicle and confirm the details.",
@@ -761,7 +810,9 @@
         "transmission": "Transmission",
         "drivetrain": "Drivetrain",
         "power": "Power output",
-        "body": "Body style"
+        "body": "Body style",
+        "interiorColor": "Interior colour",
+        "exteriorColor": "Exterior colour"
       },
       "bodyStyles": {
         "sedan": "Saloon",
@@ -780,6 +831,30 @@
         "keyboardHint": "Use the arrow keys to browse. Escape closes the full-screen viewer.",
         "photoNote": "Demonstration and model-reference photography. Trim, finish and model year may differ; request actual stock photographs before purchase.",
         "openImageLabel": "Open full-size photograph"
+      },
+      "finishTitle": "Finish & cabin",
+      "finishNote": "Colours are not supplied in the demonstration listing. Ask the team to confirm; photographs may show a different finish.",
+      "testDriveLabel": "Ask about a test drive",
+      "testDriveNote": "Test drives are requests only. Confirm availability and any requirements with the team.",
+      "dealerLabel": "Contact the dealer",
+      "dealerLink": "/contact",
+      "specIcons": {
+        "year": "calendar",
+        "mileage": "gauge",
+        "fuel": "fuel",
+        "transmission": "settings",
+        "engine": "settings",
+        "drivetrain": "car",
+        "power": "zap",
+        "body": "car"
+      },
+      "explorer": {
+        "eyebrow": "ANOTHER PERSPECTIVE",
+        "title": "Explore the details.",
+        "description": "Drag, swipe or use the arrows to explore the available vehicle photographs. Select a view to take a closer look.",
+        "notice": "Multi-angle demo gallery, not a 360° vehicle scan. These are illustrative and model-reference photographs; trim and finish can differ. Ask the team for actual stock images.",
+        "hint": "Drag or swipe to change photograph",
+        "viewLabel": "View"
       }
     },
     "vehicles": {
@@ -797,7 +872,10 @@
           {
             "name": "AWD"
           }
-        ]
+        ],
+        "interiorColor": "",
+        "exteriorColor": "",
+        "testDriveLink": "/contact?vehicle=porsche-panamera&inquiry=test-drive#contact"
       },
       "bmw-m5": {
         "description": "A distinctive interpretation of the performance saloon. The supplied specification pairs a 4.4 V8 TwinPower Turbo engine with M xDrive, with the understated presence that makes this M5 stand apart.",
@@ -813,7 +891,10 @@
           {
             "name": "M xDrive"
           }
-        ]
+        ],
+        "interiorColor": "",
+        "exteriorColor": "",
+        "testDriveLink": "/contact?vehicle=bmw-m5&inquiry=test-drive#contact"
       },
       "mercedes-amg": {
         "description": "A purposeful silhouette and a compelling place in the collection. This AMG GT is listed with a 4.0 V8 Biturbo engine and AMG Speedshift transmission. Explore its character in a personal viewing.",
@@ -829,7 +910,10 @@
           {
             "name": "AMG Speedshift"
           }
-        ]
+        ],
+        "interiorColor": "",
+        "exteriorColor": "",
+        "testDriveLink": "/contact?vehicle=mercedes-amg&inquiry=test-drive#contact"
       },
       "audi-rs6": {
         "description": "An estate with a performance-led character. The listed 4.0 TFSI, Quattro and Tiptronic specification gives this RS6 Avant its own distinctive place in the Vanguard collection.",
@@ -845,7 +929,10 @@
           {
             "name": "Tiptronic"
           }
-        ]
+        ],
+        "interiorColor": "",
+        "exteriorColor": "",
+        "testDriveLink": "/contact?vehicle=audi-rs6&inquiry=test-drive#contact"
       },
       "tesla-model-3": {
         "description": "A fresh perspective on the everyday drive. This Model 3 is listed in Long Range specification, with Dual Motor and AWD configuration. Speak with our team about its individual history and condition.",
@@ -864,7 +951,10 @@
           {
             "name": "Long Range"
           }
-        ]
+        ],
+        "interiorColor": "",
+        "exteriorColor": "",
+        "testDriveLink": "/contact?vehicle=tesla-model-3&inquiry=test-drive#contact"
       },
       "honda-crv": {
         "description": "Room for a wider horizon. This CR-V EX brings a touring SUV to the collection, with a listed 1.6 i-DTEC engine and AWD configuration. Arrange a conversation to explore the details that matter to you.",
@@ -880,7 +970,10 @@
           {
             "name": "EX specification"
           }
-        ]
+        ],
+        "interiorColor": "",
+        "exteriorColor": "",
+        "testDriveLink": "/contact?vehicle=honda-crv&inquiry=test-drive#contact"
       },
       "chevrolet-camaro": {
         "description": "An expressive coupe with an analogue spirit. Its supplied specification lists a 6.2 V8, six-speed manual transmission and SS designation. A distinctive choice for someone who enjoys being part of the drive.",
@@ -896,7 +989,10 @@
           {
             "name": "SS specification"
           }
-        ]
+        ],
+        "interiorColor": "",
+        "exteriorColor": "",
+        "testDriveLink": "/contact?vehicle=chevrolet-camaro&inquiry=test-drive#contact"
       },
       "ferrari-458": {
         "description": "An unmistakable silhouette and a special place in the collection. The supplied listing describes a 4.5 V8, F1 dual-clutch transmission and Speciale specification. This demonstration vehicle is currently marked reserved.",
@@ -912,7 +1008,10 @@
           {
             "name": "Speciale specification"
           }
-        ]
+        ],
+        "interiorColor": "",
+        "exteriorColor": "",
+        "testDriveLink": "/contact?vehicle=ferrari-458&inquiry=test-drive#contact"
       }
     },
     "requests": {
@@ -976,6 +1075,26 @@
         {
           "key": "viewing",
           "label": "Planning a visit"
+        },
+        {
+          "key": "test-drive",
+          "label": "Test drive request"
+        },
+        {
+          "key": "trade-in",
+          "label": "Trade-in discussion"
+        },
+        {
+          "key": "finance",
+          "label": "Financing guidance"
+        },
+        {
+          "key": "sourcing",
+          "label": "Vehicle sourcing"
+        },
+        {
+          "key": "after-sales",
+          "label": "After-sales question"
         }
       ],
       "errors": {
@@ -1002,6 +1121,188 @@
     "motion": {
       "enabled": true,
       "durationMs": 750
+    },
+    "services": {
+      "eyebrow": "THOUGHTFUL SUPPORT",
+      "title": "More than the car.\nA considered experience.",
+      "description": "A conversation shaped around your next move. Explore these example services and ask the team what is available.",
+      "demoNote": "Illustrative service offering — availability, scope and any terms must be confirmed with the dealership. Replace this demo content before launch.",
+      "items": [
+        {
+          "name": "Luxury Vehicle Sales",
+          "description": "Find a car that fits the way you drive. Explore the demonstration collection, compare the published details and speak to the team about the vehicle, its condition and your next steps.",
+          "icon": "car",
+          "buttonLabel": "Explore the collection",
+          "buttonLink": "/inventory",
+          "targetPage": "inventory",
+          "imageUrl": "/images/hero-porsche.jpg",
+          "kicker": "THE COLLECTION",
+          "includes": [
+            {
+              "name": "Discuss the available vehicles and your priorities"
+            },
+            {
+              "name": "Review the listed specification, condition and history"
+            },
+            {
+              "name": "Arrange a conversation or request a viewing"
+            }
+          ]
+        },
+        {
+          "name": "Vehicle Trade-In Assistance",
+          "description": "Thinking about a change? Start with a conversation about your current car and what you are looking for next. Any assessment, offer or trade-in arrangement must be agreed with the dealership.",
+          "icon": "refresh-cw",
+          "buttonLabel": "Discuss your vehicle",
+          "buttonLink": "/contact?inquiry=trade-in#contact",
+          "targetPage": "contact",
+          "imageUrl": "/images/bmw.jpg",
+          "kicker": "YOUR NEXT CHAPTER",
+          "includes": [
+            {
+              "name": "Share your current vehicle details and photographs"
+            },
+            {
+              "name": "Discuss how a potential trade-in could fit your plans"
+            },
+            {
+              "name": "Ask about the assessment process; no valuation is promised"
+            }
+          ]
+        },
+        {
+          "name": "Financing Guidance",
+          "description": "Make an informed next step. Ask the team about guidance or introductions they may be able to offer, then confirm the details directly with the relevant provider. No finance offer or approval is included in this template.",
+          "icon": "file-text",
+          "buttonLabel": "Ask about guidance",
+          "buttonLink": "/contact?inquiry=finance#contact",
+          "targetPage": "contact",
+          "imageUrl": "/images/gallery/mercedes-amg-reference.jpg",
+          "kicker": "INFORMED CHOICES",
+          "includes": [
+            {
+              "name": "Discuss your budget and questions before proceeding"
+            },
+            {
+              "name": "Ask about introductions or guidance, if available"
+            },
+            {
+              "name": "Confirm any eligibility, terms and costs with the provider"
+            }
+          ]
+        },
+        {
+          "name": "Test Drive Arrangements",
+          "description": "A photograph is only the beginning. Request a conversation about experiencing a selected car and discuss a suitable time. Availability, driving eligibility and any arrangements need confirmation before your visit.",
+          "icon": "gauge",
+          "buttonLabel": "Discuss a test drive",
+          "buttonLink": "/contact?inquiry=test-drive#contact",
+          "targetPage": "contact",
+          "imageUrl": "/images/experience.jpg",
+          "kicker": "EXPERIENCE THE DRIVE",
+          "includes": [
+            {
+              "name": "Choose a vehicle and tell us your preferred date"
+            },
+            {
+              "name": "Discuss availability and any requirements with the team"
+            },
+            {
+              "name": "Wait for confirmation before making travel arrangements"
+            }
+          ]
+        },
+        {
+          "name": "Vehicle Sourcing",
+          "description": "Have a particular car in mind? Share the details that matter to you and ask whether the team can help with the search. This example service does not promise stock, a sourcing timeline or a particular outcome.",
+          "icon": "search",
+          "buttonLabel": "Share your wish list",
+          "buttonLink": "/contact?inquiry=sourcing#contact",
+          "targetPage": "contact",
+          "imageUrl": "/images/tesla.jpg",
+          "kicker": "A PERSONAL SEARCH",
+          "includes": [
+            {
+              "name": "Share your preferred make, model and budget"
+            },
+            {
+              "name": "Discuss must-have features and potential alternatives"
+            },
+            {
+              "name": "Ask whether the dealership can assist with your search"
+            }
+          ]
+        },
+        {
+          "name": "After-Sales Support",
+          "description": "Keep the conversation going after your purchase. Ask about your car, its documentation or available support. Any maintenance, warranty or other service must be confirmed separately with the dealership.",
+          "icon": "settings",
+          "buttonLabel": "Start a conversation",
+          "buttonLink": "/contact?inquiry=after-sales#contact",
+          "targetPage": "contact",
+          "imageUrl": "/images/services-hero.jpg",
+          "kicker": "THE OWNERSHIP JOURNEY",
+          "includes": [
+            {
+              "name": "Ask questions about your vehicle after handover"
+            },
+            {
+              "name": "Discuss ownership documents or equipment operation"
+            },
+            {
+              "name": "Ask which support options are currently available"
+            }
+          ]
+        }
+      ],
+      "heroTitle": "Beyond\nthe drive.",
+      "heroImage": "/images/services-hero.jpg",
+      "heroImageAlt": "Silver Mercedes AMG GT in an open automotive setting",
+      "heroCaption": "CARE. CLARITY. CONNECTION.",
+      "heroPrimaryLabel": "Explore our services",
+      "heroPrimaryLink": "#offerings",
+      "heroSecondaryLabel": "Find your next car",
+      "heroSecondaryLink": "/inventory",
+      "indexLabel": "THE VANGUARD EXPERIENCE",
+      "heroDescription": "Exceptional cars. Clear conversations. Discover a more considered way to find your next vehicle.",
+      "closingEyebrow": "YOUR NEXT CHAPTER",
+      "closingTitle": "Let’s find your way forward.",
+      "closingDescription": "Tell us what you have in mind. Start a conversation about your next car or ask about these example services.",
+      "closingButtonLabel": "Start a conversation",
+      "closingButtonLink": "/contact"
+    },
+    "faq": {
+      "eyebrow": "A LITTLE CLARITY",
+      "title": "Good questions.\nClear conversations.",
+      "description": "A starting point for your conversation with Vanguard. These are editable examples, not dealership policies.",
+      "buttonLabel": "Ask the team",
+      "buttonLink": "mailto:hello@vanguardmotors.example",
+      "items": [
+        {
+          "question": "How do I arrange a vehicle viewing?",
+          "answer": "Open the vehicle page and choose Request a viewing. Enter a preferred date and time, then send the prepared email from your email application. Wait for the team to confirm before travelling."
+        },
+        {
+          "question": "How can I request a test drive?",
+          "answer": "Choose Ask about a test drive on a vehicle page, or select Test drive request on Contact. Send your inquiry and ask the team to confirm the car, arrangements and any requirements. No test drive is booked through this website."
+        },
+        {
+          "question": "Is financing assistance available?",
+          "answer": "Use Contact to ask what assistance, if any, the dealership can provide. No finance products, rates or approval promises are offered by this demonstration site."
+        },
+        {
+          "question": "How does a vehicle trade-in work?",
+          "answer": "Select Trade-in discussion on Contact and share an overview of your current car. Ask the team whether they accept trade-ins and how they assess a vehicle. No value, acceptance or process is guaranteed by this template."
+        },
+        {
+          "question": "How can I check a vehicle’s availability?",
+          "answer": "Check the displayed availability on the vehicle page, then use Enquire about this car to request confirmation. Demonstration stock and availability are illustrative and should be checked directly with the team."
+        },
+        {
+          "question": "What is the best way to contact the dealership?",
+          "answer": "Use the email and phone links above or prepare a detailed inquiry using the form. You must send the email yourself. The displayed contact details are demo content and must be replaced before launch."
+        }
+      ]
     }
   },
   "styles": {},

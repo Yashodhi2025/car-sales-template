@@ -8,6 +8,7 @@ import { usePageEffects } from "./use-page-effects";
 import { VehicleGallery } from "./vehicle-gallery";
 import { VehicleListing } from "./vehicle-listing";
 import { VehicleViewing } from "./vehicle-viewing";
+import { VehicleImageExplorer } from "./vehicle-image-explorer";
 import { Arrow } from "./vanguard-arrow";
 
 export function VanguardVehicle({ vehicleId: id }: { vehicleId: VehicleId }) {
@@ -51,7 +52,10 @@ export function VanguardVehicle({ vehicleId: id }: { vehicleId: VehicleId }) {
           <section className="vm-car-specifications" data-reveal>
             <EditableText id="vehicleDetails.specsEyebrow" as="p" className="vm-eyebrow">{t("vehicleDetails.specsEyebrow")}</EditableText>
             <EditableText id="vehicleDetails.specsTitle" as="h2" className="vm-title">{t("vehicleDetails.specsTitle")}</EditableText>
-            <dl className="vm-car-spec-grid">{specs.map(spec => <div key={spec.key} data-spec={spec.key}><dt><EditableText id={`vehicleDetails.labels.${spec.key}`}>{t(`vehicleDetails.labels.${spec.key}`)}</EditableText></dt><dd><EditableText id={spec.path} placeholder={t("vehicleDetails.notSupplied")}>{spec.value}</EditableText></dd></div>)}</dl>
+            <dl className="vm-car-spec-grid">{specs.map(spec => <div key={spec.key} data-spec={spec.key}><dt><EditableIcon fieldPath={`vehicleDetails.specIcons.${spec.key}`} name={t(`vehicleDetails.specIcons.${spec.key}`)} size={16} /><EditableText id={`vehicleDetails.labels.${spec.key}`}>{t(`vehicleDetails.labels.${spec.key}`)}</EditableText></dt><dd><EditableText id={spec.path} placeholder={t("vehicleDetails.notSupplied")}>{spec.value}</EditableText></dd></div>)}</dl>
+            <EditableText id="vehicleDetails.finishTitle" as="h3" className="vm-spec-subtitle">{t("vehicleDetails.finishTitle")}</EditableText>
+            <dl className="vm-car-spec-grid vm-car-finish-grid">{(["interiorColor","exteriorColor"] as const).map(field=><div key={field} data-spec={field}><dt><EditableText id={`vehicleDetails.labels.${field}`}>{t(`vehicleDetails.labels.${field}`)}</EditableText></dt><dd><EditableText id={`vehicles.${id}.${field}`} placeholder={t("vehicleDetails.notSupplied")}>{t(`vehicles.${id}.${field}`)}</EditableText></dd></div>)}</dl>
+            <EditableText id="vehicleDetails.finishNote" as="p" className="vm-car-small-print">{t("vehicleDetails.finishNote")}</EditableText>
             <EditableText id="vehicleDetails.specsNote" as="p" className="vm-car-small-print">{t("vehicleDetails.specsNote")}</EditableText>
           </section>
           <section className="vm-car-features" data-reveal>
@@ -71,8 +75,12 @@ export function VanguardVehicle({ vehicleId: id }: { vehicleId: VehicleId }) {
           {data.requirements.requiredPages.includes("contact") && <EditableLink className="vm-button vm-button-primary vm-car-enquire" href={withBasePath(t(cp("enquiryLink")))} data-preview-field-path={cp("enquiryLink")} targetPage="contact"><EditableText id="home.collection.enquireLabel">{t("home.collection.enquireLabel")}</EditableText><Arrow /></EditableLink>}
           <EditableLink className="vm-button vm-button-outline vm-car-viewing" href={t(`vehicles.${id}.viewingLink`)} data-preview-field-path={`vehicles.${id}.viewingLink`}><EditableText id="vehicleDetails.viewingLabel">{t("vehicleDetails.viewingLabel")}</EditableText><Arrow /></EditableLink>
           <EditableText id="vehicleDetails.viewingNote" as="p" className="vm-car-small-print vm-car-viewing-note">{t("vehicleDetails.viewingNote")}</EditableText>
+          <EditableLink href={withBasePath(t(`vehicles.${id}.testDriveLink`))} data-preview-field-path={`vehicles.${id}.testDriveLink`} targetPage="contact" className="vm-text-link vm-car-test-drive"><EditableText id="vehicleDetails.testDriveLabel">{t("vehicleDetails.testDriveLabel")}</EditableText><Arrow /></EditableLink>
+          <EditableText id="vehicleDetails.testDriveNote" as="p" className="vm-car-small-print">{t("vehicleDetails.testDriveNote")}</EditableText>
+          <EditableLink href={withBasePath(t("vehicleDetails.dealerLink"))} data-preview-field-path="vehicleDetails.dealerLink" targetPage="contact" className="vm-text-link vm-car-test-drive"><EditableText id="vehicleDetails.dealerLabel">{t("vehicleDetails.dealerLabel")}</EditableText><Arrow /></EditableLink>
         </div></aside>
       </div>
+      <VehicleImageExplorer vehicleId={id} />
       <VehicleViewing vehicleId={id} />
       <section className="vm-car-related"><div className="vm-container">
         <div className="vm-section-heading" data-reveal><div><EditableText id="vehicleDetails.relatedEyebrow" as="p" className="vm-eyebrow">{t("vehicleDetails.relatedEyebrow")}</EditableText><EditableText id="vehicleDetails.relatedTitle" as="h2" className="vm-title">{t("vehicleDetails.relatedTitle")}</EditableText></div><EditableLink href={withBasePath(t("vehicleDetails.relatedLink"))} data-preview-field-path="vehicleDetails.relatedLink" targetPage="inventory" className="vm-text-link"><EditableText id="vehicleDetails.relatedLabel">{t("vehicleDetails.relatedLabel")}</EditableText><Arrow /></EditableLink></div>

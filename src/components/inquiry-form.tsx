@@ -7,7 +7,7 @@ import { emailDraft, localToday, validateRequest, type RequestErrors, type Reque
 import { Arrow } from "./vanguard-arrow";
 
 /** Template-specific request flow. No API, storage or claimed delivery. */
-export function InquiryForm({ mode, vehicleId = "", onVehicleChange }: { mode: RequestMode; vehicleId?: string; onVehicleChange?: (id: string) => void }) {
+export function InquiryForm({ mode, vehicleId = "", onVehicleChange, inquiryType = "" }: { mode: RequestMode; vehicleId?: string; onVehicleChange?: (id: string) => void; inquiryType?: string }) {
   const { content, t } = useSiteContent();
   const form = useRef<HTMLFormElement>(null);
   const draftLink = useRef<HTMLAnchorElement>(null);
@@ -77,7 +77,7 @@ export function InquiryForm({ mode, vehicleId = "", onVehicleChange }: { mode: R
       {field("name", <input {...attributes("name", true)} autoComplete="name" maxLength={100} placeholder={t("requests.fields.name.placeholder")} />, true)}
       {field("email", <input {...attributes("email", true)} type="email" autoComplete="email" maxLength={254} placeholder={t("requests.fields.email.placeholder")} />, true)}
       {field("phone", <input {...attributes("phone", viewing)} type="tel" autoComplete="tel" maxLength={40} placeholder={t("requests.fields.phone.placeholder")} />, viewing)}
-      {!viewing && field("inquiry", <select {...attributes("inquiry", true)} defaultValue=""><option value="">{t("requests.fields.inquiry.placeholder")}</option>{types.map(type => <option value={type.key} key={type.key}>{type.label}</option>)}</select>, true)}
+      {!viewing && field("inquiry", <select key={inquiryType} {...attributes("inquiry", true)} defaultValue={inquiryType}><option value="">{t("requests.fields.inquiry.placeholder")}</option>{types.map(type => <option value={type.key} key={type.key}>{type.label}</option>)}</select>, true)}
       {!viewing && field("vehicle", <select {...attributes("vehicle")} value={vehicleId} onChange={event => onVehicleChange?.(event.target.value)}><option value="">{t("requests.fields.vehicle.placeholder")}</option>{ids.map(id => <option key={id} value={id}>{content.cards.vehicles[id].name} · {content.cards.vehicles[id].meta}</option>)}</select>)}
       {viewing && field("date", <input {...attributes("date", true)} type="date" min={today} aria-describedby={`${prefix}-date-error ${prefix}-date-help`} />, true, true)}
       {viewing && field("time", <input {...attributes("time", true)} type="time" aria-describedby={`${prefix}-time-error ${prefix}-time-help`} />, true, true)}
