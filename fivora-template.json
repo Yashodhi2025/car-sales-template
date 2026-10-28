@@ -57,6 +57,12 @@
       "catalog.tesla-model-3.bodyType",
       "catalog.tesla-model-3.brand",
       "catalog.tesla-model-3.priceValue",
+      "common.actionPalette.hover",
+      "common.actionPalette.inverseHover",
+      "common.actionPalette.inverseSurface",
+      "common.actionPalette.inverseText",
+      "common.actionPalette.surface",
+      "common.actionPalette.text",
       "common.currencyCode",
       "common.searchLabel",
       "common.searchPlaceholder",
@@ -253,6 +259,43 @@
         "type": "object",
         "label": "Common",
         "fields": [
+          {
+            "key": "actionPalette",
+            "type": "object",
+            "label": "Action Palette",
+            "fields": [
+              {
+                "key": "surface",
+                "type": "text",
+                "label": "Surface"
+              },
+              {
+                "key": "text",
+                "type": "textarea",
+                "label": "Text"
+              },
+              {
+                "key": "hover",
+                "type": "text",
+                "label": "Hover"
+              },
+              {
+                "key": "inverseSurface",
+                "type": "text",
+                "label": "Inverse Surface"
+              },
+              {
+                "key": "inverseText",
+                "type": "textarea",
+                "label": "Inverse Text"
+              },
+              {
+                "key": "inverseHover",
+                "type": "text",
+                "label": "Inverse Hover"
+              }
+            ]
+          },
           {
             "key": "websiteTitle",
             "type": "text",
@@ -1627,6 +1670,16 @@
         "type": "object",
         "label": "Contact",
         "fields": [
+          {
+            "key": "heroCtaLabel",
+            "type": "text",
+            "label": "Hero Cta Label"
+          },
+          {
+            "key": "heroCtaLink",
+            "type": "url",
+            "label": "Hero Cta Link"
+          },
           {
             "key": "selectedLabel",
             "type": "text",

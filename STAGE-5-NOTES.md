@@ -1,6 +1,72 @@
 # Stage 5 — services, stories, FAQ and vehicle details
 
-## Latest navigation correction — continuous sections with scroll tracking
+## Latest Services navigation refinement
+
+Services now uses the same continuous-page navigation behavior as Car Details:
+rounded sticky navigation, a moving charcoal active highlight, smooth scrolling
+and an upward reveal on arrival. Manual scrolling updates the relevant service
+button automatically; none of the six offerings are hidden or replaced.
+
+The existing vehicle navigation logic was extracted into use-section-navigation.ts
+and reused through the unchanged useVehicleSections wrapper. Services supplies
+stable service-index anchors and retains every existing editable title/path/link.
+The navigation has three columns on desktop and two on smaller screens, with equal
+row heights so its highlight stays aligned even when titles wrap. A small desktop
+stagger separates the paired editorial sections for unambiguous scroll tracking.
+The sticky bar ends before the closing CTA. No data/schema or Core change was needed.
+
+TypeScript and focused browser checks passed for all six click destinations, all
+six manually scrolled states, visible sections, indicator geometry at 768/390/320px,
+reduced motion, and the existing Porsche specification navigation. Desktop/mobile
+screenshots were reviewed; no runtime exceptions occurred. No full build/suite,
+commit or push was run for this focused refinement.
+
+## Previous supporting-page redesign — Services, About and Contact
+
+The three supporting pages now follow the Car Details charcoal/paper editorial
+system: framed cinematic photography, restrained typography, numbered content,
+thin dividers, comfortable spacing and lightweight entrance/hover motion.
+
+- Services preserves all six offerings, images, inclusions, source IDs and links.
+  A compact anchor directory leads into a wide introductory feature, asymmetric
+  paired features, an inset dark test-drive story and alternating editorial rows.
+  The final Contact CTA is framed rather than a full-width footer-like dark band.
+- About has a dark split introduction with existing Inventory/Contact actions,
+  a clearer point of view, a two-tone philosophy/benefits panel, automotive
+  experience imagery and a refined three-step customer journey.
+- Contact has a cinematic opening with a new source-backed enquiry CTA, structured
+  contact information, the two-tone inquiry composition and a paper-toned FAQ.
+  The existing validation, vehicle/inquiry preselection and real mailto draft
+  behavior are preserved. Contact details remain clearly identified demo content.
+
+Primary actions now use charcoal on light sections and warm white on dark sections
+throughout the site, including Home search, mobile navigation and vehicle cards.
+Blue remains a small navigation/focus accent. Six global hex-colour controls live
+at common.actionPalette and feed real CSS properties through VanguardShell; their
+Fivora controls are explicitly control-only. Blank/invalid values fall back to the
+default palette. New contact.heroCtaLabel and contact.heroCtaLink have real Deneb
+text/link bindings. Site data and the generated schema are synchronized. Existing
+provider, theme integration and saved-style handling are unchanged.
+
+Updated files: vanguard-services.tsx, vanguard-about.tsx, vanguard-contact.tsx,
+vanguard-shell.tsx, premium.css, site-data.json, sync-editor-schema.mjs,
+fivora-template.json and this notes file. Existing EditableServiceCard,
+EditableShowroomCard, EditableText/Link/Image/Icon, shared InquiryForm, FAQ and
+page animation helpers were reused. No new Deneb Core component is required.
+
+Validation passed: TypeScript; one production build/static export (all eight car
+routes included); desktop 1440px, tablet 768px and mobile 390/320px overflow/icon
+checks; six service offerings and 18 inclusions; contact preselection, missing
+field errors and contextual mailto draft generation; FAQ controls; reduced motion;
+Home's contextual neutral buttons; live Deneb Lab CTA/palette edits and empty-image,
+zero-text, false-motion and blank-colour fallbacks. Desktop/mobile screenshots
+were inspected and mobile hero framing adjusted to preserve the complete car.
+No backend, dependency, Core change, commit or push was introduced.
+
+Preview: http://127.0.0.1:4173/services, /about and /contact
+Global button controls: Common → Action Palette (hex colours).
+
+## Previous navigation correction — continuous sections with scroll tracking
 
 Restored all Overview, Specifications, Equipment and Viewing content to the same
 continuous page. Nothing is hidden or swapped. The refined navigation now uses

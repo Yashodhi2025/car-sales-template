@@ -12,6 +12,7 @@ function fields(object, prefix) {
     const path = `${prefix}.${key}`;
     if (/^inventory\.filters\.(showLabel|hideLabel)$/.test(path)) controls.add(path);
     if (path === "common.currencyCode") controls.add(path);
+    if (path.startsWith("common.actionPalette.")) controls.add(path);
     if (value && typeof value === "object") return { key, type: "object", label: label(key), fields: fields(value, path) };
     let type = "text";
     if (typeof value === "number") type = "number";

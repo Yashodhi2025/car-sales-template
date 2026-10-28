@@ -64,6 +64,14 @@
   },
   "content": {
     "common": {
+      "actionPalette": {
+        "surface": "#243039",
+        "text": "#f3f2ec",
+        "hover": "#384b57",
+        "inverseSurface": "#eeeee7",
+        "inverseText": "#202a30",
+        "inverseHover": "#ffffff"
+      },
       "websiteTitle": "VANGUARD MOTORS",
       "shortDescription": "For the love of the drive. An independent destination for exceptional automobiles and a more personal way to find yours.",
       "logoUrl": "/images/vanguard-mark.svg",
@@ -705,6 +713,8 @@
       "contactLink": "/contact"
     },
     "contact": {
+      "heroCtaLabel": "Start your enquiry",
+      "heroCtaLink": "#contact",
       "selectedLabel": "Your selected vehicle",
       "selectedNote": "Your vehicle is already selected in the inquiry below. You can change it at any time.",
       "collectionLabel": "Back to the collection",

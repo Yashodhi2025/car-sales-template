@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useRef, useState, type MouseEvent } from "react";
+import { useEffect, useRef, useState, type CSSProperties, type MouseEvent } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { EditableImage, EditableText, withBasePath } from "@deneb-ui/ui";
@@ -18,7 +18,10 @@ export function VanguardShell({ children }: { children: React.ReactNode }) {
  }, []);
  const navIds = (Object.keys(pageForNav) as (keyof typeof pageForNav)[]).filter(id => data.requirements.requiredPages.includes(pageForNav[id]));
  const closeMenu = (event: MouseEvent<HTMLElement>) => { if ((event.target as HTMLElement).closest("a")) event.currentTarget.closest("details")?.removeAttribute("open"); };
- return <div className="vanguard" id="site-top" ref={root}><style data-vanguard-page-visibility>{"/* Vanguard selected pages */\n" + Object.values(pageForNav).filter(page => !data.requirements.requiredPages.includes(page)).map(page => `[data-target-page="${page}"]{display:none!important}`).join("\n")}</style><a className="vm-skip" href="#main-content">Skip to content</a><header className={`vm-header ${scrolled ? "is-scrolled" : ""}`}>
+ // Source-backed hex colour controls work on the server and update live in Lab.
+ const configuredPalette = data.content.common.actionPalette;
+ const actionPalette = Object.fromEntries(Object.entries(configuredPalette && typeof configuredPalette === "object" ? configuredPalette : {}).map(([key, value]) => [`--vm-action-${key.replace(/[A-Z]/g, letter => `-${letter.toLowerCase()}`)}`, typeof value === "string" && /^#(?:[\da-f]{3,4}|[\da-f]{6}|[\da-f]{8})$/i.test(value.trim()) ? value.trim() : undefined])) as CSSProperties;
+ return <div className="vanguard" id="site-top" ref={root} style={actionPalette}><style data-vanguard-page-visibility>{"/* Vanguard selected pages */\n" + Object.values(pageForNav).filter(page => !data.requirements.requiredPages.includes(page)).map(page => `[data-target-page="${page}"]{display:none!important}`).join("\n")}</style><a className="vm-skip" href="#main-content">Skip to content</a><header className={`vm-header ${scrolled ? "is-scrolled" : ""}`}>
         <div className="vm-container vm-header-inner">
           <a href={withBasePath("/")} className="vm-brand" aria-label={t("common.websiteTitle")}>
             <EditableImage id="common.logoUrl" src={t("common.logoUrl")} alt="" width={36} height={36} className="vm-logo" />
