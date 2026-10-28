@@ -10,6 +10,7 @@ const controls = new Set();
 function fields(object, prefix) {
   return Object.entries(object).map(([key, value]) => {
     const path = `${prefix}.${key}`;
+    if (/^inventory\.filters\.(showLabel|hideLabel)$/.test(path)) controls.add(path);
     if (path === "common.currencyCode") controls.add(path);
     if (value && typeof value === "object") return { key, type: "object", label: label(key), fields: fields(value, path) };
     let type = "text";

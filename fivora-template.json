@@ -82,10 +82,12 @@
       "inventory.filters.anyFuel",
       "inventory.filters.anyTransmission",
       "inventory.filters.availableLabel",
+      "inventory.filters.hideLabel",
       "inventory.filters.maxPlaceholder",
       "inventory.filters.minPlaceholder",
       "inventory.filters.removeLabel",
       "inventory.filters.reservedLabel",
+      "inventory.filters.showLabel",
       "inventory.hero.imageAlt",
       "inventory.results.noScript",
       "inventory.results.sortFeatured",
@@ -1328,6 +1330,21 @@
             "key": "removeLabel",
             "type": "text",
             "label": "Remove Label"
+          },
+          {
+            "key": "showLabel",
+            "type": "text",
+            "label": "Show Label"
+          },
+          {
+            "key": "hideLabel",
+            "type": "text",
+            "label": "Hide Label"
+          },
+          {
+            "key": "toggleLabel",
+            "type": "text",
+            "label": "Toggle Label"
           }
         ],
         "pageKey": "inventory"

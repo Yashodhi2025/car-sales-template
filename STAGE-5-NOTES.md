@@ -1,5 +1,75 @@
 # Stage 5 — services, stories, FAQ and vehicle details
 
+## Latest vehicle card correction — automotive layout and hover outline
+
+Restored the previous edge-to-edge vehicle photography, 14px outer corners,
+original blue-grey typography and plain specification rows with fine dividers.
+The inset-image treatment and tinted specification tiles were removed after
+visual review. Cards now transition to a blue outline with a fine outer ring,
+subtle lift and slow image zoom on hover; keyboard focus receives the same outline.
+Reduced motion and editor/disabled-motion previews suppress the transforms.
+Neutral CTA buttons, tight price/caption spacing, source bindings and the existing
+three/four-column Inventory behavior are preserved.
+
+## Previous vehicle card finish and neutral actions (visual treatment superseded)
+
+The shared Deneb vehicle cards now use inset rounded photography, warmer paper
+surfaces, restrained borders/shadows, neutral typography and a compact tinted
+specification strip. Prices and their editable demo labels sit together above
+aligned charcoal View details and outlined Enquire actions. Narrow cards adapt
+their specification layout without truncating the mileage. Featured and Similar
+Vehicles reuse the same finish; the existing Inventory column counts are retained.
+
+Bright blue card and Inventory primary buttons are replaced with charcoal actions;
+the dark navbar's viewing CTA uses soft off-white. Blue remains for navigation and
+keyboard focus. Existing source paths, images, prices, availability, links, saved
+styles, filtering and reduced-motion behavior are preserved. No schema additions,
+dependencies or framework changes were needed.
+
+TypeScript passed. Focused browser checks passed at 320–1920px for price/action
+fit, open three-column layout, filtering, eight detail/enquiry action pairs and
+mounted Deneb field targets. Desktop/mobile screenshots were reviewed and the
+price-to-caption gap corrected. No full build or large Lab suite was run.
+
+## Latest Inventory density adjustment
+
+Wide desktops (1200px and above) now show three cards with filters open and four
+with filters hidden. The sidebar is 288px wide, with reduced padding, paired
+marque/body fields and compact controls. All filters remain in document flow with
+no capped height or internal scrolling. Short desktop viewports use normal page
+scrolling rather than trapping the lower controls in a sticky panel.
+
+Smaller desktops adapt to two/three columns, tablets two and phones one. Inventory
+card spacing is tighter while preserving complete prices, specifications and both
+actions. Existing filtering, URL state, source bindings and layout animations are
+unchanged. TypeScript and focused 320–1920px layout/filter checks passed, including
+all desktop controls fitting the checked 900px viewport and no price/action clipping.
+
+## Latest Inventory update — collapsible filters
+
+Inventory now has a compact Filters button with Show/Hide accessible labels, a
+single refined sort control and a sidebar close button. The sidebar groups search,
+vehicle type, budget and equipment controls, with paired fuel/transmission fields,
+compact inputs, custom chevrons, active-value styling and a grouped action footer.
+Existing off-white/blue styling and native input behavior remain intact. Desktop
+uses two vehicle columns with filters open and three with filters collapsed;
+tablet uses two columns and mobile one, with the existing native filter disclosure.
+The form stays mounted and keeps its selections, query parameters and sorting.
+Collapsed desktop filters are inert and hidden from assistive technology; Escape
+closes the sidebar and returns focus to the toolbar toggle.
+
+Existing card elements animate into their new positions/sizes using a lightweight
+FLIP transition. Rapid toggles start from their current visual position. Reduced
+motion, disabled site motion and editor previews skip these layout animations.
+No animation dependency was added. Lab field focus reopens collapsed filters;
+the new source-backed toggle labels are included in the synchronized schema.
+
+TypeScript and focused browser/Lab checks passed for 2/3-column toggling, filter
+and URL preservation, reset/sorting, focus return, reduced motion, mobile Apply,
+320–1440px layouts and editor label changes. Additional checks confirmed the
+three-column layout fits 901/1024px desktop widths without clipped prices/actions.
+No full build/suite, Core change, commit or push was run.
+
 ## Latest card finish and Sri Lankan display values
 
 The shared Deneb vehicle card now has cleaner borders, rounded image corners,

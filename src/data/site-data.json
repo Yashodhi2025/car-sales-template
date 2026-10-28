@@ -747,8 +747,8 @@
         "availabilityLabel": "Availability",
         "anyBrand": "All marques",
         "anyBody": "All body styles",
-        "anyFuel": "All fuel types",
-        "anyTransmission": "All transmissions",
+        "anyFuel": "Any fuel",
+        "anyTransmission": "Any",
         "anyAvailability": "Any availability",
         "availableLabel": "Available",
         "reservedLabel": "Reserved",
@@ -757,7 +757,10 @@
         "mobileLabel": "Filter the collection",
         "invalidPrice": "Enter a valid price range. The minimum must not exceed the maximum.",
         "activeLabel": "Active filters",
-        "removeLabel": "Remove filter"
+        "removeLabel": "Remove filter",
+        "showLabel": "Show filters",
+        "hideLabel": "Hide filters",
+        "toggleLabel": "Filters"
       },
       "results": {
         "title": "The collection",
