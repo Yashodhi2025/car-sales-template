@@ -68,7 +68,6 @@
       "common.searchPlaceholder",
       "contact.heroImageAlt",
       "home.experience.imageAlt",
-      "home.hero.imageAlt",
       "home.reviews.0.imageAlt",
       "home.reviews.1.imageAlt",
       "home.reviews.2.imageAlt",
@@ -94,7 +93,6 @@
       "inventory.filters.removeLabel",
       "inventory.filters.reservedLabel",
       "inventory.filters.showLabel",
-      "inventory.hero.imageAlt",
       "inventory.results.noScript",
       "inventory.results.sortFeatured",
       "inventory.results.sortMileage",
@@ -102,24 +100,52 @@
       "inventory.results.sortOldest",
       "inventory.results.sortPriceHigh",
       "inventory.results.sortPriceLow",
+      "inventory.showcase.emptyDescription",
+      "inventory.showcase.emptyTitle",
+      "inventory.showcase.featured.audi-rs6.enabled",
+      "inventory.showcase.featured.audi-rs6.order",
+      "inventory.showcase.featured.bmw-m5.enabled",
+      "inventory.showcase.featured.bmw-m5.order",
+      "inventory.showcase.featured.chevrolet-camaro.enabled",
+      "inventory.showcase.featured.chevrolet-camaro.order",
+      "inventory.showcase.featured.ferrari-458.enabled",
+      "inventory.showcase.featured.ferrari-458.order",
+      "inventory.showcase.featured.honda-crv.enabled",
+      "inventory.showcase.featured.honda-crv.order",
+      "inventory.showcase.featured.mercedes-amg.enabled",
+      "inventory.showcase.featured.mercedes-amg.order",
+      "inventory.showcase.featured.porsche-panamera.enabled",
+      "inventory.showcase.featured.porsche-panamera.order",
+      "inventory.showcase.featured.tesla-model-3.enabled",
+      "inventory.showcase.featured.tesla-model-3.order",
+      "inventory.showcase.label",
+      "inventory.showcase.selectLabel",
       "motion.durationMs",
       "motion.enabled",
       "photos.vehicles.audi-rs6.gallery.0.imageAlt",
       "photos.vehicles.audi-rs6.imageAlt",
+      "photos.vehicles.audi-rs6.showcaseImage",
       "photos.vehicles.bmw-m5.gallery.0.imageAlt",
       "photos.vehicles.bmw-m5.imageAlt",
+      "photos.vehicles.bmw-m5.showcaseImage",
       "photos.vehicles.chevrolet-camaro.gallery.0.imageAlt",
       "photos.vehicles.chevrolet-camaro.imageAlt",
+      "photos.vehicles.chevrolet-camaro.showcaseImage",
       "photos.vehicles.ferrari-458.gallery.0.imageAlt",
       "photos.vehicles.ferrari-458.imageAlt",
+      "photos.vehicles.ferrari-458.showcaseImage",
       "photos.vehicles.honda-crv.gallery.0.imageAlt",
       "photos.vehicles.honda-crv.imageAlt",
+      "photos.vehicles.honda-crv.showcaseImage",
       "photos.vehicles.mercedes-amg.gallery.0.imageAlt",
       "photos.vehicles.mercedes-amg.imageAlt",
+      "photos.vehicles.mercedes-amg.showcaseImage",
       "photos.vehicles.porsche-panamera.gallery.0.imageAlt",
       "photos.vehicles.porsche-panamera.imageAlt",
+      "photos.vehicles.porsche-panamera.showcaseImage",
       "photos.vehicles.tesla-model-3.gallery.0.imageAlt",
       "photos.vehicles.tesla-model-3.imageAlt",
+      "photos.vehicles.tesla-model-3.showcaseImage",
       "requests.contactSubject",
       "requests.draftTextLabel",
       "requests.fields.email.placeholder",
@@ -474,16 +500,6 @@
             "key": "description",
             "type": "textarea",
             "label": "Description"
-          },
-          {
-            "key": "image",
-            "type": "image",
-            "label": "Image"
-          },
-          {
-            "key": "imageAlt",
-            "type": "text",
-            "label": "Image Alt"
           },
           {
             "key": "primaryLabel",
@@ -1213,16 +1229,6 @@
             "label": "Description"
           },
           {
-            "key": "image",
-            "type": "image",
-            "label": "Image"
-          },
-          {
-            "key": "imageAlt",
-            "type": "text",
-            "label": "Image Alt"
-          },
-          {
             "key": "imageCaption",
             "type": "text",
             "label": "Image Caption"
@@ -1488,6 +1494,183 @@
             "key": "buttonLink",
             "type": "url",
             "label": "Button Link"
+          }
+        ],
+        "pageKey": "inventory"
+      },
+      {
+        "id": "inventory.showcase",
+        "path": "inventory.showcase",
+        "type": "object",
+        "label": "Inventory showcase",
+        "fields": [
+          {
+            "key": "label",
+            "type": "text",
+            "label": "Label"
+          },
+          {
+            "key": "viewLabel",
+            "type": "text",
+            "label": "View Label"
+          },
+          {
+            "key": "selectLabel",
+            "type": "text",
+            "label": "Select Label"
+          },
+          {
+            "key": "emptyTitle",
+            "type": "text",
+            "label": "Empty Title"
+          },
+          {
+            "key": "emptyDescription",
+            "type": "textarea",
+            "label": "Empty Description"
+          },
+          {
+            "key": "featured",
+            "type": "object",
+            "label": "Featured",
+            "fields": [
+              {
+                "key": "porsche-panamera",
+                "type": "object",
+                "label": "Porsche panamera",
+                "fields": [
+                  {
+                    "key": "enabled",
+                    "type": "boolean",
+                    "label": "Show in showcase"
+                  },
+                  {
+                    "key": "order",
+                    "type": "number",
+                    "label": "Display order"
+                  }
+                ]
+              },
+              {
+                "key": "bmw-m5",
+                "type": "object",
+                "label": "Bmw m5",
+                "fields": [
+                  {
+                    "key": "enabled",
+                    "type": "boolean",
+                    "label": "Show in showcase"
+                  },
+                  {
+                    "key": "order",
+                    "type": "number",
+                    "label": "Display order"
+                  }
+                ]
+              },
+              {
+                "key": "mercedes-amg",
+                "type": "object",
+                "label": "Mercedes amg",
+                "fields": [
+                  {
+                    "key": "enabled",
+                    "type": "boolean",
+                    "label": "Show in showcase"
+                  },
+                  {
+                    "key": "order",
+                    "type": "number",
+                    "label": "Display order"
+                  }
+                ]
+              },
+              {
+                "key": "audi-rs6",
+                "type": "object",
+                "label": "Audi rs6",
+                "fields": [
+                  {
+                    "key": "enabled",
+                    "type": "boolean",
+                    "label": "Show in showcase"
+                  },
+                  {
+                    "key": "order",
+                    "type": "number",
+                    "label": "Display order"
+                  }
+                ]
+              },
+              {
+                "key": "tesla-model-3",
+                "type": "object",
+                "label": "Tesla model 3",
+                "fields": [
+                  {
+                    "key": "enabled",
+                    "type": "boolean",
+                    "label": "Show in showcase"
+                  },
+                  {
+                    "key": "order",
+                    "type": "number",
+                    "label": "Display order"
+                  }
+                ]
+              },
+              {
+                "key": "honda-crv",
+                "type": "object",
+                "label": "Honda crv",
+                "fields": [
+                  {
+                    "key": "enabled",
+                    "type": "boolean",
+                    "label": "Show in showcase"
+                  },
+                  {
+                    "key": "order",
+                    "type": "number",
+                    "label": "Display order"
+                  }
+                ]
+              },
+              {
+                "key": "chevrolet-camaro",
+                "type": "object",
+                "label": "Chevrolet camaro",
+                "fields": [
+                  {
+                    "key": "enabled",
+                    "type": "boolean",
+                    "label": "Show in showcase"
+                  },
+                  {
+                    "key": "order",
+                    "type": "number",
+                    "label": "Display order"
+                  }
+                ]
+              },
+              {
+                "key": "ferrari-458",
+                "type": "object",
+                "label": "Ferrari 458",
+                "fields": [
+                  {
+                    "key": "enabled",
+                    "type": "boolean",
+                    "label": "Show in showcase"
+                  },
+                  {
+                    "key": "order",
+                    "type": "number",
+                    "label": "Display order"
+                  }
+                ]
+              }
+            ]
           }
         ],
         "pageKey": "inventory"
@@ -4968,6 +5151,16 @@
         ]
       },
       {
+        "id": "inventory.showcase.porsche-panamera",
+        "path": "photos.vehicles.porsche-panamera.showcaseImage",
+        "type": "image",
+        "label": "Inventory showcase photo / Porsche Panamera Turbo",
+        "pageKey": "inventory",
+        "description": "Upload a transparent side-view PNG/WebP, facing right. Enable this car under Inventory showcase / Featured and set its display order. Only enabled cars with a showcase image appear in the scene; the stock gallery is separate.",
+        "recommendedWidth": 2000,
+        "recommendedHeight": 750
+      },
+      {
         "id": "vehicles.bmw-m5",
         "path": "vehicles.bmw-m5",
         "type": "object",
@@ -5107,6 +5300,16 @@
             ]
           }
         ]
+      },
+      {
+        "id": "inventory.showcase.bmw-m5",
+        "path": "photos.vehicles.bmw-m5.showcaseImage",
+        "type": "image",
+        "label": "Inventory showcase photo / BMW M5",
+        "pageKey": "inventory",
+        "description": "Upload a transparent side-view PNG/WebP, facing right. Enable this car under Inventory showcase / Featured and set its display order. Only enabled cars with a showcase image appear in the scene; the stock gallery is separate.",
+        "recommendedWidth": 2000,
+        "recommendedHeight": 750
       },
       {
         "id": "vehicles.mercedes-amg",
@@ -5250,6 +5453,16 @@
         ]
       },
       {
+        "id": "inventory.showcase.mercedes-amg",
+        "path": "photos.vehicles.mercedes-amg.showcaseImage",
+        "type": "image",
+        "label": "Inventory showcase photo / Mercedes-Benz AMG GT",
+        "pageKey": "inventory",
+        "description": "Upload a transparent side-view PNG/WebP, facing right. Enable this car under Inventory showcase / Featured and set its display order. Only enabled cars with a showcase image appear in the scene; the stock gallery is separate.",
+        "recommendedWidth": 2000,
+        "recommendedHeight": 750
+      },
+      {
         "id": "vehicles.audi-rs6",
         "path": "vehicles.audi-rs6",
         "type": "object",
@@ -5389,6 +5602,16 @@
             ]
           }
         ]
+      },
+      {
+        "id": "inventory.showcase.audi-rs6",
+        "path": "photos.vehicles.audi-rs6.showcaseImage",
+        "type": "image",
+        "label": "Inventory showcase photo / Audi RS6 Avant",
+        "pageKey": "inventory",
+        "description": "Upload a transparent side-view PNG/WebP, facing right. Enable this car under Inventory showcase / Featured and set its display order. Only enabled cars with a showcase image appear in the scene; the stock gallery is separate.",
+        "recommendedWidth": 2000,
+        "recommendedHeight": 750
       },
       {
         "id": "vehicles.tesla-model-3",
@@ -5543,6 +5766,16 @@
         ]
       },
       {
+        "id": "inventory.showcase.tesla-model-3",
+        "path": "photos.vehicles.tesla-model-3.showcaseImage",
+        "type": "image",
+        "label": "Inventory showcase photo / Tesla Model 3 Long Range",
+        "pageKey": "inventory",
+        "description": "Upload a transparent side-view PNG/WebP, facing right. Enable this car under Inventory showcase / Featured and set its display order. Only enabled cars with a showcase image appear in the scene; the stock gallery is separate.",
+        "recommendedWidth": 2000,
+        "recommendedHeight": 750
+      },
+      {
         "id": "vehicles.honda-crv",
         "path": "vehicles.honda-crv",
         "type": "object",
@@ -5682,6 +5915,16 @@
             ]
           }
         ]
+      },
+      {
+        "id": "inventory.showcase.honda-crv",
+        "path": "photos.vehicles.honda-crv.showcaseImage",
+        "type": "image",
+        "label": "Inventory showcase photo / Honda CR-V EX",
+        "pageKey": "inventory",
+        "description": "Upload a transparent side-view PNG/WebP, facing right. Enable this car under Inventory showcase / Featured and set its display order. Only enabled cars with a showcase image appear in the scene; the stock gallery is separate.",
+        "recommendedWidth": 2000,
+        "recommendedHeight": 750
       },
       {
         "id": "vehicles.chevrolet-camaro",
@@ -5825,6 +6068,16 @@
         ]
       },
       {
+        "id": "inventory.showcase.chevrolet-camaro",
+        "path": "photos.vehicles.chevrolet-camaro.showcaseImage",
+        "type": "image",
+        "label": "Inventory showcase photo / Chevrolet Camaro SS",
+        "pageKey": "inventory",
+        "description": "Upload a transparent side-view PNG/WebP, facing right. Enable this car under Inventory showcase / Featured and set its display order. Only enabled cars with a showcase image appear in the scene; the stock gallery is separate.",
+        "recommendedWidth": 2000,
+        "recommendedHeight": 750
+      },
+      {
         "id": "vehicles.ferrari-458",
         "path": "vehicles.ferrari-458",
         "type": "object",
@@ -5964,6 +6217,16 @@
             ]
           }
         ]
+      },
+      {
+        "id": "inventory.showcase.ferrari-458",
+        "path": "photos.vehicles.ferrari-458.showcaseImage",
+        "type": "image",
+        "label": "Inventory showcase photo / Ferrari 458 Speciale",
+        "pageKey": "inventory",
+        "description": "Upload a transparent side-view PNG/WebP, facing right. Enable this car under Inventory showcase / Featured and set its display order. Only enabled cars with a showcase image appear in the scene; the stock gallery is separate.",
+        "recommendedWidth": 2000,
+        "recommendedHeight": 750
       },
       {
         "id": "__fivoraIntake",

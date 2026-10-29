@@ -3,6 +3,7 @@ import type { NextConfig } from "next";
 const basePath = process.env.NEXT_PUBLIC_SITE_BASE_PATH || "";
 
 const nextConfig: NextConfig = {
+  distDir: process.env.VANGUARD_DEV_DIST || ".next",
   devIndicators: false,
   // Partial prerendering requires a server and cannot be combined with export.
   turbopack: {

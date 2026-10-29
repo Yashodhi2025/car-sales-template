@@ -2,7 +2,7 @@
 
 import { useEffect, useLayoutEffect, useRef, useState, type FormEvent } from "react";
 import { DENEB_PREVIEW_FOCUS_MESSAGE, LEGACY_PREVIEW_FOCUS_MESSAGE, PREVIEW_FOCUS_MESSAGE, EditableLink, EditableText, withBasePath } from "@deneb-ui/ui";
-import { VanguardImage } from "./vanguard-image";
+import { InventoryShowcase } from "./inventory-showcase";
 import { useSiteContent, type VehicleId } from "@/lib/site-content";
 import { defaultFilters, filterQuery, invalidPrices, matchingVehicles, parseFilters, type InventoryFilters } from "@/lib/inventory";
 import { Arrow } from "./vanguard-arrow";
@@ -20,7 +20,7 @@ export function VanguardInventory() {
   const panel = useRef<HTMLDetailsElement>(null);
   const sidebar = useRef<HTMLElement>(null);
   const filterToggle = useRef<HTMLButtonElement>(null);
-  const [sidebarOpen, setSidebarOpen] = useState(true);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
   const [desktop, setDesktop] = useState(false);
   const previousLayout = useRef<Map<HTMLElement, DOMRect> | null>(null);
   const layoutAnimations = useRef<Animation[]>([]);
@@ -37,7 +37,6 @@ export function VanguardInventory() {
     const desktopQuery = window.matchMedia("(min-width: 901px)");
     const sizePanel = () => {
       setDesktop(desktopQuery.matches);
-      if (panel.current) panel.current.open = desktopQuery.matches;
     };
     sizePanel();
     desktopQuery.addEventListener("change", sizePanel);
@@ -157,23 +156,9 @@ export function VanguardInventory() {
 
   return (
     <main id="main-content" ref={root} className="vm-page vm-inventory-page" data-preview-page-key="inventory">
-      <header className="vm-container vm-inventory-hero">
-        <div className="vm-inventory-intro">
-          <nav className="vm-breadcrumb" aria-label="Breadcrumb">
-            <EditableLink href={withBasePath("/")} targetPage="home"><EditableText id="common.navLabels.home">{t("common.navLabels.home")}</EditableText></EditableLink>
-            <span aria-hidden="true">/</span><EditableText id="common.navLabels.collection">{t("common.navLabels.collection")}</EditableText>
-          </nav>
-          <EditableText id="inventory.hero.eyebrow" as="p" className="vm-eyebrow vm-hero-enter">{t("inventory.hero.eyebrow")}</EditableText>
-          <EditableText id="inventory.hero.title" as="h1" className="vm-title vm-inventory-title vm-hero-enter">{t("inventory.hero.title")}</EditableText>
-          <EditableText id="inventory.hero.description" as="p" className="vm-copy vm-hero-enter">{t("inventory.hero.description")}</EditableText>
-        </div>
-        <figure className="vm-inventory-cover">
-          <VanguardImage id="inventory.hero.image" src={t("inventory.hero.image")} alt={t("inventory.hero.imageAlt")}
-            width={1100} height={750} loading="eager" fetchPriority="high" />
-          <figcaption><span aria-hidden="true">{String(ids.length).padStart(2, "0")}</span><EditableText id="inventory.hero.imageCaption">{t("inventory.hero.imageCaption")}</EditableText></figcaption>
-        </figure>
-      </header>
+      <InventoryShowcase />
 
+      <div className="vm-inventory-sheet">
       <div className={`vm-container vm-inventory-layout ${sidebarOpen ? "is-filters-open" : "is-filters-collapsed"}`}>
         <aside id="inventory-filters" ref={sidebar} className="vm-inventory-sidebar" inert={desktop && !sidebarOpen} aria-hidden={desktop && !sidebarOpen}
           onKeyDown={event => {
@@ -182,7 +167,7 @@ export function VanguardInventory() {
             if (desktop && sidebarOpen) { event.preventDefault(); toggleSidebar(); }
             else if (!desktop && panel.current?.open) { panel.current.open = false; panel.current.querySelector("summary")?.focus(); }
           }}><div className="vm-inventory-sidebar-inner">
-          <details className="vm-filter-panel" ref={panel} open>
+          <details className="vm-filter-panel" ref={panel} open={sidebarOpen} onToggle={event => setSidebarOpen(event.currentTarget.open)}>
             <summary><EditableText id="inventory.filters.mobileLabel">{t("inventory.filters.mobileLabel")}</EditableText><span>{activeKeys.length ? `(${activeKeys.length})` : "+"}</span></summary>
             <form className="vm-filter-form" onSubmit={submit} noValidate role="search" aria-label={t("inventory.filters.title")}>
               <div className="vm-filter-heading"><div><EditableText id="inventory.filters.title" as="h2">{t("inventory.filters.title")}</EditableText><EditableText id="inventory.filters.description" as="p">{t("inventory.filters.description")}</EditableText></div><button type="button" className="vm-sidebar-close" onClick={toggleSidebar} aria-label={t("inventory.filters.hideLabel")}><Arrow back /></button></div>
@@ -247,6 +232,7 @@ export function VanguardInventory() {
         <div><EditableText id="inventory.concierge.eyebrow" as="p" className="vm-eyebrow">{t("inventory.concierge.eyebrow")}</EditableText><EditableText id="inventory.concierge.title" as="h2" className="vm-title">{t("inventory.concierge.title")}</EditableText><EditableText id="inventory.concierge.description" as="p" className="vm-copy">{t("inventory.concierge.description")}</EditableText></div>
         <EditableLink href={withBasePath(t("inventory.concierge.buttonLink"))} data-preview-field-path="inventory.concierge.buttonLink" targetPage="contact" className="vm-button vm-button-outline"><EditableText id="inventory.concierge.buttonLabel">{t("inventory.concierge.buttonLabel")}</EditableText><Arrow /></EditableLink>
       </section>
+      </div>
     </main>
   );
 }

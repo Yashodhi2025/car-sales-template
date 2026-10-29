@@ -31,14 +31,14 @@
         "car-ferrari-458"
       ],
       "theme": {
-        "primaryColor": "#377dff",
-        "secondaryColor": "#161a20",
-        "accentColor": "#8cafff",
-        "backgroundColor": "#0a0c0f",
-        "cardBackgroundColor": "#12151a",
-        "textColor": "#f3f4f6",
-        "borderColor": "#282d35",
-        "headingFont": "Outfit, sans-serif",
+        "primaryColor": "#9CAAB7",
+        "secondaryColor": "#172A3A",
+        "accentColor": "#9CAAB7",
+        "backgroundColor": "#0A1420",
+        "cardBackgroundColor": "#172A3A",
+        "textColor": "#F1F3F4",
+        "borderColor": "#9CAAB740",
+        "headingFont": "Manrope, sans-serif",
         "bodyFont": "Inter, sans-serif",
         "borderRadius": "4px"
       }
@@ -65,12 +65,12 @@
   "content": {
     "common": {
       "actionPalette": {
-        "surface": "#243039",
-        "text": "#f3f2ec",
-        "hover": "#384b57",
-        "inverseSurface": "#eeeee7",
-        "inverseText": "#202a30",
-        "inverseHover": "#ffffff"
+        "surface": "#172A3A",
+        "text": "#F1F3F4",
+        "hover": "#0A1420",
+        "inverseSurface": "#9CAAB7",
+        "inverseText": "#0A1420",
+        "inverseHover": "#F1F3F4"
       },
       "websiteTitle": "VANGUARD MOTORS",
       "shortDescription": "For the love of the drive. An independent destination for exceptional automobiles and a more personal way to find yours.",
@@ -111,8 +111,6 @@
         "title": "Beyond the ordinary.",
         "titleAccent": "Ahead of the curve.",
         "description": "Exceptional cars. Considered service. Discover a collection for those who believe the journey should be as remarkable as the destination.",
-        "image": "/images/hero-porsche.jpg",
-        "imageAlt": "Black Porsche Panamera on an open road at dusk",
         "primaryLabel": "Browse inventory",
         "primaryLink": "/inventory",
         "secondaryLabel": "The Vanguard approach",
@@ -538,7 +536,8 @@
               "imageAlt": "Porsche Panamera Turbo model-reference photograph; trim and finish may differ",
               "caption": "Model reference"
             }
-          ]
+          ],
+          "showcaseImage": "/images/showcase-v2/panamera-side.png"
         },
         "bmw-m5": {
           "image0": "/images/bmw.jpg",
@@ -550,7 +549,8 @@
               "imageAlt": "BMW M5 model-reference photograph; trim and finish may differ",
               "caption": "Model reference"
             }
-          ]
+          ],
+          "showcaseImage": ""
         },
         "mercedes-amg": {
           "image0": "/images/mercedes.jpg",
@@ -562,7 +562,8 @@
               "imageAlt": "Mercedes-Benz AMG GT model-reference photograph; trim and finish may differ",
               "caption": "Model reference"
             }
-          ]
+          ],
+          "showcaseImage": "/images/showcase-v2/amg-side.png"
         },
         "audi-rs6": {
           "image0": "/images/audi.jpg",
@@ -574,7 +575,8 @@
               "imageAlt": "Audi RS6 Avant model-reference photograph; trim and finish may differ",
               "caption": "Model reference"
             }
-          ]
+          ],
+          "showcaseImage": ""
         },
         "tesla-model-3": {
           "image0": "/images/tesla.jpg",
@@ -586,7 +588,8 @@
               "imageAlt": "Tesla Model 3 model-reference photograph; trim and finish may differ",
               "caption": "Model reference"
             }
-          ]
+          ],
+          "showcaseImage": ""
         },
         "honda-crv": {
           "image0": "/images/honda-crv.jpg",
@@ -598,7 +601,8 @@
               "imageAlt": "Honda CR-V EX model-reference photograph; trim and finish may differ",
               "caption": "Model reference"
             }
-          ]
+          ],
+          "showcaseImage": ""
         },
         "chevrolet-camaro": {
           "image0": "/images/camaro.jpg",
@@ -610,7 +614,8 @@
               "imageAlt": "Chevrolet Camaro SS model-reference photograph; trim and finish may differ",
               "caption": "Model reference"
             }
-          ]
+          ],
+          "showcaseImage": ""
         },
         "ferrari-458": {
           "image0": "/images/experience.jpg",
@@ -622,7 +627,8 @@
               "imageAlt": "Ferrari 458 Speciale model-reference photograph; trim and finish may differ",
               "caption": "Model reference"
             }
-          ]
+          ],
+          "showcaseImage": "/images/showcase-v2/ferrari-side.png"
         }
       }
     },
@@ -735,8 +741,6 @@
         "eyebrow": "THE VANGUARD COLLECTION",
         "title": "Find the one.\nFeel the difference.",
         "description": "Performance icons, effortless grand tourers and remarkable everyday drives. Explore a collection chosen for the way it makes you feel.",
-        "image": "/images/mercedes.jpg",
-        "imageAlt": "Mercedes-AMG GT, a distinctive performance coupe",
         "imageCaption": "CHARACTER IN EVERY CURVE.",
         "demoNote": "Demonstration inventory. LKR prices are illustrative examples, not current market valuations. Specifications, mileage and availability must be confirmed."
       },
@@ -791,6 +795,47 @@
         "description": "Tell us about your ideal drive. Our team can talk you through the collection and help you explore your options.",
         "buttonLabel": "Talk to our team",
         "buttonLink": "/contact"
+      },
+      "showcase": {
+        "label": "Explore the cars in our collection",
+        "viewLabel": "Discover this car",
+        "selectLabel": "Show car",
+        "emptyTitle": "The next chapter is on its way.",
+        "emptyDescription": "Explore the complete collection below.",
+        "featured": {
+          "porsche-panamera": {
+            "enabled": true,
+            "order": 1
+          },
+          "bmw-m5": {
+            "enabled": false,
+            "order": 11
+          },
+          "mercedes-amg": {
+            "enabled": true,
+            "order": 2
+          },
+          "audi-rs6": {
+            "enabled": false,
+            "order": 13
+          },
+          "tesla-model-3": {
+            "enabled": false,
+            "order": 14
+          },
+          "honda-crv": {
+            "enabled": false,
+            "order": 15
+          },
+          "chevrolet-camaro": {
+            "enabled": false,
+            "order": 16
+          },
+          "ferrari-458": {
+            "enabled": true,
+            "order": 3
+          }
+        }
       }
     },
     "vehicleDetails": {
@@ -1329,14 +1374,14 @@
   },
   "styles": {},
   "theme": {
-    "primaryColor": "#377dff",
-    "secondaryColor": "#161a20",
-    "accentColor": "#8cafff",
-    "backgroundColor": "#0a0c0f",
-    "cardBackgroundColor": "#12151a",
-    "textColor": "#f3f4f6",
-    "borderColor": "#282d35",
-    "headingFont": "Outfit, sans-serif",
+    "primaryColor": "#9CAAB7",
+    "secondaryColor": "#172A3A",
+    "accentColor": "#9CAAB7",
+    "backgroundColor": "#0A1420",
+    "cardBackgroundColor": "#172A3A",
+    "textColor": "#F1F3F4",
+    "borderColor": "#9CAAB740",
+    "headingFont": "Manrope, sans-serif",
     "bodyFont": "Inter, sans-serif",
     "borderRadius": "4px"
   }

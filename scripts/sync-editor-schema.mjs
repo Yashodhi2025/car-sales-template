@@ -13,6 +13,8 @@ function fields(object, prefix) {
     if (/^inventory\.filters\.(showLabel|hideLabel)$/.test(path)) controls.add(path);
     if (path === "common.currencyCode") controls.add(path);
     if (path.startsWith("common.actionPalette.")) controls.add(path);
+    if (/^inventory\.showcase\.(label|selectLabel)$/.test(path)) controls.add(path);
+    if (/^inventory\.showcase\.featured\.[^.]+\.(enabled|order)$/.test(path) || /^inventory\.showcase\.empty(Title|Description)$/.test(path)) controls.add(path);
     if (value && typeof value === "object") return { key, type: "object", label: label(key), fields: fields(value, path) };
     let type = "text";
     if (typeof value === "number") type = "number";
@@ -30,7 +32,8 @@ function fields(object, prefix) {
     if (/^vehicleDetails\.navigation\.(label|enquiry)$/.test(path)) controls.add(path);
     if (/^requests\.(fields\.[^.]+\.placeholder|types\.|contactSubject$|viewingSubject$|noVehicle$|draftTextLabel$|noScript$)/.test(path) || path === "viewing.messagePlaceholder" || path.startsWith("motion.")) controls.add(path);
     if (/^home\.testimonials\.(carouselLabel|storyLabel)$/.test(path) || /^services\.items\.\d+\.targetPage$/.test(path)) controls.add(path);
-    return { key, type, label: label(key), ...(key === "icon" || prefix === "vehicleDetails.specIcons" ? { control: "icon-picker" } : {}) };
+    const fieldLabel = path.startsWith("inventory.showcase.featured.") && key === "enabled" ? "Show in showcase" : path.startsWith("inventory.showcase.featured.") && key === "order" ? "Display order" : label(key);
+    return { key, type, label: fieldLabel, ...(key === "icon" || prefix === "vehicleDetails.specIcons" ? { control: "icon-picker" } : {}) };
   });
 }
 function owner(path) {
@@ -74,8 +77,10 @@ for (const [key, value] of Object.entries(data.content.cards)) sections.push(col
 sections.push(collection("catalog", data.content.catalog), collection("showrooms", data.content.showrooms), objectSection("vehicleDetails", data.content.vehicleDetails));
 for (const [id, vehicle] of Object.entries(data.content.vehicles)) {
   const { features, ...details } = vehicle;
-  const { gallery, ...photos } = data.content.photos.vehicles[id];
+  const { gallery, showcaseImage, ...photos } = data.content.photos.vehicles[id];
   sections.push(objectSection(`vehicles.${id}`, details), collection(`vehicles.${id}.features`, features), objectSection(`photos.vehicles.${id}`, photos), collection(`photos.vehicles.${id}.gallery`, gallery));
+  controls.add(`photos.vehicles.${id}.showcaseImage`);
+  sections.push({ id: `inventory.showcase.${id}`, path: `photos.vehicles.${id}.showcaseImage`, type: "image", label: `Inventory showcase photo / ${data.content.cards.vehicles[id].name}`, pageKey: "inventory", description: "Upload a transparent side-view PNG/WebP, facing right. Enable this car under Inventory showcase / Featured and set its display order. Only enabled cars with a showcase image appear in the scene; the stock gallery is separate.", recommendedWidth: 2000, recommendedHeight: 750 });
 }
 if (intake) sections.push(intake);
 manifest.name = "Vanguard Motors";

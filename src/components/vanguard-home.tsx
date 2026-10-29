@@ -8,6 +8,7 @@ import { VehicleListing } from "./vehicle-listing";
 import { Arrow } from "./vanguard-arrow";
 import { HomeVehicleSearch } from "./home-vehicle-search";
 import { VanguardReviews } from "./vanguard-reviews";
+import { HeroDrive } from "./hero-drive";
 
 export function VanguardHome() {
  const { data, content, t, legacyMissing } = useSiteContent();
@@ -19,7 +20,7 @@ export function VanguardHome() {
  if (!data.requirements.requiredPages.includes("home")) return null;
  return <main id="main-content" ref={root} data-preview-page-key="home" className="vm-page vm-home-page">
  <section id="home" className="vm-hero" aria-labelledby="hero-title">
-          <div className="vm-hero-image-wrap"><VanguardImage id="home.hero.image" src={t("home.hero.image")} alt={t("home.hero.imageAlt")} width={2000} height={1334} loading="eager" fetchPriority="high" className="vm-hero-image" /></div>
+          <HeroDrive />
           <div className="vm-hero-shade" aria-hidden="true" />
           <div className="vm-container vm-hero-inner">
             <div className="vm-hero-copy">

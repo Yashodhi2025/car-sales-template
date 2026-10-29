@@ -1,0 +1,93 @@
+.root { position: sticky; top: 110px; z-index: 0; padding-block: 0 16px; }
+.root:has(.showcase[data-editing='true']) { position: relative; top: auto; }
+.root .breadcrumb { margin-bottom: 12px; font-size: 10px; }
+.heroLayout { display: grid; grid-template-columns: minmax(0,.88fr) minmax(0,1.12fr); gap: clamp(28px,3.6vw,52px); align-items: center; }
+.intro { min-width: 0; max-width: 460px; padding-block: 6px; }
+.intro :global(.vm-eyebrow) { --deneb-font-size: 9px; --deneb-letter-spacing: .16em; margin-bottom: 13px !important; }
+.intro .title { --deneb-font-size: clamp(32px,3.2vw,44px); --deneb-line-height: 1.1; --deneb-letter-spacing: -.045em; white-space: pre-line; text-wrap: balance; }
+.intro .description { --deneb-font-size: 13px; --deneb-line-height: 1.7; --deneb-color: var(--vm-muted); max-width: 380px; margin-top: 14px !important; text-wrap: pretty; }
+.showcase { --showcase-cycle: 8.5s; position: relative; min-width: 0; }
+.stage { position: relative; isolation: isolate; height: 272px; overflow: hidden; background: transparent; }
+.selectors { position: absolute; z-index: 4; left: 12px; right: 12px; top: 0; display: flex; justify-content: center; align-items: start; gap: 6px; overflow-x: auto; scrollbar-width: none; }
+.selector { flex: 0 0 auto; border: 1px solid transparent; border-radius: 100px; padding: 5px 9px; background: transparent; color: var(--vm-muted); font-size: 8px !important; line-height: 1.4 !important; transition: background .25s,border-color .25s,color .25s; text-align: left; white-space: nowrap; }
+.selector[aria-pressed='true'] { background: color-mix(in srgb,var(--vm-navy) 3.14%,transparent); border-color: color-mix(in srgb,var(--vm-silver) 14.12%,transparent); color: var(--vm-text); }
+.selector:hover { color: var(--vm-text); background: color-mix(in srgb,var(--vm-navy) 5.1%,transparent); }
+.selector:focus-visible,.discover:focus-visible { outline: 2px solid var(--vm-blue); outline-offset: 3px; }
+.slide { position: absolute; inset: 0; z-index: 2; opacity: 0; visibility: hidden; pointer-events: none; }
+.slide[data-active='true'] { opacity: 1; visibility: visible; }
+.model { position: absolute; top: 33px; left: 12px; right: 12px; text-align: center; color: var(--vm-text); pointer-events: auto; }
+.model h2 { --deneb-font-size: clamp(20px,1.9vw,26px); --deneb-line-height: 1.12; --deneb-letter-spacing: -.035em; text-wrap: balance; }
+.model p { --deneb-font-size: 8px; --deneb-line-height: 1.6; --deneb-color: var(--vm-muted); margin-top: 4px !important; }
+.vehicleMotion { position: absolute; top: 78px; left: 4%; width: 92%; height: 160px; transform-origin: 50% 95%; pointer-events: auto; }
+.vehicleMotion .photo { position: absolute; inset: 0; z-index: 1; width: 100%; height: 100%; min-height: 0; max-height: 100%; object-fit: contain; object-position: center bottom; user-select: none; }
+.carShadow { position: absolute; bottom: -2%; left: 15%; right: 15%; height: 7%; border-radius: 50%; background: radial-gradient(ellipse,color-mix(in srgb,var(--vm-navy) 14.9%,transparent) 0%,color-mix(in srgb,var(--vm-navy) 6.27%,transparent) 42%,transparent 74%); filter: blur(3px); }
+.facts { position: absolute; left: 26%; right: 26%; bottom: 3px; display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 26px; text-align: center; color: var(--vm-text); pointer-events: auto; }
+.facts p { --deneb-font-size: 11px; --deneb-line-height: 1.4; --deneb-font-weight: 500; --deneb-letter-spacing: -.015em; }
+.facts .factLabel { --deneb-font-size: 6px; --deneb-line-height: 1.5; --deneb-color: var(--vm-muted); display: block; margin-top: 3px; }
+.footer { display: flex; justify-content: space-between; align-items: center; gap: 20px; padding: 6px 3px 0; }
+.caption { --deneb-font-size: 8px; --deneb-letter-spacing: .13em; --deneb-color: var(--vm-muted); }
+.discover { display: flex; align-items: center; gap: 14px; color: var(--vm-text) !important; font-size: 11px; }
+.discover svg { width: 14px; height: 14px; }
+.empty { position: absolute; z-index: 3; inset: 60px 30px; display: grid; place-content: center; gap: 10px; text-align: center; color: var(--vm-text); }
+.empty h2 { --deneb-font-size: 24px; }
+.empty p { --deneb-font-size: 11px; --deneb-color: var(--vm-muted); }
+.showcase[data-running='true'] .slide[data-active='true'] .vehicleMotion { animation: drive var(--showcase-cycle) linear infinite both; }
+.showcase[data-running='true'] .slide[data-active='true'] .model { animation: reveal-title var(--showcase-cycle) linear infinite both; }
+.showcase[data-running='true'] .slide[data-active='true'] .facts { animation: reveal-facts var(--showcase-cycle) linear infinite both; }
+.showcase:is([data-in-view='false'],[data-page-visible='false'],[data-hover='true'],:focus-within) * { animation-play-state: paused !important; }
+@keyframes drive {
+  0% { opacity: 0; transform: translate3d(-160%,0,0); animation-timing-function: cubic-bezier(.13,.75,.17,1); }
+  5% { opacity: 1; }
+  25%,70% { opacity: 1; transform: translate3d(0,0,0); }
+  73% { transform: translate3d(1%,0,0); animation-timing-function: cubic-bezier(.55,0,.82,.35); }
+  98%,100% { opacity: 0; transform: translate3d(160%,0,0); }
+}
+@keyframes reveal-title {
+  0%,23% { opacity: 0; transform: translateY(8px); }
+  33%,69% { opacity: 1; transform: translateY(0); }
+  77%,100% { opacity: 0; transform: translateY(-5px); }
+}
+@keyframes reveal-facts {
+  0%,27% { opacity: 0; transform: translateY(10px); }
+  38%,69% { opacity: 1; transform: translateY(0); }
+  76%,100% { opacity: 0; transform: translateY(5px); }
+}
+@media (max-width:1100px) {
+  .heroLayout { gap: 28px; }
+  .selector { padding: 5px 8px; font-size: 7px !important; }
+  .model h2 { --deneb-font-size: 23px; }
+  .facts { gap: 20px; }
+  .facts p { --deneb-font-size: 10px; }
+}
+@media (max-width:1000px) {
+  .root { top: -100px; }
+  .heroLayout { grid-template-columns: minmax(0,1fr); gap: 16px; }
+  .intro { max-width: none; padding-block: 0; }
+  .intro .title { --deneb-font-size: 35px; }
+  .intro .description { max-width: 520px; margin-top: 15px !important; }
+}
+@media (max-width:600px) {
+  .root { padding-top: 0; padding-bottom: 12px; }
+  .root .breadcrumb { margin-bottom: 8px; }
+  .heroLayout { gap: 14px; }
+  .intro :global(.vm-eyebrow) { --deneb-font-size: 8px; margin-bottom: 12px !important; }
+  .intro .title { --deneb-font-size: 29px; }
+  .intro .description { --deneb-font-size: 12px; --deneb-line-height: 1.75; max-width: 350px; margin-top: 13px !important; }
+  .stage { height: 238px; }
+  .selectors { top: 4px; left: 10px; right: 10px; max-width: none; flex-direction: row; justify-content: start; flex-wrap: nowrap; gap: 4px; overflow-x: auto; scrollbar-width: none; }
+  .selector { flex: 0 0 auto; max-width: none; padding: 4px 6px; font-size: 7px !important; white-space: nowrap; }
+  .model { top: 40px; left: 12px; right: 12px; }
+  .model h2 { --deneb-font-size: 20px; }
+  .model p { --deneb-font-size: 8px; margin-top: 3px !important; }
+  .vehicleMotion { top: 86px; left: 1%; width: 98%; height: 116px; }
+  .facts { left: 16%; right: 16%; bottom: 3px; gap: 18px; }
+  .facts p { --deneb-font-size: 10px; }
+  .facts .factLabel { --deneb-font-size: 6px; margin-top: 3px; }
+  .footer { padding-top: 6px; gap: 10px; }
+  .caption { --deneb-font-size: 6px; --deneb-letter-spacing: .06em; }
+  .discover { font-size: 9px; gap: 7px; }
+}
+@media (prefers-reduced-motion:reduce) {
+  .root { position: relative; top: auto; }
+  .showcase * { animation: none !important; transition: none !important; }
+}

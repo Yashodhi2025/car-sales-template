@@ -12,7 +12,7 @@ export function VehicleListing({ id, index = 0 }: { id: VehicleId; index?: numbe
   const canEnquire = data.requirements.requiredPages.includes("contact");
   const canView = data.requirements.requiredPages.includes(carPageKey(id));
   return (
-    <EditableVehicleCard vehicleId={id} className={`vm-vehicle-card ${/reserved/i.test(t(`cards.vehicles.${id}.availability`)) ? "is-reserved" : ""}`} href={canView ? withBasePath(t(`vehicles.${id}.detailLink`)) : undefined}
+    <EditableVehicleCard vehicleId={id} className={`vm-vehicle-card vm-card-premium ${/reserved/i.test(t(`cards.vehicles.${id}.availability`)) ? "is-reserved" : ""}`} href={canView ? withBasePath(t(`vehicles.${id}.detailLink`)) : undefined}
       imageSlot={
         <div className="vm-vehicle-image-wrap">
           {canView ? <EditableLink href={withBasePath(t(`vehicles.${id}.detailLink`))} data-preview-field-path={`vehicles.${id}.detailLink`} targetPage={carPageKey(id)} className="vm-vehicle-photo-link">

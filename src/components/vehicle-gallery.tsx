@@ -170,7 +170,7 @@ export function VehicleGallery({ vehicleId }: { vehicleId: VehicleId }) {
 
       {expanded && createPortal(
         <EditableDialog open onClose={() => setExpanded(false)} size="full" showCloseButton={false} className="vanguard vm-photo-viewer vm-cinematic-viewer" aria-labelledby="vehicle-viewer-title" data-motion={String(Boolean(content.motion.enabled))}
-          style={{ padding: "20px", borderRadius: "12px", maxWidth: "1440px", maxHeight: "96svh", backgroundColor: "#0a0c0f" }}>
+          style={{ padding: "20px", borderRadius: "12px", maxWidth: "1440px", maxHeight: "96svh", backgroundColor: "var(--vm-midnight)" }}>
           <div ref={viewer} onKeyDown={keyboard} className="vm-viewer-inner">
             <header className="vm-viewer-header"><div><h2 id="vehicle-viewer-title"><EditableText id={`cards.vehicles.${vehicleId}.name`}>{t(`cards.vehicles.${vehicleId}.name`)}</EditableText></h2><p>{String(active + 1).padStart(2, "0")} / {String(photos.length).padStart(2, "0")}</p></div>
               <button type="button" className="vm-viewer-close vm-icon-button" aria-label={t("vehicleDetails.gallery.closeLabel")} onClick={() => setExpanded(false)}><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true"><path d="m6 6 12 12M6 18 18 6" /></svg></button>
