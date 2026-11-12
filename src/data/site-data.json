@@ -155,41 +155,38 @@
         "title": "Find your driving style."
       },
       "promise": {
-        "eyebrow": "THE VANGUARD STANDARD",
-        "title": "A higher standard.\nAt every turn.",
-        "description": "Finding the right car should feel as good as driving it. We put care, clarity and your ambitions at the heart of the experience."
+        "eyebrow": "WHAT SETS US APART"
       },
       "benefits": [
         {
-          "number": "01",
-          "title": "Chosen with intention",
-          "text": "A considered collection of distinctive cars, selected for their character, condition and the way they make you feel."
+          "icon": "car",
+          "title": "Curated selection",
+          "text": "Distinctive vehicles, chosen with care and attention."
         },
         {
-          "number": "02",
-          "title": "Clarity from the start",
-          "text": "Open conversations, straightforward pricing and time to make the decision that is right for you."
+          "icon": "shield",
+          "title": "Transparent approach",
+          "text": "Clear information and honest guidance."
         },
         {
-          "number": "03",
-          "title": "A personal connection",
-          "text": "One point of contact who takes the time to understand your priorities, from your first conversation to your next chapter."
+          "icon": "users",
+          "title": "Personalised guidance",
+          "text": "Support tailored to your needs."
         },
         {
-          "number": "04",
-          "title": "Beyond the handover",
-          "text": "Guidance on ownership, care and your next move. Because the relationship matters as much as the car."
+          "icon": "zap",
+          "title": "Ownership support",
+          "text": "Stay connected for guidance on your next chapter."
         }
       ],
       "experience": {
-        "eyebrow": "MORE THAN A DESTINATION",
-        "title": "For the moments\nthat move you.",
-        "description": "The first glimpse. The feel of the wheel. The road opening up ahead. Some things deserve to be experienced in person. Step away from the everyday and into the world of Vanguard.",
-        "image": "/images/experience.jpg",
-        "imageAlt": "A yellow performance car on a sunlit road",
-        "imageCaption": "A SHARED PASSION. AN OPEN ROAD.",
-        "buttonLabel": "Plan your visit",
-        "buttonLink": "/contact",
+        "eyebrow": "READY FOR YOUR NEXT MOVE?",
+        "description": "Explore the collection or speak with our team today.",
+        "image": "/images/about-showroom.jpg",
+        "imageAlt": "A collection of classic and modern sports cars inside a showroom; illustrative photography",
+        "imageCaption": "A PASSION FOR EXCEPTIONAL CARS.",
+        "buttonLabel": "Get in touch",
+        "buttonLink": "/contact#contact",
         "signature": "Exceptional cars. Human connections."
       },
       "testimonials": {
@@ -682,41 +679,49 @@
       }
     },
     "about": {
-      "eyebrow": "THE PEOPLE BEHIND THE DRIVE",
-      "title": "A shared passion.\nA considered approach.",
-      "description": "We believe the best cars bring people together. Vanguard is an independent destination for distinctive automobiles and a more personal ownership journey.",
+      "eyebrow": "ABOUT VANGUARD",
+      "title": "People, cars and\na better experience.",
+      "description": "Vanguard Motors is a destination for carefully selected vehicles, clear guidance and a more personal ownership journey.",
       "heroImage": "/images/gallery/mercedes-amg-reference.jpg",
-      "heroImageAlt": "Mercedes-AMG in a tree-lined automotive setting; illustrative brand photography",
-      "imageCaption": "A LOVE OF THE DRIVE. A RESPECT FOR THE JOURNEY.",
-      "storyEyebrow": "OUR POINT OF VIEW",
-      "storyTitle": "The car matters.\nSo does the conversation.",
-      "storyDescription": "A remarkable car deserves a considered introduction. Vanguard is built around a simple idea: take time to understand the person, explore the possibilities and make the details clear.",
-      "storyNote": "Our philosophy is an invitation to a more personal buying experience. This demonstration website makes no claim to a trading history, awards or accreditations.",
-      "journeyEyebrow": "YOUR VANGUARD EXPERIENCE",
-      "journeyTitle": "From first look\nto your next chapter.",
-      "journeyDescription": "A clear path, at your pace. Start with a car that catches your eye and a conversation about what matters to you.",
+      "heroImageAlt": "Silver Mercedes-AMG photographed from the front",
+      "imageCaption": "CHARACTER. CARE. CONNECTION.",
+      "storyEyebrow": "OUR STORY",
+      "storyTitle": "A considered approach\nto car ownership.",
+      "storyDescription": "We help you find a vehicle that fits your needs and lifestyle, with clear information and personal guidance before your purchase.",
+      "storyNote": "It is about building a trusted relationship and making the whole process simple and enjoyable.",
+      "journeyEyebrow": "THE VANGUARD EXPERIENCE",
+      "journeyTitle": "A simple path to your next car.",
+      "journeyDescription": "Explore at your own pace. We are here to guide your next step.",
       "journey": [
         {
           "number": "01",
-          "title": "Discover your direction",
-          "text": "Explore the collection, compare the details and save your questions for the team."
+          "title": "Discover",
+          "text": "Explore our collection and find what suits you."
         },
         {
           "number": "02",
-          "title": "Have the conversation",
-          "text": "Ask about condition, history and specification. Confirm the facts before making a decision."
+          "title": "Explore",
+          "text": "Get the details, ask questions and compare with confidence."
         },
         {
           "number": "03",
-          "title": "Make time for the drive",
-          "text": "Request a personal viewing. The team will confirm the vehicle, date and arrangements with you."
+          "title": "Connect",
+          "text": "Talk to our team and get the guidance you need."
+        },
+        {
+          "number": "04",
+          "title": "Drive",
+          "text": "Request a viewing or test drive and experience it yourself."
         }
       ],
-      "ctaTitle": "Find what moves you.",
-      "inventoryLabel": "Explore the collection",
+      "ctaTitle": "Discover Vanguard.",
+      "inventoryLabel": "Explore our collection",
       "inventoryLink": "/inventory",
-      "contactLabel": "Start a conversation",
-      "contactLink": "/contact"
+      "contactLabel": "Contact our team",
+      "contactLink": "/contact#contact",
+      "ctaImage": "/images/hero-porsche.jpg",
+      "ctaImageAlt": "Rear view of a dark Porsche on the road",
+      "ctaInventoryLabel": "Browse inventory"
     },
     "contact": {
       "heroCtaLabel": "Start your enquiry",
@@ -1240,19 +1245,19 @@
       "durationMs": 750
     },
     "services": {
-      "eyebrow": "THOUGHTFUL SUPPORT",
-      "title": "More than the car.\nA considered experience.",
-      "description": "A conversation shaped around your next move. Explore these example services and ask the team what is available.",
-      "demoNote": "Illustrative service offering — availability, scope and any terms must be confirmed with the dealership. Replace this demo content before launch.",
+      "eyebrow": "OUR SERVICES",
+      "title": "How we can help you",
+      "description": "Personal support for every step of your journey.",
+      "demoNote": "Example services. Availability and terms are confirmed by the dealership.",
       "items": [
         {
           "name": "Luxury Vehicle Sales",
-          "description": "Find a car that fits the way you drive. Explore the demonstration collection, compare the published details and speak to the team about the vehicle, its condition and your next steps.",
+          "description": "Explore the collection and find a car that fits the way you drive.",
           "icon": "car",
-          "buttonLabel": "Explore the collection",
+          "buttonLabel": "Explore cars",
           "buttonLink": "/inventory",
           "targetPage": "inventory",
-          "imageUrl": "/images/hero-porsche.jpg",
+          "imageUrl": "/images/services/collection.jpg",
           "kicker": "THE COLLECTION",
           "includes": [
             {
@@ -1267,13 +1272,13 @@
           ]
         },
         {
-          "name": "Vehicle Trade-In Assistance",
-          "description": "Thinking about a change? Start with a conversation about your current car and what you are looking for next. Any assessment, offer or trade-in arrangement must be agreed with the dealership.",
+          "name": "Trade-In Assistance",
+          "description": "Discuss your current vehicle and explore trade-in options with our team.",
           "icon": "refresh-cw",
-          "buttonLabel": "Discuss your vehicle",
+          "buttonLabel": "Request trade-in",
           "buttonLink": "/contact?inquiry=trade-in#contact",
           "targetPage": "contact",
-          "imageUrl": "/images/bmw.jpg",
+          "imageUrl": "/images/services/trade-in-key.jpg",
           "kicker": "YOUR NEXT CHAPTER",
           "includes": [
             {
@@ -1289,12 +1294,12 @@
         },
         {
           "name": "Financing Guidance",
-          "description": "Make an informed next step. Ask the team about guidance or introductions they may be able to offer, then confirm the details directly with the relevant provider. No finance offer or approval is included in this template.",
-          "icon": "file-text",
-          "buttonLabel": "Ask about guidance",
-          "buttonLink": "/contact?inquiry=finance#contact",
-          "targetPage": "contact",
-          "imageUrl": "/images/gallery/mercedes-amg-reference.jpg",
+          "description": "Explore monthly payments with our calculator, then discuss your options.",
+          "icon": "calculator",
+          "buttonLabel": "Calculate EMI",
+          "buttonLink": "/cars/porsche-panamera#vehicle-loan-calculator",
+          "targetPage": "car-porsche-panamera",
+          "imageUrl": "/images/services/finance.jpg",
           "kicker": "INFORMED CHOICES",
           "includes": [
             {
@@ -1310,12 +1315,12 @@
         },
         {
           "name": "Test Drive Arrangements",
-          "description": "A photograph is only the beginning. Request a conversation about experiencing a selected car and discuss a suitable time. Availability, driving eligibility and any arrangements need confirmation before your visit.",
+          "description": "Get a feel for your next car. Request a test drive with our team.",
           "icon": "gauge",
-          "buttonLabel": "Discuss a test drive",
+          "buttonLabel": "Request test drive",
           "buttonLink": "/contact?inquiry=test-drive#contact",
           "targetPage": "contact",
-          "imageUrl": "/images/experience.jpg",
+          "imageUrl": "/images/services/test-drive.jpg",
           "kicker": "EXPERIENCE THE DRIVE",
           "includes": [
             {
@@ -1331,12 +1336,12 @@
         },
         {
           "name": "Vehicle Sourcing",
-          "description": "Have a particular car in mind? Share the details that matter to you and ask whether the team can help with the search. This example service does not promise stock, a sourcing timeline or a particular outcome.",
+          "description": "Looking for something specific? Share your requirements and start the search.",
           "icon": "search",
-          "buttonLabel": "Share your wish list",
+          "buttonLabel": "Request a vehicle",
           "buttonLink": "/contact?inquiry=sourcing#contact",
           "targetPage": "contact",
-          "imageUrl": "/images/tesla.jpg",
+          "imageUrl": "/images/services/sourcing-key.jpg",
           "kicker": "A PERSONAL SEARCH",
           "includes": [
             {
@@ -1352,12 +1357,12 @@
         },
         {
           "name": "After-Sales Support",
-          "description": "Keep the conversation going after your purchase. Ask about your car, its documentation or available support. Any maintenance, warranty or other service must be confirmed separately with the dealership.",
+          "description": "Keep in touch for vehicle questions, documentation and available support.",
           "icon": "settings",
-          "buttonLabel": "Start a conversation",
+          "buttonLabel": "Contact support",
           "buttonLink": "/contact?inquiry=after-sales#contact",
           "targetPage": "contact",
-          "imageUrl": "/images/services-hero.jpg",
+          "imageUrl": "/images/services/support-engine.jpg",
           "kicker": "THE OWNERSHIP JOURNEY",
           "includes": [
             {
@@ -1372,21 +1377,76 @@
           ]
         }
       ],
-      "heroTitle": "Beyond\nthe drive.",
-      "heroImage": "/images/services-hero.jpg",
-      "heroImageAlt": "Silver Mercedes AMG GT in an open automotive setting",
+      "heroTitle": "More than a car.\nA complete experience.",
+      "heroImage": "/images/services/hero-headlight.jpg",
+      "heroImageAlt": "Close-up of a dark BMW headlight and front grille",
       "heroCaption": "CARE. CLARITY. CONNECTION.",
       "heroPrimaryLabel": "Explore our services",
       "heroPrimaryLink": "#offerings",
-      "heroSecondaryLabel": "Find your next car",
-      "heroSecondaryLink": "/inventory",
+      "heroSecondaryLabel": "Contact our team",
+      "heroSecondaryLink": "/contact#contact",
       "indexLabel": "THE VANGUARD EXPERIENCE",
-      "heroDescription": "Exceptional cars. Clear conversations. Discover a more considered way to find your next vehicle.",
-      "closingEyebrow": "YOUR NEXT CHAPTER",
+      "heroDescription": "A range of services to help you find, finance and enjoy the right vehicle with confidence.",
+      "closingEyebrow": "READY TO GET STARTED?",
       "closingTitle": "Let’s find your way forward.",
-      "closingDescription": "Tell us what you have in mind. Start a conversation about your next car or ask about these example services.",
+      "closingDescription": "Talk to our team about your next vehicle, a test drive, financing or any of our services.",
       "closingButtonLabel": "Start a conversation",
-      "closingButtonLink": "/contact"
+      "closingButtonLink": "/contact#contact",
+      "closingImage": "/images/hero-porsche.jpg",
+      "closingImageAlt": "Rear view of a dark Porsche on the road",
+      "closingPhoneLabel": "Call us",
+      "financeContactLabel": "Ask about financing",
+      "financeContactLink": "/contact?inquiry=finance#contact",
+      "processEyebrow": "THE PROCESS",
+      "processTitle": "How it works",
+      "processDescription": "A simple, guided process from your first inquiry to the road ahead.",
+      "trustFeatures": [
+        {
+          "icon": "shield",
+          "title": "Trusted support",
+          "text": "From inquiry to ownership"
+        },
+        {
+          "icon": "settings",
+          "title": "Flexible options",
+          "text": "Shaped around your needs"
+        },
+        {
+          "icon": "users",
+          "title": "Expert guidance",
+          "text": "Talk to our vehicle team"
+        },
+        {
+          "icon": "zap",
+          "title": "A seamless experience",
+          "text": "Clear, simple conversations"
+        }
+      ],
+      "steps": [
+        {
+          "number": "01",
+          "title": "Get in touch",
+          "text": "Tell us what you are looking for."
+        },
+        {
+          "number": "02",
+          "title": "Discuss options",
+          "text": "Explore vehicles and services with our team."
+        },
+        {
+          "number": "03",
+          "title": "Arrange & confirm",
+          "text": "Agree on your next step before you visit."
+        },
+        {
+          "number": "04",
+          "title": "Drive with confidence",
+          "text": "Stay connected for ownership support."
+        }
+      ],
+      "offeringsEyebrow": "OUR SERVICES",
+      "viewAllLabel": "View all services",
+      "viewAllLink": "#services-grid"
     },
     "faq": {
       "eyebrow": "A LITTLE CLARITY",

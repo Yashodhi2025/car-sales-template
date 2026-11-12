@@ -12,6 +12,7 @@
       "__fivoraIntake.outputLanguage",
       "__fivoraIntake.referenceWebsiteUrl",
       "__fivoraIntake.tone",
+      "about.ctaImageAlt",
       "about.heroImageAlt",
       "cards.bodyTypes.coupe.imageAlt",
       "cards.bodyTypes.estate.imageAlt",
@@ -177,6 +178,7 @@
       "requests.types.7.key",
       "requests.types.7.label",
       "requests.viewingSubject",
+      "services.closingImageAlt",
       "services.heroImageAlt",
       "services.items.0.targetPage",
       "services.items.1.targetPage",
@@ -733,16 +735,6 @@
             "key": "eyebrow",
             "type": "text",
             "label": "Eyebrow"
-          },
-          {
-            "key": "title",
-            "type": "text",
-            "label": "Title"
-          },
-          {
-            "key": "description",
-            "type": "textarea",
-            "label": "Description"
           }
         ],
         "pageKey": "about"
@@ -757,12 +749,13 @@
         "items": [
           {
             "key": "0",
-            "label": "Chosen with intention",
+            "label": "Curated selection",
             "fields": [
               {
-                "key": "number",
+                "key": "icon",
                 "type": "text",
-                "label": "Number"
+                "label": "Icon",
+                "control": "icon-picker"
               },
               {
                 "key": "title",
@@ -778,12 +771,13 @@
           },
           {
             "key": "1",
-            "label": "Clarity from the start",
+            "label": "Transparent approach",
             "fields": [
               {
-                "key": "number",
+                "key": "icon",
                 "type": "text",
-                "label": "Number"
+                "label": "Icon",
+                "control": "icon-picker"
               },
               {
                 "key": "title",
@@ -799,12 +793,13 @@
           },
           {
             "key": "2",
-            "label": "A personal connection",
+            "label": "Personalised guidance",
             "fields": [
               {
-                "key": "number",
+                "key": "icon",
                 "type": "text",
-                "label": "Number"
+                "label": "Icon",
+                "control": "icon-picker"
               },
               {
                 "key": "title",
@@ -820,12 +815,13 @@
           },
           {
             "key": "3",
-            "label": "Beyond the handover",
+            "label": "Ownership support",
             "fields": [
               {
-                "key": "number",
+                "key": "icon",
                 "type": "text",
-                "label": "Number"
+                "label": "Icon",
+                "control": "icon-picker"
               },
               {
                 "key": "title",
@@ -851,11 +847,6 @@
             "key": "eyebrow",
             "type": "text",
             "label": "Eyebrow"
-          },
-          {
-            "key": "title",
-            "type": "text",
-            "label": "Title"
           },
           {
             "key": "description",
@@ -1732,7 +1723,7 @@
           },
           {
             "key": "storyNote",
-            "type": "text",
+            "type": "textarea",
             "label": "Story Note"
           },
           {
@@ -1774,6 +1765,21 @@
             "key": "contactLink",
             "type": "url",
             "label": "Contact Link"
+          },
+          {
+            "key": "ctaImage",
+            "type": "image",
+            "label": "Cta Image"
+          },
+          {
+            "key": "ctaImageAlt",
+            "type": "text",
+            "label": "Cta Image Alt"
+          },
+          {
+            "key": "ctaInventoryLabel",
+            "type": "text",
+            "label": "Cta Inventory Label"
           }
         ],
         "pageKey": "about"
@@ -1788,7 +1794,7 @@
         "items": [
           {
             "key": "0",
-            "label": "Discover your direction",
+            "label": "Discover",
             "fields": [
               {
                 "key": "number",
@@ -1809,7 +1815,7 @@
           },
           {
             "key": "1",
-            "label": "Have the conversation",
+            "label": "Explore",
             "fields": [
               {
                 "key": "number",
@@ -1830,7 +1836,28 @@
           },
           {
             "key": "2",
-            "label": "Make time for the drive",
+            "label": "Connect",
+            "fields": [
+              {
+                "key": "number",
+                "type": "text",
+                "label": "Number"
+              },
+              {
+                "key": "title",
+                "type": "text",
+                "label": "Title"
+              },
+              {
+                "key": "text",
+                "type": "textarea",
+                "label": "Text"
+              }
+            ]
+          },
+          {
+            "key": "3",
+            "label": "Drive",
             "fields": [
               {
                 "key": "number",
@@ -2040,6 +2067,61 @@
             "key": "closingButtonLink",
             "type": "url",
             "label": "Closing Button Link"
+          },
+          {
+            "key": "closingImage",
+            "type": "image",
+            "label": "Closing Image"
+          },
+          {
+            "key": "closingImageAlt",
+            "type": "text",
+            "label": "Closing Image Alt"
+          },
+          {
+            "key": "closingPhoneLabel",
+            "type": "text",
+            "label": "Closing Phone Label"
+          },
+          {
+            "key": "financeContactLabel",
+            "type": "text",
+            "label": "Finance Contact Label"
+          },
+          {
+            "key": "financeContactLink",
+            "type": "url",
+            "label": "Finance Contact Link"
+          },
+          {
+            "key": "processEyebrow",
+            "type": "text",
+            "label": "Process Eyebrow"
+          },
+          {
+            "key": "processTitle",
+            "type": "text",
+            "label": "Process Title"
+          },
+          {
+            "key": "processDescription",
+            "type": "textarea",
+            "label": "Process Description"
+          },
+          {
+            "key": "offeringsEyebrow",
+            "type": "text",
+            "label": "Offerings Eyebrow"
+          },
+          {
+            "key": "viewAllLabel",
+            "type": "text",
+            "label": "View All Label"
+          },
+          {
+            "key": "viewAllLink",
+            "type": "url",
+            "label": "View All Link"
           }
         ],
         "pageKey": "services"
@@ -2144,7 +2226,7 @@
           },
           {
             "key": "1",
-            "label": "Vehicle Trade-In Assistance",
+            "label": "Trade-In Assistance",
             "fields": [
               {
                 "key": "name",
@@ -6497,6 +6579,198 @@
             "type": "object",
             "label": "AI Guidance Notes",
             "fields": []
+          }
+        ]
+      },
+      {
+        "id": "services.trustFeatures",
+        "path": "services.trustFeatures",
+        "type": "collection",
+        "label": "Services / Trust Features",
+        "collectionType": "list",
+        "pageKey": "services",
+        "items": [
+          {
+            "key": "0",
+            "label": "Trusted support",
+            "fields": [
+              {
+                "key": "icon",
+                "type": "text",
+                "label": "Icon",
+                "control": "icon-picker"
+              },
+              {
+                "key": "title",
+                "type": "text",
+                "label": "Title"
+              },
+              {
+                "key": "text",
+                "type": "textarea",
+                "label": "Text"
+              }
+            ]
+          },
+          {
+            "key": "1",
+            "label": "Flexible options",
+            "fields": [
+              {
+                "key": "icon",
+                "type": "text",
+                "label": "Icon",
+                "control": "icon-picker"
+              },
+              {
+                "key": "title",
+                "type": "text",
+                "label": "Title"
+              },
+              {
+                "key": "text",
+                "type": "textarea",
+                "label": "Text"
+              }
+            ]
+          },
+          {
+            "key": "2",
+            "label": "Expert guidance",
+            "fields": [
+              {
+                "key": "icon",
+                "type": "text",
+                "label": "Icon",
+                "control": "icon-picker"
+              },
+              {
+                "key": "title",
+                "type": "text",
+                "label": "Title"
+              },
+              {
+                "key": "text",
+                "type": "textarea",
+                "label": "Text"
+              }
+            ]
+          },
+          {
+            "key": "3",
+            "label": "A seamless experience",
+            "fields": [
+              {
+                "key": "icon",
+                "type": "text",
+                "label": "Icon",
+                "control": "icon-picker"
+              },
+              {
+                "key": "title",
+                "type": "text",
+                "label": "Title"
+              },
+              {
+                "key": "text",
+                "type": "textarea",
+                "label": "Text"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "services.steps",
+        "path": "services.steps",
+        "type": "collection",
+        "label": "Services / Steps",
+        "collectionType": "list",
+        "pageKey": "services",
+        "items": [
+          {
+            "key": "0",
+            "label": "Get in touch",
+            "fields": [
+              {
+                "key": "number",
+                "type": "text",
+                "label": "Number"
+              },
+              {
+                "key": "title",
+                "type": "text",
+                "label": "Title"
+              },
+              {
+                "key": "text",
+                "type": "textarea",
+                "label": "Text"
+              }
+            ]
+          },
+          {
+            "key": "1",
+            "label": "Discuss options",
+            "fields": [
+              {
+                "key": "number",
+                "type": "text",
+                "label": "Number"
+              },
+              {
+                "key": "title",
+                "type": "text",
+                "label": "Title"
+              },
+              {
+                "key": "text",
+                "type": "textarea",
+                "label": "Text"
+              }
+            ]
+          },
+          {
+            "key": "2",
+            "label": "Arrange & confirm",
+            "fields": [
+              {
+                "key": "number",
+                "type": "text",
+                "label": "Number"
+              },
+              {
+                "key": "title",
+                "type": "text",
+                "label": "Title"
+              },
+              {
+                "key": "text",
+                "type": "textarea",
+                "label": "Text"
+              }
+            ]
+          },
+          {
+            "key": "3",
+            "label": "Drive with confidence",
+            "fields": [
+              {
+                "key": "number",
+                "type": "text",
+                "label": "Number"
+              },
+              {
+                "key": "title",
+                "type": "text",
+                "label": "Title"
+              },
+              {
+                "key": "text",
+                "type": "textarea",
+                "label": "Text"
+              }
+            ]
           }
         ]
       }

@@ -18,14 +18,18 @@ type Service = {
 // The validator replaces editable lists with [] and may omit styles entirely.
 // Declare their item shapes independently of the current JSON fixture.
 type VanguardContent = Omit<InitialContent, "home" | "about" | "photos" | "vehicles" | "requests" | "services" | "faq"> & {
-  home: Omit<InitialContent["home"], "benefits" | "reviews"> & { benefits: NumberedCopy[]; reviews: Review[] };
+  home: Omit<InitialContent["home"], "benefits" | "reviews"> & { benefits: { icon: string; title: string; text: string }[]; reviews: Review[] };
   about: Omit<InitialContent["about"], "journey"> & { journey: NumberedCopy[] };
   photos: Omit<InitialContent["photos"], "vehicles"> & {
     vehicles: { [Id in keyof InitialContent["photos"]["vehicles"]]: Omit<InitialContent["photos"]["vehicles"][Id], "gallery"> & { gallery: GalleryItem[] } };
   };
   vehicles: { [Id in keyof InitialContent["vehicles"]]: Omit<InitialContent["vehicles"][Id], "features"> & { features: NamedItem[] } };
   requests: Omit<InitialContent["requests"], "types"> & { types: { key: string; label: string }[] };
-  services: Omit<InitialContent["services"], "items"> & { items: Service[] };
+  services: Omit<InitialContent["services"], "items" | "trustFeatures" | "steps"> & {
+    items: Service[];
+    trustFeatures: { icon: string; title: string; text: string }[];
+    steps: { number: string; title: string; text: string }[];
+  };
   faq: Omit<InitialContent["faq"], "items"> & { items: { question: string; answer: string }[] };
 };
 

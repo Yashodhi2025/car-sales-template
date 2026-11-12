@@ -10,41 +10,89 @@ import styles from "./vanguard-services.module.css";
 
 export function VanguardServices() {
   const { data, content, t } = useSiteContent();
-  const root=useRef<HTMLElement>(null);
+  const root = useRef<HTMLElement>(null);
   usePageEffects(root);
-  if(!data.requirements.requiredPages.includes("services")) return null;
+  if (!data.requirements.requiredPages.includes("services")) return null;
+
   function servicePanel(service: typeof content.services.items[number], index: number) {
-    const path=`services.items.${index}`;
-    // Compose the existing card's editable copy with a lazy, failure-safe media slot.
+    const path = `services.items.${index}`;
     const { imageUrl, ...copy } = service;
-    return <article key={index} id={`service-${index}`} data-reveal className={`${styles.card} ${index === 0 || index === 3 ? styles.featured : ""} ${index === 3 ? `${styles.dark} vm-dark-surface` : ""}`}>
-      <div className={styles.photo}>
-        <VanguardImage id={`${path}.imageUrl`} src={imageUrl} alt={service.name} width={1400} height={950} />
-        <span className={styles.number} aria-hidden="true">{String(index+1).padStart(2,"0")}</span>
-      </div>
-      <EditableServiceCard as="div" itemPath={path} service={{...copy,name:t(`${path}.name`),description:t(`${path}.description`)}} showPrice={false} showStatusBadge={false} className={styles.copy}>
-        <div className={styles.strap}><EditableIcon fieldPath={`${path}.icon`} name={service.icon} size={18} /><EditableText id={`${path}.kicker`}>{t(`${path}.kicker`)}</EditableText></div>
-        <ul className={styles.includes} data-preview-list-path={`${path}.includes`}>{service.includes.map((item,itemIndex)=><li key={itemIndex} data-preview-item-path={`${path}.includes.${itemIndex}`}><EditableText id={`${path}.includes.${itemIndex}.name`}>{t(`${path}.includes.${itemIndex}.name`)}</EditableText></li>)}</ul>
-        <EditableLink href={withBasePath(service.buttonLink)} data-preview-field-path={`${path}.buttonLink`} targetPage={service.targetPage} className={`vm-text-link ${styles.action}`}><EditableText id={`${path}.buttonLabel`}>{service.buttonLabel}</EditableText><Arrow /></EditableLink>
+    return <article key={index} id={`service-${index}`} className={styles.card} data-preview-item-path={path} data-reveal>
+      <div className={styles.cardMedia}><VanguardImage id={`${path}.imageUrl`} src={imageUrl} alt={service.name} width={960} height={460} /></div>
+      <EditableServiceCard as="div" itemPath={path} service={{ ...copy, name: t(`${path}.name`), description: t(`${path}.description`) }} showPrice={false} showStatusBadge={false} className={styles.copy}>
+        <span className={styles.serviceIcon}><EditableIcon fieldPath={`${path}.icon`} name={service.icon} size={20} /></span>
+        <div className={styles.cardFooter}>
+          <div className={styles.detailsBody}>
+            <EditableText id={`${path}.kicker`} as="p" className={styles.kicker}>{t(`${path}.kicker`)}</EditableText>
+            <ul data-preview-list-path={`${path}.includes`}>{service.includes.map((item, itemIndex) => <li key={itemIndex} data-preview-item-path={`${path}.includes.${itemIndex}`}><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m8 12 3 3 5-6"/></svg><EditableText id={`${path}.includes.${itemIndex}.name`}>{item.name}</EditableText></li>)}</ul>
+          </div>
+          <div className={styles.cardActions}>
+            {index === 2 && <EditableLink href={withBasePath(t("services.financeContactLink"))} data-preview-field-path="services.financeContactLink" targetPage="contact" className={styles.financeLink}><EditableText id="services.financeContactLabel">{t("services.financeContactLabel")}</EditableText><Arrow /></EditableLink>}
+            <EditableLink href={withBasePath(service.buttonLink)} data-preview-field-path={`${path}.buttonLink`} targetPage={service.targetPage} className={styles.serviceAction}><EditableText id={`${path}.buttonLabel`}>{service.buttonLabel}</EditableText><Arrow /></EditableLink>
+          </div>
+        </div>
       </EditableServiceCard>
     </article>;
   }
-  return <main id="main-content" ref={root} className={`vm-page vm-services-page vm-editorial-page ${styles.page}`} data-preview-page-key="services">
-    <header className="vm-services-hero vm-dark-surface">
-      <div className="vm-container">
-        <div className="vm-editorial-topline"><EditableText id="services.eyebrow" as="p" className="vm-eyebrow vm-hero-enter">{t("services.eyebrow")}</EditableText><EditableText id="services.indexLabel">{t("services.indexLabel")}</EditableText></div>
-      <div className="vm-services-opening"><div className="vm-services-opening-copy">
-        <EditableText id="services.heroTitle" as="h1" className="vm-services-hero-title vm-hero-enter">{t("services.heroTitle")}</EditableText>
-        <EditableText id="services.heroDescription" as="p" className="vm-services-hero-description vm-hero-enter">{t("services.heroDescription")}</EditableText>
-        <div className="vm-actions vm-hero-enter"><EditableLink href={withBasePath(t("services.heroPrimaryLink"))} data-preview-field-path="services.heroPrimaryLink" className="vm-button vm-button-primary"><EditableText id="services.heroPrimaryLabel">{t("services.heroPrimaryLabel")}</EditableText><Arrow /></EditableLink><EditableLink href={withBasePath(t("services.heroSecondaryLink"))} data-preview-field-path="services.heroSecondaryLink" targetPage="inventory" className="vm-text-link"><EditableText id="services.heroSecondaryLabel">{t("services.heroSecondaryLabel")}</EditableText><Arrow /></EditableLink></div>
-      </div><figure className="vm-services-opening-photo vm-editorial-media"><VanguardImage id="services.heroImage" src={t("services.heroImage")} alt={t("services.heroImageAlt")} width={1800} height={1200} loading="eager" fetchPriority="high" /><figcaption><EditableText id="services.heroCaption">{t("services.heroCaption")}</EditableText></figcaption></figure></div></div>
+
+  return <main id="main-content" ref={root} className={`vm-page vm-services-page ${styles.page}`} data-preview-page-key="services">
+    <header className={`vm-services-hero vm-dark-surface ${styles.hero}`}>
+      <div className={`vm-container ${styles.heroInner}`}>
+        <div className={styles.heroCopy}>
+          <EditableText id="services.eyebrow" as="p" className="vm-eyebrow vm-hero-enter">{t("services.eyebrow")}</EditableText>
+          <EditableText id="services.heroTitle" as="h1" className={`${styles.heroTitle} vm-hero-enter`}>{t("services.heroTitle")}</EditableText>
+          <EditableText id="services.heroDescription" as="p" className={`${styles.heroDescription} vm-services-hero-description vm-hero-enter`}>{t("services.heroDescription")}</EditableText>
+          <div className={`${styles.heroActions} vm-hero-enter`}>
+            <EditableLink href={withBasePath(t("services.heroPrimaryLink"))} data-preview-field-path="services.heroPrimaryLink" className="vm-button vm-button-primary"><EditableText id="services.heroPrimaryLabel">{t("services.heroPrimaryLabel")}</EditableText><Arrow /></EditableLink>
+            <EditableLink href={withBasePath(t("services.heroSecondaryLink"))} data-preview-field-path="services.heroSecondaryLink" targetPage="contact" className="vm-button vm-button-outline"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true"><path d="M21 11a8 8 0 0 1-8 8H5l-3 3V11a9 9 0 1 1 19 0Z"/></svg><EditableText id="services.heroSecondaryLabel">{t("services.heroSecondaryLabel")}</EditableText></EditableLink>
+          </div>
+        </div>
+        <figure className={styles.heroPhoto}>
+          <VanguardImage id="services.heroImage" src={t("services.heroImage")} alt={t("services.heroImageAlt")} width={1600} height={900} loading="eager" fetchPriority="high" />
+          <figcaption><EditableText id="services.indexLabel">{t("services.indexLabel")}</EditableText><EditableText id="services.heroCaption">{t("services.heroCaption")}</EditableText></figcaption>
+        </figure>
+      </div>
     </header>
-    <div className="vm-services-information">
-    <section id="offerings" className="vm-services-editorial"><div className="vm-container">
-    <div className="vm-service-intro" data-reveal><EditableText id="services.title" as="h2" className="vm-title">{t("services.title")}</EditableText><div><EditableText id="services.description" as="p" className="vm-copy">{t("services.description")}</EditableText><EditableText id="services.demoNote" as="p" className="vm-services-note">{t("services.demoNote")}</EditableText></div></div>
-    <div className={styles.grid} data-preview-list-path="services.items">{content.services.items.map(servicePanel)}</div></div>
+
+    <section className={`${styles.trust} vm-dark-surface`} aria-label={t("services.title")}>
+      <ul className={`vm-container ${styles.trustGrid}`} data-preview-list-path="services.trustFeatures">
+        {content.services.trustFeatures.map((feature, index) => {
+          const path = `services.trustFeatures.${index}`;
+          return <li key={index} data-preview-item-path={path}><EditableIcon fieldPath={`${path}.icon`} name={feature.icon} size={23} /><div><EditableText id={`${path}.title`} as="h2">{feature.title}</EditableText><EditableText id={`${path}.text`} as="p">{feature.text}</EditableText></div></li>;
+        })}
+      </ul>
     </section>
-    </div>
-    <section className="vm-services-closing"><div className="vm-container vm-dark-surface" data-reveal><div><EditableText id="services.closingEyebrow" as="p" className="vm-eyebrow">{t("services.closingEyebrow")}</EditableText><EditableText id="services.closingTitle" as="h2" className="vm-title">{t("services.closingTitle")}</EditableText><EditableText id="services.closingDescription" as="p" className="vm-copy">{t("services.closingDescription")}</EditableText></div><EditableLink href={withBasePath(t("services.closingButtonLink"))} data-preview-field-path="services.closingButtonLink" targetPage="contact" className="vm-button vm-button-primary"><EditableText id="services.closingButtonLabel">{t("services.closingButtonLabel")}</EditableText><Arrow /></EditableLink></div></section>
+
+    <section id="offerings" className={styles.offerings} aria-label={t("services.title")}>
+      <div className="vm-container">
+        <div className={styles.sectionHeading} data-reveal><div><EditableText id="services.offeringsEyebrow" as="p" className="vm-eyebrow">{t("services.offeringsEyebrow")}</EditableText><EditableText id="services.title" as="h2" className={styles.sectionTitle}>{t("services.title")}</EditableText><EditableText id="services.description" as="p" className={styles.sectionDescription}>{t("services.description")}</EditableText></div><EditableLink href={withBasePath(t("services.viewAllLink"))} data-preview-field-path="services.viewAllLink" className={styles.viewAll}><EditableText id="services.viewAllLabel">{t("services.viewAllLabel")}</EditableText><Arrow /></EditableLink></div>
+        <div id="services-grid" tabIndex={-1} className={styles.grid} data-preview-list-path="services.items">{content.services.items.map(servicePanel)}</div>
+        <EditableText id="services.demoNote" as="p" className={styles.demoNote}>{t("services.demoNote")}</EditableText>
+      </div>
+    </section>
+
+    <section className={styles.process} aria-label={t("services.processTitle")}>
+      <div className="vm-container">
+        <div className={styles.processHeading} data-reveal><div><EditableText id="services.processEyebrow" as="p" className="vm-eyebrow">{t("services.processEyebrow")}</EditableText><EditableText id="services.processTitle" as="h2" className={styles.sectionTitle}>{t("services.processTitle")}</EditableText></div><EditableText id="services.processDescription" as="p" className={styles.sectionDescription}>{t("services.processDescription")}</EditableText></div>
+        <ol className={styles.steps} data-preview-list-path="services.steps">
+          {content.services.steps.map((step, index) => {
+            const path = `services.steps.${index}`;
+            return <li key={index} data-preview-item-path={path} data-reveal><EditableText id={`${path}.number`} as="div" className={styles.stepNumber}>{step.number}</EditableText><div className={styles.stepCopy}><EditableText id={`${path}.title`} as="h3">{step.title}</EditableText><EditableText id={`${path}.text`} as="p">{step.text}</EditableText></div>{index < content.services.steps.length - 1 && <Arrow />}</li>;
+          })}
+        </ol>
+      </div>
+    </section>
+
+    <section className={styles.closing} aria-label={t("services.closingTitle")}>
+      <div className={`vm-container ${styles.banner} vm-dark-surface`} data-reveal>
+        <div className={styles.bannerPhoto}><VanguardImage id="services.closingImage" src={t("services.closingImage")} alt={t("services.closingImageAlt")} width={1100} height={700} /></div>
+        <div className={styles.bannerCopy}>
+          <EditableText id="services.closingEyebrow" as="p" className="vm-eyebrow">{t("services.closingEyebrow")}</EditableText>
+          <EditableText id="services.closingTitle" as="h2" className={styles.bannerTitle}>{t("services.closingTitle")}</EditableText>
+          <EditableText id="services.closingDescription" as="p" className={styles.bannerDescription}>{t("services.closingDescription")}</EditableText>
+          <div className={styles.bannerActions}><EditableLink href={withBasePath(t("services.closingButtonLink"))} data-preview-field-path="services.closingButtonLink" targetPage="contact" className="vm-button vm-button-primary"><EditableText id="services.closingButtonLabel">{t("services.closingButtonLabel")}</EditableText><Arrow /></EditableLink><EditableLink href={t("home.contact.phoneLink")} data-preview-field-path="home.contact.phoneLink" className="vm-button vm-button-outline"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true"><path d="m7 3 3 5-2 2a14 14 0 0 0 6 6l2-2 5 3v3a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3Z"/></svg><EditableText id="services.closingPhoneLabel">{t("services.closingPhoneLabel")}</EditableText></EditableLink></div>
+        </div>
+      </div>
+    </section>
   </main>;
 }

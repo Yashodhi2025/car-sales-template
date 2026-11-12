@@ -69,7 +69,12 @@ for (const [key, value] of Object.entries(data.content.home)) {
 for (const [key, value] of Object.entries(data.content.inventory)) sections.push(objectSection(`inventory.${key}`, value));
 const { journey, ...about } = data.content.about;
 sections.push(objectSection("about", about), collection("about.journey", journey), objectSection("contact", data.content.contact));
-for(const key of ["services","faq"]){const {items,...copy}=data.content[key];sections.push(objectSection(key,copy),collection(`${key}.items`,items));}
+for(const key of ["services","faq"]){
+  const {items,trustFeatures,steps,...copy}=data.content[key];
+  sections.push(objectSection(key,copy),collection(`${key}.items`,items));
+  if(trustFeatures) sections.push(collection(`${key}.trustFeatures`,trustFeatures));
+  if(steps) sections.push(collection(`${key}.steps`,steps));
+}
 const { fields: requestFields, types, errors, ...requestCopy } = data.content.requests;
 const { date: dateError, pastDate, time: timeError, ...sharedErrors } = errors;
 sections.push(objectSection("requests", { ...requestCopy, errors: sharedErrors }), collection("requests.types", types));
