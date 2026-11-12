@@ -9,6 +9,7 @@ import { vehiclePhotos } from "@/lib/vehicles";
 import { Arrow } from "./vanguard-arrow";
 import { useVehiclePhotoFocus } from "./use-vehicle-photo-focus";
 import { VehicleImageExplorer } from "./vehicle-image-explorer";
+import styles from "./vehicle-gallery.module.css";
 
 /** Vanguard-only gallery composition; editable UI remains the installed Deneb UI. */
 export function VehicleGallery({ vehicleId }: { vehicleId: VehicleId }) {
@@ -110,15 +111,15 @@ export function VehicleGallery({ vehicleId }: { vehicleId: VehicleId }) {
   }, [expanded]);
 
   return (
-    <section className="vm-car-gallery vm-gallery-cinematic vm-curved-gallery" data-photo-count={photos.length} aria-label={t("vehicleDetails.gallery.title")} onKeyDown={keyboard}>
+    <section className={`vm-car-gallery vm-gallery-cinematic vm-curved-gallery ${styles.gallery}`} data-photo-count={photos.length} aria-label={t("vehicleDetails.gallery.title")} onKeyDown={keyboard}>
       <svg className="vm-gallery-clip-definitions" width="0" height="0" aria-hidden="true" focusable="false">
         <defs><clipPath id={curveClipId} clipPathUnits="objectBoundingBox"><path d="M0 0H.909091C.915 .25 .99 .73 1 1H0Z" /></clipPath></defs>
       </svg>
       <div className="vm-gallery-stage" data-direction={direction} data-fit={fit ? "contain" : "cover"} {...pointerEvents}
         onClickCapture={event => { if (dragged.current) { event.preventDefault(); event.stopPropagation(); dragged.current = false; } }}>
-        <div className="vm-curved-gallery-track" ref={panels}>
+        <div className="vm-curved-gallery-track" ref={panels} data-preview-list-path={`photos.vehicles.${vehicleId}.gallery`}>
         {photos.map((photo, index) => (
-          <figure key={photo.imagePath} className={`vm-gallery-panel ${index === active ? "is-active" : ""}`} data-photo-index={index} style={{ zIndex: photos.length - index }}>
+          <figure key={photo.imagePath} className={`vm-gallery-panel ${index === active ? "is-active" : ""}`} data-photo-index={index} data-preview-item-path={index > 0 ? `photos.vehicles.${vehicleId}.gallery.${index - 1}` : undefined} style={{ zIndex: photos.length - index }}>
             <div className="vm-gallery-panel-shape" style={{ clipPath: index < photos.length - 1 ? `url(#${curveClipId})` : "none" }} ref={node => { imageRefs.current[index] = node?.querySelector("img") || null; }}>
               <div className="vm-gallery-panel-media">
               <VanguardImage id={photo.imagePath} src={photo.image} alt={photo.imageAlt} width={1800} height={1100}

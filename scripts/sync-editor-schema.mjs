@@ -12,6 +12,7 @@ function fields(object, prefix) {
     const path = `${prefix}.${key}`;
     if (/^inventory\.filters\.(showLabel|hideLabel)$/.test(path)) controls.add(path);
     if (path === "common.currencyCode") controls.add(path);
+    if (path.startsWith("loanCalculator.defaults.") || path === "loanCalculator.noScript") controls.add(path);
     if (path.startsWith("common.actionPalette.")) controls.add(path);
     if (/^inventory\.showcase\.(label|selectLabel)$/.test(path)) controls.add(path);
     if (/^inventory\.showcase\.featured\.[^.]+\.(enabled|order)$/.test(path) || /^inventory\.showcase\.empty(Title|Description)$/.test(path)) controls.add(path);
@@ -42,6 +43,7 @@ function owner(path) {
   const vehicle = path.match(/^(?:vehicles|photos\.vehicles)\.([^.]+)/)?.[1];
   if (vehicle && Object.hasOwn(data.content.vehicles, vehicle)) return `car-${vehicle}`;
   if (path === "vehicleDetails") return `car-${Object.keys(data.content.vehicles)[0]}`;
+  if (path === "loanCalculator") return `car-${Object.keys(data.content.vehicles)[0]}`;
   if (/^viewing|^requests\.fields\.(date|time)/.test(path)) return `car-${Object.keys(data.content.vehicles)[0]}`;
   if (path.startsWith("requests")) return "contact";
   if (/^(inventory|catalog|photos\.vehicles|cards\.vehicles)/.test(path) || path === "home.collection.emptyTitle" || path === "home.collection.emptyDescription") return "inventory";
@@ -75,6 +77,7 @@ for (const [key, value] of Object.entries(requestFields)) sections.push(objectSe
 sections.push({ ...objectSection("requests.errors", { date: dateError, pastDate, time: timeError }), id: "viewing.errors", pageKey: `car-${Object.keys(data.content.vehicles)[0]}` }, objectSection("viewing", data.content.viewing), objectSection("motion", data.content.motion));
 for (const [key, value] of Object.entries(data.content.cards)) sections.push(collection(`cards.${key}`, value));
 sections.push(collection("catalog", data.content.catalog), collection("showrooms", data.content.showrooms), objectSection("vehicleDetails", data.content.vehicleDetails));
+sections.push({ ...objectSection("loanCalculator", data.content.loanCalculator), label: "Loan / EMI Calculator", description: "Shared across all car details pages. Vehicle price comes from each vehicle's editable card price; currency uses Common / Currency code. Defaults set the initial down payment percentage, annual interest rate and term in months. Visitors can adjust all four inputs." });
 for (const [id, vehicle] of Object.entries(data.content.vehicles)) {
   const { features, ...details } = vehicle;
   const { gallery, showcaseImage, ...photos } = data.content.photos.vehicles[id];

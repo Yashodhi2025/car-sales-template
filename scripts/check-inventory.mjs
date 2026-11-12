@@ -122,6 +122,6 @@ await withBrowser(async ({ send, evaluate, navigate, until, screenshot, value, c
   }
   check(`No uncaught browser exceptions (${exceptions.join('; ')})`, exceptions.length===0);
   check(`No browser console errors (${consoleErrors.join('; ')})`, consoleErrors.length===0);
-  fs.writeFileSync(".qa/inventory-checks.json", JSON.stringify({ base, checks, exceptions, consoleErrors }, null, 2));
+  fs.writeFileSync(".cache/qa/inventory-checks.json", JSON.stringify({ base, checks, exceptions, consoleErrors }, null, 2));
   console.log(`Verified ${checks.length} browser checks.`);
 });

@@ -51,7 +51,7 @@ try {
     }
     check(`Production has no uncaught exceptions (${exceptions.join('; ')})`, exceptions.length===0);
     check(`Production has no console errors (${consoleErrors.join('; ')})`, consoleErrors.length===0);
-    fs.writeFileSync(".qa/export-checks.json", JSON.stringify({ checks, exceptions, consoleErrors }, null, 2));
+    fs.writeFileSync(".cache/qa/export-checks.json", JSON.stringify({ checks, exceptions, consoleErrors }, null, 2));
     console.log(`Verified ${checks.length} production checks.`);
   });
 } finally {

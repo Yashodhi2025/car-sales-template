@@ -20,6 +20,16 @@ You can start editing the page by modifying `app/page.tsx`. The page auto-update
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
+## Template validation and packaging
+
+Run `npm run validate` to check an isolated source snapshot, or
+`npm run validate-and-zip` to validate and create the upload ZIP.
+
+Browser QA scripts store screenshots, reports, and browser profiles in
+`.cache/qa/`. Deneb excludes `.cache/` from validation snapshots and ZIPs;
+it does not use `.gitignore` to exclude `.qa/`. Keep generated QA files under
+`.cache/qa/` so they do not count toward the 2,000-entry template ZIP limit.
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:

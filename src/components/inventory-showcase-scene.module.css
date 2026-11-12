@@ -1,10 +1,10 @@
-.root { position: sticky; top: 110px; z-index: 0; padding-block: 0 16px; }
+.root { position: sticky; top: 86px; z-index: 0; padding-block: 0 12px; }
 .root:has(.showcase[data-editing='true']) { position: relative; top: auto; }
 .root .breadcrumb { margin-bottom: 12px; font-size: 10px; }
 .heroLayout { display: grid; grid-template-columns: minmax(0,.88fr) minmax(0,1.12fr); gap: clamp(28px,3.6vw,52px); align-items: center; }
 .intro { min-width: 0; max-width: 460px; padding-block: 6px; }
 .intro :global(.vm-eyebrow) { --deneb-font-size: 9px; --deneb-letter-spacing: .16em; margin-bottom: 13px !important; }
-.intro .title { --deneb-font-size: clamp(32px,3.2vw,44px); --deneb-line-height: 1.1; --deneb-letter-spacing: -.045em; white-space: pre-line; text-wrap: balance; }
+.intro .title { --deneb-font-size: clamp(30px,2.8vw,38px); --deneb-line-height: 1.15; --deneb-letter-spacing: -.045em; white-space: pre-line; text-wrap: balance; }
 .intro .description { --deneb-font-size: 13px; --deneb-line-height: 1.7; --deneb-color: var(--vm-muted); max-width: 380px; margin-top: 14px !important; text-wrap: pretty; }
 .showcase { --showcase-cycle: 8.5s; position: relative; min-width: 0; }
 .stage { position: relative; isolation: isolate; height: 272px; overflow: hidden; background: transparent; }

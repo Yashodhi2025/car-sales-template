@@ -70,8 +70,8 @@ export function InquiryForm({ mode, vehicleId = "", onVehicleChange, inquiryType
   function attributes(key: keyof RequestValues, required = false) {
     return { id: `${prefix}-${key}`, name: key, required, "aria-invalid": !!errors[key], "aria-describedby": `${prefix}-${key}-error`, onBlur: () => { if (attempted) setErrors(validate(readValues())); } };
   }
-  return <form ref={form} className={`vm-request-form vm-${mode}-form`} noValidate action={`mailto:${t("common.business.email")}`} method="post" encType="text/plain" onSubmit={submit} onChange={() => { setDraft(null); setRecipientError(false); if (attempted) setErrors(validate(readValues())); }}>
-    <EditableText id="requests.requiredNote" as="p" className="vm-form-intro">{t("requests.requiredNote")}</EditableText>
+  return <form ref={form} className={`vm-request-form vm-${mode}-form`} aria-labelledby={viewing ? "viewing-title" : undefined} noValidate action={`mailto:${t("common.business.email")}`} method="post" encType="text/plain" onSubmit={submit} onChange={() => { setDraft(null); setRecipientError(false); if (attempted) setErrors(validate(readValues())); }}>
+    <EditableText id={viewing ? "viewing.requiredNote" : "requests.requiredNote"} as="p" className="vm-form-intro">{t(viewing ? "viewing.requiredNote" : "requests.requiredNote")}</EditableText>
     <div role="alert" hidden={!Object.keys(errors).length}><EditableText id="requests.errorTitle" as="p" className="vm-form-error-summary">{t("requests.errorTitle")}</EditableText></div>
     <fieldset disabled={!ready} className="vm-request-fields">
       {field("name", <input {...attributes("name", true)} autoComplete="name" maxLength={100} placeholder={t("requests.fields.name.placeholder")} />, true)}
@@ -83,9 +83,8 @@ export function InquiryForm({ mode, vehicleId = "", onVehicleChange, inquiryType
       {viewing && field("time", <input {...attributes("time", true)} type="time" aria-describedby={`${prefix}-time-error ${prefix}-time-help`} />, true, true)}
       {field("message", <textarea {...attributes("message", !viewing)} rows={4} maxLength={1800} placeholder={t(viewing ? "viewing.messagePlaceholder" : "requests.fields.message.placeholder")} />, !viewing)}
     </fieldset>
-    <EditableText id="requests.emailNote" as="p" className="vm-form-notice">{t("requests.emailNote")}</EditableText>
     <EditableText id="requests.errors.recipient" as="p" className="vm-field-error" hidden={!recipientError}>{t("requests.errors.recipient")}</EditableText>
-    <button type="submit" disabled={!ready} className="vm-button vm-button-primary vm-draft-submit"><EditableText id="requests.submitLabel">{t("requests.submitLabel")}</EditableText><Arrow /></button>
+    <div className={viewing ? "vm-request-footer" : undefined}><EditableText id={viewing ? "viewing.emailNote" : "requests.emailNote"} as="p" className="vm-form-notice">{t(viewing ? "viewing.emailNote" : "requests.emailNote")}</EditableText><button type="submit" disabled={!ready} className="vm-button vm-button-primary vm-draft-submit">{viewing && <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" aria-hidden="true"><path d="m21 3-7 18-4-7-7-4 18-7Z"/><path d="m10 14 11-11"/></svg>}<EditableText id={viewing ? "viewing.submitLabel" : "requests.submitLabel"}>{t(viewing ? "viewing.submitLabel" : "requests.submitLabel")}</EditableText>{!viewing && <Arrow />}</button></div>
     <div className="vm-draft-status" hidden={!draft}>
       <div role="status"><EditableText id="requests.draftTitle" as="h3">{t("requests.draftTitle")}</EditableText><EditableText id="requests.draftNote" as="p">{t("requests.draftNote")}</EditableText></div>
       <a ref={draftLink} className="vm-text-link vm-email-draft" href={draft?.href}><EditableText id="requests.reopenLabel">{t("requests.reopenLabel")}</EditableText><Arrow /></a>

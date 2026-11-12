@@ -5,7 +5,8 @@ import assert from "node:assert/strict";
 
 /** Shared zero-dependency Chromium/CDP harness for the template's browser checks. */
 export async function withBrowser(task) {
-  const output = path.resolve(".qa");
+  // Deneb excludes .cache from source snapshots; .gitignore alone is not enough.
+  const output = path.resolve(".cache/qa");
   fs.mkdirSync(output, { recursive: true });
   const executable = [process.env.QA_BROWSER, "C:/Program Files/Google/Chrome/Application/chrome.exe", "C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe"]
     .filter(Boolean).find(file => fs.existsSync(file));

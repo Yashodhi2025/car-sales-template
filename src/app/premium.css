@@ -1629,3 +1629,12 @@ html[data-vanguard-motion='false'] .vm-filter-panel::details-content { transitio
 .vanguard :is(nav,.vm-brand,.vm-button,.vm-text-link,.vm-nav-cta,.vm-card-detail-link,.vm-vehicle-action,button) { font-weight: 500; --deneb-font-weight: 500; }
 /* JS reveals animate the original editable nodes; text stays visible without JS. */
 .vm-page [data-text-reveal='true'] { animation: none; }
+
+/* Shared display headlines: reduce the large page-opening theme, not the body scale. */
+.vanguard { --vm-display-size: clamp(36px,4.2vw,60px); --vm-hero-display-size: clamp(42px,5.1vw,74px); }
+.vanguard .vm-home-page .vm-hero h1 { font-size: var(--vm-hero-display-size); line-height: 1.08; max-width: 900px; }
+.vanguard .vm-home-page .vm-hero-line { --deneb-font-size: var(--vm-hero-display-size); }
+.vanguard .vm-page :is(.vm-services-hero-title,.vm-about-opening .vm-title,.vm-contact-hero .vm-title) { --deneb-font-size: var(--vm-display-size); font-size: var(--vm-display-size); --deneb-line-height: 1.08; }
+@media(max-width:600px) {
+  .vanguard { --vm-display-size: clamp(32px,8.7vw,40px); --vm-hero-display-size: clamp(35px,9.2vw,46px); }
+}

@@ -51,5 +51,5 @@ await withBrowser(async({send,evaluate,navigate,until,screenshot,value,sleep,che
   }finally{await post(source)}
  }
  check(`No browser exceptions (${exceptions.join('; ')})`,exceptions.length===0);check(`No console errors (${consoleErrors.join('; ')})`,consoleErrors.length===0);
- fs.writeFileSync('.qa/stage5-redesign-checks.json',JSON.stringify({checks,exceptions,consoleErrors},null,2));console.log(`Verified ${checks.length} focused redesign checks.`);
+ fs.writeFileSync('.cache/qa/stage5-redesign-checks.json',JSON.stringify({checks,exceptions,consoleErrors},null,2));console.log(`Verified ${checks.length} focused redesign checks.`);
 });

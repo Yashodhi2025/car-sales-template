@@ -74,5 +74,5 @@ await withBrowser(async({send,evaluate,navigate,until,value,screenshot,check,sle
   }finally{await post(source)}
  }
  check(`No browser exceptions (${exceptions.join('; ')})`,exceptions.length===0);check(`No console errors (${consoleErrors.join('; ')})`,consoleErrors.length===0);
- fs.writeFileSync('.qa/stage5-checks.json',JSON.stringify({checks,exceptions,consoleErrors},null,2));console.log(`Verified ${checks.length} focused Stage 5 checks.`);
+ fs.writeFileSync('.cache/qa/stage5-checks.json',JSON.stringify({checks,exceptions,consoleErrors},null,2));console.log(`Verified ${checks.length} focused Stage 5 checks.`);
 });

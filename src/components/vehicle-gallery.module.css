@@ -1,0 +1,5 @@
+.gallery { min-width: 0; }
+.gallery.gallery :global(.vm-gallery-stage) { height: auto; aspect-ratio: 3.2; min-height: 255px; }
+@media(max-width:600px) {
+ .gallery.gallery :global(.vm-gallery-stage) { height: 270px; min-height: 0; aspect-ratio: auto; }
+}

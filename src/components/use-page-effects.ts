@@ -8,7 +8,7 @@ import { useSiteContent } from "@/lib/site-content";
 export function usePageEffects(root: RefObject<HTMLElement | null>) {
   const { data } = useSiteContent();
   useEffect(() => {
-    for (const [path, properties] of Object.entries(data.styles)) {
+    for (const [path, properties] of Object.entries(data.styles ?? {})) {
       if (!properties || typeof properties !== "object") continue;
       const kind = document.querySelector(`[data-preview-style-target="${CSS.escape(path)}"]`)
         ?.getAttribute("data-preview-style-type") || "text";

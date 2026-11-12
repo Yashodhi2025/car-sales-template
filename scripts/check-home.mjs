@@ -42,6 +42,6 @@ await withBrowser(async({send,evaluate,navigate,until,screenshot,value,check,sle
   check("Original hero motion respects reduced motion",await evaluate("getComputedStyle(document.querySelector('.vm-hero-enter')).animationName==='none'"));
   check(`No browser exceptions (${exceptions.join('; ')})`,exceptions.length===0);
   check(`No console errors (${consoleErrors.join('; ')})`,consoleErrors.length===0);
-  fs.writeFileSync('.qa/home-checks.json',JSON.stringify({base,checks,exceptions,consoleErrors},null,2));
+  fs.writeFileSync('.cache/qa/home-checks.json',JSON.stringify({base,checks,exceptions,consoleErrors},null,2));
   console.log(`Verified ${checks.length} homepage regression checks.`);
 });

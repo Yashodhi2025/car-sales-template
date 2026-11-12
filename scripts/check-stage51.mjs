@@ -85,6 +85,6 @@ await withBrowser(async({send,evaluate,navigate,until,screenshot,sleep,check,che
  // The failed-URL recovery test intentionally requests one nonexistent image.
  const unexpected=consoleErrors.filter(e=>!e.includes('404 (Not Found)'));
  check(`No unexpected console errors: ${unexpected.join('; ')}`,unexpected.length===0);
- fs.writeFileSync('.qa/stage51-checks.json',JSON.stringify({checks,exceptions,consoleErrors},null,2));
+ fs.writeFileSync('.cache/qa/stage51-checks.json',JSON.stringify({checks,exceptions,consoleErrors},null,2));
  console.log(`Verified ${checks.length} focused Stage 5.1 checks.`);
 });

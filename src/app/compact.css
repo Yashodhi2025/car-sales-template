@@ -1,0 +1,154 @@
+/* Shared density defaults. Editable nodes retain their own saved inline styles. */
+.vanguard {
+  --vm-section-space: clamp(28px,3vw,42px);
+  --vm-panel-space: clamp(16px,1.7vw,22px);
+  --vm-layout-gap: clamp(14px,1.6vw,22px);
+  --vm-display-size: clamp(30px,3.2vw,44px);
+  --vm-hero-display-size: clamp(38px,4vw,56px);
+  --vm-section-title-size: clamp(24px,2.3vw,32px);
+  --vm-card-title-size: clamp(18px,1.6vw,22px);
+  --vm-control-height: 40px;
+  --vm-page-top: 102px;
+  font-size: 14px;
+}
+html { scroll-padding-top: 86px; }
+.vanguard .vm-container { width: min(1320px,calc(100% - 64px)); }
+.vanguard .vm-header { top: 14px; height: 62px; }
+.vanguard .vm-header.is-scrolled { top: 8px; height: 58px; }
+.vanguard .vm-header-inner { padding-inline: 22px 12px; gap: 18px; }
+.vanguard .vm-header .vm-logo { width: 28px; height: 28px; flex-basis: 28px; }
+.vanguard .vm-header .vm-brand { font-size: 12px; }
+.vanguard .vm-desktop-nav { gap: 20px; }
+.vanguard .vm-nav-cta { padding: 11px 17px; }
+.vanguard .vm-page { padding-top: var(--vm-page-top); }
+.vanguard .vm-page:is(.vm-home-page,.vm-editorial-page,.vm-car-page) { padding-top: 0; }
+.vanguard .vm-page :is(.vm-title,.vm-section-heading .vm-title) { --deneb-font-size: var(--vm-section-title-size); --deneb-line-height: 1.18; }
+.vanguard .vm-page :is(.vm-services-hero-title,.vm-about-opening .vm-title,.vm-contact-hero .vm-title) { --deneb-font-size: var(--vm-display-size); font-size: var(--vm-display-size); }
+.vanguard .vm-page .vm-copy { --deneb-font-size: 14px; --deneb-line-height: 1.75; margin-top: 18px !important; }
+.vanguard .vm-page .vm-section-description { --deneb-font-size: 14px; --deneb-line-height: 1.7; }
+.vanguard .vm-page .vm-eyebrow { margin-bottom: 12px !important; }
+.vanguard .vm-page .vm-section { padding-block: var(--vm-section-space); }
+.vanguard .vm-page .vm-section-heading { margin-bottom: 22px; gap: 28px; }
+.vanguard .vm-page .vm-button { min-height: var(--vm-control-height); padding: 10px 18px; gap: 18px; font-size: 13px; }
+.vanguard .vm-page .vm-text-link { font-size: 13px; }
+.vanguard .vm-page .vm-actions { gap: 18px; }
+
+/* Shorter opening scenes keep the following content within reach. */
+.vanguard .vm-home-page .vm-hero { min-height: clamp(540px,70svh,640px); }
+.vanguard .vm-home-page .vm-hero-inner { padding-top: 138px; padding-bottom: 22px; }
+.vanguard .vm-home-page .vm-hero h1 { max-width: 760px; }
+.vanguard .vm-home-page .vm-hero-description { --deneb-font-size: 14px; --deneb-line-height: 1.75; max-width: 420px; margin-block: 20px 22px !important; }
+.vanguard .vm-home-page .vm-hero-bottom { margin-top: 32px; }
+.vanguard .vm-home-page .vm-category-section { padding-block: 24px 32px; }
+.vanguard .vm-home-page .vm-body-grid { gap: 16px; }
+.vanguard .vm-home-page .vm-body-card { aspect-ratio: 1.15; }
+.vanguard .vm-home-page .vm-body-card > span[data-preview-field-path$='.displayName'] { top: 18px; left: 18px; font-size: 23px; }
+.vanguard .vm-home-page .vm-body-card > span[data-preview-field-path$='.description'] { left: 18px; bottom: 18px; }
+.vanguard .vm-home-page .vm-brands-section { padding-block: 26px; }
+.vanguard .vm-brand-grid .vm-brand-card { min-height: 108px; padding-block: 16px; }
+.vanguard .vm-home-page #collection { padding-bottom: var(--vm-section-space); }
+.vanguard .vm-home-page .vm-home-services { padding-block: var(--vm-section-space); }
+.vanguard .vm-home-page .vm-home-services .vm-section-heading { gap: 28px; margin-bottom: 22px; }
+.vanguard .vm-home-page .vm-home-service-grid { gap: 18px; }
+.vanguard .vm-home-page .vm-home-service img { height: 180px; }
+.vanguard .vm-home-page .vm-home-service > div { padding: 18px; }
+.vanguard .vm-home-page .vm-home-service h3 { --deneb-font-size: var(--vm-card-title-size); }
+.vanguard .vm-home-page .vm-home-service .vm-icon { margin-top: 12px; }
+.vanguard .vm-home-page .vm-testimonials-editorial .vm-testimonials { padding-block: var(--vm-section-space) 28px; }
+.vanguard .vm-home-page .vm-reviews-heading { margin-bottom: 22px; }
+.vanguard .vm-testimonials-editorial .vm-review { min-height: 340px; }
+.vanguard .vm-testimonials-editorial .vm-review-media img { min-height: 340px; }
+.vanguard .vm-review-composition { padding: 28px; }
+.vanguard .vm-testimonials-editorial .vm-review blockquote { --deneb-font-size: clamp(20px,1.9vw,26px); --deneb-line-height: 1.5; }
+.vanguard .vm-testimonials-editorial .vm-review-author { margin-top: 18px; padding-top: 16px; }
+.vanguard .vm-home-page .vm-home-cta { padding-block: var(--vm-section-space); }
+
+/* The same compact stock cards on Home, Inventory and Related Vehicles. */
+.vanguard .vm-page .vm-vehicle-grid { gap: 18px; }
+.vanguard .vm-vehicle-grid .vm-vehicle-card.vm-card-premium > .vm-vehicle-image-wrap { aspect-ratio: 2.05; }
+.vanguard .vm-vehicle-grid .vm-vehicle-card.vm-card-premium > div:not(.vm-vehicle-image-wrap):not(.vm-availability):not(.vm-vehicle-card-actions) { padding: 13px 15px 4px; }
+.vanguard .vm-vehicle-grid .vm-vehicle-card.vm-card-premium > .vm-vehicle-card-actions { padding: 0 15px 10px; }
+.vanguard .vm-vehicle-grid .vm-vehicle-card.vm-card-premium ul { margin-top: 9px; gap: 6px 12px; }
+.vanguard .vm-vehicle-grid .vm-vehicle-card.vm-card-premium [data-preview-field-path$='.price'] { padding-top: 10px; font-size: 19px; }
+.vanguard .vm-page.vm-inventory-page { padding-top: var(--vm-page-top); }
+.vanguard .vm-inventory-page .vm-inventory-layout { padding-top: 12px; }
+.vanguard .vm-inventory-page .vm-inventory-toolbar { padding-bottom: 12px; }
+.vanguard .vm-inventory-sheet { padding-bottom: var(--vm-section-space); }
+.vanguard .vm-inventory-concierge { padding: var(--vm-panel-space); margin-bottom: 0; }
+.vanguard .vm-filter-panel { padding: 18px; }
+.vanguard .vm-inventory-field :is(input,select),.vanguard .vm-sort-field select { min-height: var(--vm-control-height); padding-block: 8px; }
+
+/* Supporting pages share the opening height, type and section rhythm. */
+.vanguard .vm-page :is(.vm-about-opening,.vm-contact-opening) { padding: var(--vm-page-top) 0 28px; }
+.vanguard .vm-about-opening-layout,.vanguard .vm-contact-page .vm-contact-hero { gap: 36px; }
+.vanguard .vm-about-opening-photo { height: 310px; }
+.vanguard .vm-contact-page .vm-contact-hero .vm-editorial-photo { height: 290px; }
+.vanguard .vm-page :is(.vm-about-opening,.vm-contact-opening) .vm-actions { margin-top: 22px; }
+.vanguard .vm-about-page .vm-about-story { padding-block: var(--vm-section-space); gap: 38px; }
+.vanguard .vm-about-page .vm-about-story .vm-copy { --deneb-font-size: 16px; margin-top: 0 !important; }
+.vanguard .vm-about-page .vm-promise-layout > div:first-child { padding: var(--vm-panel-space); }
+.vanguard .vm-about-page .vm-benefits { padding: 4px 22px; }
+.vanguard .vm-about-page .vm-benefits article { padding-block: 18px; }
+.vanguard .vm-about-page .vm-benefits h3,.vanguard .vm-about-page .vm-journey-grid h3 { --deneb-font-size: 20px; }
+.vanguard .vm-about-page .vm-experience { padding-block: 24px var(--vm-section-space); gap: 36px; }
+.vanguard .vm-about-page .vm-experience-image-wrap { aspect-ratio: 1.7; }
+.vanguard .vm-about-page .vm-about-journey { padding-block: var(--vm-section-space); }
+.vanguard .vm-about-page .vm-journey-grid { gap: 22px; }
+.vanguard .vm-about-page .vm-journey-grid li { padding-top: 18px; }
+.vanguard .vm-about-page .vm-about-cta { padding: var(--vm-panel-space); margin-block: var(--vm-section-space); }
+.vanguard .vm-contact-page .vm-contact-details { margin-top: 22px; }
+.vanguard .vm-contact-page .vm-contact-details > div { padding: 18px 22px; }
+.vanguard .vm-contact-detail-header { margin-bottom: 12px; gap: 10px; }
+.vanguard .vm-contact-page .vm-contact-details a,.vanguard .vm-contact-page .vm-contact-details .vm-showroom-card address { font-size: 17px; }
+.vanguard .vm-contact-page .vm-contact-demo { padding-block: 12px 20px; }
+.vanguard .vm-contact-page .vm-contact-composer { margin-bottom: 32px; scroll-margin-top: 12px; }
+.vanguard .vm-contact-page .vm-contact-form-copy,.vanguard .vm-contact-page .vm-contact-form { padding: var(--vm-panel-space); }
+.vanguard .vm-contact-page .vm-contact-form-copy .vm-title { --deneb-font-size: var(--vm-section-title-size); }
+.vanguard .vm-contact-page .vm-faq-section { padding-block: var(--vm-section-space); }
+.vanguard .vm-contact-page .vm-faq-layout { gap: 38px; }
+.vanguard .vm-contact-page .vm-faq-item summary { padding: 15px 18px; font-size: 14px; }
+
+/* Forms keep comfortable line heights and visible focus indicators. */
+.vanguard .vm-page :is(.vm-contact-form,.vm-viewing-form) .vm-request-fields { gap: 14px 16px; }
+.vanguard .vm-page :is(.vm-contact-form,.vm-viewing-form) :is(input,select,textarea) { min-height: var(--vm-control-height); padding: 9px 11px; font-size: 14px; }
+.vanguard .vm-page :is(.vm-contact-form,.vm-viewing-form) textarea { min-height: 76px; height: 90px; }
+.vanguard .vm-page :is(.vm-contact-form,.vm-viewing-form) .vm-form-intro { margin-bottom: 12px !important; }
+.vanguard .vm-page :is(.vm-contact-form,.vm-viewing-form) .vm-form-notice { margin-block: 12px !important; }
+.vanguard .vm-page .vm-draft-submit { min-height: var(--vm-control-height); padding-block: 10px; }
+.vanguard .vm-footer { padding-top: 38px; }
+.vanguard .vm-footer-main { gap: 38px; padding-bottom: 28px; }
+.vanguard .vm-footer .vm-copy { --deneb-font-size: 13px; --deneb-line-height: 1.75; margin-top: 16px !important; }
+.vanguard .vm-footer-bottom { padding-block: 18px; }
+
+@media(max-width:850px) {
+  .vanguard .vm-about-opening-photo { height: 270px; }
+  .vanguard .vm-contact-page .vm-contact-hero .vm-editorial-photo { height: 260px; }
+  .vanguard .vm-testimonials-editorial .vm-review-media img { min-height: 260px; }
+}
+@media(max-width:600px) {
+  .vanguard { --vm-section-space: 26px; --vm-panel-space: 18px; --vm-layout-gap: 14px; --vm-display-size: clamp(28px,8vw,36px); --vm-hero-display-size: clamp(32px,8.7vw,40px); --vm-section-title-size: clamp(23px,6vw,27px); --vm-control-height: 44px; --vm-page-top: 88px; }
+  html { scroll-padding-top: 78px; }
+  .vanguard .vm-container { width: calc(100% - 32px); }
+  .vanguard .vm-header { width: calc(100% - 20px); top: 10px; height: 58px; }
+  .vanguard .vm-header.is-scrolled { height: 56px; top: 6px; }
+  .vanguard .vm-header-inner { padding-inline: 13px 8px; gap: 10px; }
+  .vanguard .vm-header .vm-brand { font-size: 10px; }
+  .vanguard .vm-header .vm-logo { width: 23px; height: 23px; flex-basis: 23px; }
+  .vanguard .vm-home-page .vm-hero { min-height: 570px; }
+  .vanguard .vm-home-page .vm-hero-inner { padding-top: 118px; padding-bottom: 20px; }
+  .vanguard .vm-home-page .vm-hero-bottom { margin-top: 24px; }
+  .vanguard .vm-home-page .vm-body-card { aspect-ratio: 1; }
+  .vanguard .vm-home-page .vm-home-service img { height: 170px; }
+  .vanguard .vm-review-composition { padding: 22px; }
+  .vanguard .vm-testimonials-editorial .vm-review { min-height: 0; }
+  .vanguard .vm-testimonials-editorial .vm-review-media img { min-height: 0; height: 220px; }
+  .vanguard .vm-page .vm-vehicle-grid { gap: 16px; }
+  .vanguard .vm-vehicle-grid .vm-vehicle-card.vm-card-premium > .vm-vehicle-image-wrap { aspect-ratio: 1.85; }
+  .vanguard .vm-about-opening-layout,.vanguard .vm-contact-page .vm-contact-hero { gap: 22px; }
+  .vanguard .vm-about-opening-photo { height: 245px; }
+  .vanguard .vm-contact-page .vm-contact-hero .vm-editorial-photo { height: 230px; }
+  .vanguard .vm-about-page .vm-about-story { gap: 22px; }
+  .vanguard .vm-page :is(.vm-contact-form,.vm-viewing-form) :is(input,select,textarea) { font-size: 16px; }
+  .vanguard .vm-footer { padding-top: 28px; }
+  .vanguard .vm-footer-main { gap: 24px; }
+}

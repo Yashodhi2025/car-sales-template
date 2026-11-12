@@ -120,6 +120,10 @@
       "inventory.showcase.featured.tesla-model-3.order",
       "inventory.showcase.label",
       "inventory.showcase.selectLabel",
+      "loanCalculator.defaults.annualRate",
+      "loanCalculator.defaults.downPaymentPercent",
+      "loanCalculator.defaults.months",
+      "loanCalculator.noScript",
       "motion.durationMs",
       "motion.enabled",
       "photos.vehicles.audi-rs6.gallery.0.imageAlt",
@@ -3200,6 +3204,26 @@
             "key": "dateNote",
             "type": "text",
             "label": "Date Note"
+          },
+          {
+            "key": "notesLabel",
+            "type": "text",
+            "label": "Viewing notes label"
+          },
+          {
+            "key": "requiredNote",
+            "type": "text",
+            "label": "Required Note"
+          },
+          {
+            "key": "emailNote",
+            "type": "text",
+            "label": "Email Note"
+          },
+          {
+            "key": "submitLabel",
+            "type": "text",
+            "label": "Submit Label"
           }
         ],
         "pageKey": "car-porsche-panamera"
@@ -5005,9 +5029,218 @@
                 "label": "View Label"
               }
             ]
+          },
+          {
+            "key": "enquiryOptionsLabel",
+            "type": "text",
+            "label": "Enquiry Options Label"
+          },
+          {
+            "key": "listingNotesLabel",
+            "type": "text",
+            "label": "Listing Notes Label"
           }
         ],
         "pageKey": "car-porsche-panamera"
+      },
+      {
+        "id": "loanCalculator",
+        "path": "loanCalculator",
+        "type": "object",
+        "label": "Loan / EMI Calculator",
+        "fields": [
+          {
+            "key": "eyebrow",
+            "type": "text",
+            "label": "Eyebrow"
+          },
+          {
+            "key": "title",
+            "type": "text",
+            "label": "Title"
+          },
+          {
+            "key": "description",
+            "type": "textarea",
+            "label": "Description"
+          },
+          {
+            "key": "defaults",
+            "type": "object",
+            "label": "Defaults",
+            "fields": [
+              {
+                "key": "downPaymentPercent",
+                "type": "number",
+                "label": "Down Payment Percent"
+              },
+              {
+                "key": "annualRate",
+                "type": "number",
+                "label": "Annual Rate"
+              },
+              {
+                "key": "months",
+                "type": "number",
+                "label": "Months"
+              }
+            ]
+          },
+          {
+            "key": "fields",
+            "type": "object",
+            "label": "Fields",
+            "fields": [
+              {
+                "key": "price",
+                "type": "object",
+                "label": "Price",
+                "fields": [
+                  {
+                    "key": "label",
+                    "type": "text",
+                    "label": "Label"
+                  },
+                  {
+                    "key": "helper",
+                    "type": "text",
+                    "label": "Helper"
+                  }
+                ]
+              },
+              {
+                "key": "downPayment",
+                "type": "object",
+                "label": "Down Payment",
+                "fields": [
+                  {
+                    "key": "label",
+                    "type": "text",
+                    "label": "Label"
+                  },
+                  {
+                    "key": "helper",
+                    "type": "text",
+                    "label": "Helper"
+                  }
+                ]
+              },
+              {
+                "key": "annualRate",
+                "type": "object",
+                "label": "Annual Rate",
+                "fields": [
+                  {
+                    "key": "label",
+                    "type": "text",
+                    "label": "Label"
+                  },
+                  {
+                    "key": "helper",
+                    "type": "text",
+                    "label": "Helper"
+                  }
+                ]
+              },
+              {
+                "key": "months",
+                "type": "object",
+                "label": "Months",
+                "fields": [
+                  {
+                    "key": "label",
+                    "type": "text",
+                    "label": "Label"
+                  },
+                  {
+                    "key": "helper",
+                    "type": "text",
+                    "label": "Helper"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "key": "monthsUnit",
+            "type": "text",
+            "label": "Months Unit"
+          },
+          {
+            "key": "monthlyLabel",
+            "type": "text",
+            "label": "Monthly Label"
+          },
+          {
+            "key": "paymentNote",
+            "type": "text",
+            "label": "Payment Note"
+          },
+          {
+            "key": "principalLabel",
+            "type": "text",
+            "label": "Principal Label"
+          },
+          {
+            "key": "totalInterestLabel",
+            "type": "text",
+            "label": "Total Interest Label"
+          },
+          {
+            "key": "totalRepaymentLabel",
+            "type": "text",
+            "label": "Total Repayment Label"
+          },
+          {
+            "key": "resetLabel",
+            "type": "text",
+            "label": "Reset Label"
+          },
+          {
+            "key": "invalidNote",
+            "type": "text",
+            "label": "Invalid Note"
+          },
+          {
+            "key": "disclaimer",
+            "type": "text",
+            "label": "Disclaimer"
+          },
+          {
+            "key": "noScript",
+            "type": "text",
+            "label": "No Script"
+          },
+          {
+            "key": "errors",
+            "type": "object",
+            "label": "Errors",
+            "fields": [
+              {
+                "key": "price",
+                "type": "text",
+                "label": "Price"
+              },
+              {
+                "key": "downPayment",
+                "type": "text",
+                "label": "Down Payment"
+              },
+              {
+                "key": "annualRate",
+                "type": "text",
+                "label": "Annual Rate"
+              },
+              {
+                "key": "months",
+                "type": "text",
+                "label": "Months"
+              }
+            ]
+          }
+        ],
+        "pageKey": "car-porsche-panamera",
+        "description": "Shared across all car details pages. Vehicle price comes from each vehicle's editable card price; currency uses Common / Currency code. Defaults set the initial down payment percentage, annual interest rate and term in months. Visitors can adjust all four inputs."
       },
       {
         "id": "vehicles.porsche-panamera",

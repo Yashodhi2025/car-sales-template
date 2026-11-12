@@ -917,12 +917,14 @@
       },
       "explorer": {
         "eyebrow": "ANOTHER PERSPECTIVE",
-        "title": "Explore the details.",
+        "title": "Photo angles & details",
         "description": "Drag, swipe or use the arrows to explore the available vehicle photographs. Select a view to take a closer look.",
         "notice": "Multi-angle demo gallery, not a 360° vehicle scan. These are illustrative and model-reference photographs; trim and finish can differ. Ask the team for actual stock images.",
         "hint": "Drag or swipe to change photograph",
         "viewLabel": "View"
-      }
+      },
+      "enquiryOptionsLabel": "More enquiry options",
+      "listingNotesLabel": "Listing notes"
     },
     "vehicles": {
       "porsche-panamera": {
@@ -1123,11 +1125,11 @@
         },
         "date": {
           "label": "Preferred date",
-          "helper": "Choose today or a future date. Availability will be confirmed by the team."
+          "helper": "Preferred date; subject to confirmation."
         },
         "time": {
           "label": "Preferred time",
-          "helper": "Your preferred local showroom time; this is a request, not an available slot."
+          "helper": "Preferred time; subject to confirmation."
         }
       },
       "types": [
@@ -1176,14 +1178,62 @@
         "length": "Please shorten this entry to fit the field limit."
       }
     },
+    "loanCalculator": {
+      "eyebrow": "PLAN YOUR PURCHASE",
+      "title": "Loan / EMI Calculator",
+      "description": "Estimate your monthly payment from the figures below.",
+      "defaults": {
+        "downPaymentPercent": 20,
+        "annualRate": 8,
+        "months": 60
+      },
+      "fields": {
+        "price": {
+          "label": "Vehicle price",
+          "helper": "Pre-filled from this vehicle."
+        },
+        "downPayment": {
+          "label": "Down payment",
+          "helper": "Your upfront contribution."
+        },
+        "annualRate": {
+          "label": "Annual interest rate",
+          "helper": "Annual rate from your lender."
+        },
+        "months": {
+          "label": "Loan term",
+          "helper": "1 to 600 monthly payments."
+        }
+      },
+      "monthsUnit": "months",
+      "monthlyLabel": "Estimated monthly payment",
+      "paymentNote": "per month",
+      "principalLabel": "Loan amount",
+      "totalInterestLabel": "Total interest",
+      "totalRepaymentLabel": "Total repayment",
+      "resetLabel": "Reset estimate",
+      "invalidNote": "Check the highlighted fields to see your estimate.",
+      "disclaimer": "Fixed-rate estimate. Excludes fees and insurance; lender terms may vary.",
+      "noScript": "Enable JavaScript to adjust the figures and calculate your estimate.",
+      "errors": {
+        "price": "Enter a vehicle price greater than 0 and no more than 1,000,000,000,000.",
+        "downPayment": "Enter an amount from 0 up to the vehicle price.",
+        "annualRate": "Enter an annual interest rate from 0% to 100%.",
+        "months": "Enter a whole number of months from 1 to 600."
+      }
+    },
     "viewing": {
-      "eyebrow": "EXPERIENCE IT IN PERSON",
-      "title": "Some things are better\nfrom the driver’s seat.",
-      "description": "Choose a preferred date and time. Your request will open as an email draft for you to review and send.",
-      "vehicleLabel": "YOUR VIEWING REQUEST",
+      "eyebrow": "YOUR PRIVATE VIEWING",
+      "title": "Request a viewing",
+      "description": "Choose a preferred time. Review and send your email request.",
+      "vehicleLabel": "YOUR SELECTED VEHICLE",
       "messageLabel": "Anything we should know? (optional)",
       "messagePlaceholder": "Questions, access requirements or anything you would like us to prepare…",
-      "dateNote": "No appointment is booked by completing this form. Please wait for the team to confirm the vehicle and your preferred time."
+      "dateNote": "Your appointment is confirmed only after the team replies.",
+      "notesLabel": "Before your visit",
+      "requiredNote": "Fields marked * are required.",
+      "emailNote": "Opens an email draft for you to review and send. This is a request, not a confirmed booking.",
+      "submitLabel": "Request a viewing"
     },
     "motion": {
       "enabled": true,
