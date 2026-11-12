@@ -1,6 +1,8 @@
 "use client";
+import { VanguardBodyTypeCard, VanguardBrandCard } from "./vanguard-keyed-cards";
+import { EditableLink, EditableText, EditableFeedback, LabelledRegion } from "./vanguard-editable";
 import { useRef } from "react";
-import { EditableBodyTypeCard, EditableBrandCard, EditableLink, EditableText, withBasePath } from "@deneb-ui/ui";
+import { withBasePath } from "@deneb-ui/ui";
 import { VanguardImage } from "./vanguard-image";
 import { useSiteContent, type VehicleId } from "@/lib/site-content";
 import { usePageEffects } from "./use-page-effects";
@@ -11,7 +13,7 @@ import { VanguardReviews } from "./vanguard-reviews";
 import { HeroDrive } from "./hero-drive";
 
 export function VanguardHome() {
- const { data, content, t, legacyMissing } = useSiteContent();
+ const { data, content, t } = useSiteContent();
  const root = useRef<HTMLElement>(null);
  usePageEffects(root);
  const vehicleIds = Object.keys(content.cards.vehicles) as VehicleId[];
@@ -33,7 +35,7 @@ export function VanguardHome() {
               </div>
             </div>
             <div className="vm-hero-bottom">
-              <a href="#search" className="vm-scroll"><span className="vm-scroll-line" /><EditableText id="home.hero.scrollLabel">{t("home.hero.scrollLabel")}</EditableText></a>
+              <a href={t("home.hero.scrollLink")} data-preview-field-path="home.hero.scrollLink" className="vm-scroll"><span className="vm-scroll-line" /><EditableText id="home.hero.scrollLabel">{t("home.hero.scrollLabel")}</EditableText></a>
               <div className="vm-hero-caption"><EditableText id="home.hero.imageCaption" as="p">{t("home.hero.imageCaption")}</EditableText><EditableText id="home.hero.imageSubcaption" as="p">{t("home.hero.imageSubcaption")}</EditableText></div>
               <EditableText id="home.hero.edition" className="vm-hero-edition">{t("home.hero.edition")}</EditableText>
             </div>
@@ -42,22 +44,22 @@ export function VanguardHome() {
 
         <HomeVehicleSearch />
 
-        <section className="vm-section vm-container vm-category-section" aria-label={t("home.bodyTypes.title")}><div className="vm-section-heading" data-reveal><div><EditableText id="home.bodyTypes.eyebrow" as="p" className="vm-eyebrow">{t("home.bodyTypes.eyebrow")}</EditableText><EditableText id="home.bodyTypes.title" as="h2" className="vm-title">{t("home.bodyTypes.title")}</EditableText></div></div><div data-target-page="inventory" className="vm-body-grid">
-          {bodyIds.map(id => <div key={id} data-reveal data-browse={id}><EditableBodyTypeCard typeSlug={id} href={withBasePath(`/inventory?bodyType=${id}`)} className="vm-body-card" imageSlot={<div className="vm-body-image-wrap"><VanguardImage id={`cards.bodyTypes.${id}.image`} src={t(`cards.bodyTypes.${id}.image`)} alt={t(`cards.bodyTypes.${id}.imageAlt`)} width={800} height={600} loading="lazy" /></div>}><Arrow />{legacyMissing(`cards.bodyTypes.${id}.description`) && <EditableText id={`cards.bodyTypes.${id}.description`} className="vm-empty-target">{t(`cards.bodyTypes.${id}.description`)}</EditableText>}</EditableBodyTypeCard></div>)}
-        </div></section>
-<section id="brands" data-target-page="inventory" className="vm-brands-section" aria-label={t("home.brands.title")}><div className="vm-container" data-reveal><div className="vm-brands-heading"><EditableText id="home.brands.eyebrow" as="p" className="vm-eyebrow">{t("home.brands.eyebrow")}</EditableText><EditableText id="home.brands.title" as="h2">{t("home.brands.title")}</EditableText></div><div className="vm-brand-grid">
-          {brandIds.map(id => <div key={id} className="vm-browse-wrap" data-browse={id} data-reveal><EditableBrandCard makeSlug={id} href={withBasePath(`/inventory?brand=${id}`)} className={`vm-brand-card vm-marque-${id}`}><div className="vm-brand-logo"><VanguardImage id={`cards.brands.${id}.image`} src={t(`cards.brands.${id}.image`)} fallbackSrc="/images/brands/placeholder.svg" alt={t(`cards.brands.${id}.imageAlt`)} width={160} height={100} /></div></EditableBrandCard></div>)}
-        </div></div></section>
+        <LabelledRegion as="section" className="vm-section vm-container vm-category-section" labelPath={"home.bodyTypes.title"}><div className="vm-section-heading" data-reveal><div><EditableText id="home.bodyTypes.eyebrow" as="p" className="vm-eyebrow">{t("home.bodyTypes.eyebrow")}</EditableText><EditableText id="home.bodyTypes.title" as="h2" className="vm-title">{t("home.bodyTypes.title")}</EditableText></div></div><div data-target-page="inventory" className="vm-body-grid">
+          {bodyIds.map(id => <div key={id} data-reveal data-browse={id}><VanguardBodyTypeCard typeSlug={id} href={withBasePath(`/inventory?bodyType=${id}`)} className="vm-body-card" imageSlot={<div className="vm-body-image-wrap"><VanguardImage id={`cards.bodyTypes.${id}.image`} src={t(`cards.bodyTypes.${id}.image`)} alt={t(`cards.bodyTypes.${id}.imageAlt`)} width={800} height={600} loading="lazy" /></div>}><Arrow /></VanguardBodyTypeCard></div>)}
+        </div></LabelledRegion>
+<LabelledRegion as="section" id="brands" data-target-page="inventory" className="vm-brands-section" labelPath={"home.brands.title"}><div className="vm-container" data-reveal><div className="vm-brands-heading"><EditableText id="home.brands.eyebrow" as="p" className="vm-eyebrow">{t("home.brands.eyebrow")}</EditableText><EditableText id="home.brands.title" as="h2">{t("home.brands.title")}</EditableText></div><div className="vm-brand-grid">
+          {brandIds.map(id => <div key={id} className="vm-browse-wrap" data-browse={id} data-reveal><VanguardBrandCard makeSlug={id} href={withBasePath(`/inventory?brand=${id}`)} className={`vm-brand-card vm-marque-${id}`}><div className="vm-brand-logo"><VanguardImage id={`cards.brands.${id}.image`} src={t(`cards.brands.${id}.image`)} fallbackSrc="/images/brands/placeholder.svg" alt={t(`cards.brands.${id}.imageAlt`)} width={160} height={100} /></div></VanguardBrandCard></div>)}
+        </div></div></LabelledRegion>
 
-        <section id="collection" data-target-page="inventory" className="vm-section vm-container" aria-label={t("home.collection.title")}>
+        <LabelledRegion as="section" id="collection" data-target-page="inventory" className="vm-section vm-container" labelPath={"home.collection.title"}>
           <div className="vm-section-heading" data-reveal><div><EditableText id="home.collection.eyebrow" as="p" className="vm-eyebrow">{t("home.collection.eyebrow")}</EditableText><EditableText id="home.collection.title" as="h2" className="vm-title" aria-label={t("home.collection.title")} data-section-heading="collection">{t("home.collection.title")}</EditableText></div><EditableText id="home.collection.description" as="p" className="vm-section-description">{t("home.collection.description")}</EditableText></div>
           <div className="vm-collection-toolbar"><EditableLink href={withBasePath(t("home.collection.allLink"))} data-preview-field-path="home.collection.allLink" targetPage="inventory" className="vm-text-link"><EditableText id="home.collection.allLabel">{t("home.collection.allLabel")}</EditableText><Arrow /></EditableLink><p className="vm-results">{String(Math.min(3, vehicleIds.length)).padStart(2, "0")} <EditableText id="home.collection.resultsLabel">{t("home.collection.resultsLabel")}</EditableText></p></div><div className="vm-vehicle-grid vm-featured-grid">
   {vehicleIds.slice(0, 3).map((id, index) => <div key={id} className="vm-vehicle-wrap" data-reveal><VehicleListing id={id} index={index} /></div>)}
-  </div></section>
+  </div><div className="vm-home-collection-feedback"><EditableFeedback show={vehicleIds.length === 0} id="home.collection.emptyTitle" as="h3">{t("home.collection.emptyTitle")}</EditableFeedback><EditableFeedback show={vehicleIds.length === 0} id="home.collection.emptyDescription" as="p">{t("home.collection.emptyDescription")}</EditableFeedback></div></LabelledRegion>
 
         <section className="vm-home-services" data-target-page="services"><div className="vm-container">
           <div className="vm-section-heading" data-reveal><div><EditableText id="home.servicesPreview.eyebrow" as="p" className="vm-eyebrow">{t("home.servicesPreview.eyebrow")}</EditableText><EditableText id="home.servicesPreview.title" as="h2" className="vm-title">{t("home.servicesPreview.title")}</EditableText></div><div className="vm-home-services-aside"><EditableText id="home.servicesPreview.description" as="p" className="vm-copy vm-home-services-intro">{t("home.servicesPreview.description")}</EditableText><EditableLink href={withBasePath(t("home.servicesPreview.buttonLink"))} data-preview-field-path="home.servicesPreview.buttonLink" targetPage="services" className="vm-text-link"><EditableText id="home.servicesPreview.buttonLabel">{t("home.servicesPreview.buttonLabel")}</EditableText><Arrow /></EditableLink></div></div>
-          <div className="vm-home-service-grid">{[0,3,4].map(index=>{const service=content.services.items[index];if(!service)return null;const path=`services.items.${index}`;return <EditableLink key={index} href={withBasePath(t("home.servicesPreview.buttonLink"))+`#service-${index}`} targetPage="services" className="vm-home-service" data-reveal><VanguardImage id={`${path}.imageUrl`} src={service.imageUrl} alt={service.name} width={900} height={600} /><div><EditableText id={`${path}.name`} as="h3">{service.name}</EditableText><EditableText id={`home.servicesPreview.summaries.${index}`} as="p">{t(`home.servicesPreview.summaries.${index}`)}</EditableText><Arrow /></div></EditableLink>})}</div>
+          <div className="vm-home-service-grid">{[0,3,4].map(index=>{const service=content.services.items[index];const path=`services.items.${index}`;return <EditableLink key={index} data-preview-field-path="home.servicesPreview.buttonLink" href={withBasePath(t("home.servicesPreview.buttonLink"))+`#service-${index}`} targetPage="services" className="vm-home-service" data-reveal>{service && <VanguardImage id={`${path}.imageUrl`} src={service.imageUrl} alt={service.name} width={900} height={600} />}<div>{service && <EditableText id={`${path}.name`} as="h3">{service.name}</EditableText>}<EditableText id={`home.servicesPreview.summaries.${index}`} as="p">{t(`home.servicesPreview.summaries.${index}`)}</EditableText><Arrow /></div></EditableLink>})}</div>
           <EditableText id="home.servicesPreview.demoNote" as="p" className="vm-home-services-note">{t("home.servicesPreview.demoNote")}</EditableText>
         </div></section>
 

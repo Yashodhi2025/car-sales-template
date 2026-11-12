@@ -46,7 +46,7 @@ export function useSiteContent() {
   const data = useSiteData<VanguardData>();
   function read(path: string): unknown {
     let value: unknown = data.content;
-    for (const key of path.split(".")) {
+    for (const key of path.replace(/\[(\d+)\]/g, ".$1").split(".")) {
       value = value && typeof value === "object" ? (value as Record<string, unknown>)[key] : undefined;
     }
     return value;

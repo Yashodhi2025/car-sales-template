@@ -11,7 +11,7 @@ export function vehiclePhotos(content: VanguardData["content"], id: VehicleId) {
   // Keep empty gallery entries: merchants must still be able to select them.
   return [
     { image: photo.image0, imageAlt: photo.imageAlt, caption: photo.caption, imagePath: `${prefix}.image0`, captionPath: `${prefix}.caption` },
-    ...(photo.gallery || []).map((entry, index) => ({ ...entry, imagePath: `${prefix}.gallery.${index}.image`, captionPath: `${prefix}.gallery.${index}.caption` })),
+    ...(photo.gallery || []).map((entry, index) => ({ ...entry, imagePath: `${prefix}.gallery[${index}].image`, captionPath: `${prefix}.gallery[${index}].caption` })),
   ];
 }
 

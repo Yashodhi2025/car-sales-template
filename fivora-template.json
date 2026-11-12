@@ -69,9 +69,7 @@
       "common.searchPlaceholder",
       "contact.heroImageAlt",
       "home.experience.imageAlt",
-      "home.reviews.0.imageAlt",
-      "home.reviews.1.imageAlt",
-      "home.reviews.2.imageAlt",
+      "home.reviews[*].imageAlt",
       "home.search.allBodies",
       "home.search.allBrands",
       "home.search.description",
@@ -127,28 +125,28 @@
       "loanCalculator.noScript",
       "motion.durationMs",
       "motion.enabled",
-      "photos.vehicles.audi-rs6.gallery.0.imageAlt",
+      "photos.vehicles.audi-rs6.gallery[*].imageAlt",
       "photos.vehicles.audi-rs6.imageAlt",
       "photos.vehicles.audi-rs6.showcaseImage",
-      "photos.vehicles.bmw-m5.gallery.0.imageAlt",
+      "photos.vehicles.bmw-m5.gallery[*].imageAlt",
       "photos.vehicles.bmw-m5.imageAlt",
       "photos.vehicles.bmw-m5.showcaseImage",
-      "photos.vehicles.chevrolet-camaro.gallery.0.imageAlt",
+      "photos.vehicles.chevrolet-camaro.gallery[*].imageAlt",
       "photos.vehicles.chevrolet-camaro.imageAlt",
       "photos.vehicles.chevrolet-camaro.showcaseImage",
-      "photos.vehicles.ferrari-458.gallery.0.imageAlt",
+      "photos.vehicles.ferrari-458.gallery[*].imageAlt",
       "photos.vehicles.ferrari-458.imageAlt",
       "photos.vehicles.ferrari-458.showcaseImage",
-      "photos.vehicles.honda-crv.gallery.0.imageAlt",
+      "photos.vehicles.honda-crv.gallery[*].imageAlt",
       "photos.vehicles.honda-crv.imageAlt",
       "photos.vehicles.honda-crv.showcaseImage",
-      "photos.vehicles.mercedes-amg.gallery.0.imageAlt",
+      "photos.vehicles.mercedes-amg.gallery[*].imageAlt",
       "photos.vehicles.mercedes-amg.imageAlt",
       "photos.vehicles.mercedes-amg.showcaseImage",
-      "photos.vehicles.porsche-panamera.gallery.0.imageAlt",
+      "photos.vehicles.porsche-panamera.gallery[*].imageAlt",
       "photos.vehicles.porsche-panamera.imageAlt",
       "photos.vehicles.porsche-panamera.showcaseImage",
-      "photos.vehicles.tesla-model-3.gallery.0.imageAlt",
+      "photos.vehicles.tesla-model-3.gallery[*].imageAlt",
       "photos.vehicles.tesla-model-3.imageAlt",
       "photos.vehicles.tesla-model-3.showcaseImage",
       "requests.contactSubject",
@@ -161,31 +159,12 @@
       "requests.fields.vehicle.placeholder",
       "requests.noScript",
       "requests.noVehicle",
-      "requests.types.0.key",
-      "requests.types.0.label",
-      "requests.types.1.key",
-      "requests.types.1.label",
-      "requests.types.2.key",
-      "requests.types.2.label",
-      "requests.types.3.key",
-      "requests.types.3.label",
-      "requests.types.4.key",
-      "requests.types.4.label",
-      "requests.types.5.key",
-      "requests.types.5.label",
-      "requests.types.6.key",
-      "requests.types.6.label",
-      "requests.types.7.key",
-      "requests.types.7.label",
+      "requests.types[*].key",
+      "requests.types[*].label",
       "requests.viewingSubject",
       "services.closingImageAlt",
       "services.heroImageAlt",
-      "services.items.0.targetPage",
-      "services.items.1.targetPage",
-      "services.items.2.targetPage",
-      "services.items.3.targetPage",
-      "services.items.4.targetPage",
-      "services.items.5.targetPage",
+      "services.items[*].targetPage",
       "vehicleDetails.gallery.closeLabel",
       "vehicleDetails.gallery.nextLabel",
       "vehicleDetails.gallery.openImageLabel",
@@ -478,6 +457,11 @@
             "key": "currencyCode",
             "type": "text",
             "label": "Currency Code"
+          },
+          {
+            "key": "backToTopLink",
+            "type": "url",
+            "label": "Back To Top Link"
           }
         ]
       },
@@ -546,6 +530,11 @@
             "key": "edition",
             "type": "text",
             "label": "Edition"
+          },
+          {
+            "key": "scrollLink",
+            "type": "url",
+            "label": "Scroll Link"
           }
         ],
         "pageKey": "home"
@@ -651,6 +640,16 @@
             "label": "Results Label"
           },
           {
+            "key": "emptyTitle",
+            "type": "text",
+            "label": "Empty Title"
+          },
+          {
+            "key": "emptyDescription",
+            "type": "textarea",
+            "label": "Empty Description"
+          },
+          {
             "key": "allLink",
             "type": "url",
             "label": "All Link"
@@ -667,25 +666,6 @@
           }
         ],
         "pageKey": "home"
-      },
-      {
-        "id": "inventory.emptyState",
-        "path": "home.collection",
-        "type": "object",
-        "label": "Inventory empty results",
-        "fields": [
-          {
-            "key": "emptyTitle",
-            "type": "text",
-            "label": "Empty Title"
-          },
-          {
-            "key": "emptyDescription",
-            "type": "textarea",
-            "label": "Empty Description"
-          }
-        ],
-        "pageKey": "inventory"
       },
       {
         "id": "home.brands",
@@ -742,98 +722,25 @@
       {
         "id": "home.benefits",
         "path": "home.benefits",
-        "type": "collection",
+        "type": "list",
         "label": "Home benefits",
-        "collectionType": "list",
         "pageKey": "about",
-        "items": [
+        "fields": [
           {
-            "key": "0",
-            "label": "Curated selection",
-            "fields": [
-              {
-                "key": "icon",
-                "type": "text",
-                "label": "Icon",
-                "control": "icon-picker"
-              },
-              {
-                "key": "title",
-                "type": "text",
-                "label": "Title"
-              },
-              {
-                "key": "text",
-                "type": "textarea",
-                "label": "Text"
-              }
-            ]
+            "key": "icon",
+            "type": "text",
+            "label": "Icon",
+            "control": "icon-picker"
           },
           {
-            "key": "1",
-            "label": "Transparent approach",
-            "fields": [
-              {
-                "key": "icon",
-                "type": "text",
-                "label": "Icon",
-                "control": "icon-picker"
-              },
-              {
-                "key": "title",
-                "type": "text",
-                "label": "Title"
-              },
-              {
-                "key": "text",
-                "type": "textarea",
-                "label": "Text"
-              }
-            ]
+            "key": "title",
+            "type": "text",
+            "label": "Title"
           },
           {
-            "key": "2",
-            "label": "Personalised guidance",
-            "fields": [
-              {
-                "key": "icon",
-                "type": "text",
-                "label": "Icon",
-                "control": "icon-picker"
-              },
-              {
-                "key": "title",
-                "type": "text",
-                "label": "Title"
-              },
-              {
-                "key": "text",
-                "type": "textarea",
-                "label": "Text"
-              }
-            ]
-          },
-          {
-            "key": "3",
-            "label": "Ownership support",
-            "fields": [
-              {
-                "key": "icon",
-                "type": "text",
-                "label": "Icon",
-                "control": "icon-picker"
-              },
-              {
-                "key": "title",
-                "type": "text",
-                "label": "Title"
-              },
-              {
-                "key": "text",
-                "type": "textarea",
-                "label": "Text"
-              }
-            ]
+            "key": "text",
+            "type": "textarea",
+            "label": "Text"
           }
         ]
       },
@@ -943,118 +850,39 @@
       {
         "id": "home.reviews",
         "path": "home.reviews",
-        "type": "collection",
+        "type": "list",
         "label": "Home reviews",
-        "collectionType": "list",
         "pageKey": "home",
-        "items": [
+        "fields": [
           {
-            "key": "0",
-            "label": "James R.",
-            "fields": [
-              {
-                "key": "quote",
-                "type": "textarea",
-                "label": "Quote"
-              },
-              {
-                "key": "name",
-                "type": "text",
-                "label": "Name"
-              },
-              {
-                "key": "detail",
-                "type": "text",
-                "label": "Detail"
-              },
-              {
-                "key": "initials",
-                "type": "text",
-                "label": "Initials"
-              },
-              {
-                "key": "image",
-                "type": "image",
-                "label": "Image"
-              },
-              {
-                "key": "imageAlt",
-                "type": "text",
-                "label": "Image Alt"
-              }
-            ]
+            "key": "quote",
+            "type": "textarea",
+            "label": "Quote"
           },
           {
-            "key": "1",
-            "label": "Sophie M.",
-            "fields": [
-              {
-                "key": "quote",
-                "type": "textarea",
-                "label": "Quote"
-              },
-              {
-                "key": "name",
-                "type": "text",
-                "label": "Name"
-              },
-              {
-                "key": "detail",
-                "type": "text",
-                "label": "Detail"
-              },
-              {
-                "key": "initials",
-                "type": "text",
-                "label": "Initials"
-              },
-              {
-                "key": "image",
-                "type": "image",
-                "label": "Image"
-              },
-              {
-                "key": "imageAlt",
-                "type": "text",
-                "label": "Image Alt"
-              }
-            ]
+            "key": "name",
+            "type": "text",
+            "label": "Name"
           },
           {
-            "key": "2",
-            "label": "Daniel W.",
-            "fields": [
-              {
-                "key": "quote",
-                "type": "textarea",
-                "label": "Quote"
-              },
-              {
-                "key": "name",
-                "type": "text",
-                "label": "Name"
-              },
-              {
-                "key": "detail",
-                "type": "text",
-                "label": "Detail"
-              },
-              {
-                "key": "initials",
-                "type": "text",
-                "label": "Initials"
-              },
-              {
-                "key": "image",
-                "type": "image",
-                "label": "Image"
-              },
-              {
-                "key": "imageAlt",
-                "type": "text",
-                "label": "Image Alt"
-              }
-            ]
+            "key": "detail",
+            "type": "text",
+            "label": "Detail"
+          },
+          {
+            "key": "initials",
+            "type": "text",
+            "label": "Initials"
+          },
+          {
+            "key": "image",
+            "type": "image",
+            "label": "Image"
+          },
+          {
+            "key": "imageAlt",
+            "type": "text",
+            "label": "Image Alt"
           }
         ]
       },
@@ -1723,7 +1551,7 @@
           },
           {
             "key": "storyNote",
-            "type": "textarea",
+            "type": "text",
             "label": "Story Note"
           },
           {
@@ -1787,94 +1615,24 @@
       {
         "id": "about.journey",
         "path": "about.journey",
-        "type": "collection",
+        "type": "list",
         "label": "About journey",
-        "collectionType": "list",
         "pageKey": "about",
-        "items": [
+        "fields": [
           {
-            "key": "0",
-            "label": "Discover",
-            "fields": [
-              {
-                "key": "number",
-                "type": "text",
-                "label": "Number"
-              },
-              {
-                "key": "title",
-                "type": "text",
-                "label": "Title"
-              },
-              {
-                "key": "text",
-                "type": "textarea",
-                "label": "Text"
-              }
-            ]
+            "key": "number",
+            "type": "text",
+            "label": "Number"
           },
           {
-            "key": "1",
-            "label": "Explore",
-            "fields": [
-              {
-                "key": "number",
-                "type": "text",
-                "label": "Number"
-              },
-              {
-                "key": "title",
-                "type": "text",
-                "label": "Title"
-              },
-              {
-                "key": "text",
-                "type": "textarea",
-                "label": "Text"
-              }
-            ]
+            "key": "title",
+            "type": "text",
+            "label": "Title"
           },
           {
-            "key": "2",
-            "label": "Connect",
-            "fields": [
-              {
-                "key": "number",
-                "type": "text",
-                "label": "Number"
-              },
-              {
-                "key": "title",
-                "type": "text",
-                "label": "Title"
-              },
-              {
-                "key": "text",
-                "type": "textarea",
-                "label": "Text"
-              }
-            ]
-          },
-          {
-            "key": "3",
-            "label": "Drive",
-            "fields": [
-              {
-                "key": "number",
-                "type": "text",
-                "label": "Number"
-              },
-              {
-                "key": "title",
-                "type": "text",
-                "label": "Title"
-              },
-              {
-                "key": "text",
-                "type": "textarea",
-                "label": "Text"
-              }
-            ]
+            "key": "text",
+            "type": "textarea",
+            "label": "Text"
           }
         ]
       },
@@ -2129,550 +1887,111 @@
       {
         "id": "services.items",
         "path": "services.items",
-        "type": "collection",
+        "type": "list",
         "label": "Services items",
-        "collectionType": "list",
         "pageKey": "services",
-        "items": [
+        "fields": [
           {
-            "key": "0",
-            "label": "Luxury Vehicle Sales",
-            "fields": [
-              {
-                "key": "name",
-                "type": "text",
-                "label": "Name"
-              },
-              {
-                "key": "description",
-                "type": "textarea",
-                "label": "Description"
-              },
-              {
-                "key": "icon",
-                "type": "text",
-                "label": "Icon",
-                "control": "icon-picker"
-              },
-              {
-                "key": "buttonLabel",
-                "type": "text",
-                "label": "Button Label"
-              },
-              {
-                "key": "buttonLink",
-                "type": "url",
-                "label": "Button Link"
-              },
-              {
-                "key": "targetPage",
-                "type": "text",
-                "label": "Target Page"
-              },
-              {
-                "key": "imageUrl",
-                "type": "image",
-                "label": "Image Url"
-              },
-              {
-                "key": "kicker",
-                "type": "text",
-                "label": "Kicker"
-              },
-              {
-                "key": "includes",
-                "type": "object",
-                "label": "Includes",
-                "fields": [
-                  {
-                    "key": "0",
-                    "type": "object",
-                    "label": "0",
-                    "fields": [
-                      {
-                        "key": "name",
-                        "type": "text",
-                        "label": "Name"
-                      }
-                    ]
-                  },
-                  {
-                    "key": "1",
-                    "type": "object",
-                    "label": "1",
-                    "fields": [
-                      {
-                        "key": "name",
-                        "type": "text",
-                        "label": "Name"
-                      }
-                    ]
-                  },
-                  {
-                    "key": "2",
-                    "type": "object",
-                    "label": "2",
-                    "fields": [
-                      {
-                        "key": "name",
-                        "type": "text",
-                        "label": "Name"
-                      }
-                    ]
-                  }
-                ]
-              }
-            ]
+            "key": "name",
+            "type": "text",
+            "label": "Name"
           },
           {
-            "key": "1",
-            "label": "Trade-In Assistance",
-            "fields": [
-              {
-                "key": "name",
-                "type": "text",
-                "label": "Name"
-              },
-              {
-                "key": "description",
-                "type": "textarea",
-                "label": "Description"
-              },
-              {
-                "key": "icon",
-                "type": "text",
-                "label": "Icon",
-                "control": "icon-picker"
-              },
-              {
-                "key": "buttonLabel",
-                "type": "text",
-                "label": "Button Label"
-              },
-              {
-                "key": "buttonLink",
-                "type": "url",
-                "label": "Button Link"
-              },
-              {
-                "key": "targetPage",
-                "type": "text",
-                "label": "Target Page"
-              },
-              {
-                "key": "imageUrl",
-                "type": "image",
-                "label": "Image Url"
-              },
-              {
-                "key": "kicker",
-                "type": "text",
-                "label": "Kicker"
-              },
-              {
-                "key": "includes",
-                "type": "object",
-                "label": "Includes",
-                "fields": [
-                  {
-                    "key": "0",
-                    "type": "object",
-                    "label": "0",
-                    "fields": [
-                      {
-                        "key": "name",
-                        "type": "text",
-                        "label": "Name"
-                      }
-                    ]
-                  },
-                  {
-                    "key": "1",
-                    "type": "object",
-                    "label": "1",
-                    "fields": [
-                      {
-                        "key": "name",
-                        "type": "text",
-                        "label": "Name"
-                      }
-                    ]
-                  },
-                  {
-                    "key": "2",
-                    "type": "object",
-                    "label": "2",
-                    "fields": [
-                      {
-                        "key": "name",
-                        "type": "text",
-                        "label": "Name"
-                      }
-                    ]
-                  }
-                ]
-              }
-            ]
+            "key": "description",
+            "type": "textarea",
+            "label": "Description"
           },
           {
-            "key": "2",
-            "label": "Financing Guidance",
-            "fields": [
-              {
-                "key": "name",
-                "type": "text",
-                "label": "Name"
-              },
-              {
-                "key": "description",
-                "type": "textarea",
-                "label": "Description"
-              },
-              {
-                "key": "icon",
-                "type": "text",
-                "label": "Icon",
-                "control": "icon-picker"
-              },
-              {
-                "key": "buttonLabel",
-                "type": "text",
-                "label": "Button Label"
-              },
-              {
-                "key": "buttonLink",
-                "type": "url",
-                "label": "Button Link"
-              },
-              {
-                "key": "targetPage",
-                "type": "text",
-                "label": "Target Page"
-              },
-              {
-                "key": "imageUrl",
-                "type": "image",
-                "label": "Image Url"
-              },
-              {
-                "key": "kicker",
-                "type": "text",
-                "label": "Kicker"
-              },
-              {
-                "key": "includes",
-                "type": "object",
-                "label": "Includes",
-                "fields": [
-                  {
-                    "key": "0",
-                    "type": "object",
-                    "label": "0",
-                    "fields": [
-                      {
-                        "key": "name",
-                        "type": "text",
-                        "label": "Name"
-                      }
-                    ]
-                  },
-                  {
-                    "key": "1",
-                    "type": "object",
-                    "label": "1",
-                    "fields": [
-                      {
-                        "key": "name",
-                        "type": "text",
-                        "label": "Name"
-                      }
-                    ]
-                  },
-                  {
-                    "key": "2",
-                    "type": "object",
-                    "label": "2",
-                    "fields": [
-                      {
-                        "key": "name",
-                        "type": "text",
-                        "label": "Name"
-                      }
-                    ]
-                  }
-                ]
-              }
-            ]
+            "key": "icon",
+            "type": "text",
+            "label": "Icon",
+            "control": "icon-picker"
           },
           {
-            "key": "3",
-            "label": "Test Drive Arrangements",
-            "fields": [
-              {
-                "key": "name",
-                "type": "text",
-                "label": "Name"
-              },
-              {
-                "key": "description",
-                "type": "textarea",
-                "label": "Description"
-              },
-              {
-                "key": "icon",
-                "type": "text",
-                "label": "Icon",
-                "control": "icon-picker"
-              },
-              {
-                "key": "buttonLabel",
-                "type": "text",
-                "label": "Button Label"
-              },
-              {
-                "key": "buttonLink",
-                "type": "url",
-                "label": "Button Link"
-              },
-              {
-                "key": "targetPage",
-                "type": "text",
-                "label": "Target Page"
-              },
-              {
-                "key": "imageUrl",
-                "type": "image",
-                "label": "Image Url"
-              },
-              {
-                "key": "kicker",
-                "type": "text",
-                "label": "Kicker"
-              },
-              {
-                "key": "includes",
-                "type": "object",
-                "label": "Includes",
-                "fields": [
-                  {
-                    "key": "0",
-                    "type": "object",
-                    "label": "0",
-                    "fields": [
-                      {
-                        "key": "name",
-                        "type": "text",
-                        "label": "Name"
-                      }
-                    ]
-                  },
-                  {
-                    "key": "1",
-                    "type": "object",
-                    "label": "1",
-                    "fields": [
-                      {
-                        "key": "name",
-                        "type": "text",
-                        "label": "Name"
-                      }
-                    ]
-                  },
-                  {
-                    "key": "2",
-                    "type": "object",
-                    "label": "2",
-                    "fields": [
-                      {
-                        "key": "name",
-                        "type": "text",
-                        "label": "Name"
-                      }
-                    ]
-                  }
-                ]
-              }
-            ]
+            "key": "buttonLabel",
+            "type": "text",
+            "label": "Button Label"
           },
           {
-            "key": "4",
-            "label": "Vehicle Sourcing",
-            "fields": [
-              {
-                "key": "name",
-                "type": "text",
-                "label": "Name"
-              },
-              {
-                "key": "description",
-                "type": "textarea",
-                "label": "Description"
-              },
-              {
-                "key": "icon",
-                "type": "text",
-                "label": "Icon",
-                "control": "icon-picker"
-              },
-              {
-                "key": "buttonLabel",
-                "type": "text",
-                "label": "Button Label"
-              },
-              {
-                "key": "buttonLink",
-                "type": "url",
-                "label": "Button Link"
-              },
-              {
-                "key": "targetPage",
-                "type": "text",
-                "label": "Target Page"
-              },
-              {
-                "key": "imageUrl",
-                "type": "image",
-                "label": "Image Url"
-              },
-              {
-                "key": "kicker",
-                "type": "text",
-                "label": "Kicker"
-              },
-              {
-                "key": "includes",
-                "type": "object",
-                "label": "Includes",
-                "fields": [
-                  {
-                    "key": "0",
-                    "type": "object",
-                    "label": "0",
-                    "fields": [
-                      {
-                        "key": "name",
-                        "type": "text",
-                        "label": "Name"
-                      }
-                    ]
-                  },
-                  {
-                    "key": "1",
-                    "type": "object",
-                    "label": "1",
-                    "fields": [
-                      {
-                        "key": "name",
-                        "type": "text",
-                        "label": "Name"
-                      }
-                    ]
-                  },
-                  {
-                    "key": "2",
-                    "type": "object",
-                    "label": "2",
-                    "fields": [
-                      {
-                        "key": "name",
-                        "type": "text",
-                        "label": "Name"
-                      }
-                    ]
-                  }
-                ]
-              }
-            ]
+            "key": "buttonLink",
+            "type": "url",
+            "label": "Button Link"
           },
           {
-            "key": "5",
-            "label": "After-Sales Support",
+            "key": "targetPage",
+            "type": "text",
+            "label": "Target Page"
+          },
+          {
+            "key": "imageUrl",
+            "type": "image",
+            "label": "Image Url"
+          },
+          {
+            "key": "kicker",
+            "type": "text",
+            "label": "Kicker"
+          },
+          {
+            "key": "includes",
+            "type": "list",
+            "label": "Includes",
             "fields": [
               {
                 "key": "name",
                 "type": "text",
                 "label": "Name"
-              },
-              {
-                "key": "description",
-                "type": "textarea",
-                "label": "Description"
-              },
-              {
-                "key": "icon",
-                "type": "text",
-                "label": "Icon",
-                "control": "icon-picker"
-              },
-              {
-                "key": "buttonLabel",
-                "type": "text",
-                "label": "Button Label"
-              },
-              {
-                "key": "buttonLink",
-                "type": "url",
-                "label": "Button Link"
-              },
-              {
-                "key": "targetPage",
-                "type": "text",
-                "label": "Target Page"
-              },
-              {
-                "key": "imageUrl",
-                "type": "image",
-                "label": "Image Url"
-              },
-              {
-                "key": "kicker",
-                "type": "text",
-                "label": "Kicker"
-              },
-              {
-                "key": "includes",
-                "type": "object",
-                "label": "Includes",
-                "fields": [
-                  {
-                    "key": "0",
-                    "type": "object",
-                    "label": "0",
-                    "fields": [
-                      {
-                        "key": "name",
-                        "type": "text",
-                        "label": "Name"
-                      }
-                    ]
-                  },
-                  {
-                    "key": "1",
-                    "type": "object",
-                    "label": "1",
-                    "fields": [
-                      {
-                        "key": "name",
-                        "type": "text",
-                        "label": "Name"
-                      }
-                    ]
-                  },
-                  {
-                    "key": "2",
-                    "type": "object",
-                    "label": "2",
-                    "fields": [
-                      {
-                        "key": "name",
-                        "type": "text",
-                        "label": "Name"
-                      }
-                    ]
-                  }
-                ]
               }
             ]
+          }
+        ]
+      },
+      {
+        "id": "services.trustFeatures",
+        "path": "services.trustFeatures",
+        "type": "list",
+        "label": "Services trust Features",
+        "pageKey": "services",
+        "fields": [
+          {
+            "key": "icon",
+            "type": "text",
+            "label": "Icon",
+            "control": "icon-picker"
+          },
+          {
+            "key": "title",
+            "type": "text",
+            "label": "Title"
+          },
+          {
+            "key": "text",
+            "type": "textarea",
+            "label": "Text"
+          }
+        ]
+      },
+      {
+        "id": "services.steps",
+        "path": "services.steps",
+        "type": "list",
+        "label": "Services steps",
+        "pageKey": "services",
+        "fields": [
+          {
+            "key": "number",
+            "type": "text",
+            "label": "Number"
+          },
+          {
+            "key": "title",
+            "type": "text",
+            "label": "Title"
+          },
+          {
+            "key": "text",
+            "type": "textarea",
+            "label": "Text"
           }
         ]
       },
@@ -2713,106 +2032,19 @@
       {
         "id": "faq.items",
         "path": "faq.items",
-        "type": "collection",
+        "type": "list",
         "label": "Faq items",
-        "collectionType": "list",
         "pageKey": "contact",
-        "items": [
+        "fields": [
           {
-            "key": "0",
-            "label": "How do I arrange a vehicle viewing?",
-            "fields": [
-              {
-                "key": "question",
-                "type": "text",
-                "label": "Question"
-              },
-              {
-                "key": "answer",
-                "type": "textarea",
-                "label": "Answer"
-              }
-            ]
+            "key": "question",
+            "type": "text",
+            "label": "Question"
           },
           {
-            "key": "1",
-            "label": "How can I request a test drive?",
-            "fields": [
-              {
-                "key": "question",
-                "type": "text",
-                "label": "Question"
-              },
-              {
-                "key": "answer",
-                "type": "textarea",
-                "label": "Answer"
-              }
-            ]
-          },
-          {
-            "key": "2",
-            "label": "Is financing assistance available?",
-            "fields": [
-              {
-                "key": "question",
-                "type": "text",
-                "label": "Question"
-              },
-              {
-                "key": "answer",
-                "type": "textarea",
-                "label": "Answer"
-              }
-            ]
-          },
-          {
-            "key": "3",
-            "label": "How does a vehicle trade-in work?",
-            "fields": [
-              {
-                "key": "question",
-                "type": "text",
-                "label": "Question"
-              },
-              {
-                "key": "answer",
-                "type": "textarea",
-                "label": "Answer"
-              }
-            ]
-          },
-          {
-            "key": "4",
-            "label": "How can I check a vehicle’s availability?",
-            "fields": [
-              {
-                "key": "question",
-                "type": "text",
-                "label": "Question"
-              },
-              {
-                "key": "answer",
-                "type": "textarea",
-                "label": "Answer"
-              }
-            ]
-          },
-          {
-            "key": "5",
-            "label": "What is the best way to contact the dealership?",
-            "fields": [
-              {
-                "key": "question",
-                "type": "text",
-                "label": "Question"
-              },
-              {
-                "key": "answer",
-                "type": "textarea",
-                "label": "Answer"
-              }
-            ]
+            "key": "answer",
+            "type": "textarea",
+            "label": "Answer"
           }
         ]
       },
@@ -2935,138 +2167,19 @@
       {
         "id": "requests.types",
         "path": "requests.types",
-        "type": "collection",
+        "type": "list",
         "label": "Requests types",
-        "collectionType": "list",
         "pageKey": "contact",
-        "items": [
+        "fields": [
           {
-            "key": "0",
-            "label": "0",
-            "fields": [
-              {
-                "key": "key",
-                "type": "text",
-                "label": "Key"
-              },
-              {
-                "key": "label",
-                "type": "text",
-                "label": "Label"
-              }
-            ]
+            "key": "key",
+            "type": "text",
+            "label": "Key"
           },
           {
-            "key": "1",
-            "label": "1",
-            "fields": [
-              {
-                "key": "key",
-                "type": "text",
-                "label": "Key"
-              },
-              {
-                "key": "label",
-                "type": "text",
-                "label": "Label"
-              }
-            ]
-          },
-          {
-            "key": "2",
-            "label": "2",
-            "fields": [
-              {
-                "key": "key",
-                "type": "text",
-                "label": "Key"
-              },
-              {
-                "key": "label",
-                "type": "text",
-                "label": "Label"
-              }
-            ]
-          },
-          {
-            "key": "3",
-            "label": "3",
-            "fields": [
-              {
-                "key": "key",
-                "type": "text",
-                "label": "Key"
-              },
-              {
-                "key": "label",
-                "type": "text",
-                "label": "Label"
-              }
-            ]
-          },
-          {
-            "key": "4",
-            "label": "4",
-            "fields": [
-              {
-                "key": "key",
-                "type": "text",
-                "label": "Key"
-              },
-              {
-                "key": "label",
-                "type": "text",
-                "label": "Label"
-              }
-            ]
-          },
-          {
-            "key": "5",
-            "label": "5",
-            "fields": [
-              {
-                "key": "key",
-                "type": "text",
-                "label": "Key"
-              },
-              {
-                "key": "label",
-                "type": "text",
-                "label": "Label"
-              }
-            ]
-          },
-          {
-            "key": "6",
-            "label": "6",
-            "fields": [
-              {
-                "key": "key",
-                "type": "text",
-                "label": "Key"
-              },
-              {
-                "key": "label",
-                "type": "text",
-                "label": "Label"
-              }
-            ]
-          },
-          {
-            "key": "7",
-            "label": "7",
-            "fields": [
-              {
-                "key": "key",
-                "type": "text",
-                "label": "Key"
-              },
-              {
-                "key": "label",
-                "type": "text",
-                "label": "Label"
-              }
-            ]
+            "key": "label",
+            "type": "text",
+            "label": "Label"
           }
         ]
       },
@@ -3290,7 +2403,7 @@
           {
             "key": "notesLabel",
             "type": "text",
-            "label": "Viewing notes label"
+            "label": "Notes Label"
           },
           {
             "key": "requiredNote",
@@ -3332,14 +2445,13 @@
       {
         "id": "cards.vehicles",
         "path": "cards.vehicles",
-        "type": "collection",
+        "type": "object",
         "label": "Cards vehicles",
-        "collectionType": "keyed",
-        "pageKey": "inventory",
-        "items": [
+        "fields": [
           {
             "key": "porsche-panamera",
-            "label": "Porsche Panamera Turbo",
+            "type": "object",
+            "label": "Porsche panamera",
             "fields": [
               {
                 "key": "name",
@@ -3441,7 +2553,8 @@
           },
           {
             "key": "bmw-m5",
-            "label": "BMW M5",
+            "type": "object",
+            "label": "Bmw m5",
             "fields": [
               {
                 "key": "name",
@@ -3543,7 +2656,8 @@
           },
           {
             "key": "mercedes-amg",
-            "label": "Mercedes-Benz AMG GT",
+            "type": "object",
+            "label": "Mercedes amg",
             "fields": [
               {
                 "key": "name",
@@ -3645,7 +2759,8 @@
           },
           {
             "key": "audi-rs6",
-            "label": "Audi RS6 Avant",
+            "type": "object",
+            "label": "Audi rs6",
             "fields": [
               {
                 "key": "name",
@@ -3747,7 +2862,8 @@
           },
           {
             "key": "tesla-model-3",
-            "label": "Tesla Model 3 Long Range",
+            "type": "object",
+            "label": "Tesla model 3",
             "fields": [
               {
                 "key": "name",
@@ -3849,7 +2965,8 @@
           },
           {
             "key": "honda-crv",
-            "label": "Honda CR-V EX",
+            "type": "object",
+            "label": "Honda crv",
             "fields": [
               {
                 "key": "name",
@@ -3951,7 +3068,8 @@
           },
           {
             "key": "chevrolet-camaro",
-            "label": "Chevrolet Camaro SS",
+            "type": "object",
+            "label": "Chevrolet camaro",
             "fields": [
               {
                 "key": "name",
@@ -4053,7 +3171,8 @@
           },
           {
             "key": "ferrari-458",
-            "label": "Ferrari 458 Speciale",
+            "type": "object",
+            "label": "Ferrari 458",
             "fields": [
               {
                 "key": "name",
@@ -4153,19 +3272,19 @@
               }
             ]
           }
-        ]
+        ],
+        "pageKey": "inventory"
       },
       {
         "id": "cards.brands",
         "path": "cards.brands",
-        "type": "collection",
+        "type": "object",
         "label": "Cards brands",
-        "collectionType": "keyed",
-        "pageKey": "home",
-        "items": [
+        "fields": [
           {
             "key": "porsche",
-            "label": "PORSCHE",
+            "type": "object",
+            "label": "Porsche",
             "fields": [
               {
                 "key": "displayName",
@@ -4191,7 +3310,8 @@
           },
           {
             "key": "bmw",
-            "label": "BMW",
+            "type": "object",
+            "label": "Bmw",
             "fields": [
               {
                 "key": "displayName",
@@ -4217,7 +3337,8 @@
           },
           {
             "key": "mercedes",
-            "label": "Mercedes-Benz",
+            "type": "object",
+            "label": "Mercedes",
             "fields": [
               {
                 "key": "displayName",
@@ -4243,6 +3364,7 @@
           },
           {
             "key": "audi",
+            "type": "object",
             "label": "Audi",
             "fields": [
               {
@@ -4269,6 +3391,7 @@
           },
           {
             "key": "tesla",
+            "type": "object",
             "label": "Tesla",
             "fields": [
               {
@@ -4295,6 +3418,7 @@
           },
           {
             "key": "honda",
+            "type": "object",
             "label": "Honda",
             "fields": [
               {
@@ -4321,6 +3445,7 @@
           },
           {
             "key": "chevrolet",
+            "type": "object",
             "label": "Chevrolet",
             "fields": [
               {
@@ -4347,6 +3472,7 @@
           },
           {
             "key": "ferrari",
+            "type": "object",
             "label": "Ferrari",
             "fields": [
               {
@@ -4371,19 +3497,19 @@
               }
             ]
           }
-        ]
+        ],
+        "pageKey": "home"
       },
       {
         "id": "cards.bodyTypes",
         "path": "cards.bodyTypes",
-        "type": "collection",
+        "type": "object",
         "label": "Cards body Types",
-        "collectionType": "keyed",
-        "pageKey": "home",
-        "items": [
+        "fields": [
           {
             "key": "sedan",
-            "label": "Grand tourers",
+            "type": "object",
+            "label": "Sedan",
             "fields": [
               {
                 "key": "displayName",
@@ -4409,7 +3535,8 @@
           },
           {
             "key": "coupe",
-            "label": "Performance coupés",
+            "type": "object",
+            "label": "Coupe",
             "fields": [
               {
                 "key": "displayName",
@@ -4435,7 +3562,8 @@
           },
           {
             "key": "estate",
-            "label": "Performance estates",
+            "type": "object",
+            "label": "Estate",
             "fields": [
               {
                 "key": "displayName",
@@ -4461,7 +3589,8 @@
           },
           {
             "key": "suv",
-            "label": "SUVs & crossovers",
+            "type": "object",
+            "label": "Suv",
             "fields": [
               {
                 "key": "displayName",
@@ -4485,18 +3614,18 @@
               }
             ]
           }
-        ]
+        ],
+        "pageKey": "home"
       },
       {
         "id": "catalog",
         "path": "catalog",
-        "type": "collection",
+        "type": "object",
         "label": "Catalog",
-        "collectionType": "keyed",
-        "pageKey": "inventory",
-        "items": [
+        "fields": [
           {
             "key": "porsche-panamera",
+            "type": "object",
             "label": "Porsche panamera",
             "fields": [
               {
@@ -4518,6 +3647,7 @@
           },
           {
             "key": "bmw-m5",
+            "type": "object",
             "label": "Bmw m5",
             "fields": [
               {
@@ -4539,6 +3669,7 @@
           },
           {
             "key": "mercedes-amg",
+            "type": "object",
             "label": "Mercedes amg",
             "fields": [
               {
@@ -4560,6 +3691,7 @@
           },
           {
             "key": "audi-rs6",
+            "type": "object",
             "label": "Audi rs6",
             "fields": [
               {
@@ -4581,6 +3713,7 @@
           },
           {
             "key": "tesla-model-3",
+            "type": "object",
             "label": "Tesla model 3",
             "fields": [
               {
@@ -4602,6 +3735,7 @@
           },
           {
             "key": "honda-crv",
+            "type": "object",
             "label": "Honda crv",
             "fields": [
               {
@@ -4623,6 +3757,7 @@
           },
           {
             "key": "chevrolet-camaro",
+            "type": "object",
             "label": "Chevrolet camaro",
             "fields": [
               {
@@ -4644,6 +3779,7 @@
           },
           {
             "key": "ferrari-458",
+            "type": "object",
             "label": "Ferrari 458",
             "fields": [
               {
@@ -4663,19 +3799,19 @@
               }
             ]
           }
-        ]
+        ],
+        "pageKey": "inventory"
       },
       {
         "id": "showrooms",
         "path": "showrooms",
-        "type": "collection",
+        "type": "object",
         "label": "Showrooms",
-        "collectionType": "keyed",
-        "pageKey": "contact",
-        "items": [
+        "fields": [
           {
             "key": "flagship",
-            "label": "THE VANGUARD SHOWROOM",
+            "type": "object",
+            "label": "Flagship",
             "fields": [
               {
                 "key": "name",
@@ -4694,7 +3830,8 @@
               }
             ]
           }
-        ]
+        ],
+        "pageKey": "contact"
       },
       {
         "id": "vehicleDetails",
@@ -4902,33 +4039,6 @@
             ]
           },
           {
-            "key": "bodyStyles",
-            "type": "object",
-            "label": "Body Styles",
-            "fields": [
-              {
-                "key": "sedan",
-                "type": "text",
-                "label": "Sedan"
-              },
-              {
-                "key": "coupe",
-                "type": "text",
-                "label": "Coupe"
-              },
-              {
-                "key": "estate",
-                "type": "text",
-                "label": "Estate"
-              },
-              {
-                "key": "suv",
-                "type": "text",
-                "label": "Suv"
-              }
-            ]
-          },
-          {
             "key": "gallery",
             "type": "object",
             "label": "Gallery",
@@ -5124,6 +4234,34 @@
           }
         ],
         "pageKey": "car-porsche-panamera"
+      },
+      {
+        "id": "vehicleDetails.bodyStyles",
+        "path": "vehicleDetails.bodyStyles",
+        "type": "object",
+        "label": "Shared body style labels",
+        "fields": [
+          {
+            "key": "sedan",
+            "type": "text",
+            "label": "Sedan"
+          },
+          {
+            "key": "coupe",
+            "type": "text",
+            "label": "Coupe"
+          },
+          {
+            "key": "estate",
+            "type": "text",
+            "label": "Estate"
+          },
+          {
+            "key": "suv",
+            "type": "text",
+            "label": "Suv"
+          }
+        ]
       },
       {
         "id": "loanCalculator",
@@ -5381,32 +4519,14 @@
       {
         "id": "vehicles.porsche-panamera.features",
         "path": "vehicles.porsche-panamera.features",
-        "type": "collection",
+        "type": "list",
         "label": "Vehicles porsche panamera features",
-        "collectionType": "list",
         "pageKey": "car-porsche-panamera",
-        "items": [
+        "fields": [
           {
-            "key": "0",
-            "label": "Sport Chrono",
-            "fields": [
-              {
-                "key": "name",
-                "type": "text",
-                "label": "Name"
-              }
-            ]
-          },
-          {
-            "key": "1",
-            "label": "AWD",
-            "fields": [
-              {
-                "key": "name",
-                "type": "text",
-                "label": "Name"
-              }
-            ]
+            "key": "name",
+            "type": "text",
+            "label": "Name"
           }
         ]
       },
@@ -5437,31 +4557,24 @@
       {
         "id": "photos.vehicles.porsche-panamera.gallery",
         "path": "photos.vehicles.porsche-panamera.gallery",
-        "type": "collection",
+        "type": "list",
         "label": "Photos vehicles porsche panamera gallery",
-        "collectionType": "list",
         "pageKey": "car-porsche-panamera",
-        "items": [
+        "fields": [
           {
-            "key": "0",
-            "label": "0",
-            "fields": [
-              {
-                "key": "image",
-                "type": "image",
-                "label": "Image"
-              },
-              {
-                "key": "imageAlt",
-                "type": "text",
-                "label": "Image Alt"
-              },
-              {
-                "key": "caption",
-                "type": "text",
-                "label": "Caption"
-              }
-            ]
+            "key": "image",
+            "type": "image",
+            "label": "Image"
+          },
+          {
+            "key": "imageAlt",
+            "type": "text",
+            "label": "Image Alt"
+          },
+          {
+            "key": "caption",
+            "type": "text",
+            "label": "Caption"
           }
         ]
       },
@@ -5532,32 +4645,14 @@
       {
         "id": "vehicles.bmw-m5.features",
         "path": "vehicles.bmw-m5.features",
-        "type": "collection",
+        "type": "list",
         "label": "Vehicles bmw m5 features",
-        "collectionType": "list",
         "pageKey": "car-bmw-m5",
-        "items": [
+        "fields": [
           {
-            "key": "0",
-            "label": "TwinPower Turbo",
-            "fields": [
-              {
-                "key": "name",
-                "type": "text",
-                "label": "Name"
-              }
-            ]
-          },
-          {
-            "key": "1",
-            "label": "M xDrive",
-            "fields": [
-              {
-                "key": "name",
-                "type": "text",
-                "label": "Name"
-              }
-            ]
+            "key": "name",
+            "type": "text",
+            "label": "Name"
           }
         ]
       },
@@ -5588,31 +4683,24 @@
       {
         "id": "photos.vehicles.bmw-m5.gallery",
         "path": "photos.vehicles.bmw-m5.gallery",
-        "type": "collection",
+        "type": "list",
         "label": "Photos vehicles bmw m5 gallery",
-        "collectionType": "list",
         "pageKey": "car-bmw-m5",
-        "items": [
+        "fields": [
           {
-            "key": "0",
-            "label": "0",
-            "fields": [
-              {
-                "key": "image",
-                "type": "image",
-                "label": "Image"
-              },
-              {
-                "key": "imageAlt",
-                "type": "text",
-                "label": "Image Alt"
-              },
-              {
-                "key": "caption",
-                "type": "text",
-                "label": "Caption"
-              }
-            ]
+            "key": "image",
+            "type": "image",
+            "label": "Image"
+          },
+          {
+            "key": "imageAlt",
+            "type": "text",
+            "label": "Image Alt"
+          },
+          {
+            "key": "caption",
+            "type": "text",
+            "label": "Caption"
           }
         ]
       },
@@ -5683,32 +4771,14 @@
       {
         "id": "vehicles.mercedes-amg.features",
         "path": "vehicles.mercedes-amg.features",
-        "type": "collection",
+        "type": "list",
         "label": "Vehicles mercedes amg features",
-        "collectionType": "list",
         "pageKey": "car-mercedes-amg",
-        "items": [
+        "fields": [
           {
-            "key": "0",
-            "label": "V8 Biturbo",
-            "fields": [
-              {
-                "key": "name",
-                "type": "text",
-                "label": "Name"
-              }
-            ]
-          },
-          {
-            "key": "1",
-            "label": "AMG Speedshift",
-            "fields": [
-              {
-                "key": "name",
-                "type": "text",
-                "label": "Name"
-              }
-            ]
+            "key": "name",
+            "type": "text",
+            "label": "Name"
           }
         ]
       },
@@ -5739,31 +4809,24 @@
       {
         "id": "photos.vehicles.mercedes-amg.gallery",
         "path": "photos.vehicles.mercedes-amg.gallery",
-        "type": "collection",
+        "type": "list",
         "label": "Photos vehicles mercedes amg gallery",
-        "collectionType": "list",
         "pageKey": "car-mercedes-amg",
-        "items": [
+        "fields": [
           {
-            "key": "0",
-            "label": "0",
-            "fields": [
-              {
-                "key": "image",
-                "type": "image",
-                "label": "Image"
-              },
-              {
-                "key": "imageAlt",
-                "type": "text",
-                "label": "Image Alt"
-              },
-              {
-                "key": "caption",
-                "type": "text",
-                "label": "Caption"
-              }
-            ]
+            "key": "image",
+            "type": "image",
+            "label": "Image"
+          },
+          {
+            "key": "imageAlt",
+            "type": "text",
+            "label": "Image Alt"
+          },
+          {
+            "key": "caption",
+            "type": "text",
+            "label": "Caption"
           }
         ]
       },
@@ -5834,32 +4897,14 @@
       {
         "id": "vehicles.audi-rs6.features",
         "path": "vehicles.audi-rs6.features",
-        "type": "collection",
+        "type": "list",
         "label": "Vehicles audi rs6 features",
-        "collectionType": "list",
         "pageKey": "car-audi-rs6",
-        "items": [
+        "fields": [
           {
-            "key": "0",
-            "label": "Quattro",
-            "fields": [
-              {
-                "key": "name",
-                "type": "text",
-                "label": "Name"
-              }
-            ]
-          },
-          {
-            "key": "1",
-            "label": "Tiptronic",
-            "fields": [
-              {
-                "key": "name",
-                "type": "text",
-                "label": "Name"
-              }
-            ]
+            "key": "name",
+            "type": "text",
+            "label": "Name"
           }
         ]
       },
@@ -5890,31 +4935,24 @@
       {
         "id": "photos.vehicles.audi-rs6.gallery",
         "path": "photos.vehicles.audi-rs6.gallery",
-        "type": "collection",
+        "type": "list",
         "label": "Photos vehicles audi rs6 gallery",
-        "collectionType": "list",
         "pageKey": "car-audi-rs6",
-        "items": [
+        "fields": [
           {
-            "key": "0",
-            "label": "0",
-            "fields": [
-              {
-                "key": "image",
-                "type": "image",
-                "label": "Image"
-              },
-              {
-                "key": "imageAlt",
-                "type": "text",
-                "label": "Image Alt"
-              },
-              {
-                "key": "caption",
-                "type": "text",
-                "label": "Caption"
-              }
-            ]
+            "key": "image",
+            "type": "image",
+            "label": "Image"
+          },
+          {
+            "key": "imageAlt",
+            "type": "text",
+            "label": "Image Alt"
+          },
+          {
+            "key": "caption",
+            "type": "text",
+            "label": "Caption"
           }
         ]
       },
@@ -5985,43 +5023,14 @@
       {
         "id": "vehicles.tesla-model-3.features",
         "path": "vehicles.tesla-model-3.features",
-        "type": "collection",
+        "type": "list",
         "label": "Vehicles tesla model 3 features",
-        "collectionType": "list",
         "pageKey": "car-tesla-model-3",
-        "items": [
+        "fields": [
           {
-            "key": "0",
-            "label": "Dual Motor",
-            "fields": [
-              {
-                "key": "name",
-                "type": "text",
-                "label": "Name"
-              }
-            ]
-          },
-          {
-            "key": "1",
-            "label": "AWD",
-            "fields": [
-              {
-                "key": "name",
-                "type": "text",
-                "label": "Name"
-              }
-            ]
-          },
-          {
-            "key": "2",
-            "label": "Long Range",
-            "fields": [
-              {
-                "key": "name",
-                "type": "text",
-                "label": "Name"
-              }
-            ]
+            "key": "name",
+            "type": "text",
+            "label": "Name"
           }
         ]
       },
@@ -6052,31 +5061,24 @@
       {
         "id": "photos.vehicles.tesla-model-3.gallery",
         "path": "photos.vehicles.tesla-model-3.gallery",
-        "type": "collection",
+        "type": "list",
         "label": "Photos vehicles tesla model 3 gallery",
-        "collectionType": "list",
         "pageKey": "car-tesla-model-3",
-        "items": [
+        "fields": [
           {
-            "key": "0",
-            "label": "0",
-            "fields": [
-              {
-                "key": "image",
-                "type": "image",
-                "label": "Image"
-              },
-              {
-                "key": "imageAlt",
-                "type": "text",
-                "label": "Image Alt"
-              },
-              {
-                "key": "caption",
-                "type": "text",
-                "label": "Caption"
-              }
-            ]
+            "key": "image",
+            "type": "image",
+            "label": "Image"
+          },
+          {
+            "key": "imageAlt",
+            "type": "text",
+            "label": "Image Alt"
+          },
+          {
+            "key": "caption",
+            "type": "text",
+            "label": "Caption"
           }
         ]
       },
@@ -6147,32 +5149,14 @@
       {
         "id": "vehicles.honda-crv.features",
         "path": "vehicles.honda-crv.features",
-        "type": "collection",
+        "type": "list",
         "label": "Vehicles honda crv features",
-        "collectionType": "list",
         "pageKey": "car-honda-crv",
-        "items": [
+        "fields": [
           {
-            "key": "0",
-            "label": "AWD",
-            "fields": [
-              {
-                "key": "name",
-                "type": "text",
-                "label": "Name"
-              }
-            ]
-          },
-          {
-            "key": "1",
-            "label": "EX specification",
-            "fields": [
-              {
-                "key": "name",
-                "type": "text",
-                "label": "Name"
-              }
-            ]
+            "key": "name",
+            "type": "text",
+            "label": "Name"
           }
         ]
       },
@@ -6203,31 +5187,24 @@
       {
         "id": "photos.vehicles.honda-crv.gallery",
         "path": "photos.vehicles.honda-crv.gallery",
-        "type": "collection",
+        "type": "list",
         "label": "Photos vehicles honda crv gallery",
-        "collectionType": "list",
         "pageKey": "car-honda-crv",
-        "items": [
+        "fields": [
           {
-            "key": "0",
-            "label": "0",
-            "fields": [
-              {
-                "key": "image",
-                "type": "image",
-                "label": "Image"
-              },
-              {
-                "key": "imageAlt",
-                "type": "text",
-                "label": "Image Alt"
-              },
-              {
-                "key": "caption",
-                "type": "text",
-                "label": "Caption"
-              }
-            ]
+            "key": "image",
+            "type": "image",
+            "label": "Image"
+          },
+          {
+            "key": "imageAlt",
+            "type": "text",
+            "label": "Image Alt"
+          },
+          {
+            "key": "caption",
+            "type": "text",
+            "label": "Caption"
           }
         ]
       },
@@ -6298,32 +5275,14 @@
       {
         "id": "vehicles.chevrolet-camaro.features",
         "path": "vehicles.chevrolet-camaro.features",
-        "type": "collection",
+        "type": "list",
         "label": "Vehicles chevrolet camaro features",
-        "collectionType": "list",
         "pageKey": "car-chevrolet-camaro",
-        "items": [
+        "fields": [
           {
-            "key": "0",
-            "label": "Six-speed manual",
-            "fields": [
-              {
-                "key": "name",
-                "type": "text",
-                "label": "Name"
-              }
-            ]
-          },
-          {
-            "key": "1",
-            "label": "SS specification",
-            "fields": [
-              {
-                "key": "name",
-                "type": "text",
-                "label": "Name"
-              }
-            ]
+            "key": "name",
+            "type": "text",
+            "label": "Name"
           }
         ]
       },
@@ -6354,31 +5313,24 @@
       {
         "id": "photos.vehicles.chevrolet-camaro.gallery",
         "path": "photos.vehicles.chevrolet-camaro.gallery",
-        "type": "collection",
+        "type": "list",
         "label": "Photos vehicles chevrolet camaro gallery",
-        "collectionType": "list",
         "pageKey": "car-chevrolet-camaro",
-        "items": [
+        "fields": [
           {
-            "key": "0",
-            "label": "0",
-            "fields": [
-              {
-                "key": "image",
-                "type": "image",
-                "label": "Image"
-              },
-              {
-                "key": "imageAlt",
-                "type": "text",
-                "label": "Image Alt"
-              },
-              {
-                "key": "caption",
-                "type": "text",
-                "label": "Caption"
-              }
-            ]
+            "key": "image",
+            "type": "image",
+            "label": "Image"
+          },
+          {
+            "key": "imageAlt",
+            "type": "text",
+            "label": "Image Alt"
+          },
+          {
+            "key": "caption",
+            "type": "text",
+            "label": "Caption"
           }
         ]
       },
@@ -6449,32 +5401,14 @@
       {
         "id": "vehicles.ferrari-458.features",
         "path": "vehicles.ferrari-458.features",
-        "type": "collection",
+        "type": "list",
         "label": "Vehicles ferrari 458 features",
-        "collectionType": "list",
         "pageKey": "car-ferrari-458",
-        "items": [
+        "fields": [
           {
-            "key": "0",
-            "label": "F1 dual-clutch",
-            "fields": [
-              {
-                "key": "name",
-                "type": "text",
-                "label": "Name"
-              }
-            ]
-          },
-          {
-            "key": "1",
-            "label": "Speciale specification",
-            "fields": [
-              {
-                "key": "name",
-                "type": "text",
-                "label": "Name"
-              }
-            ]
+            "key": "name",
+            "type": "text",
+            "label": "Name"
           }
         ]
       },
@@ -6505,31 +5439,24 @@
       {
         "id": "photos.vehicles.ferrari-458.gallery",
         "path": "photos.vehicles.ferrari-458.gallery",
-        "type": "collection",
+        "type": "list",
         "label": "Photos vehicles ferrari 458 gallery",
-        "collectionType": "list",
         "pageKey": "car-ferrari-458",
-        "items": [
+        "fields": [
           {
-            "key": "0",
-            "label": "0",
-            "fields": [
-              {
-                "key": "image",
-                "type": "image",
-                "label": "Image"
-              },
-              {
-                "key": "imageAlt",
-                "type": "text",
-                "label": "Image Alt"
-              },
-              {
-                "key": "caption",
-                "type": "text",
-                "label": "Caption"
-              }
-            ]
+            "key": "image",
+            "type": "image",
+            "label": "Image"
+          },
+          {
+            "key": "imageAlt",
+            "type": "text",
+            "label": "Image Alt"
+          },
+          {
+            "key": "caption",
+            "type": "text",
+            "label": "Caption"
           }
         ]
       },
@@ -6579,198 +5506,6 @@
             "type": "object",
             "label": "AI Guidance Notes",
             "fields": []
-          }
-        ]
-      },
-      {
-        "id": "services.trustFeatures",
-        "path": "services.trustFeatures",
-        "type": "collection",
-        "label": "Services / Trust Features",
-        "collectionType": "list",
-        "pageKey": "services",
-        "items": [
-          {
-            "key": "0",
-            "label": "Trusted support",
-            "fields": [
-              {
-                "key": "icon",
-                "type": "text",
-                "label": "Icon",
-                "control": "icon-picker"
-              },
-              {
-                "key": "title",
-                "type": "text",
-                "label": "Title"
-              },
-              {
-                "key": "text",
-                "type": "textarea",
-                "label": "Text"
-              }
-            ]
-          },
-          {
-            "key": "1",
-            "label": "Flexible options",
-            "fields": [
-              {
-                "key": "icon",
-                "type": "text",
-                "label": "Icon",
-                "control": "icon-picker"
-              },
-              {
-                "key": "title",
-                "type": "text",
-                "label": "Title"
-              },
-              {
-                "key": "text",
-                "type": "textarea",
-                "label": "Text"
-              }
-            ]
-          },
-          {
-            "key": "2",
-            "label": "Expert guidance",
-            "fields": [
-              {
-                "key": "icon",
-                "type": "text",
-                "label": "Icon",
-                "control": "icon-picker"
-              },
-              {
-                "key": "title",
-                "type": "text",
-                "label": "Title"
-              },
-              {
-                "key": "text",
-                "type": "textarea",
-                "label": "Text"
-              }
-            ]
-          },
-          {
-            "key": "3",
-            "label": "A seamless experience",
-            "fields": [
-              {
-                "key": "icon",
-                "type": "text",
-                "label": "Icon",
-                "control": "icon-picker"
-              },
-              {
-                "key": "title",
-                "type": "text",
-                "label": "Title"
-              },
-              {
-                "key": "text",
-                "type": "textarea",
-                "label": "Text"
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "id": "services.steps",
-        "path": "services.steps",
-        "type": "collection",
-        "label": "Services / Steps",
-        "collectionType": "list",
-        "pageKey": "services",
-        "items": [
-          {
-            "key": "0",
-            "label": "Get in touch",
-            "fields": [
-              {
-                "key": "number",
-                "type": "text",
-                "label": "Number"
-              },
-              {
-                "key": "title",
-                "type": "text",
-                "label": "Title"
-              },
-              {
-                "key": "text",
-                "type": "textarea",
-                "label": "Text"
-              }
-            ]
-          },
-          {
-            "key": "1",
-            "label": "Discuss options",
-            "fields": [
-              {
-                "key": "number",
-                "type": "text",
-                "label": "Number"
-              },
-              {
-                "key": "title",
-                "type": "text",
-                "label": "Title"
-              },
-              {
-                "key": "text",
-                "type": "textarea",
-                "label": "Text"
-              }
-            ]
-          },
-          {
-            "key": "2",
-            "label": "Arrange & confirm",
-            "fields": [
-              {
-                "key": "number",
-                "type": "text",
-                "label": "Number"
-              },
-              {
-                "key": "title",
-                "type": "text",
-                "label": "Title"
-              },
-              {
-                "key": "text",
-                "type": "textarea",
-                "label": "Text"
-              }
-            ]
-          },
-          {
-            "key": "3",
-            "label": "Drive with confidence",
-            "fields": [
-              {
-                "key": "number",
-                "type": "text",
-                "label": "Number"
-              },
-              {
-                "key": "title",
-                "type": "text",
-                "label": "Title"
-              },
-              {
-                "key": "text",
-                "type": "textarea",
-                "label": "Text"
-              }
-            ]
           }
         ]
       }

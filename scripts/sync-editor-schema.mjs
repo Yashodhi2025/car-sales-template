@@ -16,6 +16,10 @@ function fields(object, prefix) {
     if (path.startsWith("common.actionPalette.")) controls.add(path);
     if (/^inventory\.showcase\.(label|selectLabel)$/.test(path)) controls.add(path);
     if (/^inventory\.showcase\.featured\.[^.]+\.(enabled|order)$/.test(path) || /^inventory\.showcase\.empty(Title|Description)$/.test(path)) controls.add(path);
+    if (Array.isArray(value)) {
+      const itemFields = value.map((item, index) => fields(item, `${path}.${index}`));
+      return { key, type: "list", label: label(key), fields: itemFields[0] || [] };
+    }
     if (value && typeof value === "object") return { key, type: "object", label: label(key), fields: fields(value, path) };
     let type = "text";
     if (typeof value === "number") type = "number";
@@ -55,16 +59,14 @@ function objectSection(path, value) {
   return { id: path, path, type: "object", label: label(path), fields: fields(value, path), ...(path === "common" ? {} : { pageKey: owner(path) }) };
 }
 function collection(path, value) {
-  return { id: path, path, type: "collection", label: label(path), collectionType: Array.isArray(value) ? "list" : "keyed", pageKey: owner(path), items: Object.entries(value).map(([key, item]) => ({ key, label: item.name || item.displayName || item.title || item.question || label(key), fields: fields(item, `${path}.${key}`) })) };
+  if (!Array.isArray(value)) return objectSection(path, value);
+  const itemFields = value.map((item, index) => fields(item, `${path}.${index}`));
+  return { id: path, path, type: "list", label: label(path), pageKey: owner(path), fields: itemFields[0] || [] };
 }
 const intake = manifest.editorSchema.sections.find(section => section.id === "__fivoraIntake");
 const sections = [objectSection("common", data.content.common)];
 for (const [key, value] of Object.entries(data.content.home)) {
-  if (key === "collection") {
-    const { emptyTitle, emptyDescription, ...homeFields } = value;
-    sections.push(objectSection("home.collection", homeFields));
-    sections.push({ ...objectSection("home.collection", { emptyTitle, emptyDescription }), id: "inventory.emptyState", label: "Inventory empty results", pageKey: "inventory" });
-  } else sections.push(Array.isArray(value) ? collection(`home.${key}`, value) : objectSection(`home.${key}`, value));
+  sections.push(Array.isArray(value) ? collection(`home.${key}`, value) : objectSection(`home.${key}`, value));
 }
 for (const [key, value] of Object.entries(data.content.inventory)) sections.push(objectSection(`inventory.${key}`, value));
 const { journey, ...about } = data.content.about;
@@ -81,7 +83,9 @@ sections.push(objectSection("requests", { ...requestCopy, errors: sharedErrors }
 for (const [key, value] of Object.entries(requestFields)) sections.push(objectSection(`requests.fields.${key}`, value));
 sections.push({ ...objectSection("requests.errors", { date: dateError, pastDate, time: timeError }), id: "viewing.errors", pageKey: `car-${Object.keys(data.content.vehicles)[0]}` }, objectSection("viewing", data.content.viewing), objectSection("motion", data.content.motion));
 for (const [key, value] of Object.entries(data.content.cards)) sections.push(collection(`cards.${key}`, value));
-sections.push(collection("catalog", data.content.catalog), collection("showrooms", data.content.showrooms), objectSection("vehicleDetails", data.content.vehicleDetails));
+const { bodyStyles, ...vehicleDetails } = data.content.vehicleDetails;
+sections.push(collection("catalog", data.content.catalog), collection("showrooms", data.content.showrooms), objectSection("vehicleDetails", vehicleDetails));
+sections.push({ id: "vehicleDetails.bodyStyles", path: "vehicleDetails.bodyStyles", type: "object", label: "Shared body style labels", fields: fields(bodyStyles, "vehicleDetails.bodyStyles") });
 sections.push({ ...objectSection("loanCalculator", data.content.loanCalculator), label: "Loan / EMI Calculator", description: "Shared across all car details pages. Vehicle price comes from each vehicle's editable card price; currency uses Common / Currency code. Defaults set the initial down payment percentage, annual interest rate and term in months. Visitors can adjust all four inputs." });
 for (const [id, vehicle] of Object.entries(data.content.vehicles)) {
   const { features, ...details } = vehicle;
@@ -101,6 +105,14 @@ manifest.pages = [
   ...Object.keys(data.content.vehicles).map(id => ({ id: `car-${id}`, label: data.content.cards.vehicles[id].name, route: `/cars/${id}`, required: true })),
 ];
 manifest.editorSchema.sections = sections;
-manifest.visualEditing = { ...manifest.visualEditing, contractVersion: 1, mode: "strict", controlOnlyPaths: [...new Set([...(manifest.visualEditing.controlOnlyPaths || []).filter(path => path.startsWith("__fivoraIntake.")), ...controls])].sort() };
+function canonicalControl(path) {
+  let value = data.content; let result = "";
+  for (const key of path.split(".")) {
+    result += Array.isArray(value) && /^\d+$/.test(key) ? `[${key}]` : `${result ? "." : ""}${key}`;
+    value = value && typeof value === "object" ? value[key] : undefined;
+  }
+  return result;
+}
+manifest.visualEditing = { ...manifest.visualEditing, contractVersion: 1, mode: "strict", controlOnlyPaths: [...new Set([...(manifest.visualEditing.controlOnlyPaths || []).filter(path => path.startsWith("__fivoraIntake.")), ...controls])].map(canonicalControl).map(path => path.replace(/\[\d+\]/g, "[*]")).filter((path, index, paths) => paths.indexOf(path) === index).sort() };
 fs.writeFileSync("fivora-template.json", `${JSON.stringify(manifest, null, 2)}\n`);
 console.log(`Synced ${sections.length} editor sections; ${controls.size} explicit control-only fields.`);

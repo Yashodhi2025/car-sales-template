@@ -152,3 +152,6 @@ html { scroll-padding-top: 86px; }
   .vanguard .vm-footer { padding-top: 28px; }
   .vanguard .vm-footer-main { gap: 24px; }
 }
+.vanguard .vm-empty-feedback { position: absolute; margin: 0 !important; }
+.vanguard .vm-draft-pending > details > summary { list-style: none; }
+.vanguard .vm-draft-pending > details > summary::-webkit-details-marker { display: none; }

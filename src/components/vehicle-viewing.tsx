@@ -1,6 +1,7 @@
 "use client";
+import { EditableText } from "./vanguard-editable";
 
-import { EditableText } from "@deneb-ui/ui";
+
 import { useSiteContent, type VehicleId } from "@/lib/site-content";
 import { InquiryForm } from "./inquiry-form";
 import { VanguardImage } from "./vanguard-image";

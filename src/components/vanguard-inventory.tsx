@@ -1,7 +1,9 @@
 "use client";
+import { previewField } from "@/lib/preview-path";
+import { EditableLink, EditableText, EditableFeedback, LabelledRegion } from "./vanguard-editable";
 
 import { useEffect, useLayoutEffect, useRef, useState, type FormEvent } from "react";
-import { DENEB_PREVIEW_FOCUS_MESSAGE, LEGACY_PREVIEW_FOCUS_MESSAGE, PREVIEW_FOCUS_MESSAGE, EditableLink, EditableText, withBasePath } from "@deneb-ui/ui";
+import { DENEB_PREVIEW_FOCUS_MESSAGE, LEGACY_PREVIEW_FOCUS_MESSAGE, PREVIEW_FOCUS_MESSAGE, withBasePath } from "@deneb-ui/ui";
 import { InventoryShowcase } from "./inventory-showcase";
 import { useSiteContent, type VehicleId } from "@/lib/site-content";
 import { defaultFilters, filterQuery, invalidPrices, matchingVehicles, parseFilters, type InventoryFilters } from "@/lib/inventory";
@@ -104,7 +106,7 @@ export function VanguardInventory() {
   const unique = (field: "fuel" | "transmission" | "availability") =>
     [...new Set(ids.map(id => String(content.cards.vehicles[id][field] ?? "")).filter(Boolean))].sort();
   const brands = Object.entries(content.cards.brands).map(([value, card]) => ({ value, label: card.displayName }));
-  const bodies = Object.entries(content.cards.bodyTypes).map(([value, card]) => ({ value, label: card.displayName }));
+  const bodies = Object.entries(content.vehicleDetails.bodyStyles).map(([value, label]) => ({ value, label }));
 
   function update(next: InventoryFilters) {
     setFilters(next);
@@ -139,8 +141,8 @@ export function VanguardInventory() {
       <label className="vm-inventory-field" data-filter-key={key}>
         <EditableText id={`inventory.filters.${label}`}>{t(`inventory.filters.${label}`)}</EditableText>
         <div className="vm-filter-select"><select name={key} className={filters[key] ? "has-value" : ""} value={filters[key]} onChange={event => change(key, event.target.value)}>
-          <option value="">{t(`inventory.filters.${empty}`)}</option>
-          {options.map(option => <option value={option.value} key={option.value}>{option.label}</option>)}
+          <option value="" {...previewField(`inventory.filters.${empty}`)}>{t(`inventory.filters.${empty}`)}</option>
+          {options.map(option => <option value={option.value} key={option.value} {...previewField(key === "bodyType" ? `vehicleDetails.bodyStyles.${option.value}` : key === "brand" ? `cards.brands.${option.value}.displayName` : `cards.vehicles.${ids.find(id => String(content.cards.vehicles[id][key as "fuel" | "transmission" | "availability"]) === option.value)}.${key}`)}>{option.label}</option>)}
         </select><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg></div>
       </label>
     );
@@ -169,8 +171,8 @@ export function VanguardInventory() {
           }}><div className="vm-inventory-sidebar-inner">
           <details className="vm-filter-panel" ref={panel} open={sidebarOpen} onToggle={event => setSidebarOpen(event.currentTarget.open)}>
             <summary><EditableText id="inventory.filters.mobileLabel">{t("inventory.filters.mobileLabel")}</EditableText><span>{activeKeys.length ? `(${activeKeys.length})` : "+"}</span></summary>
-            <form className="vm-filter-form" onSubmit={submit} noValidate role="search" aria-label={t("inventory.filters.title")}>
-              <div className="vm-filter-heading"><div><EditableText id="inventory.filters.title" as="h2">{t("inventory.filters.title")}</EditableText><EditableText id="inventory.filters.description" as="p">{t("inventory.filters.description")}</EditableText></div><button type="button" className="vm-sidebar-close" onClick={toggleSidebar} aria-label={t("inventory.filters.hideLabel")}><Arrow back /></button></div>
+            <LabelledRegion as="form" className="vm-filter-form" onSubmit={submit} noValidate role="search" labelPath={"inventory.filters.title"}>
+              <div className="vm-filter-heading"><div><EditableText id="inventory.filters.title" as="h2">{t("inventory.filters.title")}</EditableText><EditableText id="inventory.filters.description" as="p">{t("inventory.filters.description")}</EditableText></div><button type="button" className="vm-sidebar-close" onClick={toggleSidebar} aria-label={t("inventory.filters.hideLabel")} {...previewField("inventory.filters.hideLabel")}><Arrow back /></button></div>
               <div className="vm-filter-section vm-filter-primary"><label className="vm-inventory-field" data-filter-key="q">
                 <EditableText id="inventory.filters.searchLabel">{t("inventory.filters.searchLabel")}</EditableText>
                 <div className="vm-filter-search-control"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5" /><path d="m16 16 5 5" /></svg><input type="search" name="q" className={filters.q ? "has-value" : ""} value={filters.q} maxLength={200} onChange={event => change("q", event.target.value)}
@@ -186,46 +188,46 @@ export function VanguardInventory() {
                       <EditableText id={`inventory.filters.${index === 0 ? "minLabel" : "maxLabel"}`}>{t(`inventory.filters.${index === 0 ? "minLabel" : "maxLabel"}`)}</EditableText>
                       <input type="number" min="0" step="1" inputMode="numeric" name={key} className={filters[key] ? "has-value" : ""} value={filters[key]}
                         onChange={event => change(key, event.target.value)} aria-invalid={priceError} aria-describedby={priceError ? "inventory-price-error" : undefined}
-                        placeholder={t(`inventory.filters.${index === 0 ? "minPlaceholder" : "maxPlaceholder"}`)} />
+                        placeholder={t(`inventory.filters.${index === 0 ? "minPlaceholder" : "maxPlaceholder"}`)} {...previewField(`inventory.filters.${index === 0 ? "minPlaceholder" : "maxPlaceholder"}`)} />
                     </label>
                   ))}
                 </div>
-                <p id="inventory-price-error" className="vm-price-error" hidden={!priceError} role="status"><EditableText id="inventory.filters.invalidPrice">{t("inventory.filters.invalidPrice")}</EditableText></p>
+                <p id="inventory-price-error" role="status"><EditableFeedback show={priceError} id="inventory.filters.invalidPrice" className="vm-price-error">{t("inventory.filters.invalidPrice")}</EditableFeedback></p>
               </fieldset>
               <div className="vm-filter-section vm-filter-details">{select("fuel", "fuelLabel", "anyFuel", unique("fuel").map(value => ({ value, label: value })))}
               {select("transmission", "transmissionLabel", "anyTransmission", unique("transmission").map(value => ({ value, label: value })))}
               {select("availability", "availabilityLabel", "anyAvailability", unique("availability").map(value => ({ value, label: value === "Available" ? t("inventory.filters.availableLabel") : value === "Reserved" ? t("inventory.filters.reservedLabel") : value })))} </div>
               <div className="vm-filter-footer"><button type="submit" className="vm-button vm-button-primary vm-filter-apply"><EditableText id="inventory.filters.applyLabel">{t("inventory.filters.applyLabel")}</EditableText><Arrow /></button>
               <button type="button" className="vm-inventory-reset" onClick={() => update({ ...defaultFilters })}><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true"><path d="M4 10a8 8 0 1 1 1 8M4 4v6h6" /></svg><EditableText id="inventory.filters.resetLabel">{t("inventory.filters.resetLabel")}</EditableText></button></div>
-            </form>
+            </LabelledRegion>
           </details>
           <EditableText id="inventory.hero.demoNote" as="p" className="vm-inventory-demo">{t("inventory.hero.demoNote")}</EditableText>
         </div></aside>
 
-        <section id="inventory-results" className="vm-inventory-results" aria-label={t("inventory.results.title")}>
+        <LabelledRegion as="section" id="inventory-results" className="vm-inventory-results" labelPath={"inventory.results.title"}>
           <div className="vm-inventory-toolbar">
             <div><EditableText id="inventory.results.title" as="h2" className="vm-inventory-results-title">{t("inventory.results.title")}</EditableText><p role="status" aria-live="polite" aria-atomic="true" className="vm-inventory-count"><strong>{matching.length}</strong> <EditableText id="inventory.results.countLabel">{t("inventory.results.countLabel")}</EditableText><span aria-hidden="true"> / </span>{ids.length} <EditableText id="inventory.results.totalLabel">{t("inventory.results.totalLabel")}</EditableText></p></div>
-            <div className="vm-inventory-toolbar-actions"><button ref={filterToggle} type="button" className="vm-filter-toggle" aria-expanded={sidebarOpen} aria-controls="inventory-filters" aria-label={t(sidebarOpen ? "inventory.filters.hideLabel" : "inventory.filters.showLabel")} title={t(sidebarOpen ? "inventory.filters.hideLabel" : "inventory.filters.showLabel")} onClick={toggleSidebar}>
+            <div className="vm-inventory-toolbar-actions"><button ref={filterToggle} type="button" className="vm-filter-toggle" aria-expanded={sidebarOpen} aria-controls="inventory-filters" aria-label={t(sidebarOpen ? "inventory.filters.hideLabel" : "inventory.filters.showLabel")} title={t(sidebarOpen ? "inventory.filters.hideLabel" : "inventory.filters.showLabel")} onClick={toggleSidebar} {...previewField(sidebarOpen ? "inventory.filters.hideLabel" : "inventory.filters.showLabel")}>
               <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true"><path d="M4 7h4m4 0h8M4 17h8m4 0h4"/><circle cx="10" cy="7" r="2"/><circle cx="14" cy="17" r="2"/></svg>
-              <EditableText id="inventory.filters.toggleLabel">{t("inventory.filters.toggleLabel")}</EditableText><span className="vm-sr-only"><EditableText id="inventory.filters.hideLabel" hidden={!sidebarOpen}>{t("inventory.filters.hideLabel")}</EditableText><EditableText id="inventory.filters.showLabel" hidden={sidebarOpen}>{t("inventory.filters.showLabel")}</EditableText></span><span className="vm-filter-toggle-count" hidden={!activeKeys.length} aria-hidden="true">{activeKeys.length}</span>
-            </button><label className="vm-sort-field"><EditableText id="inventory.results.sortLabel">{t("inventory.results.sortLabel")}</EditableText><select name="sort" value={filters.sort} onChange={event => change("sort", event.target.value)}>{Object.entries(sortLabels).map(([value, label]) => <option key={value} value={value}>{t(`inventory.results.${label}`)}</option>)}</select><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg></label></div>
+              <EditableText id="inventory.filters.toggleLabel">{t("inventory.filters.toggleLabel")}</EditableText><span className="vm-sr-only"><EditableFeedback show={sidebarOpen} id="inventory.filters.hideLabel">{t("inventory.filters.hideLabel")}</EditableFeedback><EditableFeedback show={!sidebarOpen} id="inventory.filters.showLabel">{t("inventory.filters.showLabel")}</EditableFeedback></span><span className="vm-filter-toggle-count" hidden={!activeKeys.length} aria-hidden="true">{activeKeys.length}</span>
+            </button><label className="vm-sort-field"><EditableText id="inventory.results.sortLabel">{t("inventory.results.sortLabel")}</EditableText><select name="sort" value={filters.sort} onChange={event => change("sort", event.target.value)}>{Object.entries(sortLabels).map(([value, label]) => <option key={value} value={value} {...previewField(`inventory.results.${label}`)}>{t(`inventory.results.${label}`)}</option>)}</select><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg></label></div>
           </div>
-          <div className="vm-active-filters" hidden={!activeKeys.length}>
-            <EditableText id="inventory.filters.activeLabel" className="vm-active-filter-label">{t("inventory.filters.activeLabel")}</EditableText>
+          <div className={activeKeys.length ? "vm-active-filters" : "vm-filter-feedback"}>
+            <EditableFeedback show={!!activeKeys.length} id="inventory.filters.activeLabel" className="vm-active-filter-label">{t("inventory.filters.activeLabel")}</EditableFeedback>
             {activeKeys.map(key => <button key={key} type="button" onClick={() => change(key, "")}
-              aria-label={`${t("inventory.filters.removeLabel")}: ${chipLabel(key)}`}>{chipLabel(key)}<span aria-hidden="true">×</span></button>)}
+              aria-label={`${t("inventory.filters.removeLabel")}: ${chipLabel(key)}`} {...previewField("inventory.filters.removeLabel")}>{chipLabel(key)}<span aria-hidden="true">×</span></button>)}
           </div>
           <noscript><p className="vm-no-script">{t("inventory.results.noScript")}</p></noscript>
           <div className="vm-vehicle-grid vm-inventory-grid">
             {ordered.map((id, index) => <div key={id} hidden={!visible.has(id)} className="vm-vehicle-wrap"><VehicleListing id={id} index={index} /></div>)}
           </div>
-          <div className="vm-empty-results" hidden={matching.length > 0}>
-            <span className="vm-empty-mark" aria-hidden="true">↗</span>
-            <EditableText id="home.collection.emptyTitle" as="h3">{t("home.collection.emptyTitle")}</EditableText>
-            <EditableText id="home.collection.emptyDescription" as="p">{t("home.collection.emptyDescription")}</EditableText>
-            <button type="button" className="vm-button vm-button-outline" onClick={() => update({ ...defaultFilters })}><EditableText id="inventory.filters.resetLabel">{t("inventory.filters.resetLabel")}</EditableText><Arrow /></button>
+          <div className={matching.length ? "vm-results-feedback" : "vm-empty-results"}>
+            {matching.length === 0 && <span className="vm-empty-mark" aria-hidden="true">↗</span>}
+            <EditableFeedback show={matching.length === 0} id="home.collection.emptyTitle" as="h3">{t("home.collection.emptyTitle")}</EditableFeedback>
+            <EditableFeedback show={matching.length === 0} id="home.collection.emptyDescription" as="p">{t("home.collection.emptyDescription")}</EditableFeedback>
+            {matching.length === 0 && <button type="button" className="vm-button vm-button-outline" onClick={() => update({ ...defaultFilters })}><EditableText id="inventory.filters.resetLabel">{t("inventory.filters.resetLabel")}</EditableText><Arrow /></button>}
           </div>
-        </section>
+        </LabelledRegion>
       </div>
 
       <section className="vm-container vm-inventory-concierge" data-reveal>

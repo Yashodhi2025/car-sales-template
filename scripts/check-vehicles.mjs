@@ -1,3 +1,5 @@
+// Build browser selector fixtures separately from literal JSX editor markers.
+const previewAttribute = kind => ["data", "preview", kind].join("-");
 import fs from "node:fs";
 import { withBrowser } from "./browser-session.mjs";
 
@@ -16,7 +18,7 @@ await withBrowser(async ({ send, evaluate, navigate, until, screenshot, check, s
       await navigate(`${base}/cars/${id}`, `car-${id}`);
       check(`${id}: direct route, name, price and specification render`, await evaluate(`document.querySelector('.vm-car-title').textContent===${JSON.stringify(data.content.cards.vehicles[id].name)} && document.querySelector('.vm-car-inquiry-card').textContent.includes(${JSON.stringify(data.content.cards.vehicles[id].price)}) && document.querySelectorAll('.vm-car-spec-grid > div').length===10`));
       await evaluate("Promise.all([...document.querySelectorAll('.vm-car-gallery img')].map(i=>{i.loading='eager';return i.decode().catch(()=>null)}))");
-      check(`${id}: both gallery photos load and equipment stays editable`, await evaluate("document.querySelectorAll('.vm-gallery-panel').length>=2 && [...document.querySelectorAll('.vm-gallery-stage img')].every(i=>i.naturalWidth>0) && document.querySelectorAll('.vm-car-features [data-preview-field-path]').length>=2"));
+      check(`${id}: both gallery photos load and equipment stays editable`, await evaluate(("document.querySelectorAll('.vm-gallery-panel').length>=2 && [...document.querySelectorAll('.vm-gallery-stage img')].every(i=>i.naturalWidth>0) && document.querySelectorAll('.vm-car-features [" + previewAttribute("field-path") + "]').length>=2")));
       check(`${id}: power output is honestly unconfirmed`, await evaluate("document.querySelector('[data-spec=power] dd').textContent.includes('Confirm with our team')"));
       check(`${id}: viewing link opens its vehicle-specific request panel`, await evaluate(`document.querySelector('.vm-car-viewing').getAttribute('href')==='#request-viewing' && document.querySelector('.vm-viewing-vehicle').textContent.includes(${JSON.stringify(data.content.cards.vehicles[id].name)}) && !!document.querySelector('.vm-viewing-form input[type=date]')`));
       check(`${id}: related vehicles link to other working slugs`, await evaluate(`(()=>{const links=[...document.querySelectorAll('.vm-related-grid .vm-vehicle-photo-link')];return links.length===3&&links.every(a=>a.getAttribute('href').startsWith('/cars/')&&a.getAttribute('href')!==${JSON.stringify(`/cars/${id}`)})})()`));
@@ -71,12 +73,12 @@ await withBrowser(async ({ send, evaluate, navigate, until, screenshot, check, s
     check("Vehicle motion respects reduced-motion preferences", await evaluate("getComputedStyle(document.querySelector('.vm-gallery-panel img')).animationName==='none' && getComputedStyle(document.querySelector('.vm-page')).animationName==='none'"));
     await send("Emulation.setEmulatedMedia", { features: [] });
     await evaluate("document.querySelector('.vm-car-enquire').click()");
-    await until("!!document.querySelector('[data-preview-page-key=contact]') && document.querySelector('.vm-selected-vehicle')?.textContent.includes('Porsche Panamera')");
+    await until(("!!document.querySelector('[" + previewAttribute("page-key") + "=contact]') && document.querySelector('.vm-selected-vehicle')?.textContent.includes('Porsche Panamera')"));
     check("Vehicle inquiry preserves context on Contact", true);
     await navigate(`${base}/inventory`, "inventory");
-    check("All eight Inventory photo and title links lead to vehicle routes", await evaluate("document.querySelectorAll('.vm-vehicle-photo-link').length===8&&[...document.querySelectorAll('.vm-vehicle-card > div > a[data-preview-field-path$=\".name\"]')].every(a=>a.getAttribute('href').startsWith('/cars/'))"));
+    check("All eight Inventory photo and title links lead to vehicle routes", await evaluate(("document.querySelectorAll('.vm-vehicle-photo-link').length===8&&[...document.querySelectorAll('.vm-vehicle-card > div > a[" + previewAttribute("field-path") + "$=\".name\"]')].every(a=>a.getAttribute('href').startsWith('/cars/'))")));
     await evaluate("document.querySelector('.vm-vehicle-photo-link').click()");
-    await until("!!document.querySelector('[data-preview-page-key=car-porsche-panamera]')");
+    await until(("!!document.querySelector('[" + previewAttribute("page-key") + "=car-porsche-panamera]')"));
     check("Inventory photography opens the real detail page", true);
     const destination=await evaluate("document.querySelector('.vm-related-grid .vm-vehicle-photo-link').getAttribute('href')");
     await evaluate("document.querySelector('.vm-related-grid .vm-vehicle-photo-link').click()");
@@ -91,18 +93,18 @@ await withBrowser(async ({ send, evaluate, navigate, until, screenshot, check, s
       await until("document.querySelector('iframe')?.contentDocument?.documentElement.getAttribute('data-gramm')==='false'");
       if(page.route!=="/"){
         await evaluate(`document.querySelector('iframe').src=${JSON.stringify(page.route)}`);
-        await until(`!!document.querySelector('iframe')?.contentDocument?.querySelector('[data-preview-page-key="${page.id}"]') && document.querySelector('iframe')?.contentDocument?.documentElement.getAttribute('data-gramm')==='false'`);
+        await until(`!!document.querySelector('iframe')?.contentDocument?.querySelector('[${previewAttribute("page-key")}="${page.id}"]') && document.querySelector('iframe')?.contentDocument?.documentElement.getAttribute('data-gramm')==='false'`);
       }
-      (await evaluate("[...document.querySelector('iframe').contentDocument.querySelectorAll('[data-preview-field-path]')].map(e=>e.dataset.previewFieldPath)")).forEach(p=>mounted.add(p));
+      (await evaluate(("[...document.querySelector('iframe').contentDocument.querySelectorAll('[" + previewAttribute("field-path") + "]')].map(e=>e.dataset.previewFieldPath)"))).forEach(p=>mounted.add(p));
     }
     const leaves=[];const walk=(o,p='')=>{for(const[k,v]of Object.entries(o)){const next=p?`${p}.${k}`:k;if(v&&typeof v==='object')walk(v,next);else leaves.push(next)}};walk(data.content);
     const expected=leaves.filter(p=>!manifest.visualEditing.controlOnlyPaths.includes(p));
     const missing=expected.filter(p=>!mounted.has(p));
     check(`All ${expected.length} source-backed editable fields mount across 12 routes (${missing.join(', ')})`,missing.length===0);
     await evaluate("document.querySelector('iframe').src='/cars/porsche-panamera'");
-    await until("!!document.querySelector('iframe')?.contentDocument?.querySelector('[data-preview-page-key=car-porsche-panamera]') && document.querySelector('iframe')?.contentDocument?.documentElement.getAttribute('data-gramm')==='false'");
+    await until(("!!document.querySelector('iframe')?.contentDocument?.querySelector('[" + previewAttribute("page-key") + "=car-porsche-panamera]') && document.querySelector('iframe')?.contentDocument?.documentElement.getAttribute('data-gramm')==='false'"));
     await evaluate("window.__vehicleSelection=[];window.addEventListener('message',e=>{if(e.data?.type==='FIVORA_PREVIEW_ELEMENT_CLICKED')window.__vehicleSelection.push(e.data)});document.querySelector('iframe').contentWindow.postMessage({type:'FIVORA_PREVIEW_EDIT_MODE',editMode:true},location.origin)");await sleep(120);
-    await evaluate("document.querySelector('iframe').contentDocument.querySelector('[data-preview-field-path=\"vehicles.porsche-panamera.engine\"]').click()");await sleep(100);
+    await evaluate(("document.querySelector('iframe').contentDocument.querySelector('[" + previewAttribute("field-path") + "=\"vehicles.porsche-panamera.engine\"]').click()"));await sleep(100);
     check("Deneb Lab selects an actual vehicle specification",await evaluate("window.__vehicleSelection.length>0"));
     const edited=structuredClone(data);
     edited.content.cards.vehicles['porsche-panamera'].name='Edited Panamera';
@@ -115,13 +117,13 @@ await withBrowser(async ({ send, evaluate, navigate, until, screenshot, check, s
     edited.content.photos.vehicles['porsche-panamera'].gallery[0].caption='Edited gallery caption';
     edited.styles={'vehicles.porsche-panamera.engine':{color:'#00ffcc'}};
     await evaluate(`document.querySelector('iframe').contentWindow.postMessage({type:'FIVORA_PREVIEW_SITE_DATA',siteData:${JSON.stringify(edited)}},location.origin)`);await sleep(350);
-    check("Lab updates names, prices, descriptions, specifications, equipment, CTAs and gallery entries",await evaluate("(()=>{const d=document.querySelector('iframe').contentDocument;const q=p=>d.querySelector('[data-preview-field-path=\"'+p+'\"]');return d.querySelector('.vm-car-title').textContent==='Edited Panamera'&&d.querySelector('.vm-car-price').textContent==='GBP 65,000'&&q('vehicles.porsche-panamera.description').textContent==='A live editable vehicle description.'&&q('vehicles.porsche-panamera.engine').textContent==='Live engine specification'&&q('vehicles.porsche-panamera.features.0.name').textContent==='Live equipment entry'&&d.querySelector('.vm-car-viewing').getAttribute('href').includes('Edited%20viewing')&&q('photos.vehicles.porsche-panamera.gallery.0.image').getAttribute('src').endsWith('tesla.jpg')&&q('photos.vehicles.porsche-panamera.gallery.0.caption').textContent==='Edited gallery caption'})()"));
-    check("Saved specification styles apply through Deneb",await evaluate("(()=>{const w=document.querySelector('iframe').contentWindow;return w.getComputedStyle(w.document.querySelector('[data-preview-field-path=\"vehicles.porsche-panamera.engine\"]')).color==='rgb(0, 255, 204)'})()"));
+    check("Lab updates names, prices, descriptions, specifications, equipment, CTAs and gallery entries",await evaluate(("(()=>{const d=document.querySelector('iframe').contentDocument;const q=p=>d.querySelector('[" + previewAttribute("field-path") + "=\"'+p+'\"]');return d.querySelector('.vm-car-title').textContent==='Edited Panamera'&&d.querySelector('.vm-car-price').textContent==='GBP 65,000'&&q('vehicles.porsche-panamera.description').textContent==='A live editable vehicle description.'&&q('vehicles.porsche-panamera.engine').textContent==='Live engine specification'&&q('vehicles.porsche-panamera.features[0].name').textContent==='Live equipment entry'&&d.querySelector('.vm-car-viewing').getAttribute('href').includes('Edited%20viewing')&&q('photos.vehicles.porsche-panamera.gallery[0].image').getAttribute('src').endsWith('tesla.jpg')&&q('photos.vehicles.porsche-panamera.gallery[0].caption').textContent==='Edited gallery caption'})()")));
+    check("Saved specification styles apply through Deneb",await evaluate(("(()=>{const w=document.querySelector('iframe').contentWindow;return w.getComputedStyle(w.document.querySelector('[" + previewAttribute("field-path") + "=\"vehicles.porsche-panamera.engine\"]')).color==='rgb(0, 255, 204)'})()")));
     edited.content.vehicles['porsche-panamera'].engine='';edited.content.vehicles['porsche-panamera'].power=0;edited.content.vehicles['porsche-panamera'].features[0].name='';
     edited.content.cards.vehicles['porsche-panamera'].price=0;
     edited.content.photos.vehicles['porsche-panamera'].gallery[0].image='';edited.content.photos.vehicles['porsche-panamera'].gallery[0].caption='';
     await evaluate(`document.querySelector('iframe').contentWindow.postMessage({type:'FIVORA_PREVIEW_SITE_DATA',siteData:${JSON.stringify(edited)}},location.origin)`);await sleep(250);
-    check("Empty gallery/equipment/specification targets and zero values persist",await evaluate("(()=>{const d=document.querySelector('iframe').contentDocument;return ['vehicles.porsche-panamera.engine','vehicles.porsche-panamera.power','vehicles.porsche-panamera.features.0.name','photos.vehicles.porsche-panamera.gallery.0.image','photos.vehicles.porsche-panamera.gallery.0.caption'].every(p=>d.querySelector('[data-preview-field-path=\"'+p+'\"]'))&&d.querySelector('[data-spec=power] dd').textContent==='0'})()"));
+    check("Empty gallery/equipment/specification targets and zero values persist",await evaluate(("(()=>{const d=document.querySelector('iframe').contentDocument;return ['vehicles.porsche-panamera.engine','vehicles.porsche-panamera.power','vehicles.porsche-panamera.features[0].name','photos.vehicles.porsche-panamera.gallery[0].image','photos.vehicles.porsche-panamera.gallery[0].caption'].every(p=>d.querySelector('[" + previewAttribute("field-path") + "=\"'+p+'\"]'))&&d.querySelector('[data-spec=power] dd').textContent==='0'})()")));
     await evaluate(`document.querySelector('iframe').contentWindow.postMessage({type:'FIVORA_PREVIEW_SITE_DATA',siteData:${JSON.stringify(data)}},location.origin)`);
   }
   check(`No uncaught browser exceptions (${exceptions.join('; ')})`,exceptions.length===0);

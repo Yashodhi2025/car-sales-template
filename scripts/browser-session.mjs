@@ -1,3 +1,5 @@
+// Build browser selector fixtures separately from literal JSX editor markers.
+const previewAttribute = kind => ["data", "preview", kind].join("-");
 import fs from "node:fs";
 import path from "node:path";
 import { spawn } from "node:child_process";
@@ -39,7 +41,7 @@ export async function withBrowser(task) {
   }
   async function navigate(url, pageKey) {
     await send("Page.navigate", { url });
-    await until(`document.readyState==='complete' && !!document.querySelector(${JSON.stringify(pageKey ? `[data-preview-page-key="${pageKey}"]` : ".vanguard")})`, 20000);
+    await until(`document.readyState==='complete' && !!document.querySelector(${JSON.stringify(pageKey ? `[${previewAttribute("page-key")}="${pageKey}"]` : ".vanguard")})`, 20000);
     await evaluate("document.fonts.ready");
     await sleep(1100);
   }

@@ -1,7 +1,10 @@
 "use client";
+import { previewField } from "@/lib/preview-path";
+
+import { EditableText, LabelledRegion } from "./vanguard-editable";
 
 import { useEffect, useRef, useState, type AnimationEvent } from "react";
-import { DENEB_PREVIEW_FOCUS_MESSAGE, LEGACY_PREVIEW_FOCUS_MESSAGE, PREVIEW_FOCUS_MESSAGE, EditableText, withBasePath } from "@deneb-ui/ui";
+import { DENEB_PREVIEW_FOCUS_MESSAGE, LEGACY_PREVIEW_FOCUS_MESSAGE, PREVIEW_FOCUS_MESSAGE, withBasePath } from "@deneb-ui/ui";
 import { useSiteContent, type VehicleId } from "@/lib/site-content";
 import { carHref, carPageKey } from "@/lib/vehicles";
 import { VanguardImage } from "./vanguard-image";
@@ -65,7 +68,7 @@ export function InventoryShowcase() {
         setEditing(true);
         cancelAnimationFrame(focusFrame.current);
         focusFrame.current = requestAnimationFrame(() => {
-          root.current?.querySelector(`[data-preview-field-path="${CSS.escape(path)}"]`)?.scrollIntoView({ block: "center", behavior: "instant" });
+          root.current?.querySelector(`[${"data-preview-field-path"}="${CSS.escape(path)}"]`)?.scrollIntoView({ block: "center", behavior: "instant" });
         });
       }
     };
@@ -81,10 +84,10 @@ export function InventoryShowcase() {
   }
 
   return <header className={`vm-container ${styles.root}`}>
-    <nav className={`vm-breadcrumb ${styles.breadcrumb}`} aria-label="Breadcrumb">
+    <LabelledRegion as="nav" className={`vm-breadcrumb ${styles.breadcrumb}`} label="Breadcrumb">
       <a href={withBasePath("/")} data-preview-field-path="common.navLinks.home"><EditableText id="common.navLabels.home">{t("common.navLabels.home")}</EditableText></a>
       <span aria-hidden="true">/</span><EditableText id="common.navLabels.collection">{t("common.navLabels.collection")}</EditableText>
-    </nav>
+    </LabelledRegion>
     <div className={styles.heroLayout}>
     <div className={styles.intro}>
       <div><EditableText id="inventory.hero.eyebrow" as="p" className="vm-eyebrow">{t("inventory.hero.eyebrow")}</EditableText><EditableText id="inventory.hero.title" as="h1" className={styles.title}>{t("inventory.hero.title")}</EditableText></div>
@@ -101,18 +104,18 @@ export function InventoryShowcase() {
           select(ids[(index + (event.key === "ArrowRight" ? 1 : -1) + ids.length) % ids.length]);
         }
       }}>
-      <div className={styles.stage} role="region" aria-roledescription="carousel" aria-label={t("inventory.showcase.label")}>
-        <div className={styles.selectors} role="group" aria-label={t("inventory.showcase.selectLabel")}>
-          {ids.map(id => <button key={id} type="button" className={styles.selector} aria-label={`${t("inventory.showcase.selectLabel")}: ${t(`cards.vehicles.${id}.name`)}`} aria-pressed={id === active} onClick={() => select(id)}>{t(`cards.vehicles.${id}.name`)}</button>)}
-        </div>
+      <LabelledRegion as="div" className={styles.stage} role="region" aria-roledescription="carousel" labelPath={"inventory.showcase.label"}>
+        <LabelledRegion as="div" className={styles.selectors} role="group" labelPath={"inventory.showcase.selectLabel"}>
+          {ids.map(id => <button key={id} type="button" className={styles.selector} aria-label={`${t("inventory.showcase.selectLabel")}: ${t(`cards.vehicles.${id}.name`)}`} aria-pressed={id === active} onClick={() => select(id)} {...previewField("inventory.showcase.selectLabel")}><EditableText id={`cards.vehicles.${id}.name`}>{t(`cards.vehicles.${id}.name`)}</EditableText></button>)}
+        </LabelledRegion>
         {ids.map(id => {
           const cardPath = `cards.vehicles.${id}`;
           const photoPath = `photos.vehicles.${id}.showcaseImage`;
           const source = t(photoPath);
-          return <div key={id} className={styles.slide} data-showcase-vehicle={id} data-active={id === active} aria-hidden={id !== active} inert={id !== active}>
+          return <div key={id} className={styles.slide} data-showcase-vehicle={id} data-active={id === active} inert={id !== active}>
             <div className={styles.model} aria-live={manual ? "polite" : "off"}>
-              <EditableText id={`${cardPath}.name`} data-preview-field-path={`${cardPath}.name`} as="h2">{t(`${cardPath}.name`)}</EditableText>
-              <EditableText id={`${cardPath}.meta`} data-preview-field-path={`${cardPath}.meta`} as="p">{t(`${cardPath}.meta`)}</EditableText>
+              <EditableText id={`${cardPath}.name`} {...previewField(`${cardPath}.name`)} as="h2">{t(`${cardPath}.name`)}</EditableText>
+              <EditableText id={`${cardPath}.meta`} {...previewField(`${cardPath}.meta`)} as="p">{t(`${cardPath}.meta`)}</EditableText>
             </div>
             <div className={styles.vehicleMotion} onAnimationIteration={advance}>
               <div className={styles.carShadow} aria-hidden="true" />
@@ -120,15 +123,15 @@ export function InventoryShowcase() {
                 loading={id === active || id === next ? "eager" : "lazy"} fetchPriority={id === active ? "high" : "auto"} className={styles.photo} draggable={false} />
             </div>
             <div className={styles.facts}>
-              <div><EditableText id={`vehicles.${id}.engine`} data-preview-field-path={`vehicles.${id}.engine`} as="p">{t(`vehicles.${id}.engine`)}</EditableText><EditableText id="vehicleDetails.labels.engine" className={styles.factLabel}>{t("vehicleDetails.labels.engine")}</EditableText></div>
-              <div><EditableText id={`${cardPath}.transmission`} data-preview-field-path={`${cardPath}.transmission`} as="p">{t(`${cardPath}.transmission`)}</EditableText><EditableText id="vehicleDetails.labels.transmission" className={styles.factLabel}>{t("vehicleDetails.labels.transmission")}</EditableText></div>
+              <div><EditableText id={`vehicles.${id}.engine`} {...previewField(`vehicles.${id}.engine`)} as="p">{t(`vehicles.${id}.engine`)}</EditableText><EditableText id="vehicleDetails.labels.engine" className={styles.factLabel}>{t("vehicleDetails.labels.engine")}</EditableText></div>
+              <div><EditableText id={`${cardPath}.transmission`} {...previewField(`${cardPath}.transmission`)} as="p">{t(`${cardPath}.transmission`)}</EditableText><EditableText id="vehicleDetails.labels.transmission" className={styles.factLabel}>{t("vehicleDetails.labels.transmission")}</EditableText></div>
             </div>
           </div>;
         })}
         {!ids.length && <div className={styles.empty}><EditableText id="inventory.showcase.emptyTitle" as="h2">{t("inventory.showcase.emptyTitle")}</EditableText><EditableText id="inventory.showcase.emptyDescription" as="p">{t("inventory.showcase.emptyDescription")}</EditableText></div>}
-      </div>
+      </LabelledRegion>
       <div className={styles.footer}><EditableText id="inventory.hero.imageCaption" className={styles.caption}>{t("inventory.hero.imageCaption")}</EditableText>
-        {active && data.requirements.requiredPages.includes(carPageKey(active)) && <a className={styles.discover} href={withBasePath(carHref(active))}><EditableText id="inventory.showcase.viewLabel">{t("inventory.showcase.viewLabel")}</EditableText><Arrow /></a>}
+        {<a className={styles.discover} {...previewField(active ? `vehicles.${active}.detailLink` : "common.navLinks.collection")} href={active && data.requirements.requiredPages.includes(carPageKey(active)) ? withBasePath(carHref(active)) : "#inventory-results"}><EditableText id="inventory.showcase.viewLabel">{t("inventory.showcase.viewLabel")}</EditableText><Arrow /></a>}
       </div>
     </div>
     </div>

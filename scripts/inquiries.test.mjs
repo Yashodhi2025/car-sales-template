@@ -4,6 +4,12 @@ import { emailDraft, localToday, validateRequest } from "../src/lib/inquiries.ts
 
 const valid = { name: "Alex Driver", email: "alex+cars@example.com", phone: "+44 (0)20 7946 0000", inquiry: "vehicle", vehicle: "bmw-m5", message: "Please confirm the service history & condition.", date: "2026-11-02", time: "10:30" };
 const validate = (values, mode = "contact", today = "2026-10-27") => validateRequest(values, mode, ["bmw-m5"], ["general", "vehicle", "viewing"], today);
+test("contact and viewing accept Sri Lankan local and international phone formats", () => {
+  for (const phone of ["077 000 0000", "+94 77 000 0000", "011 000 0000"]) {
+    assert.deepEqual(validate({ ...valid, phone }), {});
+    assert.deepEqual(validate({ ...valid, phone }, "viewing"), {});
+  }
+});
 test("contact required fields, optional phone/vehicle and invalid choices", () => {
   assert.deepEqual(validate(valid), {});
   assert.deepEqual(validate({ ...valid, phone: "", vehicle: "" }), {});

@@ -1,7 +1,8 @@
 ﻿"use client";
+import { EditableText } from "./vanguard-editable";
 
 import { useEffect, useRef } from "react";
-import { EditableText, DENEB_PREVIEW_FOCUS_MESSAGE, LEGACY_PREVIEW_FOCUS_MESSAGE, PREVIEW_FOCUS_MESSAGE } from "@deneb-ui/ui";
+import { DENEB_PREVIEW_FOCUS_MESSAGE, LEGACY_PREVIEW_FOCUS_MESSAGE, PREVIEW_FOCUS_MESSAGE } from "@deneb-ui/ui";
 import { useSiteContent, type VehicleId } from "@/lib/site-content";
 import { vehiclePhotos } from "@/lib/vehicles";
 

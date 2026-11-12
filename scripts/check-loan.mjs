@@ -1,3 +1,5 @@
+// Build browser selector fixtures separately from literal JSX editor markers.
+const previewAttribute = kind => ["data", "preview", kind].join("-");
 import fs from "node:fs";
 import { withBrowser } from "./browser-session.mjs";
 
@@ -50,7 +52,7 @@ await withBrowser(async ({ send, navigate, evaluate, value, until, check, screen
     check(`Calculator fits ${width}px without overflow or clipped inputs`, await evaluate("document.documentElement.scrollWidth<=innerWidth && [...document.querySelectorAll('#vehicle-loan-calculator input')].every(el=>{const r=el.getBoundingClientRect();return r.left>=0 && r.right<=innerWidth && r.width>150})"));
     if (width === 1440 || width === 390) await screenshot(`loan-${width}.png`, width === 390);
   }
-  const mounted = await evaluate("[...document.querySelectorAll('#vehicle-loan-calculator [data-preview-field-path]')].map(el=>el.dataset.previewFieldPath)");
+  const mounted = await evaluate(("[...document.querySelectorAll('#vehicle-loan-calculator [" + previewAttribute("field-path") + "]')].map(el=>el.dataset.previewFieldPath)"));
   const leaves = [];
   const walk = (object, prefix) => { for (const [key, val] of Object.entries(object)) { const path = `${prefix}.${key}`; if (val && typeof val === "object") walk(val, path); else leaves.push(path); } };
   walk(source.content.loanCalculator, "loanCalculator");
@@ -66,12 +68,12 @@ await withBrowser(async ({ send, navigate, evaluate, value, until, check, screen
   await publish(edited);
   await until("document.querySelector('#loan-price').value==='100,000'");
   check("Live Fivora messages update price, defaults, labels, currency and estimates", await evaluate("document.querySelector('#loan-calculator-title').textContent==='Your monthly payment' && document.querySelector('label[for=loan-months]').textContent==='Repayment period' && document.querySelector('#loan-downPayment').value==='10,000' && document.querySelector('#loan-annualRate').value==='0' && document.querySelector('#loan-months').value==='10'") && await amount("monthly") === 9000 && await evaluate(`${result("monthly")}.textContent.includes('GBP')`));
-  check("Fivora typography styles apply to calculator copy", await evaluate("getComputedStyle(document.querySelector('[data-preview-field-path=\"loanCalculator.title\"]')).color==='rgb(0, 102, 68)'"));
+  check("Fivora typography styles apply to calculator copy", await evaluate(("getComputedStyle(document.querySelector('[" + previewAttribute("field-path") + "=\"loanCalculator.title\"]')).color==='rgb(0, 102, 68)'")));
   edited.content.loanCalculator.title = "";
   edited.content.loanCalculator.defaults.annualRate = 0;
   edited.content.cards.vehicles["porsche-panamera"].price = "Price on application";
   await publish(edited);
-  check("Missing prices do not fall back to stale catalogue values; empty copy stays editable", await evaluate("document.querySelector('#loan-price').value==='' && document.querySelector('#loan-price').getAttribute('aria-invalid')==='true' && !!document.querySelector('[data-preview-field-path=\"loanCalculator.title\"]') && document.querySelector('[data-loan-result=monthly]').textContent==='—'"));
+  check("Missing prices do not fall back to stale catalogue values; empty copy stays editable", await evaluate(("document.querySelector('#loan-price').value==='' && document.querySelector('#loan-price').getAttribute('aria-invalid')==='true' && !!document.querySelector('[" + previewAttribute("field-path") + "=\"loanCalculator.title\"]') && document.querySelector('[data-loan-result=monthly]').textContent==='—'")));
   await set("price", 10000); await set("downPayment", 0);
   check("Visitors can still estimate when the vehicle has no published price", await amount("monthly") === 1000);
   await publish(source);

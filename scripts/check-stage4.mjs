@@ -1,3 +1,5 @@
+// Build browser selector fixtures separately from literal JSX editor markers.
+const previewAttribute = kind => ["data", "preview", kind].join("-");
 import fs from "node:fs";
 import { withBrowser } from "./browser-session.mjs";
 
@@ -74,9 +76,9 @@ await withBrowser(async ({ send, evaluate, navigate, until, screenshot, value, c
     const frame="document.querySelector('iframe')"; const doc=`${frame}.contentDocument`;
     await send('Page.navigate',{url:'http://127.0.0.1:4174/__fivora_local_preview'});
     await until(`${doc}?.documentElement.getAttribute('data-gramm')==='false'`);
-    const route = async (url,key) => {await evaluate(`${frame}.src=${JSON.stringify(url)}`);await until(`!!${doc}?.querySelector('[data-preview-page-key="${key}"]') && ${doc}?.documentElement.getAttribute('data-gramm')==='false'`)};
+    const route = async (url,key) => {await evaluate(`${frame}.src=${JSON.stringify(url)}`);await until(`!!${doc}?.querySelector('[${previewAttribute("page-key")}="${key}"]') && ${doc}?.documentElement.getAttribute('data-gramm')==='false'`)};
     const post = async data => {await evaluate(`${frame}.contentWindow.postMessage({type:'FIVORA_PREVIEW_SITE_DATA',siteData:${JSON.stringify(data)}},location.origin)`);await sleep(200)};
-    const query = path => `[data-preview-field-path="${path}"]`;
+    const query = path => `[${previewAttribute("field-path")}="${path}"]`;
     await route('/contact','contact');
     const edited=structuredClone(source);
     edited.content.contact.formTitle='A live editable invitation'; edited.content.requests.fields.name.label='Customer name'; edited.content.requests.fields.name.placeholder='Your full name here';

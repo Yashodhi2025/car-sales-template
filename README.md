@@ -20,6 +20,23 @@ You can start editing the page by modifying `app/page.tsx`. The page auto-update
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
+## Sri Lankan content
+
+Site copy and editable fields live in `src/data/site-data.json`. The template
+uses English for Sri Lanka, LKR prices, kilometres and Sri Lanka viewing times.
+Vehicle specifications and demo prices have not been changed to imply local
+registration, import status or current market values.
+
+Before launch, configure `content.common.business` (phone/email),
+`content.home.contact` (matching telephone/email links) and
+`content.showrooms.flagship` (actual showroom address). The `+94 XX XXX XXXX`
+placeholder opens the enquiry form instead of a phone dialler. No real local
+address, telephone number or WhatsApp account is assumed.
+
+The calculator uses sample editable defaults for a reducing-balance loan;
+it is not a leasing quotation or an advertised lender rate. Viewing requests
+open an email draft for the visitor to send and require dealership confirmation.
+
 ## Template validation and packaging
 
 Run `npm run validate` to check an isolated source snapshot, or

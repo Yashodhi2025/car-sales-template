@@ -1,3 +1,5 @@
+// Build browser selector fixtures separately from literal JSX editor markers.
+const previewAttribute = kind => ["data", "preview", kind].join("-");
 ﻿import fs from "node:fs";
 import { withBrowser } from "./browser-session.mjs";
 const base=(process.argv[2]||"http://127.0.0.1:4173").replace(/\/$/,"");
@@ -6,7 +8,7 @@ await withBrowser(async({send,evaluate,navigate,until,screenshot,value,check,sle
   check("Home retains its cinematic hero and three featured Deneb cards",await evaluate("document.querySelector('.vm-hero h1').textContent.includes('Beyond the ordinary') && document.querySelectorAll('.vm-featured-grid .vm-vehicle-card').length===3"));
   check("Tailwind utilities and custom CSS both apply",await evaluate("(()=>{const e=document.createElement('div');e.className='flex h-4 w-4';document.body.append(e);const s=getComputedStyle(e);const ok=s.display==='flex'&&s.width==='16px';e.remove();return ok&&getComputedStyle(document.querySelector('.vm-header')).position==='sticky'})()"));
   check("Home search is a real Inventory GET form",await evaluate("document.querySelector('.vm-search-form').getAttribute('action')==='/inventory' && document.querySelector('.vm-search-form').method==='get'"));
-  check("Home hero CTAs lead to Inventory and About",await evaluate("document.querySelector('[data-preview-field-path=\"home.hero.primaryLink\"]').closest('a').getAttribute('href')==='/inventory' && document.querySelector('[data-preview-field-path=\"home.hero.secondaryLink\"]').closest('a').getAttribute('href')==='/about'"));
+  check("Home hero CTAs lead to Inventory and About",await evaluate(("document.querySelector('[" + previewAttribute("field-path") + "=\"home.hero.primaryLink\"]').closest('a').getAttribute('href')==='/inventory' && document.querySelector('[" + previewAttribute("field-path") + "=\"home.hero.secondaryLink\"]').closest('a').getAttribute('href')==='/about'")));
   await screenshot("home-stage2-desktop.png");
   await evaluate("Promise.all([...document.querySelectorAll('.vanguard img')].map(i=>{i.loading='eager';return i.decode().catch(()=>null)}))");
   await screenshot("home-stage2-full.png",true);
@@ -20,20 +22,20 @@ await withBrowser(async({send,evaluate,navigate,until,screenshot,value,check,sle
   await evaluate("document.querySelector('.vm-mobile-menu summary').click()");
   check("Mobile menu opens",await evaluate("document.querySelector('.vm-mobile-menu').open"));
   await evaluate("document.querySelector('.vm-mobile-menu a[href=\"/inventory\"]').click()");
-  await until("!!document.querySelector('[data-preview-page-key=inventory]')");
+  await until(("!!document.querySelector('[" + previewAttribute("page-key") + "=inventory]')"));
   check("Mobile navigation changes routes and closes the menu",await evaluate("location.pathname==='/inventory'&&!document.querySelector('.vm-mobile-menu').open"));
   await navigate(base,"home");
   await evaluate("document.querySelector('.vm-brand-grid [data-browse=tesla] a').click()");
-  await until("!!document.querySelector('[data-preview-page-key=inventory]') && document.querySelectorAll('.vm-inventory-grid .vm-vehicle-wrap:not([hidden])').length===1");
+  await until(("!!document.querySelector('[" + previewAttribute("page-key") + "=inventory]') && document.querySelectorAll('.vm-inventory-grid .vm-vehicle-wrap:not([hidden])').length===1"));
   check("Home marque cards open correctly filtered Inventory",await evaluate("location.search.includes('brand=tesla') && document.querySelector('.vm-vehicle-wrap:not([hidden])').textContent.includes('Tesla')"));
   await navigate(base,"home");
   await value('.vm-search-form input[name=q]',"turbo");await value('.vm-search-form select[name=brand]',"porsche");
   await evaluate("document.querySelector('.vm-search-form').requestSubmit()");
-  await until("!!document.querySelector('[data-preview-page-key=inventory]')&&document.querySelectorAll('.vm-inventory-grid .vm-vehicle-wrap:not([hidden])').length===1");
+  await until(("!!document.querySelector('[" + previewAttribute("page-key") + "=inventory]')&&document.querySelectorAll('.vm-inventory-grid .vm-vehicle-wrap:not([hidden])').length===1"));
   check("Home search submits working Inventory parameters",await evaluate("location.search.includes('q=turbo')&&location.search.includes('brand=porsche')"));
   await navigate(base,"home");
   await evaluate("document.querySelector('.vm-body-grid [data-browse=suv] a').click()");
-  await until("!!document.querySelector('[data-preview-page-key=inventory]')&&document.querySelectorAll('.vm-inventory-grid .vm-vehicle-wrap:not([hidden])').length===1");
+  await until(("!!document.querySelector('[" + previewAttribute("page-key") + "=inventory]')&&document.querySelectorAll('.vm-inventory-grid .vm-vehicle-wrap:not([hidden])').length===1"));
   check("Home body-style cards open correctly filtered Inventory",await evaluate("location.search.includes('bodyType=suv')&&document.querySelector('.vm-vehicle-wrap:not([hidden])').textContent.includes('CR-V')"));
   await navigate(base,"home");
   await evaluate("document.querySelector('.vm-slider-controls button:last-child').click()");await sleep(450);

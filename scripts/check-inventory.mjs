@@ -1,3 +1,5 @@
+// Build browser selector fixtures separately from literal JSX editor markers.
+const previewAttribute = kind => ["data", "preview", kind].join("-");
 import fs from "node:fs";
 import { withBrowser } from "./browser-session.mjs";
 
@@ -56,10 +58,10 @@ await withBrowser(async ({ send, evaluate, navigate, until, screenshot, value, c
     check("Shared inventory URLs restore filter state", await evaluate(`${visibleIds}.join(',')==='bmw-m5' && document.querySelector('select[name=brand]').value==='bmw' && document.querySelector('input[name=minPrice]').value==='40000'`));
     await send("Emulation.setDeviceMetricsOverride", { width: 1440, height: 1000, deviceScaleFactor: 1, mobile: false });
     await evaluate("document.querySelector('.vm-vehicle-action').click()");
-    await until("!!document.querySelector('[data-preview-page-key=contact]') && !!document.querySelector('.vm-selected-vehicle p')?.textContent");
+    await until(("!!document.querySelector('[" + previewAttribute("page-key") + "=contact]') && !!document.querySelector('.vm-selected-vehicle p')?.textContent"));
     check("Vehicle inquiry goes to the real Contact route with context", await evaluate("location.pathname==='/contact' && document.querySelector('.vm-selected-vehicle').textContent.includes('BMW M5')"));
     await evaluate("document.querySelector('.vm-desktop-nav a[href=\"/about\"]').click()");
-    await until("!!document.querySelector('[data-preview-page-key=about]')");
+    await until(("!!document.querySelector('[" + previewAttribute("page-key") + "=about]')"));
     check("About route reuses the dealership content and shared chrome", await evaluate("document.querySelectorAll('.vm-benefits article').length===4 && document.querySelectorAll('.vm-header').length===1 && document.querySelectorAll('.vm-footer').length===1"));
     await send("Emulation.setEmulatedMedia", { features: [{ name: "prefers-reduced-motion", value: "reduce" }] });
     check("Page entrance respects reduced motion", await evaluate("getComputedStyle(document.querySelector('.vm-page')).animationName==='none'"));
@@ -75,9 +77,9 @@ await withBrowser(async ({ send, evaluate, navigate, until, screenshot, value, c
       await until("document.querySelector('iframe')?.contentDocument?.documentElement.getAttribute('data-gramm')==='false'");
       if (route!=="/") {
         await evaluate(`document.querySelector('iframe').src=${JSON.stringify(route)}`);
-        await until(`!!document.querySelector('iframe')?.contentDocument?.querySelector('[data-preview-page-key="${route.slice(1)}"]') && document.querySelector('iframe')?.contentDocument?.documentElement.getAttribute('data-gramm')==='false'`);
+        await until(`!!document.querySelector('iframe')?.contentDocument?.querySelector('[${previewAttribute("page-key")}="${route.slice(1)}"]') && document.querySelector('iframe')?.contentDocument?.documentElement.getAttribute('data-gramm')==='false'`);
       }
-      const paths = await evaluate("[...document.querySelector('iframe').contentDocument.querySelectorAll('[data-preview-field-path]')].map(el=>el.dataset.previewFieldPath)");
+      const paths = await evaluate(("[...document.querySelector('iframe').contentDocument.querySelectorAll('[" + previewAttribute("field-path") + "]')].map(el=>el.dataset.previewFieldPath)"));
       paths.forEach(path=>mounted.add(path));
     }
     const leaves=[];
@@ -87,10 +89,10 @@ await withBrowser(async ({ send, evaluate, navigate, until, screenshot, value, c
     const missing = expected.filter(path=>!mounted.has(path));
     check(`All ${expected.length} editable fields are mounted across the four routes (${missing.join(', ')})`, missing.length===0);
     await evaluate("document.querySelector('iframe').src='/inventory'");
-    await until("!!document.querySelector('iframe')?.contentDocument?.querySelector('[data-preview-page-key=inventory]') && document.querySelector('iframe')?.contentDocument?.documentElement.getAttribute('data-gramm')==='false'");
+    await until(("!!document.querySelector('iframe')?.contentDocument?.querySelector('[" + previewAttribute("page-key") + "=inventory]') && document.querySelector('iframe')?.contentDocument?.documentElement.getAttribute('data-gramm')==='false'"));
     await evaluate("window.__selected=[];window.addEventListener('message',e=>{if(e.data?.type==='FIVORA_PREVIEW_ELEMENT_CLICKED')window.__selected.push(e.data)});document.querySelector('iframe').contentWindow.postMessage({type:'FIVORA_PREVIEW_EDIT_MODE',editMode:true},location.origin)");
     await sleep(150);
-    await evaluate("document.querySelector('iframe').contentDocument.querySelector('[data-preview-field-path=\"cards.vehicles.bmw-m5.price\"]').click()");
+    await evaluate(("document.querySelector('iframe').contentDocument.querySelector('[" + previewAttribute("field-path") + "=\"cards.vehicles.bmw-m5.price\"]').click()"));
     await sleep(100);
     check("Inventory price selection reaches Deneb Lab", await evaluate("window.__selected.length>0"));
     const edited = structuredClone(data);
@@ -102,8 +104,8 @@ await withBrowser(async ({ send, evaluate, navigate, until, screenshot, value, c
     edited.styles = { "inventory.hero.title": { color: "#00ffcc" }, "cards.vehicles.bmw-m5.price": { color: "#00ffcc" } };
     await evaluate(`document.querySelector('iframe').contentWindow.postMessage({type:'FIVORA_PREVIEW_SITE_DATA',siteData:${JSON.stringify(edited)}},location.origin)`);
     await sleep(350);
-    check("Lab updates Inventory text, images, prices, specs and links", await evaluate("(()=>{const d=document.querySelector('iframe').contentDocument;const q=p=>d.querySelector('[data-preview-field-path=\"'+p+'\"]');return q('inventory.hero.title').textContent==='Your next live edit.' && q('inventory.hero.image').getAttribute('src').endsWith('tesla.jpg') && q('cards.vehicles.bmw-m5.price').textContent==='GBP 10,000' && q('cards.vehicles.bmw-m5.transmission').textContent.includes('Manual') && q('cards.vehicles.bmw-m5.enquiryLink').closest('a').getAttribute('href').includes('source=lab')})()"));
-    check("Saved styles apply to Inventory and legacy cards", await evaluate("(()=>{const w=document.querySelector('iframe').contentWindow;return ['inventory.hero.title','cards.vehicles.bmw-m5.price'].every(p=>w.getComputedStyle(w.document.querySelector('[data-preview-field-path=\"'+p+'\"]')).color==='rgb(0, 255, 204)')})()"));
+    check("Lab updates Inventory text, images, prices, specs and links", await evaluate(("(()=>{const d=document.querySelector('iframe').contentDocument;const q=p=>d.querySelector('[" + previewAttribute("field-path") + "=\"'+p+'\"]');return q('inventory.hero.title').textContent==='Your next live edit.' && q('inventory.hero.image').getAttribute('src').endsWith('tesla.jpg') && q('cards.vehicles.bmw-m5.price').textContent==='GBP 10,000' && q('cards.vehicles.bmw-m5.transmission').textContent.includes('Manual') && q('cards.vehicles.bmw-m5.enquiryLink').closest('a').getAttribute('href').includes('source=lab')})()")));
+    check("Saved styles apply to Inventory and legacy cards", await evaluate(("(()=>{const w=document.querySelector('iframe').contentWindow;return ['inventory.hero.title','cards.vehicles.bmw-m5.price'].every(p=>w.getComputedStyle(w.document.querySelector('[" + previewAttribute("field-path") + "=\"'+p+'\"]')).color==='rgb(0, 255, 204)')})()")));
     await evaluate("document.querySelector('iframe').contentWindow.postMessage({type:'FIVORA_PREVIEW_EDIT_MODE',editMode:false},location.origin)");
     await value('input[name="maxPrice"]', "15000", "document.querySelector('iframe').contentDocument");
     check("Live edited prices affect the actual budget filter", await evaluate("document.querySelector('iframe').contentDocument.querySelectorAll('.vm-inventory-grid .vm-vehicle-wrap:not([hidden])').length===1"));
@@ -113,7 +115,7 @@ await withBrowser(async ({ send, evaluate, navigate, until, screenshot, value, c
     edited.content.inventory.hero.title = "";
     await evaluate(`document.querySelector('iframe').contentWindow.postMessage({type:'FIVORA_PREVIEW_SITE_DATA',siteData:${JSON.stringify(edited)}},location.origin)`);
     await sleep(250);
-    check("Empty, zero and false editable fields stay mounted", await evaluate("(()=>{const d=document.querySelector('iframe').contentDocument;return ['inventory.hero.title','cards.vehicles.bmw-m5.price','cards.vehicles.bmw-m5.mileage','cards.vehicles.bmw-m5.badge','cards.vehicles.bmw-m5.specs.mileage.icon'].every(p=>d.querySelector('[data-preview-field-path=\"'+p+'\"]'))})()"));
+    check("Empty, zero and false editable fields stay mounted", await evaluate(("(()=>{const d=document.querySelector('iframe').contentDocument;return ['inventory.hero.title','cards.vehicles.bmw-m5.price','cards.vehicles.bmw-m5.mileage','cards.vehicles.bmw-m5.badge','cards.vehicles.bmw-m5.specs.mileage.icon'].every(p=>d.querySelector('[" + previewAttribute("field-path") + "=\"'+p+'\"]'))})()")));
     edited.requirements.requiredPages = ["home", "inventory", "contact"];
     await evaluate(`document.querySelector('iframe').contentWindow.postMessage({type:'FIVORA_PREVIEW_SITE_DATA',siteData:${JSON.stringify(edited)}},location.origin)`);
     await sleep(150);

@@ -1,7 +1,9 @@
 "use client";
+import { previewField } from "@/lib/preview-path";
+import { EditableLink, EditableText, EditableFeedback } from "./vanguard-editable";
 
 import { useEffect, useRef, useState, type FormEvent, type ReactNode } from "react";
-import { EditableLink, EditableText } from "@deneb-ui/ui";
+
 import { useSiteContent, type VehicleId } from "@/lib/site-content";
 import { emailDraft, localToday, validateRequest, type RequestErrors, type RequestMode, type RequestValues } from "@/lib/inquiries";
 import { Arrow } from "./vanguard-arrow";
@@ -64,7 +66,7 @@ export function InquiryForm({ mode, vehicleId = "", onVehicleChange, inquiryType
       <label htmlFor={`${prefix}-${key}`}><EditableText id={viewing && key === "message" ? "viewing.messageLabel" : `requests.fields.${key}.label`}>{t(viewing && key === "message" ? "viewing.messageLabel" : `requests.fields.${key}.label`)}</EditableText>{required && <span aria-hidden="true"> *</span>}</label>
       {control}
       {helper && <p id={`${prefix}-${key}-help`} className="vm-field-helper"><EditableText id={`requests.fields.${key}.helper`}>{t(`requests.fields.${key}.helper`)}</EditableText></p>}
-      <div id={`${prefix}-${key}-error`}>{errorKeys.map(error => <EditableText key={error} id={`requests.errors.${error}`} as="p" className="vm-field-error" hidden={errors[key] !== error}>{t(`requests.errors.${error}`)}</EditableText>)}</div>
+      <div id={`${prefix}-${key}-error`}>{errorKeys.map(error => <EditableFeedback key={error} id={`requests.errors.${error}`} as="p" className="vm-field-error" show={errors[key] === error}>{t(`requests.errors.${error}`)}</EditableFeedback>)}</div>
     </div>;
   }
   function attributes(key: keyof RequestValues, required = false) {
@@ -72,23 +74,24 @@ export function InquiryForm({ mode, vehicleId = "", onVehicleChange, inquiryType
   }
   return <form ref={form} className={`vm-request-form vm-${mode}-form`} aria-labelledby={viewing ? "viewing-title" : undefined} noValidate action={`mailto:${t("common.business.email")}`} method="post" encType="text/plain" onSubmit={submit} onChange={() => { setDraft(null); setRecipientError(false); if (attempted) setErrors(validate(readValues())); }}>
     <EditableText id={viewing ? "viewing.requiredNote" : "requests.requiredNote"} as="p" className="vm-form-intro">{t(viewing ? "viewing.requiredNote" : "requests.requiredNote")}</EditableText>
-    <div role="alert" hidden={!Object.keys(errors).length}><EditableText id="requests.errorTitle" as="p" className="vm-form-error-summary">{t("requests.errorTitle")}</EditableText></div>
+    <div role="alert"><EditableFeedback show={!!Object.keys(errors).length} id="requests.errorTitle" as="p" className="vm-form-error-summary">{t("requests.errorTitle")}</EditableFeedback></div>
     <fieldset disabled={!ready} className="vm-request-fields">
-      {field("name", <input {...attributes("name", true)} autoComplete="name" maxLength={100} placeholder={t("requests.fields.name.placeholder")} />, true)}
-      {field("email", <input {...attributes("email", true)} type="email" autoComplete="email" maxLength={254} placeholder={t("requests.fields.email.placeholder")} />, true)}
-      {field("phone", <input {...attributes("phone", viewing)} type="tel" autoComplete="tel" maxLength={40} placeholder={t("requests.fields.phone.placeholder")} />, viewing)}
-      {!viewing && field("inquiry", <select key={inquiryType} {...attributes("inquiry", true)} defaultValue={inquiryType}><option value="">{t("requests.fields.inquiry.placeholder")}</option>{types.map(type => <option value={type.key} key={type.key}>{type.label}</option>)}</select>, true)}
-      {!viewing && field("vehicle", <select {...attributes("vehicle")} value={vehicleId} onChange={event => onVehicleChange?.(event.target.value)}><option value="">{t("requests.fields.vehicle.placeholder")}</option>{ids.map(id => <option key={id} value={id}>{content.cards.vehicles[id].name} · {content.cards.vehicles[id].meta}</option>)}</select>)}
+      {field("name", <input {...attributes("name", true)} autoComplete="name" maxLength={100} placeholder={t("requests.fields.name.placeholder")} {...previewField("requests.fields.name.placeholder")} />, true)}
+      {field("email", <input {...attributes("email", true)} type="email" autoComplete="email" maxLength={254} placeholder={t("requests.fields.email.placeholder")} {...previewField("requests.fields.email.placeholder")} />, true)}
+      {field("phone", <input {...attributes("phone", viewing)} type="tel" autoComplete="tel" maxLength={40} placeholder={t("requests.fields.phone.placeholder")} {...previewField("requests.fields.phone.placeholder")} />, viewing)}
+      {!viewing && field("inquiry", <select key={inquiryType} data-preview-list-path="requests.types" {...attributes("inquiry", true)} defaultValue={inquiryType}><option value="" data-preview-field-path="requests.fields.inquiry.placeholder">{t("requests.fields.inquiry.placeholder")}</option>{types.map((type,index) => <option value={type.key} key={index} data-preview-item-path={`requests.types[${index}]`} data-preview-field-path={`requests.types[${index}].label`}>{type.label}</option>)}</select>, true)}
+      {!viewing && field("vehicle", <select {...attributes("vehicle")} value={vehicleId} onChange={event => onVehicleChange?.(event.target.value)}><option value="" data-preview-field-path="requests.fields.vehicle.placeholder">{t("requests.fields.vehicle.placeholder")}</option>{ids.map(id => <option key={id} value={id} {...previewField(`cards.vehicles.${id}.name`)}>{content.cards.vehicles[id].name} · {content.cards.vehicles[id].meta}</option>)}</select>)}
       {viewing && field("date", <input {...attributes("date", true)} type="date" min={today} aria-describedby={`${prefix}-date-error ${prefix}-date-help`} />, true, true)}
       {viewing && field("time", <input {...attributes("time", true)} type="time" aria-describedby={`${prefix}-time-error ${prefix}-time-help`} />, true, true)}
-      {field("message", <textarea {...attributes("message", !viewing)} rows={4} maxLength={1800} placeholder={t(viewing ? "viewing.messagePlaceholder" : "requests.fields.message.placeholder")} />, !viewing)}
+      {field("message", <textarea {...attributes("message", !viewing)} rows={4} maxLength={1800} placeholder={t(viewing ? "viewing.messagePlaceholder" : "requests.fields.message.placeholder")} {...previewField(viewing ? "viewing.messagePlaceholder" : "requests.fields.message.placeholder")} />, !viewing)}
     </fieldset>
-    <EditableText id="requests.errors.recipient" as="p" className="vm-field-error" hidden={!recipientError}>{t("requests.errors.recipient")}</EditableText>
+    {viewing && <EditableFeedback id="requests.errors.choice" as="p" className="vm-field-error" show={errors.vehicle === "choice"}>{t("requests.errors.choice")}</EditableFeedback>}
+    <EditableFeedback id="requests.errors.recipient" as="p" className="vm-field-error" show={recipientError}>{t("requests.errors.recipient")}</EditableFeedback>
     <div className={viewing ? "vm-request-footer" : undefined}><EditableText id={viewing ? "viewing.emailNote" : "requests.emailNote"} as="p" className="vm-form-notice">{t(viewing ? "viewing.emailNote" : "requests.emailNote")}</EditableText><button type="submit" disabled={!ready} className="vm-button vm-button-primary vm-draft-submit">{viewing && <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" aria-hidden="true"><path d="m21 3-7 18-4-7-7-4 18-7Z"/><path d="m10 14 11-11"/></svg>}<EditableText id={viewing ? "viewing.submitLabel" : "requests.submitLabel"}>{t(viewing ? "viewing.submitLabel" : "requests.submitLabel")}</EditableText>{!viewing && <Arrow />}</button></div>
-    <div className="vm-draft-status" hidden={!draft}>
-      <div role="status"><EditableText id="requests.draftTitle" as="h3">{t("requests.draftTitle")}</EditableText><EditableText id="requests.draftNote" as="p">{t("requests.draftNote")}</EditableText></div>
-      <a ref={draftLink} className="vm-text-link vm-email-draft" href={draft?.href}><EditableText id="requests.reopenLabel">{t("requests.reopenLabel")}</EditableText><Arrow /></a>
-      <details><summary><EditableText id="requests.previewLabel">{t("requests.previewLabel")}</EditableText></summary><textarea aria-label={t("requests.draftTextLabel")} rows={10} readOnly value={draft?.body || ""} /></details>
+    <div className={draft ? "vm-draft-status" : "vm-draft-pending"}>
+      <div role="status"><EditableFeedback show={!!draft} id="requests.draftTitle" as="h3">{t("requests.draftTitle")}</EditableFeedback><EditableFeedback show={!!draft} id="requests.draftNote" as="p">{t("requests.draftNote")}</EditableFeedback></div>
+      <a ref={draftLink} className="vm-text-link vm-email-draft" href={draft?.href}><EditableFeedback show={!!draft} id="requests.reopenLabel">{t("requests.reopenLabel")}</EditableFeedback>{draft && <Arrow />}</a>
+      <details><summary><EditableFeedback show={!!draft} id="requests.previewLabel">{t("requests.previewLabel")}</EditableFeedback></summary><textarea aria-label={t("requests.draftTextLabel")} rows={10} readOnly value={draft?.body || ""} {...previewField("requests.draftTextLabel")} /></details>
     </div>
     <noscript><p className="vm-form-notice">{t("requests.noScript")} <EditableLink href={`mailto:${t("common.business.email")}`}>{t("common.business.email")}</EditableLink></p></noscript>
   </form>;

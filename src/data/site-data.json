@@ -73,9 +73,9 @@
         "inverseHover": "#F1F3F4"
       },
       "websiteTitle": "VANGUARD MOTORS",
-      "shortDescription": "For the love of the drive. An independent destination for exceptional automobiles and a more personal way to find yours.",
+      "shortDescription": "Exceptional cars, clear guidance and a more personal way to find your next vehicle in Sri Lanka.",
       "logoUrl": "/images/vanguard-mark.svg",
-      "headerCtaLabel": "Book a viewing",
+      "headerCtaLabel": "Request a viewing",
       "headerCtaLink": "/contact?inquiry=viewing#contact",
       "copyright": "© 2026 Vanguard Motors. All rights reserved.",
       "demoNotice": "Concept dealership. Inventory, prices, reviews and contact details are illustrative.",
@@ -94,7 +94,7 @@
         "contact": "/contact"
       },
       "business": {
-        "phone": "+44 (0)20 7946 0000",
+        "phone": "+94 XX XXX XXXX",
         "whatsapp": "",
         "email": "hello@vanguardmotors.example"
       },
@@ -103,7 +103,8 @@
       "backToTop": "Back to top",
       "searchLabel": "Find your next car",
       "searchPlaceholder": "Search...",
-      "currencyCode": "LKR"
+      "currencyCode": "LKR",
+      "backToTopLink": "#site-top"
     },
     "home": {
       "hero": {
@@ -118,7 +119,8 @@
         "imageCaption": "PORSCHE PANAMERA TURBO",
         "imageSubcaption": "Performance, without compromise.",
         "scrollLabel": "SCROLL TO DISCOVER",
-        "edition": "THE VANGUARD COLLECTION / 2026"
+        "edition": "THE VANGUARD COLLECTION / 2026",
+        "scrollLink": "#search"
       },
       "search": {
         "eyebrow": "YOUR NEXT CHAPTER STARTS HERE",
@@ -232,9 +234,9 @@
         "description": "Come for the cars. Stay for the conversation. Let’s find something that moves you.",
         "emailLabel": "Email our team",
         "emailLink": "mailto:hello@vanguardmotors.example",
-        "phoneLabel": "Call the showroom",
-        "phoneLink": "tel:+442079460000",
-        "demoNote": "Showroom concept · Replace these demonstration contact details before launch."
+        "phoneLabel": "Sri Lankan showroom enquiries",
+        "phoneLink": "/contact#contact",
+        "demoNote": "Sri Lankan showroom concept. Add your actual address, +94 phone number and email before launch."
       },
       "cta": {
         "eyebrow": "LET'S FIND YOUR NEXT CHAPTER",
@@ -284,7 +286,7 @@
         },
         "bmw-m5": {
           "name": "BMW M5",
-          "meta": "2019 · Performance saloon",
+          "meta": "2019 · Performance sedan",
           "details": "4.4 V8 TwinPower Turbo · M xDrive",
           "badge": "PURE DRIVING PLEASURE",
           "mileage": "43,100 km",
@@ -330,7 +332,7 @@
         },
         "audi-rs6": {
           "name": "Audi RS6 Avant",
-          "meta": "2017 · Performance estate",
+          "meta": "2017 · Performance station wagon",
           "details": "4.0 TFSI · Quattro · Tiptronic",
           "badge": "UNDERSTATED EXCELLENCE",
           "mileage": "47,000 km",
@@ -353,7 +355,7 @@
         },
         "tesla-model-3": {
           "name": "Tesla Model 3 Long Range",
-          "meta": "2021 · Electric saloon",
+          "meta": "2021 · Electric sedan",
           "details": "Dual Motor · AWD · Long Range",
           "badge": "A DIFFERENT KIND OF ENERGY",
           "mileage": "34,800 km",
@@ -674,20 +676,20 @@
     "showrooms": {
       "flagship": {
         "name": "THE VANGUARD SHOWROOM",
-        "address": "London, United Kingdom",
-        "notes": "A personal viewing, by appointment."
+        "address": "Sri Lanka - showroom address to be confirmed",
+        "notes": "Viewings by appointment. Confirm the location with the team before visiting."
       }
     },
     "about": {
       "eyebrow": "ABOUT VANGUARD",
       "title": "People, cars and\na better experience.",
-      "description": "Vanguard Motors is a destination for carefully selected vehicles, clear guidance and a more personal ownership journey.",
+      "description": "Carefully selected vehicles, clear guidance and a more personal car-buying experience for Sri Lanka.",
       "heroImage": "/images/gallery/mercedes-amg-reference.jpg",
       "heroImageAlt": "Silver Mercedes-AMG photographed from the front",
       "imageCaption": "CHARACTER. CARE. CONNECTION.",
       "storyEyebrow": "OUR STORY",
       "storyTitle": "A considered approach\nto car ownership.",
-      "storyDescription": "We help you find a vehicle that fits your needs and lifestyle, with clear information and personal guidance before your purchase.",
+      "storyDescription": "Find a vehicle that fits your needs, budget and everyday journeys in Sri Lanka, with clear information and personal guidance before your purchase.",
       "storyNote": "It is about building a trusted relationship and making the whole process simple and enjoyable.",
       "journeyEyebrow": "THE VANGUARD EXPERIENCE",
       "journeyTitle": "A simple path to your next car.",
@@ -735,8 +737,8 @@
       "imageCaption": "GOOD CONVERSATIONS. EXCEPTIONAL CARS.",
       "emailTitle": "Write to us",
       "phoneTitle": "Speak to the team",
-      "locationTitle": "Find your way here",
-      "visitNote": "Arrange your visit with the team before travelling. This template uses demonstration showroom details.",
+      "locationTitle": "Visit the showroom",
+      "visitNote": "Sri Lanka showroom address is not yet configured. Confirm the location and appointment with the team before travelling.",
       "formEyebrow": "A PERSONAL CONVERSATION",
       "formTitle": "Let’s talk about\nyour next chapter.",
       "formDescription": "Tell us what you have in mind. We’ll help you prepare an inquiry for the Vanguard team."
@@ -754,7 +756,7 @@
         "description": "Your priorities. Your next drive.",
         "searchLabel": "Model or keyword",
         "searchPlaceholder": "Try Porsche, V8 or electric",
-        "brandLabel": "Marque",
+        "brandLabel": "Make",
         "bodyLabel": "Body style",
         "priceLabel": "Price range (LKR)",
         "minLabel": "From",
@@ -764,7 +766,7 @@
         "fuelLabel": "Fuel type",
         "transmissionLabel": "Transmission",
         "availabilityLabel": "Availability",
-        "anyBrand": "All marques",
+        "anyBrand": "All makes",
         "anyBody": "All body styles",
         "anyFuel": "Any fuel",
         "anyTransmission": "Any",
@@ -886,9 +888,9 @@
         "exteriorColor": "Exterior colour"
       },
       "bodyStyles": {
-        "sedan": "Saloon",
+        "sedan": "Sedan",
         "coupe": "Coupe",
-        "estate": "Estate",
+        "estate": "Station wagon",
         "suv": "SUV"
       },
       "gallery": {
@@ -952,7 +954,7 @@
         "testDriveLink": "/contact?vehicle=porsche-panamera&inquiry=test-drive#contact"
       },
       "bmw-m5": {
-        "description": "A distinctive interpretation of the performance saloon. The supplied specification pairs a 4.4 V8 TwinPower Turbo engine with M xDrive, with the understated presence that makes this M5 stand apart.",
+        "description": "A distinctive interpretation of the performance sedan. The supplied specification pairs a 4.4 V8 TwinPower Turbo engine with M xDrive, with the understated presence that makes this M5 stand apart.",
         "engine": "4.4 V8 TwinPower Turbo",
         "drivetrain": "M xDrive",
         "power": "",
@@ -990,7 +992,7 @@
         "testDriveLink": "/contact?vehicle=mercedes-amg&inquiry=test-drive#contact"
       },
       "audi-rs6": {
-        "description": "An estate with a performance-led character. The listed 4.0 TFSI, Quattro and Tiptronic specification gives this RS6 Avant its own distinctive place in the Vanguard collection.",
+        "description": "A station wagon with a performance-led character. The listed 4.0 TFSI, Quattro and Tiptronic specification gives this RS6 Avant its own distinctive place in the Vanguard collection.",
         "engine": "4.0 TFSI",
         "drivetrain": "Quattro",
         "power": "",
@@ -1091,7 +1093,7 @@
     "requests": {
       "requiredNote": "Fields marked * are required. Your details stay in this browser until you send the email.",
       "emailNote": "This form opens a draft in your email application. You must send it yourself. Nothing is submitted or booked on this website.",
-      "demoNote": "Demonstration contact details — replace the email and phone before launch.",
+      "demoNote": "Demo contact details. Add your Sri Lankan address, +94 phone number and business email before launch.",
       "submitLabel": "Prepare email draft",
       "draftTitle": "Your draft is ready to send.",
       "draftNote": "If your email application did not open, use the link below or copy the draft text. Nothing has been sent, and a viewing is confirmed only by the dealership.",
@@ -1114,7 +1116,7 @@
         },
         "phone": {
           "label": "Phone number",
-          "placeholder": "+44 …"
+          "placeholder": "07X XXX XXXX"
         },
         "inquiry": {
           "label": "Inquiry type",
@@ -1133,8 +1135,8 @@
           "helper": "Preferred date; subject to confirmation."
         },
         "time": {
-          "label": "Preferred time",
-          "helper": "Preferred time; subject to confirmation."
+          "label": "Preferred time (Sri Lanka)",
+          "helper": "Sri Lanka time (UTC+05:30); subject to confirmation."
         }
       },
       "types": [
@@ -1156,11 +1158,11 @@
         },
         {
           "key": "trade-in",
-          "label": "Trade-in discussion"
+          "label": "Vehicle exchange / trade-in"
         },
         {
           "key": "finance",
-          "label": "Financing guidance"
+          "label": "Leasing / finance enquiry"
         },
         {
           "key": "sourcing",
@@ -1174,7 +1176,7 @@
       "errors": {
         "required": "Please complete this field.",
         "email": "Enter a valid email address.",
-        "phone": "Enter a valid phone number, including an area or country code.",
+        "phone": "Enter a valid phone number, such as a Sri Lankan 07X XXX XXXX or +94 7X XXX XXXX number.",
         "date": "Enter a valid calendar date.",
         "pastDate": "Choose today or a future date.",
         "time": "Choose a valid preferred time.",
@@ -1186,7 +1188,7 @@
     "loanCalculator": {
       "eyebrow": "PLAN YOUR PURCHASE",
       "title": "Loan / EMI Calculator",
-      "description": "Estimate your monthly payment from the figures below.",
+      "description": "Estimate loan payments in rupees. Adjust the sample rate, deposit and term.",
       "defaults": {
         "downPaymentPercent": 20,
         "annualRate": 8,
@@ -1199,11 +1201,11 @@
         },
         "downPayment": {
           "label": "Down payment",
-          "helper": "Your upfront contribution."
+          "helper": "Enter the deposit agreed with your lender."
         },
         "annualRate": {
           "label": "Annual interest rate",
-          "helper": "Annual rate from your lender."
+          "helper": "Use your lender’s reducing-balance rate."
         },
         "months": {
           "label": "Loan term",
@@ -1218,7 +1220,7 @@
       "totalRepaymentLabel": "Total repayment",
       "resetLabel": "Reset estimate",
       "invalidNote": "Check the highlighted fields to see your estimate.",
-      "disclaimer": "Fixed-rate estimate. Excludes fees and insurance; lender terms may vary.",
+      "disclaimer": "Illustrative reducing-balance loan estimate, not a leasing quotation. Sample rate and deposit; excludes fees and insurance. Confirm terms with your lender.",
       "noScript": "Enable JavaScript to adjust the figures and calculate your estimate.",
       "errors": {
         "price": "Enter a vehicle price greater than 0 and no more than 1,000,000,000,000.",
@@ -1230,7 +1232,7 @@
     "viewing": {
       "eyebrow": "YOUR PRIVATE VIEWING",
       "title": "Request a viewing",
-      "description": "Choose a preferred time. Review and send your email request.",
+      "description": "Choose a preferred time in Sri Lanka. Review and send your email request.",
       "vehicleLabel": "YOUR SELECTED VEHICLE",
       "messageLabel": "Anything we should know? (optional)",
       "messagePlaceholder": "Questions, access requirements or anything you would like us to prepare…",
@@ -1272,20 +1274,20 @@
           ]
         },
         {
-          "name": "Trade-In Assistance",
-          "description": "Discuss your current vehicle and explore trade-in options with our team.",
+          "name": "Vehicle Exchange Assistance",
+          "description": "Discuss your current vehicle and explore exchange or trade-in options.",
           "icon": "refresh-cw",
-          "buttonLabel": "Request trade-in",
+          "buttonLabel": "Discuss an exchange",
           "buttonLink": "/contact?inquiry=trade-in#contact",
           "targetPage": "contact",
           "imageUrl": "/images/services/trade-in-key.jpg",
           "kicker": "YOUR NEXT CHAPTER",
           "includes": [
             {
-              "name": "Share your current vehicle details and photographs"
+              "name": "Share the model, year, mileage and registration details"
             },
             {
-              "name": "Discuss how a potential trade-in could fit your plans"
+              "name": "Discuss an exchange towards your next vehicle"
             },
             {
               "name": "Ask about the assessment process; no valuation is promised"
@@ -1293,8 +1295,8 @@
           ]
         },
         {
-          "name": "Financing Guidance",
-          "description": "Explore monthly payments with our calculator, then discuss your options.",
+          "name": "Leasing & Finance Guidance",
+          "description": "Discuss leasing or finance enquiries. Estimate loan payments in LKR.",
           "icon": "calculator",
           "buttonLabel": "Calculate EMI",
           "buttonLink": "/cars/porsche-panamera#vehicle-loan-calculator",
@@ -1303,13 +1305,13 @@
           "kicker": "INFORMED CHOICES",
           "includes": [
             {
-              "name": "Discuss your budget and questions before proceeding"
+              "name": "Discuss your budget and preferred initial payment"
             },
             {
-              "name": "Ask about introductions or guidance, if available"
+              "name": "Ask about bank or leasing-company options, if available"
             },
             {
-              "name": "Confirm any eligibility, terms and costs with the provider"
+              "name": "Confirm rates, eligibility and terms with the provider"
             }
           ]
         },
@@ -1348,7 +1350,7 @@
               "name": "Share your preferred make, model and budget"
             },
             {
-              "name": "Discuss must-have features and potential alternatives"
+              "name": "Discuss preferred features and local availability"
             },
             {
               "name": "Ask whether the dealership can assist with your search"
@@ -1369,7 +1371,7 @@
               "name": "Ask questions about your vehicle after handover"
             },
             {
-              "name": "Discuss ownership documents or equipment operation"
+              "name": "Ask about registration documents and service records"
             },
             {
               "name": "Ask which support options are currently available"
@@ -1389,13 +1391,13 @@
       "heroDescription": "A range of services to help you find, finance and enjoy the right vehicle with confidence.",
       "closingEyebrow": "READY TO GET STARTED?",
       "closingTitle": "Let’s find your way forward.",
-      "closingDescription": "Talk to our team about your next vehicle, a test drive, financing or any of our services.",
+      "closingDescription": "Talk to our team about your next vehicle, an exchange, a test drive or leasing and finance enquiries.",
       "closingButtonLabel": "Start a conversation",
       "closingButtonLink": "/contact#contact",
       "closingImage": "/images/hero-porsche.jpg",
       "closingImageAlt": "Rear view of a dark Porsche on the road",
-      "closingPhoneLabel": "Call us",
-      "financeContactLabel": "Ask about financing",
+      "closingPhoneLabel": "Speak to our team",
+      "financeContactLabel": "Ask about leasing / finance",
       "financeContactLink": "/contact?inquiry=finance#contact",
       "processEyebrow": "THE PROCESS",
       "processTitle": "How it works",
@@ -1457,19 +1459,19 @@
       "items": [
         {
           "question": "How do I arrange a vehicle viewing?",
-          "answer": "Open the vehicle page and choose Request a viewing. Enter a preferred date and time, then send the prepared email from your email application. Wait for the team to confirm before travelling."
+          "answer": "Open the vehicle page and choose Request a viewing. Enter a preferred date and time in Sri Lanka, then send the prepared email from your email application. Wait for the team to confirm before travelling."
         },
         {
           "question": "How can I request a test drive?",
           "answer": "Choose Ask about a test drive on a vehicle page, or select Test drive request on Contact. Send your inquiry and ask the team to confirm the car, arrangements and any requirements. No test drive is booked through this website."
         },
         {
-          "question": "Is financing assistance available?",
-          "answer": "Use Contact to ask what assistance, if any, the dealership can provide. No finance products, rates or approval promises are offered by this demonstration site."
+          "question": "Can I ask about leasing or vehicle finance?",
+          "answer": "Select Leasing / finance enquiry on Contact to discuss your budget and questions about banks or leasing companies. The calculator is an illustrative reducing-balance loan estimate, not a leasing quotation. Confirm actual rates, eligibility and terms with your provider."
         },
         {
-          "question": "How does a vehicle trade-in work?",
-          "answer": "Select Trade-in discussion on Contact and share an overview of your current car. Ask the team whether they accept trade-ins and how they assess a vehicle. No value, acceptance or process is guaranteed by this template."
+          "question": "Can I exchange my current vehicle?",
+          "answer": "Select Vehicle exchange / trade-in on Contact and share your vehicle model, year, mileage and registration details. Ask the team about assessment and available exchange options. Acceptance and any valuation must be confirmed by the dealership."
         },
         {
           "question": "How can I check a vehicle’s availability?",

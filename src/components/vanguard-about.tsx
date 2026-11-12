@@ -1,7 +1,8 @@
 "use client";
+import { EditableIcon, EditableLink, EditableText, LabelledRegion } from "./vanguard-editable";
 
 import { useRef } from "react";
-import { EditableIcon, EditableLink, EditableText, withBasePath } from "@deneb-ui/ui";
+import { withBasePath } from "@deneb-ui/ui";
 import { VanguardImage } from "./vanguard-image";
 import { useSiteContent } from "@/lib/site-content";
 import { usePageEffects } from "./use-page-effects";
@@ -47,32 +48,32 @@ export function VanguardAbout() {
         <figcaption><EditableText id="home.experience.imageCaption">{t("home.experience.imageCaption")}</EditableText></figcaption>
       </figure>
 
-      <section className={styles.story} aria-label={t("about.storyEyebrow")}>
+      <LabelledRegion as="section" className={styles.story} labelPath={"about.storyEyebrow"}>
         <div data-reveal><EditableText id="about.storyEyebrow" as="p" className="vm-eyebrow">{t("about.storyEyebrow")}</EditableText><EditableText id="about.storyTitle" as="h2" className={styles.sectionTitle}>{t("about.storyTitle")}</EditableText></div>
         <div className={styles.storyCopy} data-reveal><EditableText id="about.storyDescription" as="p">{t("about.storyDescription")}</EditableText><EditableText id="about.storyNote" as="p">{t("about.storyNote")}</EditableText></div>
-      </section>
+      </LabelledRegion>
 
-      <section id="approach" className={styles.values} aria-label={t("home.promise.eyebrow")}>
+      <LabelledRegion as="section" id="approach" className={styles.values} labelPath={"home.promise.eyebrow"}>
         <EditableText id="home.promise.eyebrow" as="h2" className="vm-eyebrow">{t("home.promise.eyebrow")}</EditableText>
         <div className={styles.valuesGrid} data-preview-list-path="home.benefits">
           {content.home.benefits.map((item, index) => {
-            const path = `home.benefits.${index}`;
-            return <article key={index} data-preview-item-path={path} data-reveal><EditableIcon fieldPath={`${path}.icon`} name={item.icon} size={27} /><EditableText id={`${path}.title`} as="h3">{item.title}</EditableText><EditableText id={`${path}.text`} as="p">{item.text}</EditableText></article>;
+            const path = `home.benefits[${index}]`;
+            return <article key={index} data-preview-item-path={`home.benefits[${index}]`} data-reveal><EditableIcon data-preview-field-path={`home.benefits[${index}].icon`} fieldPath={`${path}.icon`} name={item.icon} size={27} /><EditableText id={`home.benefits[${index}].title`} data-preview-field-path={`home.benefits[${index}].title`} as="h3">{item.title}</EditableText><EditableText id={`home.benefits[${index}].text`} data-preview-field-path={`home.benefits[${index}].text`} as="p">{item.text}</EditableText></article>;
           })}
         </div>
-      </section>
+      </LabelledRegion>
 
-      <section className={styles.journey} aria-label={t("about.journeyTitle")}>
+      <LabelledRegion as="section" className={styles.journey} labelPath={"about.journeyTitle"}>
         <div className={styles.journeyHeading} data-reveal><div><EditableText id="about.journeyEyebrow" as="p" className="vm-eyebrow">{t("about.journeyEyebrow")}</EditableText><EditableText id="about.journeyTitle" as="h2" className={styles.sectionTitle}>{t("about.journeyTitle")}</EditableText></div><EditableText id="about.journeyDescription" as="p" className={styles.journeyDescription}>{t("about.journeyDescription")}</EditableText></div>
         <ol className={styles.journeyGrid} data-preview-list-path="about.journey">
           {content.about.journey.map((step,index) => {
-            const path = `about.journey.${index}`;
-            return <li key={index} data-preview-item-path={path} data-reveal><div className={styles.journeyTop}><EditableText id={`${path}.number`} as="div" className={styles.journeyNumber}>{step.number}</EditableText>{index < content.about.journey.length - 1 && <span className={styles.journeyLine} aria-hidden="true" />}</div><EditableText id={`${path}.title`} as="h3">{step.title}</EditableText><EditableText id={`${path}.text`} as="p">{step.text}</EditableText></li>;
+            const path = `about.journey[${index}]`;
+            return <li key={index} data-preview-item-path={`about.journey[${index}]`} data-reveal><div className={styles.journeyTop}><EditableText id={`about.journey[${index}].number`} data-preview-field-path={`about.journey[${index}].number`} as="span" className={styles.journeyNumber}>{step.number}</EditableText>{index < content.about.journey.length - 1 && <span className={styles.journeyLine} aria-hidden="true" />}</div><EditableText id={`about.journey[${index}].title`} data-preview-field-path={`about.journey[${index}].title`} as="h3">{step.title}</EditableText><EditableText id={`about.journey[${index}].text`} data-preview-field-path={`about.journey[${index}].text`} as="p">{step.text}</EditableText></li>;
           })}
         </ol>
-      </section>
+      </LabelledRegion>
 
-      <section className={`${styles.banner} vm-dark-surface`} aria-label={t("about.ctaTitle")} data-reveal>
+      <LabelledRegion as="section" className={`${styles.banner} vm-dark-surface`} labelPath={"about.ctaTitle"} data-reveal>
         <div className={styles.bannerPhoto}><VanguardImage id="about.ctaImage" src={t("about.ctaImage")} alt={t("about.ctaImageAlt")} width={1400} height={800} /></div>
         <div className={styles.bannerCopy}>
           <EditableText id="home.experience.eyebrow" as="p" className="vm-eyebrow">{t("home.experience.eyebrow")}</EditableText>
@@ -80,7 +81,7 @@ export function VanguardAbout() {
           <EditableText id="home.experience.description" as="p" className={styles.bannerDescription}>{t("home.experience.description")}</EditableText>
           <div className={styles.actions}><EditableLink href={withBasePath(t("about.inventoryLink"))} data-preview-field-path="about.inventoryLink" targetPage="inventory" className="vm-button vm-button-primary"><EditableText id="about.ctaInventoryLabel">{t("about.ctaInventoryLabel")}</EditableText><Arrow /></EditableLink><EditableLink href={withBasePath(t("home.experience.buttonLink"))} data-preview-field-path="home.experience.buttonLink" targetPage="contact" className="vm-button vm-button-outline"><ContactIcon /><EditableText id="home.experience.buttonLabel">{t("home.experience.buttonLabel")}</EditableText></EditableLink></div>
         </div>
-      </section>
+      </LabelledRegion>
     </div>
   </main>;
 }
