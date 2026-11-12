@@ -59,7 +59,7 @@ function Calculator({ price }: { price: number | null }) {
             {fields.map(({ key, min, max, step, unit }) => <div key={key} className={styles.field}>
               <label htmlFor={`loan-${key}`}><EditableText id={path(`fields.${key}.label`)}>{t(path(`fields.${key}.label`))}</EditableText></label>
               <div className={styles.inputWrap} data-invalid={errors.includes(key)}>
-                {(key === "price" || key === "downPayment") && <span data-preview-field-path="common.currencyCode" className={styles.currency}>{unit}</span>}
+                {(key === "price" || key === "downPayment") && <span suppressHydrationWarning data-preview-field-path="common.currencyCode" className={styles.currency}>{unit}</span>}
                 <input id={`loan-${key}`} name={key} type={key === "price" || key === "downPayment" ? "text" : "number"} inputMode={key === "months" ? "numeric" : "decimal"} required min={min} max={max} step={step}
                   value={(key === "price" || key === "downPayment") && focused !== key ? groupedAmount(values[key]) : values[key]}
                   onFocus={() => setFocused(key)} onBlur={() => setFocused(null)}

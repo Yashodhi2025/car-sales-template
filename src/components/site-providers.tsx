@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { SiteDataProvider, ThemeStyles, syncThemeToDocument, useSiteData } from "@deneb-ui/ui";
 import initialSiteData from "@/data/site-data.json";
 import type { VanguardData } from "@/lib/site-content";
+import { PreviewStyleIsolation } from "./preview-style-isolation";
 
 // Deneb's CommonJS barrel mixes server-safe and client components. Keep its
 // provider boundary explicit for Next 16's server renderer/static exporter.
@@ -21,5 +22,5 @@ function LiveTheme() {
   useEffect(() => {
     document.documentElement.dataset.vanguardMotion = String(Boolean(data.content.motion.enabled));
   }, [data.content.motion.enabled]);
-  return <ThemeStyles theme={theme} enableDualMode={false} />;
+  return <><ThemeStyles theme={theme} enableDualMode={false} /><PreviewStyleIsolation theme={theme} /></>;
 }

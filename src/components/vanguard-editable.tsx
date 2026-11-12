@@ -1,25 +1,37 @@
 "use client";
 
-import { useEffect, useId, useState, type ComponentProps, type ElementType, type ReactNode } from "react";
+import { useEffect, useId, useState, type ComponentProps, type CSSProperties, type ElementType, type ReactNode } from "react";
 import { EditableText as DenebText, EditableIcon as DenebIcon, useComponentStyle, PREVIEW_FOCUS_MESSAGE, DENEB_PREVIEW_FOCUS_MESSAGE, LEGACY_PREVIEW_FOCUS_MESSAGE } from "@deneb-ui/ui";
 import { useSiteContent } from "@/lib/site-content";
 import { previewPath } from "@/lib/preview-path";
 
 /** Retain Deneb typography, including styles saved with older dotted indices. */
-export function EditableText(props: ComponentProps<typeof DenebText>) {
+export function EditableText({ cssTypography = false, ...props }: ComponentProps<typeof DenebText> & { cssTypography?: boolean }) {
   const { data } = useSiteContent();
   const path = previewPath(props["data-preview-field-path"] || props.fieldPath || props.id || "");
   const legacy = path.replace(/\[(\d+)\]/g, ".$1");
   const { cssVars } = useComponentStyle(data.styles?.[path] ? path : legacy, "text");
-  return <DenebText {...props} data-preview-field-path={path} style={{ ...cssVars, ...props.style }} />;
+  // Legacy record cards were styled by the site stylesheet. Roll back only
+  // Deneb's inline fallbacks while keeping live editor variables authoritative.
+  const defaults: CSSProperties = cssTypography ? {
+    color: "var(--deneb-color, revert-layer)",
+    fontSize: "var(--deneb-font-size, revert-layer)",
+    fontWeight: "var(--deneb-font-weight, revert-layer)",
+    lineHeight: "var(--deneb-line-height, revert-layer)",
+    letterSpacing: "var(--deneb-letter-spacing, revert-layer)",
+    fontFamily: "var(--deneb-font-family, revert-layer)",
+    textAlign: "var(--deneb-text-align, revert-layer)" as CSSProperties["textAlign"],
+    textTransform: "var(--deneb-text-transform, revert-layer)" as CSSProperties["textTransform"],
+  } : {};
+  return <DenebText {...props} data-preview-field-path={path} style={{ ...defaults, ...cssVars, ...props.style }} />;
 }
 
-/** The installed link marks an inner span; the action itself must also be editable. */
+/** Mark both link targets; Fivora owns their extra pre-hydration metadata. */
 export function EditableLink({ id, targetPage, children, className = "", ...props }: ComponentProps<"a"> & { id?: string; targetPage?: string; "data-preview-field-path"?: string }) {
   const path = props["data-preview-field-path"] || id;
   const marker = path ? previewPath(path) : undefined;
-  const link = <a {...props} className={`editable-link ${className}`} data-preview-field-path={marker}>
-    {marker ? <span data-preview-field-path={marker}>{children}</span> : children}
+  const link = <a suppressHydrationWarning {...props} className={`editable-link ${className}`} data-preview-field-path={marker}>
+    {marker ? <span suppressHydrationWarning data-preview-field-path={marker}>{children}</span> : children}
   </a>;
   return targetPage ? <span data-target-page={targetPage}>{link}</span> : link;
 }

@@ -55,20 +55,20 @@ export function VanguardAbout() {
 
       <LabelledRegion as="section" id="approach" className={styles.values} labelPath={"home.promise.eyebrow"}>
         <EditableText id="home.promise.eyebrow" as="h2" className="vm-eyebrow">{t("home.promise.eyebrow")}</EditableText>
-        <div className={styles.valuesGrid} data-preview-list-path="home.benefits">
+        <div suppressHydrationWarning className={styles.valuesGrid} data-preview-list-path="home.benefits">
           {content.home.benefits.map((item, index) => {
             const path = `home.benefits[${index}]`;
-            return <article key={index} data-preview-item-path={`home.benefits[${index}]`} data-reveal><EditableIcon data-preview-field-path={`home.benefits[${index}].icon`} fieldPath={`${path}.icon`} name={item.icon} size={27} /><EditableText id={`home.benefits[${index}].title`} data-preview-field-path={`home.benefits[${index}].title`} as="h3">{item.title}</EditableText><EditableText id={`home.benefits[${index}].text`} data-preview-field-path={`home.benefits[${index}].text`} as="p">{item.text}</EditableText></article>;
+            return <article suppressHydrationWarning key={index} data-preview-item-path={`home.benefits[${index}]`} data-reveal><EditableIcon data-preview-field-path={`home.benefits[${index}].icon`} fieldPath={`${path}.icon`} name={item.icon} size={27} /><EditableText id={`home.benefits[${index}].title`} data-preview-field-path={`home.benefits[${index}].title`} as="h3">{item.title}</EditableText><EditableText id={`home.benefits[${index}].text`} data-preview-field-path={`home.benefits[${index}].text`} as="p">{item.text}</EditableText></article>;
           })}
         </div>
       </LabelledRegion>
 
       <LabelledRegion as="section" className={styles.journey} labelPath={"about.journeyTitle"}>
         <div className={styles.journeyHeading} data-reveal><div><EditableText id="about.journeyEyebrow" as="p" className="vm-eyebrow">{t("about.journeyEyebrow")}</EditableText><EditableText id="about.journeyTitle" as="h2" className={styles.sectionTitle}>{t("about.journeyTitle")}</EditableText></div><EditableText id="about.journeyDescription" as="p" className={styles.journeyDescription}>{t("about.journeyDescription")}</EditableText></div>
-        <ol className={styles.journeyGrid} data-preview-list-path="about.journey">
+        <ol suppressHydrationWarning className={styles.journeyGrid} data-preview-list-path="about.journey">
           {content.about.journey.map((step,index) => {
             const path = `about.journey[${index}]`;
-            return <li key={index} data-preview-item-path={`about.journey[${index}]`} data-reveal><div className={styles.journeyTop}><EditableText id={`about.journey[${index}].number`} data-preview-field-path={`about.journey[${index}].number`} as="span" className={styles.journeyNumber}>{step.number}</EditableText>{index < content.about.journey.length - 1 && <span className={styles.journeyLine} aria-hidden="true" />}</div><EditableText id={`about.journey[${index}].title`} data-preview-field-path={`about.journey[${index}].title`} as="h3">{step.title}</EditableText><EditableText id={`about.journey[${index}].text`} data-preview-field-path={`about.journey[${index}].text`} as="p">{step.text}</EditableText></li>;
+            return <li suppressHydrationWarning key={index} data-preview-item-path={`about.journey[${index}]`} data-reveal><div className={styles.journeyTop}><EditableText id={`about.journey[${index}].number`} data-preview-field-path={`about.journey[${index}].number`} as="span" className={styles.journeyNumber}>{step.number}</EditableText>{index < content.about.journey.length - 1 && <span className={styles.journeyLine} aria-hidden="true" />}</div><EditableText id={`about.journey[${index}].title`} data-preview-field-path={`about.journey[${index}].title`} as="h3">{step.title}</EditableText><EditableText id={`about.journey[${index}].text`} data-preview-field-path={`about.journey[${index}].text`} as="p">{step.text}</EditableText></li>;
           })}
         </ol>
       </LabelledRegion>

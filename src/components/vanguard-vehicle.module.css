@@ -58,6 +58,8 @@
 .page.page :global(.vm-car-finish-grid dt svg) { grid-column: 1; grid-row: 1 / 3; width: 34px; height: 34px; padding: 8px; border: 1px solid var(--vm-line); border-radius: 50%; color: var(--vm-navy); }
 .page.page :global(.vm-car-finish-grid dd) { grid-column: 2; grid-row: 2; align-self: start; margin: 0; font-size: 13px; font-weight: 600; }
 .finishPreview { grid-column: 3; grid-row: 1 / 3; display: grid; place-items: center; width: 68px; height: 40px; border: 1px dashed var(--vm-line); border-radius: 7px; background: color-mix(in srgb,var(--vm-silver) 14%,var(--vm-off-white)); color: var(--vm-muted-light); font-size: 13px; }
+.finishPreview[data-has-colour='true'] .finishUnknown,
+.finishPreview[style*='--deneb-card-bg'] .finishUnknown { opacity: 0; }
 .dataNotes { margin-top: 11px; color: var(--vm-muted-light); font-size: 11px; }
 .dataNotes summary { cursor: pointer; }
 .page.page :global(.vm-car-small-print) { --deneb-font-size: 11px; --deneb-line-height: 1.7; }

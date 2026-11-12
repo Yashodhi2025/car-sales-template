@@ -42,6 +42,24 @@ open an email draft for the visitor to send and require dealership confirmation.
 Run `npm run validate` to check an isolated source snapshot, or
 `npm run validate-and-zip` to validate and create the upload ZIP.
 
+For the submission check, run **`npm run validate:all`**. This runs Deneb's
+preflight, the calculation/form/filter logic tests, and the browser UI checks.
+The tests use Node 24 and an installed Chrome or Edge (or set `QA_BROWSER` to
+the browser executable). No additional browser package is required.
+
+`npm run validate:ui` runs the browser checks alone. It starts and stops its own
+isolated preview automatically. The checks cover all configured routes at
+desktop/tablet/mobile widths, horizontal overflow, form-field overlap, service
+card alignment, the eight specification cards, gallery/price overlap, selecting
+and editing the price inside a Fivora iframe, pre-hydration editor metadata,
+and local versus global colour
+edits using the installed Fivora bridge. Failures return a nonzero exit code;
+logs and a summary are saved under `.cache/qa/`.
+
+Deneb passing confirms the template/build/editing contracts. It does not prove
+that every layout is visually correct. The browser checks cover these explicit
+regressions; review new designs and changed content in Fivora before submission.
+
 Browser QA scripts store screenshots, reports, and browser profiles in
 `.cache/qa/`. Deneb excludes `.cache/` from validation snapshots and ZIPs;
 it does not use `.gitignore` to exclude `.qa/`. Keep generated QA files under

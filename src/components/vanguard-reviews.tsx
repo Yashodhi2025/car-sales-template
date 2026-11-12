@@ -38,13 +38,13 @@ export function VanguardReviews() {
     <div className="vm-reviews-heading"><div><EditableText id="home.testimonials.eyebrow" as="p" className="vm-eyebrow">{t("home.testimonials.eyebrow")}</EditableText><EditableText id="home.testimonials.title" as="h2" className="vm-title">{t("home.testimonials.title")}</EditableText></div><div className="vm-reviews-heading-aside"><EditableText id="home.testimonials.sampleLabel" as="p" className="vm-sample-label">{t("home.testimonials.sampleLabel")}</EditableText>
     </div></div>
     <div>
-      <LabelledRegion as="div" className="vm-review-stack" data-preview-list-path="home.reviews" role="region" aria-roledescription="carousel" labelPath={"home.testimonials.carouselLabel"} tabIndex={0}
+      <LabelledRegion suppressHydrationWarning as="div" className="vm-review-stack" data-preview-list-path="home.reviews" role="region" aria-roledescription="carousel" labelPath={"home.testimonials.carouselLabel"} tabIndex={0}
         onKeyDown={event=>{if((event.target as HTMLElement).isContentEditable)return;if(event.key==="ArrowRight"||event.key==="ArrowLeft"){event.preventDefault();select(active+(event.key==="ArrowRight"?1:-1));}}}
         onPointerDown={event=>{if(event.pointerType==="touch"&&window.self===window.top)touch.current={x:event.clientX,y:event.clientY};}}
         onPointerCancel={()=>{touch.current=null;}}
         onPointerUp={event=>{if(!touch.current)return;const dx=event.clientX-touch.current.x,dy=event.clientY-touch.current.y;touch.current=null;if(Math.abs(dx)>50&&Math.abs(dx)>Math.abs(dy)*1.3)select(active+(dx<0?1:-1));}}>
         {items.length === 0 && <EditableText id="home.testimonials.cardLabel" as="p" className="vm-review-demo">{t("home.testimonials.cardLabel")}</EditableText>}
-        {items.map((item,index)=><figure key={index} className={`vm-review ${index===active?"is-current":""}`} inert={index!==active} data-preview-item-path={`home.reviews[${index}]`}>
+        {items.map((item,index)=><figure suppressHydrationWarning key={index} className={`vm-review ${index===active?"is-current":""}`} inert={index!==active} data-preview-item-path={`home.reviews[${index}]`}>
           <div className="vm-review-top vm-review-media"><VanguardImage id={`home.reviews[${index}].image`} data-preview-field-path={`home.reviews[${index}].image`} src={item.image} alt={item.imageAlt} width={1000} height={900} loading="lazy" /></div>
           <div className="vm-review-composition"><div className="vm-review-strap"><span className="vm-quote-mark" aria-hidden="true">“</span><EditableText id="home.testimonials.cardLabel" as="p" className="vm-review-demo">{t("home.testimonials.cardLabel")}</EditableText></div>
           <EditableText id={`home.reviews[${index}].quote`} data-preview-field-path={`home.reviews[${index}].quote`} as="blockquote">{item.quote}</EditableText>

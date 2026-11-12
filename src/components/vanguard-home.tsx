@@ -35,7 +35,7 @@ export function VanguardHome() {
               </div>
             </div>
             <div className="vm-hero-bottom">
-              <a href={t("home.hero.scrollLink")} data-preview-field-path="home.hero.scrollLink" className="vm-scroll"><span className="vm-scroll-line" /><EditableText id="home.hero.scrollLabel">{t("home.hero.scrollLabel")}</EditableText></a>
+              <a suppressHydrationWarning href={t("home.hero.scrollLink")} data-preview-field-path="home.hero.scrollLink" className="vm-scroll"><span className="vm-scroll-line" /><EditableText id="home.hero.scrollLabel">{t("home.hero.scrollLabel")}</EditableText></a>
               <div className="vm-hero-caption"><EditableText id="home.hero.imageCaption" as="p">{t("home.hero.imageCaption")}</EditableText><EditableText id="home.hero.imageSubcaption" as="p">{t("home.hero.imageSubcaption")}</EditableText></div>
               <EditableText id="home.hero.edition" className="vm-hero-edition">{t("home.hero.edition")}</EditableText>
             </div>

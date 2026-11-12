@@ -4,7 +4,7 @@ import { cloneElement, type ReactElement } from "react";
 import type { VehicleId } from "@/lib/site-content";
 
 function Target({ child, ...props }: { child: ReactElement; [key: string]: unknown }) {
-  return cloneElement(child as ReactElement<Record<string, unknown>>, props);
+  return cloneElement(child as ReactElement<Record<string, unknown>>, { ...props, suppressHydrationWarning: true });
 }
 
 type Kind = "galleryItem" | "galleryImage" | "galleryCaption" | "featureItem" | "featureName";

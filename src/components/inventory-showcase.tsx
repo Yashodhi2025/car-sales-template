@@ -85,7 +85,7 @@ export function InventoryShowcase() {
 
   return <header className={`vm-container ${styles.root}`}>
     <LabelledRegion as="nav" className={`vm-breadcrumb ${styles.breadcrumb}`} label="Breadcrumb">
-      <a href={withBasePath("/")} data-preview-field-path="common.navLinks.home"><EditableText id="common.navLabels.home">{t("common.navLabels.home")}</EditableText></a>
+      <a suppressHydrationWarning href={withBasePath("/")} data-preview-field-path="common.navLinks.home"><EditableText id="common.navLabels.home">{t("common.navLabels.home")}</EditableText></a>
       <span aria-hidden="true">/</span><EditableText id="common.navLabels.collection">{t("common.navLabels.collection")}</EditableText>
     </LabelledRegion>
     <div className={styles.heroLayout}>

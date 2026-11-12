@@ -13,9 +13,11 @@ export function previewPath(path: string) {
 }
 
 export function previewField(path: string) {
-  return { "data-preview-field-path": previewPath(path) };
+  // Fivora adds and rebuilds resolved-path metadata before hydration. Tolerate
+  // those editor-owned attributes only on the actual editable DOM targets.
+  return { "data-preview-field-path": previewPath(path), suppressHydrationWarning: true };
 }
 
 export function previewList(path: string) {
-  return { "data-preview-list-path": previewPath(path) };
+  return { "data-preview-list-path": previewPath(path), suppressHydrationWarning: true };
 }

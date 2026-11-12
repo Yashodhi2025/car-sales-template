@@ -1,3 +1,7 @@
+/* Header action overrides are local to this button, including its mobile copy. */
+.vanguard [data-preview-style-target="common.headerCtaLink"][style*="--deneb-btn-bg"] { background: var(--deneb-btn-bg) !important; }
+.vanguard [data-preview-style-target="common.headerCtaLink"][style*="--deneb-btn-color"] { color: var(--deneb-btn-color) !important; }
+
 /* Shared density defaults. Editable nodes retain their own saved inline styles. */
 .vanguard {
   --vm-section-space: clamp(28px,3vw,42px);

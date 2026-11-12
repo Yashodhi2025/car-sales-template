@@ -25,18 +25,18 @@ export function VehicleListing({ id, index = 0 }: { id: VehicleId; index?: numbe
           <span className="vm-vehicle-index" aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
         </div>
 
-      <EditableText id={`cards.vehicles.${id}.badge`}>{t(`cards.vehicles.${id}.badge`)}</EditableText>
+      <EditableText cssTypography id={`cards.vehicles.${id}.badge`}>{t(`cards.vehicles.${id}.badge`)}</EditableText>
       <div>
-        <EditableText id={`cards.vehicles.${id}.meta`} as="p">{t(`cards.vehicles.${id}.meta`)}</EditableText>
-        {canView ? <EditableLink href={withBasePath(t(`vehicles.${id}.detailLink`))} {...previewField(`vehicles.${id}.detailLink`)}><EditableText id={`cards.vehicles.${id}.name`}>{t(`cards.vehicles.${id}.name`)}</EditableText></EditableLink> : <EditableText id={`cards.vehicles.${id}.name`}>{t(`cards.vehicles.${id}.name`)}</EditableText>}
-        <EditableText id={`cards.vehicles.${id}.details`} as="p">{t(`cards.vehicles.${id}.details`)}</EditableText>
-        <ul>{["mileage", "fuel", "transmission"].map(field => <li key={field}><EditableIcon fieldPath={`cards.vehicles.${id}.specs.${field}.icon`} name={t(`cards.vehicles.${id}.specs.${field}.icon`)} size={14} style={{marginRight:"0.25rem"}} /><EditableText id={`cards.vehicles.${id}.${field}`}>{t(`cards.vehicles.${id}.${field}`)}</EditableText></li>)}</ul>
-        <EditableText id={`cards.vehicles.${id}.price`} as="p">{t(`cards.vehicles.${id}.price`)}</EditableText>
+        <EditableText cssTypography id={`cards.vehicles.${id}.meta`} as="p">{t(`cards.vehicles.${id}.meta`)}</EditableText>
+        {canView ? <EditableLink href={withBasePath(t(`vehicles.${id}.detailLink`))} {...previewField(`vehicles.${id}.detailLink`)}><EditableText cssTypography id={`cards.vehicles.${id}.name`}>{t(`cards.vehicles.${id}.name`)}</EditableText></EditableLink> : <EditableText cssTypography id={`cards.vehicles.${id}.name`}>{t(`cards.vehicles.${id}.name`)}</EditableText>}
+        <EditableText cssTypography id={`cards.vehicles.${id}.details`} as="p">{t(`cards.vehicles.${id}.details`)}</EditableText>
+        <ul>{["mileage", "fuel", "transmission"].map(field => <li key={field}><EditableIcon fieldPath={`cards.vehicles.${id}.specs.${field}.icon`} name={t(`cards.vehicles.${id}.specs.${field}.icon`)} size={14} style={{marginRight:"0.25rem"}} /><EditableText cssTypography id={`cards.vehicles.${id}.${field}`}>{t(`cards.vehicles.${id}.${field}`)}</EditableText></li>)}</ul>
+        <EditableText cssTypography id={`cards.vehicles.${id}.price`} as="p">{t(`cards.vehicles.${id}.price`)}</EditableText>
       </div>
       <div className="vm-vehicle-card-actions"><EditableText id="home.collection.priceCaption" as="p" className="vm-card-price-caption">{t("home.collection.priceCaption")}</EditableText><div className="vm-card-action-row">{canView && <EditableLink href={withBasePath(t(`vehicles.${id}.detailLink`))} {...previewField(`vehicles.${id}.detailLink`)} targetPage={carPageKey(id)} className="vm-card-detail-link"><EditableText id="vehicleDetails.viewDetailsLabel">{t("vehicleDetails.viewDetailsLabel")}</EditableText><Arrow /></EditableLink>}{canEnquire && (
         <EditableLink href={withBasePath(t(`cards.vehicles.${id}.enquiryLink`))}
           {...previewField(`cards.vehicles.${id}.enquiryLink`)} targetPage="contact" className="vm-vehicle-action">
-          <span data-preview-field-path="home.collection.enquireLabel" aria-label={t("home.collection.enquireLabel")}><EditableText id="home.collection.cardEnquireLabel">{t("home.collection.cardEnquireLabel")}</EditableText></span>
+          <span suppressHydrationWarning data-preview-field-path="home.collection.enquireLabel" aria-label={t("home.collection.enquireLabel")}><EditableText id="home.collection.cardEnquireLabel">{t("home.collection.cardEnquireLabel")}</EditableText></span>
         </EditableLink>
       )}</div></div>
       <div className="vm-availability">
